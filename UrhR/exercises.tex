@@ -1,0 +1,113 @@
+\documentclass{article}
+
+\usepackage{xrcise}
+
+\subject{Urheberrecht in der Informationsgesellschaft}
+\semester{Summer 2024}
+\author{Leopold Lemmermann}
+
+\begin{document}\createtitle
+
+\sheet{SVS Fragenkatalog}
+\setcounter{section}{20}
+\begin{exercise}[3]{Spread Spectrum Watermarking}
+  Gegeben sei ein Original (bereits frequenztransformiert)
+  \[
+    N(x,y)=\begin{pmatrix} 8 & 6 & 4 \\ 5 & 3 & 1\\ 6 & 2 & 0 \end{pmatrix}.
+  \]
+  Die Basisfunktionen $\Phi_i$ seien
+  \[
+    \Phi_1=\begin{pmatrix} 0 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \quad \text{und} \quad \Phi_2=\begin{pmatrix} 1 & 0 & 1 \\ 1 & 0 & 0 \\ 1 & 0 & 1 \end{pmatrix}.
+  \]
+  Es soll ein Watermark $b$ aus zwei Bit $b = ("0","1")$ eingebettet werden.
+
+  \begin{enumerate}
+    \item Berechnen Sie $D(x,y)$ (markiertes Original).
+          \hint{Die $b_i$ werden transformiert in Werte aus $\{-1,1\}$, d.h. ein Null-Bit wird auf $-1$ abgebildet, ein Eins-Bit auf $1$.}
+    \item Durch eine Störung (bzw. einen Angriff) sei die dritte Zeile von $D(x,y)$ ausgelöscht (mit Nullen belegt), d.h.
+          \[
+            \tilde{D}(x,y)=\begin{pmatrix} \cdot & \cdot & \cdot \\ \cdot & \cdot & \cdot \\ 0 & 0 & 0 \end{pmatrix}.
+          \]
+          Extrahieren Sie das Watermark. Als Schwellwert wird der Mittelwert der $o_i$ verwendet.
+  \end{enumerate}
+\end{exercise}
+
+\setcounter{section}{25}
+\begin{exercise}[1]{Inhalte auf Datenträgern}
+  Nehmen wir an, dass von jedem Datenträger über kurz oder lang problemlos digitale Kopien der Daten angefertigt werden können.
+  \begin{enumerate}
+    \item Überlegen Sie sich verschiedene Möglichkeiten, wie ein Schutzsystem aussehen könnte, das die Nutzung der Inhalte nur Berechtigten (z.B. denen, die dafür bezahlt haben) erlaubt.
+    \item Inwieweit unterscheidet sich die Problemstellung und Ihre Lösung(en) vom Schutz vor Raubkopien in der Software-Branche?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Hardwarebaustein zum Rechtemanagement}
+  Mit dem Einsatz eines Hardwarebausteins im PC, der für seinen Besitzer nicht ausforschbar ist, und der aus Inhalteanbieter-Sicht für eine "sichere" Systemkonfiguration sorgt, soll ein digitales Rechtemanagement möglich werden. Beschreiben Sie, wie der Ablauf vom Booten des PCs bis zur Nutzung des Inhalts aussehen könnte, damit keine fremde Software an die ungesicherten Mediendaten kommt.
+\end{exercise}
+
+\begin{exercise}{Schranken des Urheberrechts}
+  Aus aktuellem Anlass veröffentlichen Sie eine Zusammenstellung aller öffentlichen Reden des Bundespräsidenten und des Innenministers der letzten Wochen in Buchform. Können Sie sich dabei auf die gesetzlich erlaubte Nutzung gemäß § 48 UrhG berufen?
+\end{exercise}
+
+\begin{exercise}{Schutzrechte des geistigen Eigentums}
+  Wie entsteht ein Schutzrecht an geistigem Eigentum? Vergleichen Sie Urheberrecht und Patentrecht.
+\end{exercise}
+
+\begin{exercise}{Voraussetzungen für Werkeigenschaft}
+  Sie haben ein Computerprogramm entwickelt, das automatisiert kunstvolle Bilder zeichnet. Prüfen Sie für die generierten Bilder und das Computerprogramm, ob die Voraussetzungen für ein urheberrechtlich geschütztes Werk vorliegen.
+\end{exercise}
+
+\begin{exercise}{Erwerb von Nutzungsrechten}
+  \begin{enumerate}
+    \item Was versteht man im deutschen Recht allgemein unter gutgläubigem Erwerb?
+    \item Wie verhält es sich mit dem gutgläubigen Erwerb im Urheberrecht?
+    \item Prüfen Sie, ob folgende Aussage wahr oder falsch ist: "Nutzungsrechte können nur vom Urheber wirksam eingeräumt werden." Begründen Sie!
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Erwerb von Nutzungsrechten}
+  Ein E-Book-Verlag hat das ausschließliche Nutzungsrecht zur digitalen Vermarktung eines Romans vom Autor erworben. Unter welchen Umständen darf der Verlag einem Dritten ein Nutzungsrecht einräumen?
+\end{exercise}
+
+\begin{exercise}{Lizenzen}
+  \begin{enumerate}
+    \item Nennen Sie zwei Vorteile der Standardisierung von Nutzungslizenzen wie Creative Commons und erläutern Sie diese kurz.
+    \item Wieso gibt es die Variation der Creative-Commons-Lizenz CC-BY-ND-SA nicht?
+    \item Darf ein gemeinfreies Werk unter der Lizenz CC0 auch in einem Werk nach CC-BY-SA verwendet werden? Begründen Sie.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Nutzung von Computerprogrammen}
+  Ein Lizenznehmer möchte ein Computerprogramm zur automatisierten Prüfung auf Sicherheitslücken dekompilieren. Unter welchen Voraussetzungen wäre eine solche Dekompilierung urheberrechtlich zulässig?
+\end{exercise}
+
+\begin{exercise}{Werke}
+  Bei einem Live-Auftritt rappt ein Künstler den Text einer öffentlichen Bundestagsrede Angela Merkels zu seiner elektronischen Bearbeitung von Giuseppe Verdis Werk Dies Irae.
+  \begin{enumerate}
+    \item Nennen Sie vier Werke, die bei dieser Ausführung verwertet oder geschaffen werden.
+    \item Hat der Künstler bei der Vorführung Urheberrechte Dritter verletzt? Begründen Sie.
+    \item Ein Zuschauer macht während der Show Fotos des Künstlers und veröffentlicht diese im Internet. Darf er das? Begründen Sie.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Serienstreaming}
+  \begin{enumerate}
+    \item Der Nutzer Serienfan300 schaut gerne Serien der Streamingplattform Webfluxilux auf seinem Tablet. Findet dabei eine Vervielfältigung im Sinne des Urheberrechtes statt? Diskutieren Sie mögliche Fallunterscheidungen und beurteilen Sie deren Zulässigkeit. Begründen Sie.
+    \item Dieser Serienfan300 betreibt einen öffentlichen Blog, auf dem er wöchentlich selbst angefertigte Screenshots (Einzelbilder) seiner liebsten Serien postet, die er beim Nutzen von Webfluxilux erstellt. Begeht er hierbei eine Urheberrechtsverletzung? Begründen Sie.
+    \item Wie bewerten Sie die Rechtmäßigkeit, wenn Serienfan300 in seinem Blog anstelle selbst angefertigter Screenshots auf öffentlich verfügbare Screenshots und Videos anderer Nutzer verweist (verlinkt), ohne diese in seinem Blog direkt sichtbar zu machen?
+    \item Wie bewerten Sie die Rechtmäßigkeit, wenn der Serienfan300 in seinem Blog das Kostümdesign in den Serien bespricht und zur Veranschaulichung Videoclips einbettet?
+    \item Auf TheyTube gibt es den Benutzer AllergroßterSerienfan, der mehrminütige Videoausschnitte aus Webflux-eigenen Serien hochlädt. Serienfan300 wird verdächtigt, dieser Benutzer zu sein. Gibt es eine technische Möglichkeit für Webflux, zu ermitteln, welcher Benutzer Videoclips unrechtmäßig veröffentlicht hat? Erläutern Sie die Funktion.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Barrierefreiheit}
+  Herr Mac Mole kauft sich einen neuen Bestseller-Roman der Schriftstellerin Conni Funkel. Da er selbst mit Brille sehr schlecht sieht, lässt er sich das Buch ohne Erlaubnis der Autorin von Montgomery Arron, einem Freund, als Hörbuch aufnehmen.
+  \begin{enumerate}
+    \item Hat einer der beiden dabei gegen das Urheberrecht verstoßen? Begründen Sie.
+    \item Einige ebenfalls schlechtsichtige Freunde Mac Moles sind von der Idee begeistert und bitten ihn, das entstandene Hörbuch an sie weiter zu geben. Ist Mac Mole dazu berechtigt? Begründen Sie.
+    \item Die Buchautorin erfährt von dem Hörbuch und fordert von Mac Mole eine Vergütung für die vervielfältigten Werke. Hat sie nach den §§45a bis 45d UrhG einen Anspruch auf Vergütung gegenüber Mac Mole? Begründen Sie.
+    \item Darf Mac Mole das Hörbuch öffentlich anbieten und dafür Geld verlangen? Begründen Sie.
+  \end{enumerate}
+\end{exercise}
+
+\end{document}
