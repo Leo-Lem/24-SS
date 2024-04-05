@@ -9,45 +9,51 @@
 \begin{document}\createtitle
 
 \sheet{Vorlesungsfragen}
-% Was ist ein Modell?
-% Welche typischen Eigenschaften weisen Modelle auf?
-% Zu welchen Zwecken werden Modelle gebildet?
-% Nennen Sie jeweils ein Beispiel für Komplexitätsreduzierung durch Idealisierung und durch Abstraktion.
-% Worin unterscheiden sich Simulationsmodelle und analytische Modelle? Geben Sie zwei Merkmale an.
-% Worin unterscheiden sich Simulationen mit wissenschaftlichem Anspruch und Computerspiele des Genres „Simulation“? Nennen Sie zwei Merkmale.
+\begin{exercise}{Einführung}
+  \begin{enumerate}
+    \item Was ist ein Modell?
+    \item Welche typischen Eigenschaften weisen Modelle auf?
+    \item Zu welchen Zwecken werden Modelle gebildet?
+    \item Nennen Sie jeweils ein Beispiel für Komplexitätsreduzierung durch Idealisierung und durch Abstraktion.
+    \item Worin unterscheiden sich Simulationsmodelle und analytische Modelle? Geben Sie zwei Merkmale an.
+    \item Worin unterscheiden sich Simulationen mit wissenschaftlichem Anspruch und Computerspiele des Genres "Simulation"? Nennen Sie zwei Merkmale.
+  \end{enumerate}
+\end{exercise}
 
-\sheet{Altklausuren}
-% 2023 Erst
-% Aufgabe 1
-% Gegebene Modellbeschreibung:
-% Stadion wo Fußballspiele eines Vereins stattfinden und das logistische Herausforderungen für die Stadt mit sich bringt. Die Fans nehmen die S-Bahn vom Hbf der Stadt welche sie zum Bahnhof in der Nähe des Stadions fährt.
-% Alle 5 Minuten verlässt eine S-Bahn den Hbf mit 300-500 (gleichverteilung) Fans. Die Fahrtzeit ist normalverteilt x Minuten lang mit x Minuten Standardabweichung.
-% Beim Bahnhof angekommen steigen die Fans aus wobei der Ausstieg so beschrieben wird, das konstant alle Zehntel Sekunden ein Fan aussteigt. Nun müssen die Fans noch einen Shuttle Bus nehmen um zum Stadion zu gelangen. Um zum Shuttle Bus zu gelangen, müssen die Fans zu einem Tunnel laufen und diesen überqueren (begrenzte Anzahl darf durch) daher kann sich eine Warteschlange vor dem Tunnel bilden, bis alle durch sind. An der Bushaltestelle angekommen fährt regelmäßig alle 100 Sekunden ein Shuttle Bus los und befördert die Fans zum Stadion. Es wird angenommen, dass es keine Begrenzung der Anzahl an Fans gibt, die in den Bus einsteigen dürfen. Wenn das warten auf dem bus zu lange dauert und einen der jeweiligen Person spezifischen Maximalwert der Wartezeit überschritten wurde (exponentialverteilt im Mittel 300 Sekunden), bricht der Fan das warten ab und macht sich zu Fuß auf dem Weg zum Stadion.
-% (a) Nennen Sie drei Leistungsgrößen die bei einer Simulation dieses Modells analysiert werden könnten.
-% (b) Würden Sie eine ereignisorientierte oder eine prozessorientierte Modellierung vorschlagen?
-% (c) Entitäten nennen und in Prozesse und Ressourcen aufteilen.
-% (d) Unabhängig vom Ergebnis aus (b) soll eine prozessorientierte Modellierung mittels
-% BPMN erfolgen. Prozessarten aus c) modellieren.
-% - Mathematischer Themenblock: Aufgabe mit zentralen Grenzwertsatz
-% - Ablaufsteuerung der ereignisorientierten Simulation beschreiben und dabei die Bedeutung der Ereignisliste erklären
-% - Unterschied zwischen ereignisbasierter Simulation und zeitintervallbasierter Simulation erklären
-% ISO-Teil
-% Aufgabe 1 - Co-Create Single Choice
-% 10 Wahr/Falsch Aussagen gegeben und jeweiliges ankreuzen.
-% Aufgabe x
-% Qualitative und Quantitative Prozessanalysetechniken nennen und kurz beschreiben und sagen wie man CTE optimieren kann.
-% Aufgabe 2
-% Zwei Nachteile von BPMN beschreiben, Process Mining erklären und erläutern, wie man den Nachteilen mithilfe von Process Mining entgegenwirken kann.
-% Aufgabe 3 - Informationssysteme
-% ERP-Standardsoftware oder Individualsoftware für McDonger King aus der Übung. Und zusätzlich angeben, ob ERP-Cloud Lösung sinnvoll wäre.
-% Aufgabe 3
-% zwei Aufgaben der IT-Governance nennen und beschreiben.
-% Aufgabe 4
-% Unterschied zwischen IT-Strategie und Digital Business Strategie anhand von drei charakteristischen Eigenschaften der beiden erklären und Beispiele nennen.
-% Aufgabe 5
-% Rolle und Aufgaben der CDO erklären und einem Zitat von Hausaufgabe 3 entweder zustimmen oder ablehnen. Das Zitat besagt, dass nach dem die Digitalisierung überwunden wurde, es auch keine CDO‘s mehr geben wird bzw. diese nicht mehr gebraucht werden würden.
-% Aufgabe x
-% Zwei Prinzipien der Entwicklung soziotechnischen Systeme nennen und beschreiben
+\sheet[2023]{Altklausur}
+\begin{exercise}{Modellierung}
+  Modellbeschreibung: Stadion, wo Fußballspiele eines Vereins stattfinden und das logistische Herausforderungen für die Stadt mit sich bringt. Die Fans nehmen die S-Bahn vom Hbf der Stadt, welche sie zum Bahnhof in der Nähe des Stadions fährt. Alle 5 Minuten verlässt eine S-Bahn den Hbf mit 300-500 (gleichverteilung) Fans. Die Fahrtzeit ist normalverteilt x Minuten lang mit x Minuten Standardabweichung. Beim Bahnhof angekommen steigen die Fans aus, wobei der Ausstieg so beschrieben wird, dass konstant alle Zehntel Sekunden ein Fan aussteigt. Nun müssen die Fans noch einen Shuttle Bus nehmen, um zum Stadion zu gelangen. Um zum Shuttle Bus zu gelangen, müssen die Fans zu einem Tunnel laufen und diesen überqueren (begrenzte Anzahl darf durch), daher kann sich eine Warteschlange vor dem Tunnel bilden, bis alle durch sind. An der Bushaltestelle angekommen fährt regelmäßig alle 100 Sekunden ein Shuttle Bus los und befördert die Fans zum Stadion. Es wird angenommen, dass es keine Begrenzung der Anzahl an Fans gibt, die in den Bus einsteigen dürfen. Wenn das Warten auf dem Bus zu lange dauert und einen der jeweiligen Person spezifischen Maximalwert der Wartezeit überschritten wurde (exponentialverteilt im Mittel 300 Sekunden), bricht der Fan das Warten ab und macht sich zu Fuß auf dem Weg zum Stadion.
+  \begin{enumerate}
+    \item Nennen Sie drei Leistungsgrößen die bei einer Simulation dieses Modells analysiert werden könnten.
+    \item Würden Sie eine ereignisorientierte oder eine prozessorientierte Modellierung vorschlagen?
+    \item Entitäten nennen und in Prozesse und Ressourcen aufteilen.
+    \item Unabhängig vom Ergebnis aus (b) soll eine prozessorientierte Modellierung mittels BPMN erfolgen. Prozessarten aus (c) modellieren.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Mathematischer Themenblock}
+  \begin{enumerate}
+    \item Aufgabe mit zentralem Grenzwertsatz
+    \item Ablaufsteuerung der ereignisorientierten Simulation beschreiben und dabei die Bedeutung der Ereignisliste erklären
+    \item Unterschied zwischen ereignisbasierter Simulation und zeitintervallbasierter Simulation erklären
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{ISO}
+  \begin{enumerate}
+    \item 10 Wahr/Falsch Aussagen gegeben und jeweiliges ankreuzen.
+    \item Qualitative und Quantitative Prozessanalysetechniken nennen und kurz beschreiben und sagen, wie man CTE optimieren kann.
+    \item Zwei Nachteile von BPMN beschreiben, Process Mining erklären und erläutern, wie man den Nachteilen mithilfe von Process Mining entgegenwirken kann.
+    \item ERP-Standardsoftware oder Individualsoftware für McDonger King aus der Übung. Und zusätzlich angeben, ob ERP-Cloud Lösung sinnvoll wäre.
+    \item Zwei Aufgaben der IT-Governance nennen und beschreiben.
+    \item Unterschied zwischen IT-Strategie und Digital Business Strategie anhand von drei charakteristischen Eigenschaften der beiden erklären und Beispiele nennen.
+    \item Rolle und Aufgaben der CDO erklären und einem Zitat von Hausaufgabe 3 entweder zustimmen oder ablehnen. Das Zitat besagt, dass nach der Digitalisierung überwunden wurde, es auch keine CDO's mehr geben wird bzw. diese nicht mehr gebraucht werden würden.
+    \item Zwei Prinzipien der Entwicklung soziotechnischen Systeme nennen und beschreiben.
+  \end{enumerate}
+\end{exercise}
+
+\sheet[2022]{Altklausur}
+
 
 % 2022 Erst?
 % MUS:
