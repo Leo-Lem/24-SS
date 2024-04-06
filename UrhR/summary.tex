@@ -7,9 +7,6 @@
 \author{Leopold Lemmermann}
 
 \begin{document}\createtitle
-
-
-
 \section{Geistiges Eigentum}
 \begin{quote}
   Zeitlich beschränkter Schutz immateriellen, geistigen Inhalts. In Abgrenzung zu Sachenrechten, die sich auf materielle Gegenstände beziehen und zeitlich unbeschränkt sind.
@@ -234,7 +231,53 @@ VGG (Verwertungsgesellschaftengesetz) regelt Rechte \& Pflichten von Verwertungs
 
 \section{Digital Rights Management (DRM)}
 
+\subsection{Technischer Schutz von Urheberrechten}
+\subsubsection{Abgrenzung}
+\begin{itemize}
+  \item \textbf{Verschlüsselung}: Erkennbar, aber unlesbar
+  \item \textbf{Steganographie}: Verstecken von Informationen
+  \item \textbf{Wasserzeichen}: Schutz von Rechten
+\end{itemize}
 
+\subsubsection{Mögliche Angriffe}
+\begin{itemize}
+  \item \textbf{Digital-Analog-Wandlung}: Ausdrucken
+  \item \textbf{Analog-Digital-Wandlung}: Scannen, Aufnehmen
+  \item \textbf{Re-Sampling}: Verändern der Abtastrate
+  \item \textbf{Re-Quantisierung}: Verändern der Bitrate
+  \item \textbf{Kompression}
+  \item \textbf{Dithering}: Rauschen
+  \item \textbf{Rotation}: Drehen
+  \item \textbf{Translation}: Verschieben
+  \item \textbf{Cropping}: Abschneiden von Wasserzeichen
+  \item \textbf{Scaling}: Vergrößern/Verkleinern
+  \item \textbf{Collution Attacks}: Zusammenfügen von Wasserzeichen
+\end{itemize}
 
+\subsection{Watermarking}
+\subsubsection{Spread Spectrum Watermarking}
+\begin{quote}Watermark wird in digitales Objekt eingebettet, aber nicht sichtbar. Kann extrahiert werden, um Urheber zu identifizieren.\end{quote}
 
+\begin{itemize}
+  \item Watermarking: $\underbrace{D(x,y)}_{\text{Objekt}} = \underbrace{N(x,y)}_{\text{Original}} + \underbrace{S(x,y)}_{\text{Watermark}}$
+  \item Watermark: $S(x,y) = \sum_{i}{\underbrace{b_i}_{\text{Watermark-Bit}} \underbrace{\phi_i(x,y)}_{\text{Basisfunktion}}}$
+  \item Extrahieren: $o_i = \sum_{x,y}{D(x,y) \cdot \phi_i(x,y)}$
+\end{itemize}
+
+\subsubsection{Sicherheit von Watermarking}
+Registrierung von Watermarks notwendig, da sonst Watermarks "basteln" möglich.
+
+\subsubsection{Angriffe auf Watermarking}
+\begin{itemize}
+  \item \textbf{StirMark}: automatisierte Entfernung des Watermarks durch nicht-lineares Verbeulen des Bilds
+  \item \textbf{Mosaic Attack}: Zerlegen in Einzelbilder und Zusammenfügen im Browser
+  \item \textbf{Sensitivity Attack}: Vergleich von Bild mit und ohne Watermark, um kleinste nötige Veränderung des Watermarks zu finden
+\end{itemize}
+
+\subsection{Non-Fungible Tokens (NFTs)}
+\begin{itemize}
+  \item technisch: kryptographische eindeutig, überprüfbar, Reihenfolge enthaltend
+  \item meist Speicherung eines Verweises auf Gegenstand in Blockchain
+  \item rechtlich: unteilbar/unersetzbar, nicht austauschbar, Werk
+\end{itemize}
 \end{document}
