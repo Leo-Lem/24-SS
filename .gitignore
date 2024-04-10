@@ -4,5 +4,9 @@
 .DS_Store
 Icon?
 
-# pdf resources #
+# resources #
 *.pdf
+*.docx
+
+burchard.jar
+burchard-run.bat
