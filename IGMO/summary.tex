@@ -69,4 +69,60 @@
 
 \subsubsection{Wissenschaft \& Computerspiele}
 \input{res/games.tbl}
+
+\section{Grundkonzepte der diskreten Ereignissimulation}
+\subsection{Modellkomponenten}
+\begin{itemize}
+  \item \textbf{Entität}: Objekt, dessen Verhalten über Simulationszeit definiert ist
+        \begin{itemize}
+          \item \textbf{Zustand}: über Entitätsattribute
+          \item \textbf{Verhalten}: über Transformationsregeln, spezielle Methoden mit Zeitparametern
+        \end{itemize}
+  \item \textbf{Simulation}: Abbildung des Zusammenhangs statischer Struktur \& dynamischem Verhalten
+  \item \textbf{Modellzeit}: fiktiv, unabhängig von Real-/Rechenzeit
+  \item \textbf{Zustandsänderung}: diskret (schrittweise) oder kontinuierlich (stetig)
+\end{itemize}
+
+\subsubsection{Zeitdiskrete Simulation}
+Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
+\input{res/discsim.fig}
+
+\subsubsection{Prinzipielle Softwarekomponenten}
+\begin{itemize}
+  \item \textbf{Entitäten}: Objekte, die simuliert werden
+  \item \textbf{Simulationsuhr}: Zeitverwaltung
+  \item \textbf{Ereignis-/Prozessliste}: Prioritätswarteschlange
+  \item \textbf{Statistikmodul}: Auswertung
+  \item \textbf{Initialisierungsmethode}: Startzustand
+  \item \textbf{Ereignis-/Prozessmethoden}: Verarbeitung
+  \item \textbf{Hauptroutine/-prozess}: Steuerung
+  \item \textbf{Auswertung-/Reportmethode}: Ergebnisse
+  \item \textbf{Scheduler}: interne Simulationssteuerung
+\end{itemize}
+
+\subsection{Übersicht alternativer Modellierungsstile}
+\begin{enumerate}
+  \item \textbf{Ereignis}: Zustandsänderung(en) (endogen/exogen) zu einem Zeitpunkt vorgegeben
+  \item \textbf{Aktivität}: Menge von Operationen innerhalb von Zeitintervall
+  \item \textbf{Prozess}: Folge von Aktivitäten einer Entität über Zeitspanne
+\end{enumerate}
+
+\subsubsection{Modellierungsstile}
+\begin{itemize}
+  \item \textbf{Ereignisorientiert}: Zustandsänderungen einzelner Entitäten
+  \item \textbf{Prozessorientiert}: beschreibt Lebenszyklen von Entitäten
+  \item \textbf{Aktivitätsorientiert}: Entitäten als passive Objekte, Stationen führen Aktivitäten durch
+  \item \textbf{Transaktionsorientiert}: Entitäten fordern Transaktionen (welche evtl. nicht verfügbar sind)
+\end{itemize}
+
+\subsection{Ereignisorientierte Simulation}
+
+\subsubsection{UML}
+
+\subsection{Prozessorientierte Simulation}
+
+\subsubsection{BPMN2.0}
+
+\subsection{Vergleich der Modellierungsstile}
+
 \end{document}
