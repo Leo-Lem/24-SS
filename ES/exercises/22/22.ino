@@ -5,8 +5,9 @@ const byte pin = 9;
 void status()
 {
   int value = analogRead(pin);
-  float voltage = value * 5.0 / 1023;
+  float voltage = value * 3.3 / 1023;
   float voltageInmV = voltage * 1000;
+
   Serial.print("pin A");
   Serial.print(pin);
   Serial.print(" - ADC-value: ");
