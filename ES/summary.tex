@@ -10,7 +10,8 @@
 
 \section{Specification \& Modelling}
 
-\subsection{General requirements}
+\subsection{Overview}
+\subsubsection{General requirements}
 \begin{enumerate}
   \item \textbf{Hierarchy}: behavioral, structural
   \item \textbf{Component-based}: esp. concurrency, communcation
@@ -19,7 +20,7 @@
   \item …
 \end{enumerate}
 
-\subsection{Dependence graphs}
+\subsubsection{Dependence graphs}
 \begin{enumerate}
   \item \textbf{Directed graph}: nodes are operations/programs, edges are dependencies
   \item \textbf{Timing}: Arrival times, deadlines (for example)
@@ -29,11 +30,11 @@
   \item \textbf{Hierarchy}: subgraphs
 \end{enumerate}
 
-\subsection{Problems with von-Neumann computing}
+\subsubsection{Problems with von-Neumann computing}
 Mutual exclusion, holding resources while waiting for more, no preemption, circular wait.
 $\hookrightarrow$ thread-based von-Neumann computation is inadquate for embedded systems. We need a more structured approach.
 
-\subsection{Models of computation and message passing}
+\subsubsection{Models of computation and message passing}
 \begin{enumerate}
   \item \textbf{Undefined components}: plain text, use cases, sequence charts
   \item \textbf{Communicating FSM} (StateCharts for shared memory): async with SDL
@@ -42,5 +43,106 @@ $\hookrightarrow$ thread-based von-Neumann computation is inadquate for embedded
   \item \textbf{Discrete event model} (VHDL, Verilog, Systemc, … for shared memory): only experimental systems
   \item \textbf{von Neumann model}: C, C++, Java, …
 \end{enumerate}
+
+\subsection{Early design phase (undefined components)}
+\begin{enumerate}
+  \item \textbf{Plain text}: describe system in natural language
+  \item \textbf{Use cases}: describe system from user perspective (possible applications), included in UML
+  \item \textbf{(Message) Sequence charts (MSCs)}: describe interaction between components, included in UML
+  \item \textbf{UML timing diagrams}
+  \item \textbf{Life sequence charts (LSCs)}: extend MSCs with pre-charts, mandatory- vs provisional behavior
+\end{enumerate}
+
+\subsubsection{Pros \& Cons of MSCs}
+\begin{itemize}
+  \item[+] Appropriate for visualising schedules
+  \item[+] Proved method for transporting schedules
+  \item[+] Standard defined (ITU-TS)
+  \item[+] Semantics defined (ITU-TS)
+  \item[-] just one case, no timing tolerances
+\end{itemize}
+
+\subsection{Communicating FSMs}
+see RSB/MAKS for introduction
+
+\subsubsection{Definitions}
+\begin{itemize}
+  \item \textbf{Clock constraints}: conjunctive formula of atomic constraints $x-y \leq|<|=|>|\geq n\forall x,y\in C, n\in \mathbb{N}$
+  \item \textbf{Timed automaton}: FSM with clock constraints
+\end{itemize}
+
+\subsubsection{StateCharts}
+\begin{quote} based in shared memory computation, aggregates FSMs, allows for hierarchy, concurrency, communication, …\end{quote}
+
+\begin{itemize}
+  \item \textbf{Active states}: states with active substates
+  \item \textbf{Basic states}: not composed of substates
+  \item \textbf{Superstates}: composed of substates
+  \item \textbf{OR-superstates} (choice): one of the substates is active
+  \item \textbf{AND-superstates} (concurrency): all substates are active
+  \item \textbf{History states}: remember last active substate
+  \item \textbf{Timers}: special timeout edges
+  \item \textbf{Edge labels}: event [condition]/action
+  \item \textbf{StateMate simulation}
+        \begin{enumerate}
+          \item effect of external changes on events and conditions
+          \item set of transitions enabled by events and right-hand side are computed
+          \item transitions become active, new values for variables
+        \end{enumerate}
+  \item \textbf{Event lifetime}: live until step following is generated
+  \item \textbf{Determinate}: given all conflicts resolved and no undefined behavior
+\end{itemize}
+
+\subsubsection{Pros \& Cons of StateCharts}
+\begin{itemize}
+  \item[+] arbitrary nesting of AND- \& OR-superstates
+  \item[+] (StateMate-)Semantics defined
+  \item[+] large number of commercial simulation tools
+  \item[+] translation to SW/HW possible
+  \item[-] not useful for distributed applications
+  \item[-] no program constructs
+  \item[-] no description of non-functional behavior
+  \item[-] no object-orientation
+  \item[-] no description of structural hierarchy
+  \item[-] (possibly) inefficient generated programms
+\end{itemize}
+
+\subsubsection{message passing between FSMs via Specification \& Description language (SDL)}
+\begin{quote} Excellent for distributed systems, asynchronous message passing, based on CFSM (like StateCharts) \end{quote}
+
+\begin{itemize}
+  \item \textbf{Process}: with State (round rectangle), Input (anti left arrow), Output (anti right arrow)
+  \item \textbf{FIFO messaging}: between processes
+  \item \textbf{Interaction}: process interaction diagrams
+  \item \textbf{Hierarchy}: blocks, root block (system), block instance (processes cannot contain other processes)
+\end{itemize}
+
+\subsection{Data flow}
+
+% TODO
+
+\subsection{Petri nets}
+see MAKS
+
+\subsubsection{Pros \& Cons}
+\begin{itemize}
+  \item[+] Appropriate for distributed applications
+  \item[+] Well-known theory for formally proving properties
+  \item[+] Initially a quite bizarre topic, but now accepted due to increasing number of distributed applications
+  \item[-] problems with modeling timing
+  \item[-] no programming elements
+  \item[-] no hierarchy
+  \item[ext.] enormous amounts of effort on removing limitations
+\end{itemize}
+
+\subsection{Discrete event models}
+
+% TODO
+
+\subsection{Imperative computation}
+
+% TODO
+
+\subsection{Comparison}
 
 \end{document}
