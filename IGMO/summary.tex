@@ -116,13 +116,113 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
 \end{itemize}
 
 \subsection{Ereignisorientierte Simulation}
+\begin{quote}Abbildung dynamischen Systemverhaltens durch diskrete Ereignisfolgen ("Vogelperspektive").\end{quote}
 
-\subsubsection{UML}
+\subsubsection{Vorgehensweise bei konzeptueller Modellierung}
+\begin{enumerate}
+  \item \textbf{Objekte}: Identifikation von permanenten \& Modellentitäten mit Attributen
+  \item optional (bei komplexen Modellen): \textbf{Zustände/Übergänge}: zB. durch Zustandsdiagramme
+  \item \textbf{Zustandsänderungen}: Identifikation der Systemzustandsänderungen \& deren Zuweisung zu Entitäten
+  \item \textbf{(Semi-)Formale Spezifikation}: Ereignistypen, Verhalten bei Gleichzeitigkeit
+\end{enumerate}
 
-\subsection{Prozessorientierte Simulation}
+\subsubsection{Softwaretechnische Umsetzung}
+\begin{itemize}
+  \item \textbf{Ereignismethoden}: Zustandsänderungen, Attributs-, Entitäts-, Ereignisverwaltung
+  \item \textbf{Scheduler}: Ablaufkontrolle, sequenzielle Abarbeitung der Ereignisliste, Fortschalten der Simulationsuhr, ordnungsrichtige Ausführung der Ereignisse
+\end{itemize}
+
+\subsubsection{Unified Modeling Language UML}
+\begin{quote}Standardisierte Modellierungssprache für objektorientierte Systeme mit verschiedenene Diagrammen (Perspektiven).\end{quote}
+
+\begin{itemize}
+  \item \textbf{Strukturdiagramme}: Klassendiagramme, ggfs. Packagediagramme
+  \item \textbf{Verhaltensdiagramme}: Zustandsdiagramme, ggfs. Aktivitätsdiagramme
+\end{itemize}
+
+\subsection{Prozessorientierte Simulation (process interaction simulation)}
+\begin{quote}Abbildung von Entitätenlebenszyklen durch Prozessmodelle ("Froschperspektive").\end{quote}
+
+\subsubsection{Vorgehensweise}
+\begin{enumerate}
+  \item \textbf{UML-Zustandsdiagramme}
+  \item \textbf{Identifikation der Ereignis-/Prozesstypen}
+  \item \textbf{Beschreibung der Modelldynamik}: zB. BPMN
+\end{enumerate}
+
+\subsubsection{Eigenschaften bzw. Phasen}
+Übergänge zwischen Phasen durch Ereignisse (interne Abbildung von Prozessen), wobei stets nur ein aktiver, aber beliebig viele passive Prozesse existieren.
+\begin{enumerate}
+  \item \textbf{aktiv}: zeitverzugslos, Programmkontrolle
+  \item \textbf{passiv}: Zeitverbrauch, Ereigniskontrolle
+        \begin{itemize}
+          \item \textbf{passives Warten}: Prozess ist passiviert, auf unbestimmte Zeit, bis er extern wieder aktiviert wird
+          \item \textbf{zeitkonsumierende Tätigkeit}: Prozess ist angehalten, auf bestimmte Zeit, bis er intern (automatisch) wieder aktiviert wird
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Simulationsablaufsteuerung}
+\begin{itemize}
+  \item \textbf{Generieren}: Erzeugung von Prozessen
+  \item \textbf{Reaktivieren}: Wiederaufnahme passivierter Prozesse
+  \item \textbf{Verzögern}: Verschiebung des Beginns aktiver Phasen anderer Prozesse (aus interner Ereignisliste)
+  \item \textbf{Unterbrechen}: Unterbrechung eigener Aktivphase
+  \item \textbf{Modifizieren}: Änderung von Objektattributen
+  \item \textbf{Terminieren}: Beenden von Prozessen
+\end{itemize}
 
 \subsubsection{BPMN2.0}
+\begin{itemize}
+  \item \textbf{Geschäftsprozess}: Sequenzen von dem Geschäftszweck dienenden, wiederkehrenden Aktivitäten
+  \item \textbf{Geschäftsprozessmanagement}: technische Implementation, Controlling/Monitoring, Dokumentation, Verbesserung
+  \item \textbf{Geschäftsprozessmodellierung}: Dokumentation, Kommunikation, Kontrolle
+\end{itemize}
+
+\subsubsection{Wieso BPMN?}
+\begin{itemize}
+  \item Unterstützung expliziter Modellierung aktivert und passivierter, sowie angehaltener Prozesse
+  \item weiter verbreitet in Wirtschaftsinformatik als zB. UML
+  \item Unterstützung verschiedener Verzweigungen, Subprozesse, etc.
+\end{itemize}
+
+\subsubsection{Ausgewählte Notationselemente}
+\begin{itemize}
+  \item \textbf{Aktivität} (Task): Rechteck mit abgerundeten Ecken, mit Zeitverbrauch >= 0
+  \item \textbf{Annotation}: Aufgabentyp (zB. Benutzer-Interaktion, Skript, …)
+  \item \textbf{Zeitverbrauch als Kommentar}: in eckigen Klammern, kein offizieller Standard
+  \item \textbf{Strukturelement}
+        \begin{itemize}
+          \item \textbf{Gateways}: zB. XOR, AND
+          \item \textbf{Kontrollfluss}: Sequenz, bedingt, default/sonst
+          \item \textbf{Nachrichtenfluss}: zur Synchronisation zwischen Prozessen
+        \end{itemize}
+  \item \textbf{Ereignis}: Kreis mit Rand, zB. Start, Ende, Zwischenereignis
+  \item \textbf{Ereignisannotationen}: zB. Timer, Signale, Nachrichten
+\end{itemize}
 
 \subsection{Vergleich der Modellierungsstile}
+\input{res/relationship.fig}
+
+\subsubsection{Vor- \& Nachteile der ereignisorientierten Sicht}
+\begin{itemize}
+  \item[+] typische Systemzustandsänderungen häufig besser durch Ereignisse zu beschreiben
+  \item[+] Blick hinter die Kulissen (gleiche interne \& externe Repräsentation)
+  \item[+] einfache Realisierung der Ablaufsteuerung
+  \item[+] relativ effiziente Simulationsprogramme
+  \item[-] Verteilung logisch zusammenhängender Abläufe auf mehrere Ereignisroutinen
+  \item[-] fehleranfällig bei komplexen Systemen
+  \item[$\hookrightarrow$] geeignet für einfache Systeme mit wenig Interaktion
+\end{itemize}
+
+\subsubsection{Vor- \& Nachteile der prozessorientierten Sicht}
+\begin{itemize}
+  \item[+] natürlichere (direktere) Modellierung
+  \item[+] strukturiertere Vorgehensweise
+  \item[+] größere Übersichtlichkeit
+  \item[+] Verwandtschaft zur Objektorientierung
+  \item[-] zT. umständlichere Modellierung
+  \item[-] komplexere interne Modelle
+  \item[$\hookrightarrow$] grds. vorzuziehen, in Kombination mit ereignisorientierter Sicht für Verständnis
+\end{itemize}
 
 \end{document}
