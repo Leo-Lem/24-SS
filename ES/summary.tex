@@ -30,10 +30,6 @@
   \item \textbf{Hierarchy}: subgraphs
 \end{enumerate}
 
-\subsubsection{Problems with von-Neumann computing}
-Mutual exclusion, holding resources while waiting for more, no preemption, circular wait.
-$\hookrightarrow$ thread-based von-Neumann computation is inadquate for embedded systems. We need a more structured approach.
-
 \subsubsection{Models of computation and message passing}
 \begin{enumerate}
   \item \textbf{Undefined components}: plain text, use cases, sequence charts
@@ -119,7 +115,32 @@ see RSB/MAKS for introduction
 
 \subsection{Data flow}
 
-% TODO
+\subsubsection{Elements}
+\begin{itemize}
+  \item \textbf{Processes}: activites transforming data
+  \item \textbf{Data stores}: holding areas for data
+  \item \textbf{External entities}: sending/receiving data
+  \item \textbf{Data flow}: data movement
+\end{itemize}
+
+\subsubsection{Kahn process networks (KPNs)}
+\begin{quote}Components modeled as processes, connected by 1to1 FIFO channels (writes never wait, reads never block).\end{quote}
+
+\begin{itemize}
+  \item[+] processes have to commit to wait for data
+  \item[+] order of reads and writes is irrelevant $\to$ determinate
+  \item Turing-complete
+  \item[-] timing not modeled
+  \item[-] static process number
+\end{itemize}
+
+\subsubsection{Synchronous data flow (SDF)}
+\begin{quote}KPN with fixed number of processes, each process has fixed number of inputs and outputs, each input/output has fixed rate.\end{quote}
+
+\begin{itemize}
+  \item[+] timing can be modeled
+  \item[-] not Turing-complete
+\end{itemize}
 
 \subsection{Petri nets}
 see MAKS
@@ -137,12 +158,46 @@ see MAKS
 
 \subsection{Discrete event models}
 
-% TODO
+\begin{quote}Queue of future events, fetch \& execute cycle.\end{quote}
+\subsubsection{Very High Speed Integrated Circuit VHSIC Hardware Description Language (VHDL)}
+\begin{quote}Used for modeling digital circuits, based on Ada, used for simulation and synthesis.\end{quote}
+
+\subsubsection{Pros \& Cons}
+\begin{itemize}
+  \item[+] Behavioral hierarchy (procedures and functions)
+  \item[+] Structural hierarchy: through structural architectures, but no nested processes
+  \item[-] No specification of non-functional properties
+  \item[-] No object-orientation
+  \item[-] Static number of processes, static evaluation
+  \item[-] Complicated simulation semantics
+  \item[-] Too low level for initial specification
+  \item[$\hookrightarrow$] Good as an intermediate “Esperanto“ or ”assembly” language for hardware generation
+\end{itemize}
 
 \subsection{Imperative computation}
+\begin{quote}Based on von-Neumann architecture, sequential execution, shared memory, C/C++/Java/…\end{quote}
 
-% TODO
+\subsubsection{Problems with von-Neumann computing}
+Mutual exclusion, holding resources while waiting for more, no preemption, circular wait.
+\par $\hookrightarrow$ thread-based von-Neumann computation is inadquate for embedded systems.
 
 \subsection{Comparison}
+\input{res/modelcomp.tbl}
+
+\subsubsection{Stuijk classification}
+\begin{enumerate}
+  \item expressive- \& succinctness: which systems can be modeled, how compact they are
+  \item analyzability: availability of scheduling, need for run-time support
+  \item implementation: required scheduling policy, code size
+\end{enumerate}
+
+There is a trade-off between expressiveness and analyzability.
+
+\subsubsection{Mixing models}
+
+\begin{itemize}
+  \item Ptolomy \& UML: UML for structure, Ptolomy for behavior
+  \item FSM/KPN in imperative languages: FSM/KPN for structure, imperative for behavior
+\end{itemize}
 
 \end{document}
