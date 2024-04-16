@@ -69,6 +69,12 @@ void parse(String str)
   else if (str.startsWith("illuminance"))
   {
     int value = str.substring(12).toInt();
+    if (value == 0 && str[12] != '0')
+    {
+      Serial.println("Invalid value (percentage must be a number)");
+      return;
+    }
+
     illuminance(value);
   }
   else

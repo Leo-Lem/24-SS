@@ -1,5 +1,6 @@
 {
     "output": ".build",
     "board": "arduino:sam:arduino_due_x_dbg",
-    "sketch": "22/22.ino"
+    "sketch": "22/22.ino",
+    "port": "/dev/tty.usbmodem1101"
 }

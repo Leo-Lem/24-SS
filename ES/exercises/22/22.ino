@@ -2,9 +2,18 @@
 
 const byte pin = 9;
 
+int oldValue = 0;
+
 void status()
 {
   int value = analogRead(pin);
+  if (value < oldValue + 10 && value > oldValue - 10)
+  {
+    return;
+  }
+
+  oldValue = value;
+
   float voltage = value * 3.3 / 1023;
   float voltageInmV = voltage * 1000;
 
