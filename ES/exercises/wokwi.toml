@@ -1,4 +1,4 @@
 [wokwi]
 version=1
-firmware='.build/main.ino.elf'
-elf='.build/main.ino.elf'
+firmware='.build/sketch.ino.elf'
+elf='.build/sketch.ino.elf'
