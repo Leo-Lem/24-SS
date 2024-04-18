@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #if defined(__SAM3X8E__) // Arduino Due
 #include <DueTimer.h>
 DueTimer Timer4; // match TimerFour timer descriptor
@@ -5,38 +7,39 @@ DueTimer Timer4; // match TimerFour timer descriptor
 #include <TimerFour.h>
 #endif
 
-#define buttonPin 2
+#define BUTTON 3
 
 const unsigned long frequency = 1e3;          // Hz
 const unsigned long period = 1e6 / frequency; // µs
 volatile unsigned long buttonPressDuration = 0;
 volatile bool buttonPressed = false;
 
-void buttonPressedISR()
+static void press()
 {
-  buttonPressed = digitalRead(buttonPin) == HIGH;
+  buttonPressed = digitalRead(BUTTON) == LOW;
 
   if (!buttonPressed)
   {
     Serial.print("Button pressed for ");
-    Serial.println(buttonPressDuration);
+    Serial.print(buttonPressDuration);
+    Serial.println(" ms.");
+
     buttonPressDuration = 0;
   }
 }
 
-void timerISR()
+static void time()
 {
   if (buttonPressed)
   {
     buttonPressDuration++;
-    Serial.println(buttonPressDuration);
   }
 }
 
-void startTimer()
+static void startTimer()
 {
 #if defined(__SAM3X8E__) // Arduino Due
-  if (Timer4.configure(frequency, timerISR))
+  if (Timer4.configure(frequency, time))
   {
     ;
   }
@@ -46,7 +49,7 @@ void startTimer()
   }
 #else
   Timer4.initialize(period);
-  Timer4.attachInterrupt(timerISR);
+  Timer4.attachInterrupt(time);
   Timer4.stop(); // attachInterrupt starts Timer > stop it
 #endif
 
@@ -58,10 +61,10 @@ void setup31()
   startTimer();
   Serial.begin(9600);
 
-  pinMode(buttonPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(buttonPin), buttonPressedISR, CHANGE);
+  pinMode(BUTTON, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(BUTTON), press, CHANGE);
 
-  Serial.println("Up and running!");
+  Serial.println("Press the button to get started!");
 }
 
 void loop31()

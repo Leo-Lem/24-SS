@@ -1,12 +1,11 @@
-// print info to serial console: pin A9 – ADC-value: 257; input Voltage: 1.25 V, 1256 mV
+#include <Arduino.h>
+#define POT 9
 
-const byte pin = 9;
+static int oldValue = 0;
 
-int oldValue = 0;
-
-void status()
-{
-  int value = analogRead(pin);
+static void status()
+{ // print info to serial console: pin A9 – ADC-value: 257; input Voltage: 1.25 V, 1256 mV
+  int value = analogRead(POT);
   if (value < oldValue + 10 && value > oldValue - 10)
   {
     return;
@@ -18,7 +17,7 @@ void status()
   float voltageInmV = voltage * 1000;
 
   Serial.print("pin A");
-  Serial.print(pin);
+  Serial.print(POT);
   Serial.print(" - ADC-value: ");
   Serial.print(value);
   Serial.print("; input voltage: ");
@@ -28,12 +27,12 @@ void status()
   Serial.print("mV\n\n");
 }
 
-void setup()
+void setup22()
 {
   Serial.begin(9600);
 }
 
-void loop()
+void loop22()
 {
   status();
   delay(100);

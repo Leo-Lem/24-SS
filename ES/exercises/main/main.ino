@@ -1,9 +1,6 @@
-void setup()
-{
-  setup31();
-}
+#include "projects.h"
+#define PROJECT(x)              \
+  void setup() { setup##x(); }; \
+  void loop() { loop##x(); };
 
-void loop()
-{
-  loop31();
-}
+PROJECT(33);

@@ -1,6 +1,8 @@
 {
     "output": ".build",
-    "board": "arduino:sam:arduino_due_x_dbg",
     "sketch": "main/main.ino",
-    "port": "/dev/tty.usbmodem1101"
+    "board": "arduino:avr:mega",
+    "port": "/dev/tty.usbmodem1101",
+    "configuration": "cpu=atmega2560",
+    "programmer": "avrisp"
 }
