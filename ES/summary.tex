@@ -203,8 +203,151 @@ There is a trade-off between expressiveness and analyzability.
 
 
 \section{Hardware}
+\begin{quote}ES hardware is, generally, used in a loop: sensing, processing, actuation.\end{quote}
+\input{res/signal.fig}
+
+\subsection{A/D conversion}
+\begin{itemize}
+  \item \textbf{Sampling}: measure physical quantities, convert to electrical signals
+  \item \textbf{Discretisation}: convert continuous signals to discrete signals
+  \item \textbf{Sample-and-hold}: hold the value of the signal for a certain time
+        \begin{itemize}
+          \item \textbf{Nyquist theorem}: sampling frequency must be at least twice the highest frequency of the signal
+          \item \textbf{Anti-aliasing}: remove frequencies above Nyquist frequency
+        \end{itemize}
+  \item \textbf{A/D-conversion}: convert analog signal to digital signal
+        \begin{itemize}
+          \item \textbf{Quantisation noise}: error due to discretisation
+        \end{itemize}
+\end{itemize}
+
+\subsection{Processing}
+\begin{quote}Efficiency is key: code-size, run-time, weight, cost, energy\end{quote}
+
+\subsubsection{Energy Efficiency}
+\begin{quote}Energy efficiency is the most important factor in embedded systems.\end{quote}
+\begin{itemize}
+  \item \textbf{Power consumption}: power supply/regulator design, interconnect dimensioning, short term cooling
+  \item \textbf{Energy consumption}: restricted energy supply (mobile), cooling, thermal effects, dependability, long lifetimes
+\end{itemize}
+
+\begin{itemize}
+  \item \textbf{Dynamic voltage scaling}: reduce voltage when not needed, increase when needed
+  \item \textbf{Dynamic power management}: turn off parts of the system when not needed
+  \item \textbf{Low \& high voltage}: with low voltage parallel, with high voltage serial more efficient
+\end{itemize}
 
 
+\subsubsection{Very large-scale intergration (VLSI) design}
+\begin{quote}criteria: time, cost, IC properties (size, clock frequency, power consumption, …)\end{quote}
+
+\begin{enumerate}
+  \item \textbf{Full-custom design}: design every transistor, high performance, high cost, long time
+  \item \textbf{Standard cell design}: use predefined cells, lower performance, lower cost, shorter time
+  \item \textbf{Gate array design ($\to$ succeeded by FPGA)}: use predefined gates, low performance, low cost, short time
+  \item \textbf{FPGA design}: use predefined logic blocks, low performance, low cost, short time
+\end{enumerate}
+
+\input{res/vlsi.tbl}
+
+$\hookrightarrow$ Custom hardware is very expensive.
+
+\subsubsection{Code-size efficiency}
+\begin{enumerate}
+  \item \textbf{Code compression}: reduce code size
+  \item \textbf{Dictionary approach}: replace instructions with references to dictionary of frequently used instructions
+\end{enumerate}
+
+\subsubsection{Run-time efficiency}
+Avoid:
+\begin{itemize}
+  \item \textbf{Unpredictable access to shared resources}
+  \item \textbf{Branch prediction, speculative execution}
+  \item \textbf{Interrupts that are possible any time}
+  \item \textbf{Memory refreshes that are possible any time}
+  \item \textbf{Instructions that have data-dependent execution times}
+\end{itemize}
+
+\subsubsection{Special processors}
+\begin{itemize}
+  \item \textbf{Very Long Instruction Word VLIW}: multiple instructions in one word, parallel execution
+  \item \textbf{Explicitly Parallel Instruction Computing EPIC}: explicitly parallel instructions
+  \item \textbf{Multiple Processor System on a Chip MPSoC} (also: Multi-core): multiple processors on one chip
+\end{itemize}
+
+\subsubsection{Field-Programmable Gate Array FPGA}
+\begin{quote}FPGA is a chip that can be configured to implement arbitrary digital logic.\end{quote}
+
+
+\begin{itemize}
+  \item \textbf{Matrix of smaller logic blocks}
+        \begin{itemize}
+          \item \textbf{Interconnects}: Multiplexer networks
+          \item \textbf{Macrocells}: Multipliers, embedded cores, …
+          \item \textbf{IO-cells}: connect to the outside world
+          \item \textbf{generated components}: RAM, ROM, …
+          \item \textbf{Ready-made IP blocks}: processors, peripherals, …
+        \end{itemize}
+  \item \textbf{Complexity}
+        \begin{itemize}
+          \item \textbf{I/O}: ~3000
+          \item \textbf{1-bit registers}: ~40 mil.
+          \item \textbf{clock frequency}: ~2Ghz, 7nm
+          \item \textbf{transistors}: ~92 bil.
+        \end{itemize}
+  \item \textbf{Producers}: Xilinx, Intel, Microchip, Lattice, Achronix, …
+\end{itemize}
+
+\subsubsection{Memory}
+\begin{quote}Small is beautiful: energy consumption, access time, size\end{quote}
+
+% TODO: add more content
+
+\subsection{Communication}
+\begin{quote}requirements: real-time behavior, efficient, economical, appropriate bandwidth \& communication delay, robustness, fault tolerance, diagnosability, maintainability, security, safety\end{quote}
+
+\subsubsection{Robustness}
+\begin{itemize}
+  \item \textbf{single-ended signals}: one wire, ground reference
+  \item \textbf{differential signals}: two wires, voltage difference
+        \begin{itemize}
+          \item[+] mostly noise immune, no effect of voltage level change, reduced importance of ground wiring, higher Speed
+          \item[-] requires negative voltage, increased complexity (wires, connectors)
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Real-time behavior}
+
+\begin{itemize}
+  \item \textbf{Carrier Sense Multiple Access with Collision Detection CSMA/CD}: ethernet, collision retries
+  \item \textbf{Carrier Sense Multiple Access with Collision Avoidance CSMA/CA}: wifi, collision avoidance, token rings/busses
+  \item \textbf{Time Division Multiple Access TDMA}: fixed time slots
+  \item \textbf{Flexray}: TDMA with dynamic slots
+\end{itemize}
+
+\subsection{D/A conversion}
+\subsubsection{Electrotechnical basics}
+\begin{itemize}
+  \item \textbf{Ohm's law}: $U = R \cdot I$
+  \item \textbf{Kirchof's 1st law}: $\sum I = 0$ (current in = current out)
+  \item \textbf{Kirchof's 2nd law}: $\sum U = 0$ (voltage in = voltage out)
+\end{itemize}
+
+\subsubsection{Sampling theorem}
+\begin{quote}Reconstruction using sinc is precise, but not possible in practice\end{quote}
+
+\begin{align*}
+  z(t)    = & \sum_{s=-\infty}^{\infty} y(t_s) \cdot sinc(t-t_s)            \\
+            & sinc(x) = \frac{\sin(\frac{\pi}{p_s}(x))}{\frac{\pi}{p_s}(x)}
+\end{align*}
+
+Limitations:
+\begin{itemize}
+  \item filters are only approximations
+  \item all samples must be known
+  \item actual signals not perfectly bandwidth limited
+  \item quantisation noise can't be removed
+\end{itemize}
 
 
 \section{Software}
