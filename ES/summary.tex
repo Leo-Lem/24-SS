@@ -426,22 +426,95 @@ classes
           \item \textbf{Electro-magnetic compatibility characteristics}
           \item \textbf{…}
         \end{itemize}
+  \item \textbf{Standard optimisation techniques}
+        \begin{itemize}
+          \item \textbf{(Integer) Linear Programming}: linear objective function, linear constraints, good starting point, NP-complete
+          \item \textbf{Simulated Annealing}: based on slowly cooling liquid crystals, overcomes local minima
+          \item \textbf{Evolutionary Algorithms}: based on evolution (selection, mutation, recombination)
+        \end{itemize}
 \end{itemize}
 
-\subsection{Standard optimisation techniques}
+\subsection{Average \& worst-case delay: Real-time calculus RTC/Modular performance analysis MPA}
+\begin{quote}RTC is a set of techniques to compute bounds on the worst-case delay of a system.\end{quote}
 
-\subsection{Average \& worst-case delay}
+\begin{itemize}
+  \item \textbf{Time interval} $\Delta$: time between two events
+  \item \textbf{Arrival curves $\bar{\alpha}^{[u|l](\Delta)}$}: max \& min amount of jobs arriving in a time interval
+  \item \textbf{Service curves $\beta^{[u|l]}(\Delta)$}: max \& min service capacity in a time interval
+  \item \textbf{Service capacity $\gamma^{[u|l](e)}$}: max \& min service capacity in relation to event arrival
+  \item \textbf{Incoming workload} $\alpha^{[u|l]}(\Delta)=\gamma^{[u|l]}(\bar{\alpha}^{[u|l]}(\Delta))$
+  \item \textbf{Event amount} $\bar{\beta}^{[u|l]}(\Delta)=\gamma^{-[l|u]}(\beta^{[u|l]}(\Delta))$
+\end{itemize}
 
 \subsection{Power/energy consumption}
+\begin{quote}Use measurements, models, or a mix of both.\end{quote}
 
 \subsection{Thermal behavior}
+\begin{itemize}
+  \item \textbf{Thermal conductivity} $\kappa$
+  \item \textbf{Temperature difference} $\Delta T$
+  \item \textbf{Area} $A$
+  \item \textbf{Length} $l$
+  \item \textbf{Thermal power transferred} $P_{th}=\kappa \frac{\Delta T \cdot A}{l}$
+  \item \textbf{Thermal resistance} $R_{th}=\frac{\Delta T}{P_{th}}$
+\end{itemize}
 
 \subsection{Reliability, safety \& security}
+\begin{itemize}
+  \item \textbf{(Service) Failure}: deviation from correct service
+  \item \textbf{Error}: state subset which leads to Failure
+  \item \textbf{Fault}: cause of an error
+\end{itemize}
+
+\subsubsection{Reliability}
+\begin{itemize}
+  \item \textbf{Random variable} $T$: time to Failure
+  \item \textbf{Density function} $f(t)$
+  \item \textbf{Distribution function} $F(t)=Pr(T\leq t)=\int_{0}^{t}{f(x)dx}$
+  \item \textbf{Reliability} $R(t)=1-F(t)$
+  \item \textbf{Failure rate} $\lambda(t)=\frac{f(t)}{R(t)}$
+  \item \textbf{Failure-in-time} $FIT=10^{-9}$ per hour
+  \item \textbf{Mean time to Failure} $MTTF=\int_{0}^{\infty}{t \cdot f(t)dt}$
+  \item \textbf{Mean time to repair} $MTTR$
+  \item \textbf{Mean time between failures} $MTBF=MTTF+MTTR$
+\end{itemize}
+
+\subsubsection{Safety}
+\begin{itemize}
+  \item \textbf{Fault tree analysis FTA}: top-down approach, identify possible failures, determine probability of failure
+  \item \textbf{Failure mode \& effect analysis FMEA}: bottom-up approach, identify possible failures, determine effect of failure
+\end{itemize}
+
+\subsubsection{Kopetz's 12 design principles}
+\begin{enumerate}
+  \item Safety considerations are primary
+  \item Precise specifications of system behavior
+  \item Fault containment regions
+  \item Consistent time \& state
+  \item Well-defined interfaces to hide implementation
+  \item Independent component Failure
+  \item Self-confidence: unless two other components indicate failure, component assumes it is correct
+  \item Fault tolerance decoupled from regular system
+  \item Design for diagnosis
+  \item Man-machine interface intuitive \& forgiving
+  \item Record all anomalies
+  \item Going offline is unacceptable
+\end{enumerate}
 
 \subsection{Simulation/Emulation}
+\begin{itemize}
+  \item \textbf{Simulation}: model of system, run model, can be used for analysis
+        $\hookrightarrow$ Problems: violates timing constraints (usually slower), not enough detail $\to$ cannot guarantee correctness
+  \item \textbf{Emulation}: at least one part of system is real
+\end{itemize}
 
 \subsection{Formal verification}
-
+\begin{itemize}
+  \item \textbf{Propositional logic}: boolean formulas with variables \& operators, usually equivalence checker
+  \item \textbf{First-order logic}: introduces $\exists$ \& $\forall$, undecidable in general
+  \item \textbf{Higher-order logic}: introduces manipulation of functions like objects, hardly ever automated proof
+  \item \textbf{Model checking}: verify finite state systems (see MAKS)
+\end{itemize}
 
 
 
