@@ -350,12 +350,97 @@ Limitations:
 \end{itemize}
 
 
+
 \section{Software}
 
+\subsection{Embedded operating systems}
+
+\subsubsection{Requirements}
+\begin{enumerate}
+  \item \textbf{Configurability}: aspect-orientation, conditional compilation (preprocessor), linker-time optimisation, …
+  \item \textbf{Devices handled by tasks}: use drivers directly, not through OS
+  \item \textbf{Protection is optional}: SW considered reliable, protection only for safety \& security
+  \item \textbf{Interrupts not OS-restricted}: any process can interrupt, no OS-protected areas (SW considered reliable)
+  \item \textbf{Real-time capability}: RTOSs
+\end{enumerate}
+
+\subsubsection{Real-time operating systems RTOSs}
+\begin{quote}RTOSs are designed to handle real-time requirements.\end{quote}
+
+\begin{enumerate}
+  \item \textbf{Predictability}: predictable timing behavior
+  \item \textbf{Managing timing}: OS-managed timing \& scheduling
+        \begin{itemize}
+          \item internal synchronisation: master clock or distributed (correct with neighbors)
+          \item external synchronisation: GPS is commonly used,
+        \end{itemize}
+  \item \textbf{Speed}: OS must be fast
+\end{enumerate}
+
+functionality: processor/memory/timer management (resources), task management, communication
+classes
+\begin{enumerate}
+  \item \textbf{Fast proprietary kernels}: Speed over reliability $\to$ inadequate
+  \item \textbf{RT extensions to general-purpose OSs}: crash of OS does not affect RT tasks, but RT-tasks cannot use OS services $\to$ less comfortable than expected
+  \item \textbf{Research systems}: to avoid limitations
+\end{enumerate}
+
+\subsection{Resource access protocols}
+\begin{itemize}
+  \item \textbf{Priority inheritance protocol PIP}: highest priority task locks resource, lower priority task inherits priority $\to$ prevents priority inversion, but not deadlock
+  \item \textbf{Priority ceiling protocol PCP}: highest priority task locks resource, lower priority task gets priority of ceiling $\to$ avoids multiple blocking
+  \item \textbf{Stack resource policy SRP}: each task has a stack, if stack is full, task is blocked $\to$ dynamic priority scheduling
+\end{itemize}
+
+\subsection{(Communication) Middleware}
+\begin{itemize}
+  \item \textbf{Shared memory model}
+        \begin{itemize}
+          \item \textbf{Pthreads}: mix of hardware (shared memory) \& software (threads)
+          \item \textbf{OpenMP}: parallel programming with \#pragma's, lack of control over partitioning
+        \end{itemize}
+  \item \textbf{Message passing model}
+        \begin{itemize}
+          \item \textbf{OSEK/VDX COM}: interaction layer for internal/external communication (specifies functionality, not implementation)
+          \item \textbf{Common Object Request Broker Architecture CORBA}: end-to-end predictability of timeliness in fixed priority system
+          \item \textbf{MPI}: asynchronous/synchronous message passing, most things explicit $\to$ lots of work, does not scale well
+        \end{itemize}
+\end{itemize}
 
 
 
-\section{Evaluation \& Validation}
+\section{Validation \& Evaluation}
+\begin{itemize}
+  \item \textbf{Validation}: Process of determining appropriateness of a design, whether it meets constraints \& will perform as expected (yes/no decision).
+  \item \textbf{Evaluation}: Process of computing quantitative information on key aspects of a design.
+  \item \textbf{Verification}: Validation with mathematical rigor.
+  \item \textbf{Design space evaluation}: based on Pareto points/front (trade-offs, Pareto optimality)
+  \item \textbf{Criteria}
+        \begin{itemize}
+          \item \textbf{Average \& worst-case delay}
+          \item \textbf{Power/energy consumption}
+          \item \textbf{Thermal behavior}
+          \item \textbf{Reliability, safety \& security}
+          \item \textbf{Cost, size}
+          \item \textbf{Weight}
+          \item \textbf{Electro-magnetic compatibility characteristics}
+          \item \textbf{…}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Standard optimisation techniques}
+
+\subsection{Average \& worst-case delay}
+
+\subsection{Power/energy consumption}
+
+\subsection{Thermal behavior}
+
+\subsection{Reliability, safety \& security}
+
+\subsection{Simulation/Emulation}
+
+\subsection{Formal verification}
 
 
 
