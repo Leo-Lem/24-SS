@@ -513,12 +513,94 @@ classes
   \item \textbf{Propositional logic}: boolean formulas with variables \& operators, usually equivalence checker
   \item \textbf{First-order logic}: introduces $\exists$ \& $\forall$, undecidable in general
   \item \textbf{Higher-order logic}: introduces manipulation of functions like objects, hardly ever automated proof
-  \item \textbf{Model checking}: verify finite state systems (see MAKS)
+  \item \textbf{Model checking}: verify finite state systems (see \href{https://github.com/Leo-Lem/winter23/tree/main/MAKS}{MAKS})
 \end{itemize}
 
 
 
 \section{Mapping Applications to Platforms}
+\begin{quote}Given an application set, usage scenarios, and an architecture set, find best mapping of applications to architectures, whilst considering constraints (deadlines, performance, …).\end{quote}
 
+\subsection{Embedded v. PC}
+\input{res/embvpc.tbl}
+
+\subsection{Concepts}
+\begin{itemize}
+  \item \textbf{Resource allocation}: decision about type \& number of resources
+  \item \textbf{Resource assignment}: mapping task to resource
+  \item \textbf{x to y binding}: mapping from behavioral to structural domain
+  \item \textbf{Scheduling}: mapping tasks to start times
+  \item \textbf{Schedulability}: a schedule exists
+  \item \textbf{Classification}
+
+        \begin{itemize}
+          \item \textbf{Hard deadline}: must be met $\leftrightarrow$ soft
+          \item \textbf{Periodic}: must be executed at regular intervals $\leftrightarrow$ aperiodic
+          \item \textbf{Preemptive}: task can be interrupted $\leftrightarrow$ non-preemptive
+          \item \textbf{Dynamic}: dynamic/online scheduled at runtime $\leftrightarrow$ static/offline
+          \item \textbf{Distributed}: scheduling on multiple processors $\leftrightarrow$ centralized
+        \end{itemize}
+\end{itemize}
+
+\subsection{Classical Scheduling}
+\begin{quote}Mostly for independent tasks, no communication, mono-/homogenous multi-processors.\end{quote}
+\input{res/scheduling.tbl}
+
+average utilisation $\mu=\sum{\frac{c_i}{p_i}}$ must be less than $m$ (number of processors) for schedulability.
+
+\subsubsection{Aperiodic scheduling (without $p_i$)}
+\begin{itemize}
+  \item \textbf{Independent tasks/non-preemptive}
+        \begin{itemize}
+          \item \textbf{Earliest Due Date EDD} (Jackson): $T_i$ with earliest due date (deadline), assuming simulatenous arrival
+          \item \textbf{Rate-monotonic scheduling RMS}: $T_i$ with shortest period, static priority, optimal for independent tasks
+        \end{itemize}
+  \item \textbf{Independent tasks/preemptive}
+        \begin{itemize}
+          \item \textbf{Earliest Deadline First EDF} (Horn): $T_i$ with earliest deadline with preemption of new arrivals
+          \item \textbf{Least laxity first LLF}: $T_i$ with least slack time, detects missed deadlines early, requires knowledge of execution times
+        \end{itemize}
+  \item \textbf{Dependent tasks/non-preemptive}: High-level synthesis (HLS) after splitting into static/dynamic parts.
+        \begin{itemize}
+          \item \textbf{As Soon As Possible ASAP}
+          \item \textbf{As Late As Possible ALAP}
+          \item \textbf{Latest Deadline First LDF} (1 processor): $T_i$ with latest deadline, non-preemptive, optimal for monoprocessors, good with resource constraints
+          \item \textbf{List Scheduling LS}: extends ALAP/ASAP, topo-sort task graph, compute priorities, good with resource constraints
+          \item \textbf{Force-Directed Scheduling FDS}: compute forces between tasks, move tasks to minimize forces, good with time constraints
+        \end{itemize}
+  \item \textbf{Dependent tasks/preemptive}
+        \begin{itemize}
+          \item \textbf{Earliest Deadline First EDF} (Chetta): $T_i$ with earliest deadline, preemptive, optimal for multiprocessors
+        \end{itemize}
+\end{itemize}
+
+\subsection{Hardware/software partitioning}
+\begin{quote}Should you implement in soft- or hardware? Dependent tasks, heterogenous systems, focus on resource management.\end{quote}
+
+\subsubsection{CO-design Optimization of embedded systems using Linear programming COOL}
+\begin{enumerate}
+  \item \textbf{Create graph}: map to internal graph model
+  \item \textbf{Node translation}: translate each node from VHDL to C
+  \item \textbf{Compilation}: all C programs, compute resulting size, estimate execution time
+  \item \textbf{Hardware synthesis}: synthesise all application-specific hardware
+  \item \textbf{Flatten hierarchy}: maintain designed granularity, add cost \& performance to nodes, precompute partititioning
+  \item \textbf{ILP model}: for optimisation in regards to cost (communication time)
+  \item \textbf{Iterative improvements}: adjacent nodes mapped to same hardware are merged
+  \item \textbf{Interface synthesis}: for processors, application-specific hardware, memory
+\end{enumerate}
+
+\subsubsection{Other approaches}
+\begin{itemize}
+  \item \textbf{Initial hardware}: start with all hardware, add software until time constraint is met
+  \item \textbf{Initial software}: start with all software, add hardware until time constraint is met
+  \item \textbf{Binary search}
+  \item …
+\end{itemize}
+
+
+\subsection{Evolutionary DSE}
+\begin{quote}Heterogenous systems, includes communication.\end{quote}
+
+Clear trend towards multi-processor systems. Currently, the best choice for choosing hardware.
 
 \end{document}
