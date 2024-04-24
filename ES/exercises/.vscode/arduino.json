@@ -3,6 +3,6 @@
     "sketch": "sketch/sketch.ino",
     "board": "arduino:avr:mega",
     "port": "/dev/tty.usbmodem1101",
-    "configuration": "cpu=atmega2560",
-    "programmer": "avrisp"
+    "programmer": "avrisp",
+    "configuration": "cpu=atmega2560"
 }

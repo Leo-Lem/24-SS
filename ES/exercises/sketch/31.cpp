@@ -14,8 +14,8 @@ static void tick()
 }
 
 #if defined(__SAM3X8E__) // Arduino Due
-#include <DueTimer.h>
-DueTimer Timer4; // match TimerFour package
+#include "DueTimer.h"
+static DueTimer Timer4; // match TimerFour package
 static void configureTimer()
 {
   if (!Timer4.configure(frequency, tick))
