@@ -11,7 +11,8 @@
         "Wokwi.wokwi-vscode",
         "github.copilot",
         "esbenp.prettier-vscode",
-        "ms-vscode.makefile-tools"
+        "ms-vscode.makefile-tools",
+        "eamodio.gitlens"
       ]
     }
   }

@@ -1,20 +1,12 @@
 arch = arduino:avr:mega#arduino:avr:due
 libs = TimerFour
 
-ifndef ex
-$(error ex(ercise number) is not set)
-endif
-
 .PHONY: all
-all: clean chips exercise wokwi
-
+all: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/tb6612fng.chip.json .build/exercise .build/exercise/exercise.ino .build/exercise/*.h compile
 
 .PHONY: clean
 clean:
 		rm -rf .build
-
-.PHONY: chips
-chips: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/tb6612fng.chip.json
 
 .build/chips:
 		mkdir -p .build/chips
@@ -25,11 +17,12 @@ chips: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/tb6612fng.chip
 .build/chips/tb6612fng.chip.json: .build/chips chips/tb6612fng.chip.json
 	  cp chips/tb6612fng.chip.json .build/chips
 
-.PHONY: exercise
-exercise: .build/exercise .build/exercise/exercise.ino .build/exercise/*.h
-
 .build/exercise:
 		mkdir -p .build/exercise
+
+ifndef ex
+$(error ex(ercise number) is not set)
+endif
 
 .build/exercise/exercise.ino: .build/exercise $(ex).ino
 		cp $(ex).ino .build/exercise/exercise.ino
@@ -41,6 +34,10 @@ exercise: .build/exercise .build/exercise/exercise.ino .build/exercise/*.h
 arduino-libs:
 	arduino-cli lib install $(libs)
 
-.PHONY: wokwi
-wokwi: chips exercise arduino-libs
+.PHONY: compile
+compile: arduino-libs .build/exercise/exercise.ino .build/exercise/*.h
 	arduino-cli compile -b $(arch) --build-path .build .build/exercise/exercise.ino
+
+.PHONY: upload
+upload: compile
+	arduino-cli upload -b $(arch) --input-dir .build --port /dev/tty.usbmodem1101 .build/exercise/exercise.ino
