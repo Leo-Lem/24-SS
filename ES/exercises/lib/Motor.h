@@ -1,46 +1,62 @@
 #include <Arduino.h>
 
+#include "RGBLED.h"
+
 class Motor
 {
 public:
   static const unsigned int step = 10, max = 255;
 
-  enum Rotation
+  enum Direction
   {
     stopped,
     clockwise,
     counterclockwise
   };
 
-  enum Setting
+  enum Mode
   {
-    pow, // power
-    rot  // rotate
+    POWER,
+    DIRECTION
   };
 
-  Setting setting = rot;
-  Rotation rotation = stopped;
+  Mode mode = DIRECTION;
+  Direction direction = stopped;
   unsigned long power = 0;
 
-  void toggle() { setting = setting == pow ? rot : pow; }
+  Motor(RGBLED led) : led(led) {}
+
+  void toggle()
+  {
+    mode = mode == POWER ? DIRECTION : POWER;
+
+    status(true, false);
+    updateLED();
+  }
 
   void adjust(bool increase = false)
   {
-    if (setting == rot)
+    bool powerLimitReached = false;
+    if (mode == DIRECTION)
       setRotation(increase);
     else
-      setPower(increase);
+      powerLimitReached = !setPower(increase);
+
+    status(false, powerLimitReached);
+    updateLED();
   }
 
 private:
+  RGBLED led;
+
   void setRotation(bool forward = false)
   {
     if (forward) // stopped -> counterclockwise -> clockwise -> stopped
-      rotation == stopped ? rotation = counterclockwise : rotation == counterclockwise ? rotation = clockwise
-                                                                                       : rotation = stopped;
+      direction == stopped ? direction = counterclockwise : direction == counterclockwise ? direction = clockwise
+                                                                                          : direction = stopped;
     else // stopped -> clockwise -> counterclockwise -> stopped
-      rotation == stopped ? rotation = clockwise : rotation == clockwise ? rotation = counterclockwise
-                                                                         : rotation = stopped;
+      direction == stopped ? direction = clockwise : direction == clockwise ? direction = counterclockwise
+                                                                            : direction = stopped;
   }
 
   bool setPower(bool increase = false) // returns false if power has reached lower/upper limit
@@ -57,5 +73,34 @@ private:
     }
     else
       return false;
+  }
+
+  void updateLED()
+  {
+    if (mode == DIRECTION && direction == stopped)
+      led.setColor(RGBLED::blue);
+    else
+      led.setColor(mode == POWER ? RGBLED::red : RGBLED::green);
+  }
+
+  void status(bool newMode, bool powerLimitReached)
+  {
+    Serial.print("\033[K");
+
+    Serial.print("[");
+    if (newMode)
+      Serial.print("> ");
+    Serial.print(mode == POWER ? "POWER" : "DIRECTION");
+    Serial.print(" MODE] Motor direction: ");
+    Serial.print(direction == stopped ? "CW - (STOP) - CCW" : direction == clockwise ? "(CW) - STOP - CCW"
+                                                                                     : "CW - STOP - (CCW)");
+    Serial.print(" | Motor power: ");
+    Serial.print(min(power * 100 / max, 100));
+    Serial.print("%");
+
+    if (powerLimitReached)
+      Serial.print(" (limit reached)");
+
+    Serial.print("\r");
   }
 };

@@ -5,9 +5,9 @@ class RGBLED
 public:
   enum Color
   {
-    red,
-    green,
-    blue
+    red = 0,
+    green = 1,
+    blue = 2
   };
 
   Color color = green;
@@ -15,7 +15,7 @@ public:
   RGBLED(unsigned int redPin, unsigned int greenPin, unsigned int bluePin)
       : pins{redPin, greenPin, bluePin}
   {
-    for (auto &pin : pins)
+    for (unsigned int pin : pins)
       pinMode(pin, OUTPUT);
   }
 
@@ -23,10 +23,11 @@ public:
   {
     this->color = color;
 
-    for (unsigned int i = 0; i < 3; i++)
-      digitalWrite(pins[i], i == color ? HIGH : LOW);
+    for (Color c : colors)
+      digitalWrite(pins[c], c == color ? HIGH : LOW);
   }
 
 private:
+  const Color colors[3] = {red, green, blue};
   const unsigned int pins[3]; // red, green, blue
 };
