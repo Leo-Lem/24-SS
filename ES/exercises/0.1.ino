@@ -1,19 +1,17 @@
 #include <Arduino.h>
+
 #define LED 13
 
-static bool ledState = LOW;
+bool ledState = LOW;
 
-static void flip()
+void flip()
 {
   ledState = !ledState;
 }
 
-void setup01()
-{
-  pinMode(LED, OUTPUT);
-}
+void setup() { pinMode(LED, OUTPUT); }
 
-void loop01()
+void loop()
 {
   flip();
   digitalWrite(LED, ledState);

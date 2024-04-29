@@ -2,7 +2,7 @@
 
 #if defined(__SAM3X8E__) // Arduino Due
 #include "DueTimer.h"
-static DueTimer Timer4; // match TimerFour package
+DueTimer Timer4; // match TimerFour package
 #else
 #include <TimerFour.h>
 #endif
@@ -10,9 +10,9 @@ static DueTimer Timer4; // match TimerFour package
 #define BUTTON 3
 #define LED 13
 
-const static int frequency = 1000;                  // Hz
-const static long period = (long)(1e6 / frequency); // µs
-const static long debounceInterval = 20;            // ms
+const int frequency = 1000;                  // Hz
+const long period = (long)(1e6 / frequency); // µs
+const long debounceInterval = 20;            // ms
 
 enum ButtonState
 {
@@ -22,11 +22,11 @@ enum ButtonState
   idle
 };
 
-static ButtonState state = released;
-static int debounceTime = 0;
-static int presses = 0;
+ButtonState state = released;
+int debounceTime = 0;
+int presses = 0;
 
-static void updateState(bool reading, bool debounced)
+void updateState(bool reading, bool debounced)
 {
   switch (state)
   {
@@ -53,7 +53,7 @@ static void updateState(bool reading, bool debounced)
   }
 }
 
-static void press()
+void press()
 {
   presses++;
   Serial.print("Button pressed ");
@@ -61,7 +61,7 @@ static void press()
   Serial.println(" times.");
 }
 
-static void debounce()
+void debounce()
 {
   updateState(digitalRead(BUTTON), debounceTime > debounceInterval);
 
@@ -76,12 +76,12 @@ static void debounce()
   }
 }
 
-static void tick()
+void tick()
 {
   debounce();
 }
 
-static void configureTimer()
+void configureTimer()
 {
 #if defined(__SAM3X8E__) // Arduino Due
   if (!Timer4.configure(frequency, tick))
@@ -93,12 +93,12 @@ static void configureTimer()
 #endif
 }
 
-static void buttonISR()
+void buttonISR()
 {
   Timer4.start(); // start debounce
 }
 
-void setup33()
+void setup()
 {
   configureTimer();
   Serial.begin(9600);
@@ -111,4 +111,4 @@ void setup33()
   Serial.println("Press the button to get started!");
 }
 
-void loop33() {}
+void loop() {}

@@ -1,30 +1,31 @@
 #include <Arduino.h>
+
 #define LED 13
 
-static void setLED(int percent)
+void setLED(int percent)
 {
   analogWrite(LED, percent * 255 / 100);
 }
 
-static void help()
+void help()
 {
   Serial.println(
       "help - list available commands\nledon - turn LED on\nledoff - turn LED off\nilluminance <value> - set LED brightness in %");
 }
 
-static void ledon()
+void ledon()
 {
   setLED(100);
   Serial.println("LED is on");
 }
 
-static void ledoff()
+void ledoff()
 {
   setLED(0);
   Serial.println("LED is off");
 }
 
-static void illuminance(int percent)
+void illuminance(int percent)
 {
   if (percent >= 0 && percent <= 100)
   {
@@ -39,7 +40,7 @@ static void illuminance(int percent)
   }
 }
 
-static void parse(String str)
+void parse(String str)
 {
   if (str == "help")
   {
@@ -72,13 +73,13 @@ static void parse(String str)
 
 // arduino setup
 
-void setup25()
+void setup()
 {
   Serial.begin(9600);
   pinMode(LED, OUTPUT);
 }
 
-void loop25()
+void loop()
 {
   if (Serial.available())
   {

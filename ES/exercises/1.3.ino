@@ -1,17 +1,18 @@
 #include <Arduino.h>
+
 #define LED 13
 #define BUTTON 3
 
-static volatile bool ledState = LOW;
-static bool buttonClicked = false;
+volatile bool ledState = LOW;
+bool buttonClicked = false;
 
-static void flip()
+void flip()
 {
   ledState = !ledState;
   digitalWrite(LED, ledState);
 }
 
-static void check()
+void check()
 {
   const bool buttonState = digitalRead(BUTTON);
   if (!buttonState && !buttonClicked)
@@ -20,18 +21,16 @@ static void check()
     buttonClicked = true;
   }
   else if (buttonState && buttonClicked)
-  {
     buttonClicked = false;
-  }
 }
 
-void setup13()
+void setup()
 {
   pinMode(LED, OUTPUT);
   pinMode(BUTTON, INPUT_PULLUP);
 }
 
-void loop13()
+void loop()
 {
   check();
   delay(10);

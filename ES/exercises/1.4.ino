@@ -1,15 +1,13 @@
 #include <Arduino.h>
+
 #define LED 13
 #define BUTTON 3
 
-static bool ledState = LOW;
+bool ledState = LOW;
 
-static void flipLED()
-{
-  digitalWrite(LED, ledState = !ledState);
-}
+void flipLED() { digitalWrite(LED, ledState = !ledState); }
 
-void setup14()
+void setup()
 {
   pinMode(LED, OUTPUT);
   pinMode(BUTTON, INPUT_PULLUP);
@@ -17,6 +15,6 @@ void setup14()
   attachInterrupt(digitalPinToInterrupt(BUTTON), flipLED, RISING);
 }
 
-void loop14()
+void loop()
 {
 }

@@ -20,39 +20,5 @@
       "path": ".",
       "name": "workspace"
     }
-  ],
-  "settings": {
-    "[latex]": {
-      "editor.defaultFormatter": "James-Yu.latex-workshop"
-    },
-    "[tex]": {
-      "editor.defaultFormatter": "James-Yu.latex-workshop"
-    },
-    "latex-workshop.latex.outDir": ".texbuild",
-    "latex-workshop.message.warning.show": false,
-    "latex-workshop.message.badbox.show": false,
-    "latex-workshop.message.error.show": false,
-    "latex-workshop.latex.autoClean.run": "never",
-    "latex-workshop.latex.clean.args": ["-c", "%DOC_EXT%", "-outdir=%OUTDIR%"],
-    "latex-workshop.latexindent.args": [
-      "%TMPFILE%",
-      "-y=defaultIndent: '%INDENT%'"
-    ],
-    "latex-workshop.view.pdf.external.synctex.args": [
-      "%LINE%",
-      "%PDF%",
-      "%DOC_EXT%"
-    ],
-    "files.associations": {
-      "sstream": "cpp",
-      "functional": "cpp",
-      "ratio": "cpp",
-      "system_error": "cpp",
-      "array": "cpp",
-      "tuple": "cpp",
-      "type_traits": "cpp",
-      "utility": "cpp",
-      "chrono": "cpp"
-    }
-  }
+  ]
 }

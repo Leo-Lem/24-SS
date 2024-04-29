@@ -1,13 +1,14 @@
 #include <Arduino.h>
+
 #define BUTTON 3
 
-const static int frequency = 1000;                  // Hz
-const static long period = (long)(1e6 / frequency); // µs
+const int frequency = 1000;                  // Hz
+const long period = (long)(1e6 / frequency); // µs
 
-static long duration = 0; // ms
-static bool buttonPressed = false;
+long duration = 0; // ms
+bool buttonPressed = false;
 
-static void tick()
+void tick()
 {
   if (buttonPressed)
     duration += period / 1000; // ms
@@ -15,15 +16,15 @@ static void tick()
 
 #if defined(__SAM3X8E__) // Arduino Due
 #include "DueTimer.h"
-static DueTimer Timer4; // match TimerFour package
-static void configureTimer()
+DueTimer Timer4; // match TimerFour package
+void configureTimer()
 {
   if (!Timer4.configure(frequency, tick))
     Serial.println("Failed to start timer…");
 }
 #else
 #include <TimerFour.h>
-static void configureTimer()
+void configureTimer()
 {
   Timer4.initialize(period);
   Timer4.attachInterrupt(tick);
@@ -31,12 +32,12 @@ static void configureTimer()
 }
 #endif
 
-static void press()
+void press()
 {
   buttonPressed = digitalRead(BUTTON) == LOW;
 }
 
-void setup31()
+void setup()
 {
   configureTimer();
   Serial.begin(9600);
@@ -48,7 +49,7 @@ void setup31()
   Serial.println("Press the button to get started!");
 }
 
-void loop31()
+void loop()
 {
   if (!buttonPressed && duration > 0)
   {

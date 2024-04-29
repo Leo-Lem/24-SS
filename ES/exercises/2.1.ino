@@ -1,8 +1,9 @@
 #include <Arduino.h>
+
 char ch_buffer[80] = "";
 float pi_fl = 3.14159265359;
 
-static void ftoa(float num, char *res, int numDecPlaces)
+void ftoa(float num, char *res, int numDecPlaces)
 {
   // Handle negative numbers
   if (num < 0)
@@ -33,14 +34,14 @@ static void ftoa(float num, char *res, int numDecPlaces)
   *res = '\0';
 }
 
-static void print_float(float num, int numDecPlaces)
+void print_float(float num, int numDecPlaces)
 {
   char buffer[80];
   ftoa(num, buffer, numDecPlaces);
   Serial.print(buffer);
 }
 
-void setup21()
+void setup()
 {
   Serial.begin(9600);
 
@@ -57,6 +58,6 @@ void setup21()
   Serial.println(pi_fl, 5);
 }
 
-void loop21()
+void loop()
 {
 }

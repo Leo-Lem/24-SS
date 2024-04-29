@@ -41,8 +41,8 @@
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -176.4,
-      "left": 99.8,
+      "top": -195.6,
+      "left": 80.6,
       "attrs": {
         "color": "yellow"
       }
@@ -50,9 +50,9 @@
     {
       "type": "wokwi-resistor",
       "id": "r2",
-      "top": -100.8,
-      "left": 95.45,
-      "rotate": 90,
+      "top": -101.3,
+      "left": 75.75,
+      "rotate": 270,
       "attrs": {
         "value": "130"
       }
@@ -61,7 +61,7 @@
       "type": "wokwi-analog-joystick",
       "id": "joystick1",
       "top": -240.6,
-      "left": 322.2,
+      "left": 264.6,
       "attrs": {}
     },
     {
@@ -83,6 +83,61 @@
       "rotate": 90,
       "attrs": {
         "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -207.2,
+      "left": 116.3,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -102.7,
+      "left": 95.65,
+      "rotate": 270,
+      "attrs": {
+        "value": "130"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": -102.7,
+      "left": 114.85,
+      "rotate": 270,
+      "attrs": {
+        "value": "130"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -102.7,
+      "left": 124.45,
+      "rotate": 270,
+      "attrs": {
+        "value": "130"
+      }
+    },
+    {
+      "type": "chip-tb6612fng",
+      "id": "chip1",
+      "top": -151.8,
+      "left": 409.42,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 48,
+      "left": 422.4,
+      "rotate": 180,
+      "attrs": {
+        "volume": "0.1"
       }
     }
   ],
@@ -124,46 +179,14 @@
       ]
     ],
     [
-      "mega:13",
-      "bb1:9b.j",
-      "gold",
-      [
-        "v0"
-      ]
-    ],
-    [
-      "bb1:tn.5",
-      "bb1:8t.a",
-      "black",
-      [
-        "v0"
-      ]
-    ],
-    [
-      "joystick1:VCC",
-      "bb1:bp.26",
-      "red",
-      [
-        "v0"
-      ]
-    ],
-    [
-      "joystick1:GND",
-      "bb1:bn.30",
-      "black",
-      [
-        "v0"
-      ]
-    ],
-    [
       "joystick1:VERT",
       "mega:A9",
       "orange",
       [
         "v115.2",
-        "h19.2",
+        "h76.8",
         "v201.6",
-        "h-86.4"
+        "h-84"
       ]
     ],
     [
@@ -180,6 +203,39 @@
       "black",
       [
         "v0"
+      ]
+    ],
+    [
+      "mega:2",
+      "bb1:21b.j",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "mega:3",
+      "bb1:17b.j",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "bb1:tn.4",
+      "bb1:6t.a",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "mega:13",
+      "bb1:7b.j",
+      "gold",
+      [
+        "v-18.6",
+        "h-23.4"
       ]
     ],
     [
@@ -215,24 +271,8 @@
       ]
     ],
     [
-      "r1:1",
-      "bb1:tp.16",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "r1:2",
-      "bb1:21t.c",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
       "led1:A",
-      "bb1:9t.d",
+      "bb1:7t.b",
       "",
       [
         "$bb"
@@ -240,63 +280,7 @@
     ],
     [
       "led1:C",
-      "bb1:8t.d",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "r2:1",
-      "bb1:9t.e",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "r2:2",
-      "bb1:9b.i",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "joystick1:VCC",
-      "bb1:33t.e",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "joystick1:VERT",
-      "bb1:34t.e",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "joystick1:HORZ",
-      "bb1:35t.e",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "joystick1:SEL",
-      "bb1:36t.e",
-      "",
-      [
-        "$bb"
-      ]
-    ],
-    [
-      "joystick1:GND",
-      "bb1:37t.e",
+      "bb1:6t.b",
       "",
       [
         "$bb"
@@ -351,19 +335,415 @@
       ]
     ],
     [
-      "mega:2",
-      "bb1:21b.j",
+      "bb1:10t.a",
+      "bb1:tp.7",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "rgb1:R",
+      "bb1:9t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "rgb1:COM",
+      "bb1:10t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "rgb1:G",
+      "bb1:11t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "rgb1:B",
+      "bb1:12t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "bb1:12b.j",
+      "mega:6",
+      "cyan",
+      [
+        "v19.2",
+        "h48"
+      ]
+    ],
+    [
+      "bb1:11b.j",
+      "mega:7",
+      "limegreen",
+      [
+        "v28.8",
+        "h46"
+      ]
+    ],
+    [
+      "mega:11",
+      "bb1:9b.j",
+      "magenta",
+      [
+        "v-28.2",
+        "h-32.8"
+      ]
+    ],
+    [
+      "r2:1",
+      "bb1:7b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r2:2",
+      "bb1:7t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r4:1",
+      "bb1:9b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r4:2",
+      "bb1:9t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r5:1",
+      "bb1:11b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r5:2",
+      "bb1:11t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r6:1",
+      "bb1:12b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r6:2",
+      "bb1:12t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "joystick1:GND",
+      "bb1:bn.25",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joystick1:VCC",
+      "bb1:bp.21",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joystick1:VCC",
+      "bb1:27t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "joystick1:VERT",
+      "bb1:28t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "joystick1:HORZ",
+      "bb1:29t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "joystick1:SEL",
+      "bb1:30t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "joystick1:GND",
+      "bb1:31t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r1:1",
+      "bb1:tp.16",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "r1:2",
+      "bb1:21t.c",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:VM",
+      "bb1:41b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:VCC",
+      "bb1:42b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:GND",
+      "bb1:43b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:AO1",
+      "bb1:44b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:AO2",
+      "bb1:45b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:BO2",
+      "bb1:46b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:BO1",
+      "bb1:47b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:GND",
+      "bb1:48b.j",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:GND",
+      "bb1:48t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:PWMB",
+      "bb1:47t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:BIN2",
+      "bb1:46t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:BIN1",
+      "bb1:45t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:STBY",
+      "bb1:44t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:AIN1",
+      "bb1:43t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:AIN2",
+      "bb1:42t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "chip1:PWMA",
+      "bb1:41t.a",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "bz1:2",
+      "chip1:AO1",
+      "gold",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "bz1:1",
+      "chip1:AO2",
       "green",
       [
         "v0"
       ]
     ],
     [
-      "mega:3",
-      "bb1:17b.j",
-      "green",
+      "mega:5V.2",
+      "chip1:VM",
+      "red",
       [
         "v0"
+      ]
+    ],
+    [
+      "chip1:VCC",
+      "bb1:bp.34",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "chip1:GND",
+      "bb1:bn.35",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "chip1:STBY",
+      "bb1:tp.35",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "mega:9",
+      "chip1:PWMA",
+      "gold",
+      [
+        "v-28.2",
+        "h245.3",
+        "v-153.6",
+        "h19.2"
+      ]
+    ],
+    [
+      "mega:49",
+      "chip1:AIN2",
+      "blue",
+      [
+        "v1.75",
+        "h32.2",
+        "v-326.4",
+        "h38.4"
+      ]
+    ],
+    [
+      "mega:47",
+      "chip1:AIN1",
+      "green",
+      [
+        "v1.65",
+        "h22.6",
+        "v-326.4",
+        "h9.6"
       ]
     ]
   ],

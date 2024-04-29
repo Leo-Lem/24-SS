@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #define POT 9
 
-static int oldValue = 0;
+int oldValue = 0;
 
-static void status()
+void status()
 { // print info to serial console: pin A9 – ADC-value: 257; input Voltage: 1.25 V, 1256 mV
   int value = analogRead(POT);
   if (value < oldValue + 10 && value > oldValue - 10)
@@ -27,12 +27,9 @@ static void status()
   Serial.print("mV\n\n");
 }
 
-void setup22()
-{
-  Serial.begin(9600);
-}
+void setup() { Serial.begin(9600); }
 
-void loop22()
+void loop()
 {
   status();
   delay(100);
