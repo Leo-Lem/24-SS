@@ -283,10 +283,80 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
 \subsection{DESMO-J}
 \begin{quote}Java-basiertes Simulationsframework (Sprachebene), Schwerpunkt auf Simulation\end{quote}
 
-
-
 \section{Simulationsstatistik \& Optimierung}
+\subsection{Stochastischer Modellinput}
+\subsubsection{Zufallszahlenerzeugung}
+\begin{quote}Verwendung für stochastische oder real zu komplexe deterministische Prozesse.\end{quote}
 
+\begin{itemize}
+  \item \textbf{Klassifizierung}
+        \begin{itemize}
+          \item \textbf{physikalische Zufallszahlen}: möglich (zB. Radioaktivität), aber sehr aufwändig
+          \item \textbf{künstliche (Pseudo-)Zufallszahlen}: deterministisch, aber statistisch zufällig
+        \end{itemize}
+  \item \textbf{Methoden}
+        \begin{itemize}
+          \item \textbf{Lineare Kongruenzmethode}: $x_{n+1} = (a \cdot x_n + c) \mod m$
+          \item \textbf{Multiplikative Kongruenzmethode}: linear mit $c=0$
+          \item \textbf{Mersenne-Twister}: 32-Bit-Generator, Zykluslänge $2^{19937}-1$, gleichverteilt, effizient, moderater Speicherbedarf
+          \item  \textbf{[0,1)-stetig-gleichverteilt}: Division durch Maximalwert $\text{rand}_{[0,1)} = \text{rand}_{[0,P)}()/P$
+          \item \textbf{[a,b)-stetig-gleichverteilt}: durch Skalierung $\text{rand}_ {[a,b)} = a + (b-a) \cdot \text{rand}_{[0,1)]}()$
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Verteilungen}
+
+\begin{itemize}
+  \item \textbf{Charakterisierung}
+        \begin{itemize}
+          \item \textbf{Verteilungsfunktion $F(x)$}: $F(x) = P(X \leq x)$: Wahrscheinlichkeit, dass Zufallsvariable $X$ den Wert $x$ nicht überschreitet
+          \item \textbf{Dichtefunktion $f(x)$}: $f(x) = F'(x)$ bzw. $F(x) = \int_{-\infty}^x f(x) \, dx$
+        \end{itemize}
+  \item \textbf{Näherungsverfahren für Normalverteilung}
+        \begin{itemize}
+          \item \textbf{Zentraler Grenzwertsatz}: Summe von unabhhängigen, identisch verteilten Zufallsvariablen konvergiert gegen Normalverteilung
+          \item \textbf{Box-Muller Methode}: $z_j = \sqrt{-2 \ln u_1} \cdot \cos(2 \pi u_2)$
+          \item \textbf{Polar Methode}: Box-Muller ohne Cosinus durch Trial \& Error
+        \end{itemize}
+  \item \textbf{Relevante Verteilungen}
+        \begin{itemize}
+          \item[kont.] \textbf{Rechteckverteilung}: gleichmäßig zwischen min \& Maximalwert
+          \item[kont.] \textbf{Exponentialverteilung}: Zeit bis zum Eintreten eines Ereignisses
+          \item[kont.] \textbf{Normalverteilung}: Aggregation unbekannter Verteilungen
+          \item[kont.] \textbf{Dreieckverteilung}: um Maximum
+          \item[disk.] \textbf{Gleichverteilung}: Alternativen gleicher Wahrscheinlichkeit
+          \item[disk.] \textbf{Bernoulli-Verteilung}: binär
+          \item[disk.] \textbf{Binomialverteilung}: Anzahl Erfolge in $n$ Versuchen
+          \item[disk.] \textbf{Geometrische Verteilung}: Anzahl Versuche bis zum ersten Erfolg
+          \item[disk.] \textbf{Konstante Verteilung}: immer gleicher Wert (zB. Debugging)
+        \end{itemize}
+\end{itemize}
+
+\subsection{Interpretation des stochastischen Modelloutputs}
+\begin{enumerate}
+  \item \textbf{Transiente (Anlauf-)Phase}: Zeit zum Einpendeln, typische Analyse nur auf diesen Bereich beschränkt (zB. wie lange dauert Boarding)
+  \item \textbf{Stationäre Phase}: Zeitinvarianter Zustand, statistische Analyse möglich
+\end{enumerate}
+
+\subsubsection{Schätzgenauigkeit}
+\begin{itemize}
+  \item \textbf{Erwartungswert} $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$: Mittelwert
+  \item \textbf{Standardabweichung} $s = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2}$: Streuung
+  \item \textbf{Quantil der $T$-Verteilung} $z=1-\frac{\alpha}{2}$: bei $n < 30$
+  \item \textbf{Quantil der Standardnormalverteilung} $z=1-\frac{\alpha}{2}$: bei $n \geq 30$
+  \item \textbf{Konfidenzintervall} $\bar{x} \pm z \cdot \frac{s}{\sqrt{n}}$: Schätzung des Mittelwertes
+\end{itemize}
+
+\subsection{Optimierung}
+\begin{itemize}
+  \item \textbf{Faktor-Design}: keine eigentliche Optimierung, evtl. gut als Vorarbeit
+  \item \textbf{Optimierungsproblem}: Bestimmung optimaler Parameterkonfiguration (durch exakte oder nicht-exakte Methoden)
+  \item \textbf{Simulationsoptimierung}: Kreislauf aus Simulation, Optimierung
+  \item \textbf{Optimierungsverfahren}: evolutionäre Methoden, lokale Suchverfahren, Monte Carlo (zufällige Suche), Neuronale Netzwerke, …
+  \item \textbf{Genetische Algorithmen}: zufällige Initialisierung, Selektion, Rekombination, Mutation, Evaluation
+\end{itemize}
+
+\section{Simulationspraxis}
 
 
 
