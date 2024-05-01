@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "DoubleButton.h"
+#include "RGBLED.h"
 #include "Motor.h"
 
 #define BUTTON0PIN 2
@@ -8,9 +9,12 @@
 #define LEDPINR 11
 #define LEDPING 7
 #define LEDPINB 6
+#define MOTORPINPWM 9
+#define MOTORPININ1 14
+#define MOTORPININ2 15
 
 RGBLED led = RGBLED(LEDPINR, LEDPING, LEDPINB);
-Motor motor = Motor(led);
+Motor motor = Motor(MOTORPINPWM, MOTORPININ1, MOTORPININ2, led);
 
 DoubleButton button = DoubleButton(
     BUTTON0PIN, BUTTON1PIN,

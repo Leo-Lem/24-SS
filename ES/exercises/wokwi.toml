@@ -6,3 +6,7 @@ elf='.build/exercise.ino.elf'
 [[chip]]
 name = 'tb6612fng'
 binary = '.build/chips/tb6612fng.chip.wasm'
+
+[[chip]]
+name = 'dcmotor'
+binary = '.build/chips/dcmotor.chip.wasm'

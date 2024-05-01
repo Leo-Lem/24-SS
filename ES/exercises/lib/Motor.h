@@ -1,3 +1,6 @@
+#ifndef MOTOR_H
+#define MOTOR_H
+
 #include <Arduino.h>
 
 #include "RGBLED.h"
@@ -5,7 +8,7 @@
 class Motor
 {
 public:
-  static const unsigned int step = 10, max = 255;
+  static const unsigned int step = 15, max = 255;
 
   enum Direction
   {
@@ -24,12 +27,20 @@ public:
   Direction direction = stopped;
   unsigned long power = 0;
 
-  Motor(RGBLED led) : led(led) {}
+  Motor(unsigned int pwm, unsigned int in1, unsigned int in2, RGBLED led) : pwm(pwm), in1(in1), in2(in2), led(led)
+  {
+    pinMode(pwm, OUTPUT);
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    analogWrite(pwm, power);
+  }
 
   void toggle()
   {
     mode = mode == POWER ? DIRECTION : POWER;
-
     status(true, false);
     updateLED();
   }
@@ -37,42 +48,64 @@ public:
   void adjust(bool increase = false)
   {
     bool powerLimitReached = false;
+
     if (mode == DIRECTION)
-      setRotation(increase);
+      setDirection(increase);
     else
-      powerLimitReached = !setPower(increase);
+      powerLimitReached = setPower(increase);
 
     status(false, powerLimitReached);
     updateLED();
   }
 
 private:
+  const unsigned int pwm, in1, in2;
   RGBLED led;
 
-  void setRotation(bool forward = false)
+  void setDirection(bool forward = false)
   {
-    if (forward) // stopped -> counterclockwise -> clockwise -> stopped
-      direction == stopped ? direction = counterclockwise : direction == counterclockwise ? direction = clockwise
-                                                                                          : direction = stopped;
-    else // stopped -> clockwise -> counterclockwise -> stopped
-      direction == stopped ? direction = clockwise : direction == clockwise ? direction = counterclockwise
-                                                                            : direction = stopped;
+    switch (direction)
+    {
+    case stopped:
+      direction = forward ? clockwise : counterclockwise;
+      break;
+    case clockwise:
+      direction = forward ? counterclockwise : stopped;
+      break;
+    case counterclockwise:
+      direction = forward ? stopped : clockwise;
+    }
+
+    switch (direction)
+    {
+    case stopped:
+      digitalWrite(in1, LOW);
+      digitalWrite(in2, LOW);
+      break;
+    case clockwise:
+      digitalWrite(in1, HIGH);
+      digitalWrite(in2, LOW);
+      break;
+    case counterclockwise:
+      digitalWrite(in1, LOW);
+      digitalWrite(in2, HIGH);
+    }
   }
 
-  bool setPower(bool increase = false) // returns false if power has reached lower/upper limit
+  bool setPower(bool increase = false) // returns true if power has reached lower/upper limit
   {
+    bool limitReached = false;
+
     if (increase && power < max)
-    {
       power += step;
-      return true;
-    }
     else if (!increase && power > 0)
-    {
       power -= step;
-      return true;
-    }
     else
-      return false;
+      limitReached = true;
+
+    analogWrite(pwm, power);
+
+    return limitReached;
   }
 
   void updateLED()
@@ -89,7 +122,7 @@ private:
 
     Serial.print("[");
     if (newMode)
-      Serial.print("> ");
+      Serial.print(">");
     Serial.print(mode == POWER ? "POWER" : "DIRECTION");
     Serial.print(" MODE] Motor direction: ");
     Serial.print(direction == stopped ? "CW - (STOP) - CCW" : direction == clockwise ? "(CW) - STOP - CCW"
@@ -104,3 +137,5 @@ private:
     Serial.print("\r");
   }
 };
+
+#endif

@@ -1,26 +1,9 @@
-// Wokwi Custom Chip - For docs and examples see:
-// https://docs.wokwi.com/chips-api/getting-started
-//
-// SPDX-License-Identifier: MIT
-// Copyright 2023
-
 #include "../lib/wokwi-api.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
-  pin_t pin_PWMA;  // Pin de control de velocidad del motor A (PWM)
-  pin_t pin_AIN1;  // Pin de dirección del motor A
-  pin_t pin_AIN2;  // Pin de dirección del motor A
-  pin_t pin_PWMB;  // Pin de control de velocidad del motor B (PWM)
-  pin_t pin_BIN1;  // Pin de dirección del motor B
-  pin_t pin_BIN2;  // Pin de dirección del motor B
-  pin_t pin_STBY;  // Pin de habilitación/deshabilitación del puente H (STBY)
-  pin_t pin_AO1;
-  pin_t pin_AO2;
-  pin_t pin_BO1;
-  pin_t pin_BO2;
-  pin_t pin_VM;
+  pin_t pin_PWMA, pin_AIN1, pin_AIN2, pin_PWMB, pin_BIN1, pin_BIN2, pin_STBY, pin_AO1, pin_AO2, pin_BO1, pin_BO2, pin_VM;
 } chip_state_t;
 
 static void chip_pin_change(void *user_data, pin_t pin, uint32_t value);
@@ -66,7 +49,6 @@ void chip_pin_change(void *user_data, pin_t pin, uint32_t value) {
   int BIN2 = pin_read(chip->pin_BIN2);
   int VM = pin_adc_read(chip->pin_VM);
 
-  // Control del motor A
   if (AIN1)
     pin_dac_write(chip->pin_AO1, PWMA);
   else
@@ -75,7 +57,7 @@ void chip_pin_change(void *user_data, pin_t pin, uint32_t value) {
     pin_dac_write(chip->pin_AO2, PWMA);
   else
     pin_write(chip->pin_AO2, 0);
-  // Control del motor B
+
   if (BIN1)
     pin_dac_write(chip->pin_BO1, PWMB);
   else

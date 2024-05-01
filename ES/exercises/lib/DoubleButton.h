@@ -1,3 +1,6 @@
+#ifndef DOUBLEBUTTON_H
+#define DOUBLEBUTTON_H
+
 #include <Arduino.h>
 
 #include "Button.h"
@@ -20,3 +23,5 @@ private:
   Button button[2];
   void (*pressBoth)();
 };
+
+#endif

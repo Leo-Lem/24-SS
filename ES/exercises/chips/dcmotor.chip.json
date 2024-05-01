@@ -1,0 +1,12 @@
+{
+  "name": "DC Motor",
+  "author": "Leopold Lemmermann",
+  "pins": [
+    "01",
+    "02"
+  ],
+  "display": {
+    "width": 64,
+    "height": 64
+  }
+}

@@ -1,3 +1,6 @@
+#ifndef LED_H
+#define LED_H
+
 #include <Arduino.h>
 
 class LED
@@ -32,3 +35,5 @@ public:
 private:
   const int pin;
 };
+
+#endif

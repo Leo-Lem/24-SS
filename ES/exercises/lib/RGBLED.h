@@ -1,3 +1,6 @@
+#ifndef RGBLED_H
+#define RGBLED_H
+
 #include <Arduino.h>
 
 class RGBLED
@@ -31,3 +34,5 @@ private:
   const Color colors[3] = {red, green, blue};
   const unsigned int pins[3]; // red, green, blue
 };
+
+#endif

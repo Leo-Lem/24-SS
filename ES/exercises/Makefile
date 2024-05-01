@@ -2,7 +2,7 @@ arch = arduino:avr:mega#arduino:avr:due
 libs = TimerFour
 
 .PHONY: all
-all: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/tb6612fng.chip.json .build/exercise .build/exercise/exercise.ino .build/exercise/*.h compile
+all: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/dcmotor.chip.wasm .build/chips/*.chip.json .build/exercise .build/exercise/exercise.ino .build/exercise/*.h compile
 
 .PHONY: clean
 clean:
@@ -11,11 +11,14 @@ clean:
 .build/chips:
 		mkdir -p .build/chips
 
-.build/chips/tb6612fng.chip.wasm: .build/chips chips/tb6612fng.chip.c lib/wokwi-api.h
+.build/chips/tb6612fng.chip.wasm: .build/chips chips/tb6612fng.chip.c
 	clang --target=wasm32-unknown-wasi --sysroot /opt/wasi-libc -nostartfiles -Wl,--import-memory -Wl,--export-table -Wl,--no-entry -Werror -o .build/chips/tb6612fng.chip.wasm chips/tb6612fng.chip.c
 
-.build/chips/tb6612fng.chip.json: .build/chips chips/tb6612fng.chip.json
-	  cp chips/tb6612fng.chip.json .build/chips
+.build/chips/dcmotor.chip.wasm: .build/chips chips/dcmotor.chip.c
+	clang --target=wasm32-unknown-wasi --sysroot /opt/wasi-libc -nostartfiles -Wl,--import-memory -Wl,--export-table -Wl,--no-entry -Werror -o .build/chips/dcmotor.chip.wasm chips/dcmotor.chip.c
+
+.build/chips/*.chip.json: .build/chips chips/*.chip.json
+	  cp chips/*.chip.json .build/chips
 
 .build/exercise:
 		mkdir -p .build/exercise

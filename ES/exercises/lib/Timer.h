@@ -1,3 +1,6 @@
+#ifndef TIMER_H
+#define TIMER_H
+
 #if defined(__SAM3X8E__) // Arduino Due
 
 #include <inttypes.h>
@@ -194,3 +197,5 @@ public:
   static void start() { Timer4.start(); }
   static void stop() { Timer4.stop(); }
 };
+
+#endif
