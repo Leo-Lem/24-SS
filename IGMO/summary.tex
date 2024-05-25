@@ -8,6 +8,8 @@
 
 \begin{document}\createtitle
 
+\part{Modellierung \& Simulation}
+
 \section{Grundbegriffe}
 \input{res/system.fig}
 
@@ -225,7 +227,7 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
   \item[$\hookrightarrow$] grds. vorzuziehen, in Kombination mit ereignisorientierter Sicht für Verständnis
 \end{itemize}
 
-\section{Simulationssoftware}
+\section{Simulationssoftware}\label{sec:simsoft}
 
 \subsection{Typisierung}
 \begin{enumerate}
@@ -356,8 +358,92 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
   \item \textbf{Genetische Algorithmen}: zufällige Initialisierung, Selektion, Rekombination, Mutation, Evaluation
 \end{itemize}
 
+\setcounter{section}{5}
 \section{Simulationspraxis}
+\subsection{Logistiksimulation}
+\begin{quote}Anwendungsbereich: Planung, Steuerung, Optimierung von Material- \& Informationsflüssen.\end{quote}
 
+\subsubsection{Logistischer Prozess}
+\begin{itemize}
+  \item \textbf{Materialfluss}: Aktivitätsketten zur Beschaffung, Verarbeitung oder Verteilung von Gütern (Material oder Produkte)
+  \item \textbf{Informationsfluss}: Beschaffung, Übertragung, Verarbeitung, Speicherung \& Bereitstellung von Informationen zur Einleitung, Ankündigung, Begleitung und Abschluss von Materialflüssen
+\end{itemize}
+
+\subsubsection{Logistics KPIs}
+\begin{itemize}
+  \item \textbf{Quantitative KPIs}: Liefer-/Reaktionszeit, Lieferkosten, Umschlag/Durchsatz, Lager-/Lieferquoten, Reklamationsquote
+  \item \textbf{Qualitative KPIs}: Abspracheneinhaltung, Ruf/Kundenzufriedenheit, Erreichbarkeit, Freundlichkeit
+\end{itemize}
+
+
+\subsection{Anforderungen an erfolgreiche Simulation}
+\subsubsection{Voraussetzungen}
+\begin{enumerate}
+  \item \textbf{Zeitpunkt}: recht-/frühzeitig, um noch Einfluss zu nehmen
+  \item \textbf{Aufwandsschätzung}: Dauer, Ressourcen, Kosten
+  \item \textbf{Fachkenntnis}: Möglichkeiten/Grenzen der Simulation, Alternativen, Einblick in Realsystem, (evtl.) externe Beratung
+  \item \textbf{Simulationswürdigkeit}: Sammlung/Prüfung alternativer Ansätze
+  \item \textbf{Kommunikation}: zwischen Modellentwicklern \& -anwendern
+  \item \textbf{Detaillierungsgrad}: ausreichend, aber nicht zu detailliert
+  \item \textbf{Datenqualität}: Umfang \& Form angemessen
+  \item \textbf{Simulationswerkzeug}: nach Kriterien vgl. \ref{sec:simsoft}
+  \item \textbf{Validierung}: Plausibilität
+  \item \textbf{Planung \& Auswertung}: Simulationslänge, Stichprobenumfang, Versuchsplanung, Schätzverfahren
+  \item \textbf{Interpretation}: als statistische Werte, Berücksichtigung von Unsicherheiten, in Bezug auf Realsystem
+  \item \textbf{Dokumentation}: der Einzelschritte, Aufbereitung der Ergebnisse
+\end{enumerate}
+
+\subsubsection{Projektorganisation (Rollen)}
+\begin{itemize}
+  \item \textbf{Entscheidungsträger}: Genehmigung, Budget, Umsetzungsentscheidung, Meetingterminierung
+  \item \textbf{Projektleiter}: Deadline, QS, Budgetkontrolle, Koordination, Dokumentation, Meetings
+  \item \textbf{Fachspezialisten}: Daten, Umsetzung, Meetings
+  \item \textbf{Simulationsexperten}: Sofware, Modellierung, Experimente, Interpretation, Meetings
+\end{itemize}
+
+\subsubsection{Simulation als Dienstleistung}
+\begin{itemize}
+  \item \textbf{Make-or-Buy-Entscheidung}: interne/externe Simulation
+        \begin{itemize}
+          \item \textbf{Vorteile Make}: Flexibilität, Anpassung, Kontrolle, Kosten
+          \item \textbf{Vorteile Buy}: Erfahrung, Unabhängigkeit, Expertenwissen, Ressourcen
+        \end{itemize}
+  \item \textbf{Grundleistungen}: Datenanalyse, Entwicklung, Experimente, Ergebnispräsentation, Dokumentation
+  \item \textbf{Zusatzleistungen}: Datenerfassung/-beschaffung, Animation, innerbetriebliche Schulung, Beratung
+\end{itemize}
+
+\subsubsection{Kosten \& Zeitaufwand}
+\begin{itemize}
+  \item \textbf{Kosten}: abhängig vom Umfang (5.000€ - 100.000€), zusätzlich interne Kosten (Personal, Ressourcen)
+  \item \textbf{Zeit}: kurze (2 Monate) bis lange (1 Jahr) Projekte, abhängig von Komplexität, Umfang, Datenqualität, …
+  \item \textbf{Kosten bei interner Durchführung}: Softwarelizenz (1.000€ - 100.000€), Technik/Hardware (2.000€ - 25.000€), Schulung inkl. Lohnkosten (2.000€ - 25.000€), Auswahl der Simulationssoftware (5.000€ - )
+  \item \textbf{Kostensenkungspotenziale}: Detaillierungsgrad/Datenbedarf, geeignetes Simulationswerkzeug, Verwendung/Weiterentwicklung von Standardmodellen, intensive Abstimmung mit Berater
+\end{itemize}
+
+\subsubsection{Typische Fehlerquellen}
+\begin{itemize}
+  \item \textbf{Definition}: unklare Fragestellung, fehlende Zieldefinition
+  \item \textbf{Kommunikation}: unzureichend zwischen Simulationsexperten \& -anwendern
+  \item \textbf{Modellierung}: unangemessen ddurch vernachlässigte Ziele, zu hohe Komplexität, unklare Grenzvorstellungen
+  \item \textbf{Datenadequanz}: unzureichende Datenqualität, fehlende Daten, unklare Datenherkunft
+  \item \textbf{Ergebnisinterpretation}: unangemessenes Vertrauen in Ergebnisse, Überschätzung der Gültigkeitsbereichs, fehlende Validierung
+\end{itemize}
+
+\subsubsection{Schlussfolgerungen}
+\begin{itemize}
+  \item \textbf{Ausschlusskriterien}: kurze Projektdauer/Zeitdruck, spätes Projektstadium, unzureichendes Know-How, umfangreiche/ständig verändernde Systeme, mangelhafte Datenlage
+  \item \textbf{potenzieller Nutzen}: als Testumgebung, Vermeidung von Planungsfehlern, schnellere Entscheidungsfindung, besseres Prozesswissen/Datenlage, höheres Systemverständnis
+\end{itemize}
+
+
+
+\newpage
+\part{Integrierte Software- \& Organisationsentwicklung}
+\section{(IT-)Organisation \& Prozesse}
+
+\section{Komplexe Informationssysteme}
+
+\section{Digital Leadership \& Business Strategy}
 
 
 \end{document}
