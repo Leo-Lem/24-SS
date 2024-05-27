@@ -173,7 +173,7 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
   \item \textbf{Terminieren}: Beenden von Prozessen
 \end{itemize}
 
-\subsubsection{BPMN2.0}
+\subsubsection{BPMN2.0}\label{subsec:bpmn}
 \begin{itemize}
   \item \textbf{Geschäftsprozess}: Sequenzen von dem Geschäftszweck dienenden, wiederkehrenden Aktivitäten
   \item \textbf{Geschäftsprozessmanagement}: technische Implementation, Controlling/Monitoring, Dokumentation, Verbesserung
@@ -440,6 +440,88 @@ Zeitdiskrete Simulation: Abbildung über Ereignisliste (Queue) mit Zeitstempel
 \newpage
 \part{Integrierte Software- \& Organisationsentwicklung}
 \section{(IT-)Organisation \& Prozesse}
+
+\subsection{Wertschöpfung in Unternehmen \& (Geschäfts-)Prozesse}
+Wertschöpfungskette: Sequenz Ablauf von Unternehmensaktivitäten zur Schaffung eines Produktes oder einer Dienstleistung
+Prozess: sachlogische Abfolge von Aktivitäten
+
+\subsubsection{Prozesslandschaftsmodell}
+\begin{enumerate}
+  \item \textbf{Managementprozess}: Steuerung, Kontrolle, Planung
+        \begin{itemize}
+          \item Vision definieren
+          \item Strategie entwickeln
+          \item Strategie einführen
+          \item Risiko managen
+        \end{itemize}
+  \item \textbf{Geschäftsprozess}: Wertschöpfungskette, primärer Zweck
+        \begin{enumerate}
+          \item Material beschaffen
+          \item Produkt erstellen
+          \item Produkt vermarkten
+          \item Produkt versenden
+          \item Kundenservice managen
+        \end{enumerate}
+  \item \textbf{Supportprozess}: Unterstützung der Geschäftsprozesse, sekundärer Zweck
+        \begin{itemize}
+          \item Personal managen
+          \item Informationen managen
+          \item Vermögenswerte managen
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Beispiele für Unternehmensprozesse}
+\begin{itemize}
+  \item \textbf{Quote-to-Order} (Q2O)
+  \item \textbf{Order-to-Cash} (O2C)
+  \item \textbf{Issue-to-Resolution} (I2R)
+  \item \textbf{Application-to-Approval} (A2A)
+  \item \textbf{Procure-to-Pay} (P2P)
+\end{itemize}
+
+\subsubsection{Prozessarchitekturebenen}
+\begin{enumerate}
+  \item Level: \textbf{Prozesslandschaft} inkl. Value Chains
+  \item Level: \textbf{Geschäftsprozesse}: BPMN
+  \item Level: \textbf{Subprozesse \& Aktivitäten}: BPMN
+\end{enumerate}
+
+\subsection{BPMN}
+
+s. \ref{subsec:bpmn}
+
+\begin{itemize}
+  \item[+] graphische Darstellung
+  \item[+] Überblick, Dokumentation
+  \item[+] Abhängigkeiten abgebildet
+  \item[+] fachliche \& technische Sicht
+  \item[+] Schnittstellenanalyse
+  \item[+] verschiedene Analyseverfahren
+  \item[-] hoher zeitlicher Initialaufwand
+  \item[-] permanenter Pflegeaufwand
+  \item[-] Fokus nur auf Geschäftsprozesse
+\end{itemize}
+
+\subsection{Quantitative \& Qualitative Prozessanalyse}
+
+\subsubsection{Qualitativ: Value-Added Analysis}
+\begin{quote}Analyse der Wertschöpfungskette, um nicht-wertschöpfende Aktivitäten zu identifizieren.\end{quote}
+\begin{itemize}
+  \item \textbf{Value Adding}: direkter Beitrag zur Wertschöpfung
+  \item \textbf{Business Value Adding}: indirekter Beitrag zur Wertschöpfung
+  \item \textbf{Non-Value Adding}: keine Wertschöpfung
+  \item[$\hookrightarrow$] alternativ: Root-Cause oder Stakeholder Analysis
+\end{itemize}
+
+\subsubsection{Quantitativ: Flow Analysis}
+\begin{quote}Analyse der Prozessdurchlaufzeiten, um Engpässe zu identifizieren.\end{quote}
+\begin{itemize}
+  \item \textbf{Cycle time} (CT): Zeit von Anfang bis Ende eines Prozesses ($CT = WT + PT$)
+  \item \textbf{Processing time/Theoretival cycle time} (PT/TCT): Zeit, die zur Bearbeitung benötigt wird
+  \item \textbf{Waiting time} (WT): Zeit von non-value adding Aktivitäten
+  \item \textbf{Cycle time efficiency} (CTE): processing time compared to cycle time ($\frac{PT}{CT}$)
+  \item[$\hookrightarrow$] alternativ: Queues oder Simulation
+\end{itemize}
 
 \section{Komplexe Informationssysteme}
 
