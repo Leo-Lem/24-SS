@@ -13,17 +13,17 @@ DoubleButton button = DoubleButton(
     [](void)
     {
       motor.adjust(true);
-      Serial.println("Button 1 pressed.");
+      // Serial.println("Button 1 pressed.");
     },
     [](void)
     {
       motor.adjust(false);
-      Serial.println("Button 2 pressed.");
+      // Serial.println("Button 2 pressed.");
     },
     [](void)
     {
       motor.toggle();
-      Serial.println("Both buttons pressed.");
+      // Serial.println("Both buttons pressed.");
     });
 
 void tick() { button.update(); }

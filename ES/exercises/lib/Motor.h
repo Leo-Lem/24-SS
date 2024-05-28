@@ -27,6 +27,9 @@ public:
   Direction direction = stopped;
   unsigned long power = 0;
 
+  // mock constructor
+  Motor() : pwm(9), in1(14), in2(15), led(RGBLED(11, 7, 6)) {}
+
   Motor(unsigned int pwm, unsigned int in1, unsigned int in2, RGBLED led) : pwm(pwm), in1(in1), in2(in2), led(led)
   {
     pinMode(pwm, OUTPUT);
