@@ -1,46 +1,49 @@
-arch = arduino:avr:mega#arduino:avr:due
-libs = TimerFour
+# default parameters
+arch = arduino:avr:mega #arduino:sam:arduino_due_x_dbg
+
+# Check if the target is a known target
+ifeq ($(filter $(MAKECMDGOALS),clean upload),)
+  exercise := $(firstword $(MAKECMDGOALS))
+endif
+
+BUILD_DIR := .build
+CHIPS := $(patsubst chips/%.chip.c, $(BUILD_DIR)/chips/%.chip.wasm, $(wildcard chips/*.chip.c))
 
 .PHONY: all
-all: .build/chips .build/chips/tb6612fng.chip.wasm .build/chips/dcmotor.chip.wasm .build/chips/*.chip.json .build/exercise .build/exercise/exercise.ino .build/exercise/*.h compile
+all: $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
 
 .PHONY: clean
 clean:
-		rm -rf .build
+		rm -rf $(BUILD_DIR)
 
-.build/chips:
-		mkdir -p .build/chips
+# Compile the chip code to wasm
+$(BUILD_DIR)/chips:
+		mkdir -p $(BUILD_DIR)/chips
 
-.build/chips/tb6612fng.chip.wasm: .build/chips chips/tb6612fng.chip.c
-	clang --target=wasm32-unknown-wasi --sysroot /opt/wasi-libc -nostartfiles -Wl,--import-memory -Wl,--export-table -Wl,--no-entry -Werror -o .build/chips/tb6612fng.chip.wasm chips/tb6612fng.chip.c
+$(BUILD_DIR)/chips/%.chip.wasm: chips/%.chip.c | $(BUILD_DIR)/chips
+	clang --target=wasm32-unknown-wasi --sysroot /opt/wasi-libc -nostartfiles -Wl,--import-memory -Wl,--export-table -Wl,--no-entry -Werror -o $@ $< \
+	&& cp chips/$*.chip.json $(BUILD_DIR)/chips/$*.chip.json
 
-.build/chips/dcmotor.chip.wasm: .build/chips chips/dcmotor.chip.c
-	clang --target=wasm32-unknown-wasi --sysroot /opt/wasi-libc -nostartfiles -Wl,--import-memory -Wl,--export-table -Wl,--no-entry -Werror -o .build/chips/dcmotor.chip.wasm chips/dcmotor.chip.c
+# Add libs
+$(BUILD_DIR)/exercise/*.h: $(BUILD_DIR)/exercise lib/*.h
+		cp lib/*.h $(BUILD_DIR)/exercise/
 
-.build/chips/*.chip.json: .build/chips chips/*.chip.json
-	  cp chips/*.chip.json .build/chips
+# Copy the exercise code to the build directory
+$(BUILD_DIR)/exercise:
+		mkdir -p $(BUILD_DIR)/exercise
 
-.build/exercise:
-		mkdir -p .build/exercise
-
-ifndef ex
-$(error ex(ercise number) is not set)
-endif
-
-.build/exercise/exercise.ino: .build/exercise $(ex).ino
-		cp $(ex).ino .build/exercise/exercise.ino
-
-.build/exercise/*.h: .build/exercise lib/*.h
-		cp lib/*.h .build/exercise/
+$(BUILD_DIR)/exercise/exercise.ino: $(BUILD_DIR)/exercise $(exercise).ino
+		cp $(exercise).ino $(BUILD_DIR)/exercise/exercise.ino
 
 .PHONY: arduino-libs
 arduino-libs:
-	arduino-cli lib install $(libs)
+	arduino-cli lib install $(shell cat lib/deps)
 
 .PHONY: compile
-compile: arduino-libs .build/exercise/exercise.ino .build/exercise/*.h
-	arduino-cli compile -b $(arch) --build-path .build .build/exercise/exercise.ino
+compile: arduino-libs $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h
+	arduino-cli compile -b $(arch) --build-path $(BUILD_DIR) $(BUILD_DIR)/exercise/exercise.ino
 
-.PHONY: upload
-upload: compile
-	arduino-cli upload -b $(arch) --input-dir .build --port /dev/tty.usbmodem1101 .build/exercise/exercise.ino
+$(exercise):
+	@$(MAKE) all exercise=$(exercise)
+
+# arduino-cli upload -b arduino:sam:arduino_due_x_dbg --input-dir .build --port /dev/cu.usbmodem1101 .build/exercise/exercise.ino

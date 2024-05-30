@@ -72,11 +72,8 @@ private:
     case stopped:
       direction = forward ? clockwise : counterclockwise;
       break;
-    case clockwise:
-      direction = forward ? counterclockwise : stopped;
-      break;
-    case counterclockwise:
-      direction = forward ? stopped : clockwise;
+    default:
+      direction = stopped;
     }
 
     switch (direction)
@@ -121,8 +118,6 @@ private:
 
   void status(bool newMode, bool powerLimitReached)
   {
-    Serial.print("\033[K");
-
     Serial.print("[");
     if (newMode)
       Serial.print(">");
@@ -137,7 +132,7 @@ private:
     if (powerLimitReached)
       Serial.print(" (limit reached)");
 
-    Serial.print("\r");
+    Serial.println("");
   }
 };
 

@@ -26,8 +26,11 @@ public:
   {
     this->color = color;
 
-    for (Color c : colors)
-      digitalWrite(pins[c], c == color ? HIGH : LOW);
+    if (color == blue)
+      analogWrite(pins[blue], LOW);
+    else
+      for (Color c : colors)
+        digitalWrite(pins[c], c == color ? LOW : HIGH);
   }
 
 private:
