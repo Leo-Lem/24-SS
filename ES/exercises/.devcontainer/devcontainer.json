@@ -1,12 +1,7 @@
 {
   "name": "Arduino/Wokwi",
   "dockerFile": "Dockerfile",
-  "mounts": ["type=bind,source=/dev/bus/usb,target=/dev/bus/usb"],
-  "runArgs": [
-    "--privileged",
-    "--device=/dev/cu.Bluetooth-Incoming-Port:/dev/cu.Bluetooth-Incoming-Port",
-    "--device=/dev/cu.usbmodem1101:/dev/cu.usbmodem1101"
-  ],
+  "runArgs": ["--device=/dev/cu.usbmodem1101:/dev/cu.usbmodem1101"],
   "postCreateCommand": "arduino-cli core update-index && arduino-cli core install arduino:avr && arduino-cli core install arduino:sam",
   "customizations": {
     "vscode": {
