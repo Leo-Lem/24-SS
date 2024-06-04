@@ -1,14 +1,12 @@
 \documentclass{article}
 
-\usepackage{xrcise}
+\usepackage[solutions]{xrcise}
 
 \subject{Urheberrecht in der Informationsgesellschaft}
 \semester{Summer 2024}
 \author{Leopold Lemmermann}
 
 \begin{document}\createtitle
-
-
 
 \sheet{SVS Fragenkatalog}
 \setcounter{section}{20}
@@ -32,6 +30,20 @@
           \]
           Extrahieren Sie das Watermark. Als Schwellwert wird der Mittelwert der $o_i$ verwendet.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Das markierte Original ergibt sich als $D(x,y) = N(x,y) + S(x,y)$. Da wir $N(x,y)$ bereits kennen, müssen wir lediglich $S(x,y)$ berechnen:
+
+            $S(x,y) = \sum_i{b_i \cdot \Phi_i(x,y)} = \Phi_1(x,y) - \Phi_2(x,y) = \begin{pmatrix} 1 & -1 & 1 \\ 0 & -1 & 0 \\ 1 & -1 & 0 \end{pmatrix}$.
+
+            Damit ist $D(x,y) = \begin{pmatrix} 9 & 5 & 5 \\ 5 & 2 & 0 \\ 7 & 1 & 0 \end{pmatrix}$.
+
+      \item $o_i$ lässt sich berechnen als $o_i = \sum_{x,y}{D(x,y) \cdot \Phi_i(x,y)}$: $o_1 = 5+5+2 = 12$ und $o_2 = 9+5+5 = 19$.
+
+            Der Schwellwert ist also $(12+19)/2 = 15.5$. Daraus ergibt sich das Watermark als $b = (0,1)$.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \setcounter{section}{25}
@@ -41,22 +53,66 @@
     \item Überlegen Sie sich verschiedene Möglichkeiten, wie ein Schutzsystem aussehen könnte, das die Nutzung der Inhalte nur Berechtigten (z.B. denen, die dafür bezahlt haben) erlaubt.
     \item Inwieweit unterscheidet sich die Problemstellung und Ihre Lösung(en) vom Schutz vor Raubkopien in der Software-Branche?
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Es gibt verschiedene Möglichkeiten, um ein Schutzsystem zu implementieren, das sicherstellt, dass nur Berechtigte Zugang zu den Inhalten haben:
+            \begin{itemize}
+              \item Digitale Rechteverwaltung (DRM): Hierbei werden die Inhalte verschlüsselt und können nur mit einem speziellen Schlüssel, der an die Lizenz des Benutzers gebunden ist, entschlüsselt werden. Dies könnte beispielsweise über eine Online-Authentifizierung geschehen, bei der der Benutzer sich bei jedem Zugriff auf den Inhalt verifizieren muss.
+              \item Wasserzeichen: Digitale Wasserzeichen können in die Dateien eingefügt werden, um die Nachverfolgung von illegal verbreiteten Kopien zu ermöglichen. Diese Wasserzeichen könnten Informationen über den ursprünglichen Käufer enthalten.
+              \item Hardwaregebundene Lizenzen: Die Lizenz für den Zugriff auf die Daten könnte an eine bestimmte Hardware gebunden werden, wie z.B. an die Seriennummer eines Computers oder eines speziellen Dongles, der an den Computer angeschlossen werden muss.
+              \item Benutzerspezifische Verschlüsselung: Jede Kopie der Daten könnte individuell verschlüsselt werden, wobei der Schlüssel nur dem berechtigten Benutzer bekannt ist. Dies könnte durch ein sicheres Benutzerauthentifizierungssystem ergänzt werden.
+              \item Cloud-basierte Lösungen: Anstatt die Daten physisch auf einem Datenträger zu speichern, könnten die Inhalte in der Cloud gespeichert und nur nach erfolgreicher Authentifizierung gestreamt werden. Der Zugang könnte an ein Benutzerkonto gebunden sein.
+            \end{itemize}
+      \item Die Problemstellung unterscheidet sich in einigen wesentlichen Punkten vom Schutz vor Raubkopien in der Software-Branche:
+            \begin{itemize}
+              \item Datenformate und Nutzung: Während Software in der Regel ausgeführt wird, werden Inhalte auf Datenträgern häufig konsumiert (z.B. Videos, Musik, Bücher). Der Schutzmechanismus muss also nicht nur die Ausführung, sondern auch das Abspielen oder Lesen der Inhalte kontrollieren.
+              \item Verschlüsselungsstrategien: Software-Raubkopien betreffen oft das Umgehen von Aktivierungsmechanismen, während bei digitalen Inhalten auch der Schutz vor der Entschlüsselung und illegalen Verbreitung eine größere Rolle spielt.
+              \item Verteilung und Zugriff: In der Software-Branche gibt es oft einmalige Installationen, während bei digitalen Inhalten kontinuierlicher Zugriff erforderlich ist. Dies erfordert möglicherweise regelmäßige Überprüfungen und Authentifizierungen.
+              \item Nutzerfreundlichkeit: Schutzmechanismen für digitale Inhalte müssen besonders benutzerfreundlich sein, um legale Nutzer nicht zu frustrieren, während in der Software-Branche die Nutzer oft mehr Verständnis für komplexere Lizenzierungsprozesse haben.
+              \item Vielfalt der Medien: Digitale Inhalte umfassen eine Vielzahl von Medienformen, die jeweils spezifische Schutzmaßnahmen erfordern können. Die Software-Branche konzentriert sich hauptsächlich auf ausführbare Programme.
+            \end{itemize}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Hardwarebaustein zum Rechtemanagement}
   Mit dem Einsatz eines Hardwarebausteins im PC, der für seinen Besitzer nicht ausforschbar ist, und der aus Inhalteanbieter-Sicht für eine "sichere" Systemkonfiguration sorgt, soll ein digitales Rechtemanagement möglich werden. Beschreiben Sie, wie der Ablauf vom Booten des PCs bis zur Nutzung des Inhalts aussehen könnte, damit keine fremde Software an die ungesicherten Mediendaten kommt.
+
+  \begin{solution}
+    Beim Booten des PCs initialisiert das BIOS/UEFI den Hardwarebaustein, der sicherstellt, dass nur vertrauenswürdige Software gestartet wird (Secure Boot). Nach der erfolgreichen Überprüfung der Signatur des Betriebssystems durch den Hardwarebaustein wird das Betriebssystem gestartet. Innerhalb des Betriebssystems sorgt eine spezielle Trusted Execution Environment (TEE) dafür, dass nur autorisierte Anwendungen auf geschützte Inhalte zugreifen können. Wenn der Benutzer auf geschützte Mediendaten zugreifen möchte, authentifiziert er sich gegenüber dem System (z.B. über Passwort, Fingerabdruck oder Smartcard). Die autorisierte Anwendung fordert dann den Hardwarebaustein auf, die Mediendaten zu entschlüsseln und in einen gesicherten Speicherbereich zu laden, auf den nur diese Anwendung zugreifen kann. Jegliche Versuche von nicht autorisierter Software, auf diesen Speicherbereich zuzugreifen, werden blockiert.
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Schranken des Urheberrechts}
   Aus aktuellem Anlass veröffentlichen Sie eine Zusammenstellung aller öffentlichen Reden des Bundespräsidenten und des Innenministers der letzten Wochen in Buchform. Können Sie sich dabei auf die gesetzlich erlaubte Nutzung gemäß § 48 UrhG berufen?
+
+  \begin{solution}
+    § 48 UrhG erlaubt die Vervielfältigung, Verbreitung und öffentliche Wiedergabe von Reden, die in öffentlichen Versammlungen gehalten werden, sofern dies zu Informationszwecken geschieht. Da die Reden des Bundespräsidenten und des Innenministers in der Regel zu öffentlichen und politischen Zwecken gehalten werden und zur Information der Allgemeinheit dienen, können Sie sich bei der Veröffentlichung dieser Reden auf § 48 UrhG berufen.
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Schutzrechte des geistigen Eigentums}
   Wie entsteht ein Schutzrecht an geistigem Eigentum? Vergleichen Sie Urheberrecht und Patentrecht.
+
+  \begin{solution}
+    Ein Schutzrecht an geistigem Eigentum entsteht entweder durch die Schaffung eines Werkes (Urheberrecht) oder durch die Anmeldung und Erteilung eines Patents (Patentrecht).
+    \begin{itemize}
+      \item Urheberrecht: Entsteht automatisch mit der Schaffung eines Werkes, das eine gewisse Schöpfungshöhe erreicht. Es ist nicht erforderlich, das Werk irgendwo anzumelden. Der Schutz umfasst Werke der Literatur, Wissenschaft und Kunst, einschließlich Computerprogrammen, Musik und bildender Kunst.
+      \item Patentrecht: Erfordert eine formale Anmeldung und Prüfung durch ein Patentamt. Ein Patent wird für technische Erfindungen erteilt, die neu, erfinderisch und gewerblich anwendbar sind. Der Schutz gewährt dem Inhaber das ausschließliche Recht, die Erfindung zu nutzen und Dritte davon auszuschließen.
+    \end{itemize}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Voraussetzungen für Werkeigenschaft}
   Sie haben ein Computerprogramm entwickelt, das automatisiert kunstvolle Bilder zeichnet. Prüfen Sie für die generierten Bilder und das Computerprogramm, ob die Voraussetzungen für ein urheberrechtlich geschütztes Werk vorliegen.
+
+  \begin{solution}
+    \begin{itemize}
+      \item Computerprogramm: Programme fallen unter das Urheberrecht, wenn sie eine individuelle geistige Schöpfung darstellen. Ihr Computerprogramm ist wahrscheinlich urheberrechtlich geschützt, da es eine originelle Lösung für die Erstellung kunstvoller Bilder bietet.
+      \item Generierte Bilder: Die urheberrechtliche Schutzfähigkeit der generierten Bilder hängt davon ab, ob sie eine ausreichende Schöpfungshöhe erreichen und als individuelle geistige Schöpfungen angesehen werden können. Wenn die Bilder nur durch den Algorithmus ohne wesentlichen menschlichen Beitrag entstehen, könnte der urheberrechtliche Schutz fraglich sein. Wenn jedoch der Programmierer durch die Wahl der Algorithmen und Parameter eine kreative Leistung erbracht hat, könnten die Bilder als Werke geschützt sein.
+    \end{itemize}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Erwerb von Nutzungsrechten}
@@ -65,10 +121,22 @@
     \item Wie verhält es sich mit dem gutgläubigen Erwerb im Urheberrecht?
     \item Prüfen Sie, ob folgende Aussage wahr oder falsch ist: "Nutzungsrechte können nur vom Urheber wirksam eingeräumt werden." Begründen Sie!
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Gutgläubiger Erwerb: Im deutschen Recht bezeichnet der gutgläubige Erwerb den Erwerb von Eigentum oder anderen Rechten von einem Nichtberechtigten, wenn der Erwerber gutgläubig, d.h. ohne Kenntnis der fehlenden Berechtigung des Veräußerers, handelt und gewisse Voraussetzungen erfüllt sind.
+      \item Gutgläubiger Erwerb im Urheberrecht: Im Urheberrecht ist der gutgläubige Erwerb von Nutzungsrechten grundsätzlich nicht möglich. Nutzungsrechte können nur vom Rechteinhaber oder von jemandem, der vom Rechteinhaber ermächtigt wurde, übertragen werden.
+      \item Aussage: "Nutzungsrechte können nur vom Urheber wirksam eingeräumt werden." Diese Aussage ist falsch. Nutzungsrechte können auch von anderen Personen eingeräumt werden, sofern sie vom Urheber die entsprechenden Rechte übertragen bekommen haben. Dies kann durch vertragliche Vereinbarungen oder Lizenzierungen geschehen.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Erwerb von Nutzungsrechten}
   Ein E-Book-Verlag hat das ausschließliche Nutzungsrecht zur digitalen Vermarktung eines Romans vom Autor erworben. Unter welchen Umständen darf der Verlag einem Dritten ein Nutzungsrecht einräumen?
+
+  \begin{solution}
+    Der Verlag darf einem Dritten ein Nutzungsrecht einräumen, wenn dies im Vertrag mit dem Autor ausdrücklich erlaubt wurde. Der Autor kann dem Verlag entweder das Recht zur Unterlizenzierung einräumen oder dies ausschließen. Ohne eine ausdrückliche Erlaubnis zur Unterlizenzierung im Vertrag ist der Verlag nicht berechtigt, einem Dritten Nutzungsrechte einzuräumen.
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Lizenzen}
@@ -77,10 +145,33 @@
     \item Wieso gibt es die Variation der Creative-Commons-Lizenz CC-BY-ND-SA nicht?
     \item Darf ein gemeinfreies Werk unter der Lizenz CC0 auch in einem Werk nach CC-BY-SA verwendet werden? Begründen Sie.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Vorteile der Standardisierung von Nutzungslizenzen:
+            \begin{itemize}
+              \item Rechtssicherheit: Standardisierte Lizenzen bieten klare und verständliche Bedingungen, die sowohl für Urheber als auch für Nutzer transparent sind, wodurch rechtliche Unsicherheiten minimiert werden.
+              \item Einfache Handhabung: Durch die Verwendung standardisierter Lizenzen wie Creative Commons müssen Urheber keine eigenen, komplexen Lizenztexte erstellen. Nutzer können schnell erkennen, welche Rechte und Pflichten sie haben.
+            \end{itemize}
+      \item Variation CC-BY-ND-SA: Diese Variation existiert nicht, weil sie widersprüchlich ist. "ND" (No Derivatives) bedeutet, dass keine Bearbeitungen des Werkes erlaubt sind, während "SA" (Share Alike) vorschreibt, dass bearbeitete Versionen unter denselben Bedingungen lizenziert werden müssen. Diese beiden Bedingungen schließen sich gegenseitig aus.
+      \item Gemeinfreies Werk unter CC0 und CC-BY-SA: Ja, ein gemeinfreies Werk, das unter der Lizenz CC0 steht, kann in einem Werk nach CC-BY-SA verwendet werden. CC0 verzichtet auf alle Urheberrechte, sodass das Werk frei verwendet werden kann, auch in Werken, die unter restriktiveren Lizenzen stehen.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Nutzung von Computerprogrammen}
   Ein Lizenznehmer möchte ein Computerprogramm zur automatisierten Prüfung auf Sicherheitslücken dekompilieren. Unter welchen Voraussetzungen wäre eine solche Dekompilierung urheberrechtlich zulässig?
+
+  \begin{solution}
+    Die Dekompilierung eines Computerprogramms ist nach § 69e UrhG unter bestimmten Voraussetzungen zulässig:
+    \begin{itemize}
+      \item Notwendigkeit: Die Dekompilierung muss notwendig sein, um die Interoperabilität des Programms mit anderen Programmen herzustellen.
+      \item Berechtigtes Interesse: Der Lizenznehmer muss ein berechtigtes Interesse an der Dekompilierung haben, beispielsweise die Analyse des Programms auf Sicherheitslücken.
+      \item Nutzung durch autorisierte Person: Die Dekompilierung darf nur durch eine berechtigte Person, die eine Lizenz für das Programm besitzt, durchgeführt werden.
+      \item Einhaltung der Grenzen: Die gewonnenen Informationen dürfen nicht für andere Zwecke als die Herstellung der Interoperabilität verwendet werden und dürfen nicht an Dritte weitergegeben werden.
+      \item Keine kommerzielle Nutzung: Die Dekompilierung darf nicht zur Erstellung eines kommerziellen Konkurrenzprodukts genutzt werden.
+    \end{itemize}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Werke}
@@ -90,6 +181,20 @@
     \item Hat der Künstler bei der Vorführung Urheberrechte Dritter verletzt? Begründen Sie.
     \item Ein Zuschauer macht während der Show Fotos des Künstlers und veröffentlicht diese im Internet. Darf er das? Begründen Sie.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Vier Werke, die bei dieser Ausführung verwertet oder geschaffen werden:
+            \begin{itemize}
+              \item Der Originaltext der Bundestagsrede von Angela Merkel.
+              \item Das musikalische Werk "Dies Irae" von Giuseppe Verdi.
+              \item Die elektronische Bearbeitung von "Dies Irae".
+              \item Das neu geschaffene Rap-Stück, das Text und Musik kombiniert.
+            \end{itemize}
+      \item Ja, der Künstler hat bei der Vorführung Urheberrechte Dritter verletzt. Die Nutzung des Textes der Bundestagsrede könnte eine Urheberrechtsverletzung darstellen, wenn die Rede urheberrechtlich geschützt ist. Ebenso bedarf die Nutzung und Bearbeitung von Giuseppe Verdis "Dies Irae" der Zustimmung der Rechteinhaber, sofern das Werk nicht gemeinfrei ist.
+      \item Ein Zuschauer darf grundsätzlich Fotos des Künstlers machen und veröffentlichen, wenn der Auftritt in einem öffentlichen Raum stattfindet und keine vertraglichen Vereinbarungen oder Hausregeln dagegen sprechen. Allerdings muss das Persönlichkeitsrecht des Künstlers berücksichtigt werden, und kommerzielle Nutzung der Fotos bedarf der Zustimmung des Künstlers.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Serienstreaming}
@@ -100,6 +205,16 @@
     \item Wie bewerten Sie die Rechtmäßigkeit, wenn der Serienfan300 in seinem Blog das Kostümdesign in den Serien bespricht und zur Veranschaulichung Videoclips einbettet?
     \item Auf TheyTube gibt es den Benutzer AllergroßterSerienfan, der mehrminütige Videoausschnitte aus Webflux-eigenen Serien hochlädt. Serienfan300 wird verdächtigt, dieser Benutzer zu sein. Gibt es eine technische Möglichkeit für Webflux, zu ermitteln, welcher Benutzer Videoclips unrechtmäßig veröffentlicht hat? Erläutern Sie die Funktion.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Beim Streamen von Serien auf einem Tablet findet eine vorübergehende Vervielfältigung im Arbeitsspeicher des Geräts statt. Diese Vervielfältigung ist gemäß § 44a UrhG zulässig, wenn sie flüchtig oder begleitend und ein integraler und wesentlicher Teil eines technischen Verfahrens ist und keinen eigenständigen wirtschaftlichen Zweck verfolgt.
+      \item Ja, das Anfertigen und Veröffentlichen von Screenshots stellt eine Vervielfältigung und öffentliche Zugänglichmachung geschützter Werke dar, die ohne Erlaubnis des Rechteinhabers eine Urheberrechtsverletzung darstellt.
+      \item Das Verlinken auf öffentlich verfügbare Screenshots und Videos anderer Nutzer ist zulässig, solange keine geschützten Inhalte direkt eingebettet und sichtbar gemacht werden. Das Verlinken selbst stellt keine Vervielfältigung dar, kann aber unter Umständen als Mitstörerhaftung gewertet werden, wenn die verlinkten Inhalte urheberrechtswidrig sind.
+      \item Das Einbetten von Videoclips zur Veranschaulichung von Kostümdesigns könnte eine Urheberrechtsverletzung darstellen, wenn die Clips ohne Erlaubnis des Rechteinhabers verwendet werden. Das Zitatrecht nach § 51 UrhG könnte in bestimmten Fällen greifen, wenn die Nutzung durch den Zitatzweck gerechtfertigt und in einem angemessenen Umfang erfolgt.
+      \item Webflux kann technische Maßnahmen einsetzen, um den Benutzer zu identifizieren, der Videoclips unrechtmäßig veröffentlicht hat. Dies kann durch das Einfügen von digitalen Wasserzeichen oder durch Protokollierung der Benutzeraktivitäten und IP-Adressen erfolgen. Bei Verdacht auf Rechtsverletzung kann Webflux diese Informationen zur Identifikation und Verfolgung des verantwortlichen Benutzers nutzen.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Barrierefreiheit}
@@ -110,6 +225,15 @@
     \item Die Buchautorin erfährt von dem Hörbuch und fordert von Mac Mole eine Vergütung für die vervielfältigten Werke. Hat sie nach den §§45a bis 45d UrhG einen Anspruch auf Vergütung gegenüber Mac Mole? Begründen Sie.
     \item Darf Mac Mole das Hörbuch öffentlich anbieten und dafür Geld verlangen? Begründen Sie.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ja, beide haben gegen das Urheberrecht verstoßen. Montgomery Arron hat durch das Anfertigen des Hörbuchs ohne Erlaubnis der Autorin eine unzulässige Vervielfältigung vorgenommen. Mac Mole hat die Erstellung des Hörbuchs in Auftrag gegeben und damit ebenfalls eine Urheberrechtsverletzung begangen.
+      \item Nein, Mac Mole ist nicht berechtigt, das Hörbuch weiterzugeben. Die Weitergabe würde eine weitere Vervielfältigung darstellen, die ohne die Zustimmung der Rechteinhaberin unzulässig ist.
+      \item Nach §§ 45a bis 45d UrhG gibt es Ausnahmeregelungen für die barrierefreie Nutzung von Werken. Diese Bestimmungen erlauben es blinden und sehbehinderten Menschen, Werke in barrierefreie Formate umzuwandeln, wenn keine kommerziellen Formate verfügbar sind. Allerdings ist der Nutzer zur Zahlung einer angemessenen Vergütung verpflichtet. Daher hat die Autorin Anspruch auf Vergütung.
+      \item Nein, Mac Mole darf das Hörbuch nicht öffentlich anbieten und dafür Geld verlangen. Das öffentliche Anbieten und die kommerzielle Verwertung des Hörbuchs ohne Zustimmung der Autorin stellt eine Urheberrechtsverletzung dar.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 
@@ -120,6 +244,35 @@
     \item Warum gibt es "geistiges Eigentum"? Wie lässt sich der Schutz von diesem begründen?
     \item Wie entsteht ein Schutzrecht? Vergleichen Sie Urheberrecht und Patentrecht.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Geistiges Eigentum existiert, um die immateriellen Ergebnisse kreativer und innovativer Aktivitäten zu schützen. Der Schutz lässt sich durch mehrere Gründe begründen:
+            \begin{itemize}
+              \item Anreiz für Kreativität und Innovation: Der Schutz geistigen Eigentums schafft Anreize für Erfinder und Künstler, indem er ihnen Exklusivrechte gewährt, die wirtschaftliche Erträge ermöglichen.
+              \item Investitionsschutz: Geistiges Eigentum schützt Investitionen in Forschung und Entwicklung, indem es sicherstellt, dass die Investoren von ihren Ausgaben profitieren können.
+              \item Wirtschaftliche Entwicklung: Der Schutz fördert den technischen Fortschritt und die wirtschaftliche Entwicklung durch die Förderung von Innovationen und die Schaffung neuer Märkte.
+              \item Rechtliche Anerkennung: Der Schutz bietet rechtliche Anerkennung und Unterstützung für die Rechte von Schöpfern und Erfindern.
+            \end{itemize}
+      \item Ein Schutzrecht entsteht durch verschiedene Verfahren, die je nach Art des geistigen Eigentums variieren:
+            \begin{itemize}
+              \item Urheberrecht:
+                    \begin{itemize}
+                      \item Entstehung: Automatisch mit der Schaffung eines Werkes, wenn es eine persönliche geistige Schöpfung darstellt.
+                      \item Dauer: In der Regel bis 70 Jahre nach dem Tod des Urhebers.
+                      \item Schutzgegenstand: Originale literarische, wissenschaftliche und künstlerische Werke.
+                      \item Registrierung: Keine formale Registrierung erforderlich.
+                    \end{itemize}
+              \item Patentrecht:
+                    \begin{itemize}
+                      \item Entstehung: Durch formale Anmeldung und Prüfung beim Patentamt.
+                      \item Dauer: In der Regel 20 Jahre ab Anmeldedatum.
+                      \item Schutzgegenstand: Technische Erfindungen, die neu, erfinderisch und gewerblich anwendbar sind.
+                      \item Registrierung: Erforderlich, mit detaillierter Offenlegung der Erfindung.
+                    \end{itemize}
+            \end{itemize}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Schranken des Urheberrechts}
@@ -135,6 +288,20 @@
             \item Darf die Filmhochschule ein Entgelt für die Nutzung der Datenbank verlangen?
           \end{enumerate}
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ja, die Mediathek darf die Filme kostenlos zur Verfügung stellen, solange sie die gesetzlichen Vorgaben für die Nutzung verwaister Werke gemäß § 61 UrhG einhält. Dies beinhaltet die Pflicht, die Werke nur in bestimmten, gesetzlich zugelassenen Fällen zu nutzen.
+      \item Nein, die Lizensierung unter CC-BY mit der Mediathek als Urheber ist nicht zulässig. Die Mediathek kann nicht als Urheber angegeben werden, da sie nicht die Schöpferin der Werke ist. Sie darf jedoch die Werke unter Berücksichtigung der gesetzlichen Schranken nutzen.
+      \item Ja, die Mediathek darf für die Nutzung der Filme ein Entgelt verlangen, wenn die Nutzung der verwaisten Werke gemäß § 61 UrhG erfolgt. Dies schließt auch die Möglichkeit ein, Gebühren für den Zugang zu diesen digitalen Kopien zu erheben.
+      \item Ja, die Mediathek muss eine angemessene Vergütung an eine Verwertungsgesellschaft zahlen, wenn die Nutzung der verwaisten Werke Vergütungsansprüche gemäß den gesetzlichen Bestimmungen auslöst. Dies ist in § 61 Abs. 1 Nr. 3 UrhG geregelt.
+      \item
+            \begin{enumerate}
+              \item Ja, die Filmhochschule muss sich eine Erlaubnis der Mediathek einholen, da die Mediathek die Rechte zur Nutzung und Verwertung der verwaisten Werke besitzt. Die Filmhochschule benötigt daher die Zustimmung der Mediathek, um die Links zu den Filmen in ihrer Datenbank zu verwenden.
+              \item Ja, die Filmhochschule darf ein Entgelt für die Nutzung der Datenbank verlangen, wenn sie zusätzliche Leistungen wie die Bereitstellung von Metainformationen und historischen Kontexten zu den Filmen anbietet. Dies stellt eine eigenständige Dienstleistung dar, für die ein Entgelt erhoben werden kann.
+            \end{enumerate}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Digitale Wasserzeichen}
@@ -148,6 +315,23 @@
           \end{enumerate}
     \item Beschreiben Sie, wie ein Prozess zur automatisierten Aufspürung illegaler Kopien bei diesen Vorgehensweisen jeweils aussehen könnte.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Schutzniveau der Vorgehensweisen:
+            \begin{enumerate}
+              \item Gleiches Watermark für alle Exemplare: Das Schutzniveau ist gering, da alle Kopien dasselbe Watermark enthalten. Dies erschwert die Rückverfolgbarkeit auf einzelne Käufer bei einer unautorisierten Verbreitung.
+              \item Nummer des Exemplars im letzten Byte: Das Schutzniveau ist leicht erhöht, da jedes Exemplar eine eindeutige Kennung besitzt. Dies kann jedoch leicht manipuliert werden, da die Position des Watermarks bekannt ist.
+              \item Individuelles Watermark für jedes Exemplar: Das Schutzniveau ist am höchsten, da jede Kopie ein einzigartiges Watermark enthält. Dies ermöglicht eine genaue Rückverfolgbarkeit und erschwert die Manipulation.
+            \end{enumerate}
+      \item Prozess zur automatisierten Aufspürung illegaler Kopien:
+            \begin{enumerate}
+              \item Gleiches Watermark für alle Exemplare: Eine automatisierte Suche nach dem Watermark in Online-Medien kann alle Kopien identifizieren. Allerdings ist es nicht möglich, den ursprünglichen Käufer zu ermitteln.
+              \item Nummer des Exemplars im letzten Byte: Eine Software könnte alle Bytes am Ende von Bilddateien überprüfen, um die eindeutige Nummer zu finden. Dies ermöglicht die Identifizierung des ursprünglichen Käufers, sofern die Nummer nicht manipuliert wurde.
+              \item Individuelles Watermark für jedes Exemplar: Eine Software kann spezifische Watermarks in den Bildern suchen und diese mit einer Datenbank abgleichen, die die Watermarks den Käufern zuordnet. Dies erlaubt eine genaue Rückverfolgung bis zum ursprünglichen Käufer.
+            \end{enumerate}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 
@@ -159,6 +343,13 @@
     \item Gelten diese neu produzierten Bilder als geschützte Werke nach dem Urheberrecht?
     \item Ist die KI selbst ein solch geschütztes Werk? Begründen Sie.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Die neu produzierten Bilder gelten nicht als geschützte Werke nach dem Urheberrecht im traditionellen Sinne, da sie von einer KI und nicht von einem menschlichen Schöpfer erstellt wurden. Nach deutschem Urheberrecht setzt der Schutz eines Werkes eine persönliche geistige Schöpfung voraus, was bedeutet, dass der Urheber ein Mensch sein muss. Allerdings könnten die Bilder durch verwandte Schutzrechte oder das Datenbankrecht geschützt sein.
+      \item Die KI selbst kann als Computerprogramm urheberrechtlich geschützt sein, vorausgesetzt, sie erfüllt die Kriterien einer persönlichen geistigen Schöpfung. Dies bedeutet, dass die Entwickler der KI die Urheberrechte an der Software haben, da sie die schöpferische Leistung erbracht haben. Der Schutzumfang der KI umfasst dann den Quellcode und die Programmstruktur.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Schranken des Urheberrechts}
@@ -169,6 +360,15 @@
     \item Eine Graffiti-Künstlerin erkennt ihr Werk in dem Bildband. Sie beschwert sich, dass ihr Künstler-Name hätte genannt werden müssen. Unter welchen Bedingungen hätte ihr Name genannt werden müssen?
     \item Für einen zweiten Bildband will der Fotograf mit Hilfe einer Drohne Graffitis von unterschiedlichen Blickwinkeln aus der Luft fotografieren. Was muss er dabei beachten, um keinen Urheberrechts-Verstoß zu begehen?
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ja, der Foto-Künstler durfte die Graffiti-Fotos ohne Lizenz veröffentlichen, sofern die Graffitis sich dauerhaft an öffentlichen Orten befinden. Gemäß § 59 UrhG (Panoramafreiheit) dürfen Werke, die sich bleibend an öffentlichen Wegen, Straßen oder Plätzen befinden, fotografiert und die Fotos ohne Zustimmung des Urhebers veröffentlicht werden.
+      \item Wenn Herr U eine Kopie eines der Graffiti auf seine Fassade sprühen lässt, handelt es sich um eine Vervielfältigung des Werkes. Dies erfordert die Zustimmung des Urhebers, da es sich nicht mehr um eine zulässige Nutzung im Rahmen der Panoramafreiheit handelt. Somit liegt hier ein Urheberrechtsverstoß vor, sofern keine Erlaubnis eingeholt wurde.
+      \item Der Name der Graffiti-Künstlerin hätte genannt werden müssen, wenn sie dies nach § 13 UrhG ausdrücklich verlangt hat und es für die Art und Weise der Nutzung üblich ist. Da dies bei künstlerischen Werken oft der Fall ist, wäre die Nennung ihres Namens erforderlich gewesen, um ihr Recht auf Anerkennung der Urheberschaft zu wahren.
+      \item Beim Fotografieren der Graffitis aus der Luft mit einer Drohne muss der Fotograf sicherstellen, dass er keine urheberrechtlich geschützten Werke in einer Weise abbildet, die über die Panoramafreiheit hinausgeht. Dies bedeutet, dass die Graffitis bleibend öffentlich zugänglich sein müssen und die Nutzung die Rechte des Urhebers nicht unzumutbar beeinträchtigen darf. Zudem sind datenschutzrechtliche Bestimmungen und gegebenenfalls Flugverbotszonen zu beachten.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{eLearning}
@@ -177,6 +377,13 @@
     \item Nun lädt P ihre Folien auf eine eLearning-Plattform hoch, auf die nur ihre Studierenden Zugriff haben. Ist das rechtens? Begründen Sie.
     \item Angenommen die Folien wären öffentlich abrufbar. Wie verändert sich die urheberrechtliche Situation?
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Das Hochladen der Folien auf eine eLearning-Plattform, die nur für ihre Studierenden zugänglich ist, könnte gemäß § 60a UrhG erlaubt sein. Diese Regelung ermöglicht die Nutzung urheberrechtlich geschützter Werke zu Zwecken der Bildung und Wissenschaft unter bestimmten Bedingungen, wie dem begrenzten Zugriff und der nicht-kommerziellen Nutzung. Es ist jedoch ratsam, die erlaubten Umfang und Nutzung genau zu prüfen.
+      \item Wenn die Folien öffentlich abrufbar wären, würde dies eine Verletzung des Urheberrechts darstellen, da die geschützten Bildwerke ohne Erlaubnis der Urheber oder Lizenzgeber genutzt werden. Die Ausnahme des § 60a UrhG gilt nicht für die öffentliche Zugänglichmachung, was eine ausdrückliche Zustimmung der Rechteinhaber erforderlich macht.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 

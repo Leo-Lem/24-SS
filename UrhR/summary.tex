@@ -260,8 +260,8 @@ VGG (Verwertungsgesellschaftengesetz) regelt Rechte \& Pflichten von Verwertungs
 
 \begin{itemize}
   \item Watermarking: $\underbrace{D(x,y)}_{\text{Objekt}} = \underbrace{N(x,y)}_{\text{Original}} + \underbrace{S(x,y)}_{\text{Watermark}}$
-  \item Watermark: $S(x,y) = \sum_{i}{\underbrace{b_i}_{\text{Watermark-Bit}} \underbrace{\phi_i(x,y)}_{\text{Basisfunktion}}}$
-  \item Extrahieren: $o_i = \sum_{x,y}{D(x,y) \cdot \phi_i(x,y)}$
+  \item Watermarking-Sequenz: $S(x,y) = \sum_{i}{\underbrace{b_i}_{\text{Watermark-Bit}} \underbrace{\phi_i(x,y)}_{\text{Basisfunktion}}}$
+  \item Extrahieren: $o_i = \sum_{x,y}{D(x,y) \cdot \phi_i(x,y)} \begin{cases} > \text{threshold} & \text{falls } b_i = 1 \\ < \text{threshold} & \text{falls } b_i = 0 \end{cases}$
 \end{itemize}
 
 \subsubsection{Sicherheit von Watermarking}
