@@ -83,6 +83,178 @@
   \end{enumerate}
 \end{exercise}
 
+
+\sheet[2024]{Probeklausur}
+\begin{exercise}{Ereignismodellierung}
+  % Gegeben sei folgende Modellbeschreibung:
+  % Bei Verwendung der digitalen Währung „ByteCoin“ kommunizieren alle teilnehmenden
+  % Nutzer und Server miteinander über ein bestimmtes Protokoll:
+  % Bei jedem Nutzer entsteht im Abstand von durchschnittlich drei Tagen (exponentialverteilt)
+  % der Wunsch, eine Transaktion, also z.B. eine Überweisung, durchzuführen:
+  % Er sendet diese Transaktion über das Netzwerk an alle Server („Broadcast“, das Absenden ist
+  % nahezu zeitverzugslos). Die Zeit, bis diese Transaktion über das Netzwerk einen bestimmten
+  % Server erreicht, dauert im Mittel 8 Sekunden (normalverteilt, Standardabweichung 2
+  % Sekunden, für jeden Server eine individuelle Zeit). Ein Server, der eine solche Transaktion
+  % erhält, speichert diese Transaktion als „wartende Transaktion“ ab.
+  % Alle Server betreiben permanent einen als „Mining“ bezeichneten Rechenvorgang, das heißt,
+  % sie versuchen, die Ihnen vorliegenden wartenden Transaktionen in einen neuen
+  % „Transaktionsblock“ (im Folgenden nur kurz „Block“) zusammenzufassen. Hierfür muss ein
+  % rechenintensives mathematisches Problem gelöst werden, dessen hohe Schwierigkeit dafür
+  % sorgt, dass es im Mittel nur alle 10 Minuten (exponentialverteilt) einem der Server gelingt,
+  % einen Block zu erzeugen. Ein solcher Block ist eine Datenstruktur, die neben allen dem Server
+  % bekannten „wartenden Transaktionen“ auch einen Index i enthält, um deutlich zu machen,
+  % dass dieser Block der Nachfolger eines Vorgängerblocks mit Index i-1 ist. Ein Verweis auf den
+  % Vorgängerblock in Form eines Hash-Wertes ist ebenfalls im neuen Block enthalten.
+  % Wenn ein Server einen Block erzeugt hat, darf er sich als „Belohnung“ 12,5 ByteCoins
+  % gutschreiben. Er löscht die im Block enthaltenen Transaktionen aus seinen „wartenden
+  % Transaktionen“ und sendet den Block an alle anderen Server des Netzwerks („Broadcast“,
+  % nahezu zeitverzugslos). Die Zeit, bis ein anderer Server den Block über das Netzwerk erhalten
+  % hat, dauert im Mittel 18 Sekunden (normalverteilt, Standardabweichung 3 Sekunden, für
+  % jeden Server eine individuelle Zeit).
+  % Ein Server, der einen Nachfolger zum Block i-1 sucht und dann einen Block mit Index i von
+  % einem anderen Server erhält, wird den Block speichern, die dort enthaltenen Transaktionen
+  % aus seinen „wartenden Transaktionen“ löschen und ab sofort versuchen, einen Nachfolger
+  % für diesen Block zu finden.
+  % Splits
+  % Als ein Sonderfall besteht im Rahmen der oben beschriebenen Logik die Möglichkeit, dass
+  % zwei Server nahezu zeitgleich jeweils einen Block mit Index i erzeugen und versenden, ohne
+  % dass sie wegen der Zeitdauer der Block-Übertragung durch das Netzwerk bisher von der
+  % Block-Erzeugung des jeweils anderen Servers Kenntnis haben.
+  % Beide Blöcke mit Index i stellen dann jeweils gültige Nachfolger des Vorgängerblocks mit
+  % Index i-1 dar und werden an alle Server versandt. So entsteht ein „Split“ des Netzwerks:
+  % Jeder Server verwendet denjenigen Block mit Index i für das „Mining“, den er zuerst erhalten
+  % hat und ignoriert mögliche spätere Ankünfte anderer Blöcke mit gleichem Index i.
+  % Erst der (spätere) Erhalt von Blöcken, die einen höherem Index aufweisen als alle bisher
+  % selbst erzeugten oder von anderen Server erhaltenen Blöcke, würde dazu führen, den neu
+  % erhaltenen Block für das künftige Mining zu verwenden (und zwar auch dann, wenn dieser
+  % Block kein Nachfolger des im Moment für das Mining verwendeten Blocks ist).
+  % Seite 2 von 2
+  % Bearbeiten Sie hierzu folgende Teilaufgaben.
+  % a) Nennen Sie drei Beispiele für primär interessierende Leistungsgrößen, die eine Simulation
+  % des Modells untersuchen könnte. (3 Punkte)
+  % b) Würden Sie für die Durchführung einer solchen Simulationsstudie eine ereignis- oder
+  % prozessorientierte Modellierung empfehlen?
+  % Geben Sie zwei Gründe für Ihre Empfehlung an. (3 Punkte)
+  % c) Unabhängig von Ihrer Empfehlung in b) soll im Rahmen der Simulationsstudie eine
+  % ereignisorientierte Modellierung erstellt werden.
+  % Benennen Sie zunächst die zu modellierenden Entitäten und Ereignistypen sowie eventuell
+  % für Synchronisationszwecke nützliche Warteschlangen. (4 Punkte)
+  % d) Geben Sie eine semi-formale Modellierung der in c) identifizierten Ereignistypen an.
+  % Verwenden Sie hierfür Flussdiagramme analog zur Vorlesung und Übung.
+  % Hinweise:
+  % ‒ Vergessen sie nicht, anzugeben, auf welchen Entitätstyp bzw. auf welche
+  % Entitätstypen sich das Ereignis bezieht, sofern zutreffend.
+  % Sie könnten optional zur Bezeichnung des Ereignisses auch ein Kürzel definieren, so
+  % dass bei Verweis auf dieses Ereignis an anderer Stelle Schreibarbeit gespart wird.
+  % Damit könnte die Definition eines Ereignisses etwa so beginnen:
+  % Ankunft eines LKW an der Kiesgrube (AK)
+  % Bezug: LKW
+  % ‒ Verweisen Sie explizit auf eventuell benötigte Warteschlagen, etwa
+  % Entferne den ersten LKW aus Lade-WS,
+  % wobei Sie den Kurz-Bezeichner der Warteschlange (hier: „Lade-WS“) unverändert
+  % lassen, wenn Sie an anderer Stelle ebenfalls auf diese Warteschlange zugreifen.
+  % ‒ Berücksichtigen Sie Versendung neuer Transaktionen sowie das Erzeugen weiterer
+  % Blocks im Zeitverlauf.
+  % ‒ Falls Sie globale Variablen benötigen, geben Sie zusätzlich zu den Flussdiagrammen
+  % eine kurze Definition und den Startwert an, zum Beispiel so:
+  % b = 0 / Anzahl der bisher gefundenen Blocks
+  % ‒ Wo die Modellbeschreibung nicht ausreichend präzise oder unvollständig ist, dürfen
+  % sinnvolle Annahmen getroffen werden. Nicht explizit in der Modellbeschreibung mit
+  % einer bestimmten Dauer erwähnte Aktivitäten dürfen als zeitverzugslos
+  % angenommen werden.
+  % ‒ Vergleichen Sie nach Abschluss der Aufgabe Ihre Antworten zu c) und d).
+  % Insbesondere: Falls Sie während der Bearbeitung von d) Korrekturbedarf bezüglich in
+  % der c) benannten Entitäten, Ereignistypen oder Warteschlangen festgestellt haben,
+  % dann ändern Sie auch Ihre Antwort von c) entsprechend!
+\end{exercise}
+
+\begin{exercise}{Prozessmodellierung}
+  % Gegeben sei folgende Modellbeschreibung:
+  % Im Präsidium der Universität einer norddeutschen Millionenstadt wird überlegt,
+  % die Arbeitsmoral der wissenschaftlichen Mitarbeiter bzw. Mitarbeiterinnen und der
+  % Studierenden zu verbessern, indem ein universitätseigener Radiosender betrieben wird.
+  % Vor allem soll durch ein attraktives Programm‐Highlight am Morgen ein Anreiz fürs frühe
+  % Aufstehen geboten werden:
+  % Das Programm beginnt täglich um 5 Uhr mit Universitätsnachrichten und ‐neuigkeiten
+  % (mittlere Dauer 5 Minuten, Normalverteilung mit Standardabweichung 45 Sekunden),
+  % wobei kurz vorm Ende dieses Nachrichtenblocks von der Moderatorin eine schwierige
+  % Quizfrage vorgelesen wird, die auf dem Stoff eines Pflichtmoduls von einem der Bachelor‐
+  % Studiengänge der Universität basiert.
+  % Wenn ein Radio‐Hörer bzw. eine Radio‐Hörerin die Antwort auf diese Frage weiß, kann er
+  % oder sie einen täglich wechselnden attraktiven Preis (z.B. einen Mensa‐ oder
+  % Bibliotheksgutschein) gewinnen. Hier heißt es aber, schnell zu sein:
+  % Wer die richtige Antwort zu wissen glaubt, muss zum Telefon greifen und die Nummer des
+  % Radiosenders wählen, was einschließlich des Aufbaus der Verbindung im Mittel 5 Sekunden
+  % dauert (Normalverteilung mit Standardabweichung 1 Sekunde).
+  %  Wenn sich kein anderer Anrufer in der Telefonleitung des Radiosenders befindet,
+  % kommt ein Gespräch des Anrufers bzw. der Anruferin mit der Moderatorin der
+  % Radiosendung zustande. Das Gespräch dauert im Mittel 20 Sekunden
+  % (Normalverteilung mit Standardabweichung 5 Sekunden).
+  % Die Quizfrage ist so schwierig, dass Sie vorrausichtlich von nur 10% der Anrufer
+  % richtig beantwortet wird. Im Fall einer richtigen Antwort ist das Quiz beendet.
+  % Der Anrufer bzw. die Anruferin erhält den Preis und niemand wird (für heute) mehr
+  % anrufen.
+  % Wenn die Frage falsch beantwortet wurde, haben andere Anrufer die Chance, die
+  % richtige Antwort zu geben und den Preis zu gewinnen.
+  %  Wenn sich ein anderer Anrufer in der Telefonleitung des Radiosenders befindet,
+  % erhält der Anrufer bzw. die Anruferin ein „Besetzt“‐Zeichen.
+  % Er bzw. sie wird es nach jeweils einer Wartezeit von einer Sekunde (konstant) noch
+  % bis zu dreimal erneut versuchen, anrufen, wobei wiederum jeweils eine Verbindung
+  % aufgebaut werden muss, siehe Angabe der Dauer oben.
+  % Falls dies immer wieder nur ein „Besetzt“‐Zeichen ergibt oder das Quiz inzwischen
+  % beendet ist (siehe oben), ist er bzw. sie traurig und gibt die Teilnahme am heutigen
+  % Quiz auf.
+  % Die statistischen Analysen der Marketing‐Abteilung der Universität haben ergeben, dass
+  % vorrausichtlich im Mittel 3 Sekunden nach Ende des Nachrichtenblocks
+  % (Exponentialverteilung) einem Hörer oder einer Hörerin eine Antwort‐Idee einfällt und er
+  % bzw. sie zum Telefon greift, um seine bzw. ihre vermutete Lösung zu übermitteln, und dass
+  % jeweils im Abstand von wiederum im Mittel 3 Sekunden (Exponentialverteilung) immer ein
+  % weiterer Hörer bzw. eine weitere Hörerin auf die vermeintlich richtige Lösung kommt und
+  % anzurufen versucht, bis das Quiz durch richtige Antwort beendet wird.
+  % Seite 2 von 2
+  % Bearbeiten Sie hierzu folgende Teilaufgaben.
+  % a) Nennen Sie drei Beispiele für primär interessierende Leistungsgrößen, die eine Simulation
+  % des Modells untersuchen könnte. (3 Punkte)
+  % b) Würden Sie für die Durchführung einer solchen Simulationsstudie eine ereignis‐ oder
+  % prozessorientierte Modellierung empfehlen?
+  % Geben Sie zwei Gründe für Ihre Empfehlung an. (2 Punkte)
+  % c) Unabhängig von Ihrer Empfehlung in b) soll im Rahmen der Simulationsstudie eine
+  % prozessorientierte Modellierung erstellt werden.
+  % Benennen Sie die zu modellierenden Prozesse und (sofern benötigt) Ressourcen. (3 Punkte)
+  % d) Erstellen Sie für jeden in c) benannten Prozesstyp eine semi‐formale Modellierung in Form
+  % eines BPMN‐Kollaborationsdiagramms zur Simulation des beschriebenen Modells mit
+  % IYOPRO. (23 Punkte)
+  % Hinweise:
+  % ‒ Berücksichtigen Sie immer weitere Anrufe im Zeitverlauf, bis das Quiz beendet ist.
+  % ‒ Kennzeichnen Sie Verteilungen für die Dauer zeitkonsumierender Aktivitäten und die
+  % Länge von Zwischenankunftszeiten, eventuell benötigte Ressourcen sowie
+  % möglicherweise erforderliche Definitionen und Änderungen der Werte von
+  % prozesslokalen Attributen sowie globalen Variablen wie in der MuS‐Vorlesung und
+  % ‐Übung durch Kommentare.
+  % ‒ BPMN‐Start‐/Zwischen‐/Endereignisse können Sie in dieser Klausur mangels farbiger
+  % Stifte nicht in grün, gelb oder rot ausmalen. Verwenden Sie aber unbedingt, wie in
+  % BPMN üblich, eine einfache/dünne Umrandung für ein Startereignis, eine
+  % doppelte/dünne Umrandung für ein Zwischenereignis und eine einfache/dicke
+  % Umrandung für ein Endereignis:
+  % Beispiel für ein
+  % Startereignis
+  % Beispiel für ein
+  % Zwischenereignis
+  % Beispiel für ein
+  % Endereignis
+  % ‒ Verwenden Sie außerdem, wo immer dies sinnvoll ist, möglichst konkrete Typen von
+  % BPMN‐Ereignissen, also z.B. Zeitsteuerung oder Nachrichtenereignisse statt
+  % allgemeinen („unausgefüllten“) Ereignissen.
+  % ‒ Wo die Modellbeschreibung nicht ausreichend präzise oder unvollständig ist, dürfen
+  % sinnvolle Annahmen getroffen werden. Nicht explizit in der Modellbeschreibung mit
+  % einer bestimmten Dauer erwähnte Aktivitäten dürfen als zeitverzugslos angenommen
+  % werden.
+  % ‒ Vergleichen Sie nach Abschluss der Aufgabe Ihre Antworten zu c) und d).
+  % Insbesondere: Falls Sie während der Bearbeitung von d) Korrekturbedarf bezüglich in
+  % der c) benannten Entitäten, Ereignistypen oder Warteschlangen festgestellt haben,
+  % dann ändern Sie auch Ihre Antwort von c) entsprechend!
+\end{exercise}
+
 \sheet[2023]{Altklausur}
 \begin{exercise}{Modellierung}
   Modellbeschreibung: Stadion, wo Fußballspiele eines Vereins stattfinden und das logistische Herausforderungen für die Stadt mit sich bringt. Die Fans nehmen die S-Bahn vom Hbf der Stadt, welche sie zum Bahnhof in der Nähe des Stadions fährt. Alle 5 Minuten verlässt eine S-Bahn den Hbf mit 300-500 (gleichverteilung) Fans. Die Fahrtzeit ist normalverteilt x Minuten lang mit x Minuten Standardabweichung. Beim Bahnhof angekommen steigen die Fans aus, wobei der Ausstieg so beschrieben wird, dass konstant alle Zehntel Sekunden ein Fan aussteigt. Nun müssen die Fans noch einen Shuttle Bus nehmen, um zum Stadion zu gelangen. Um zum Shuttle Bus zu gelangen, müssen die Fans zu einem Tunnel laufen und diesen überqueren (begrenzte Anzahl darf durch), daher kann sich eine Warteschlange vor dem Tunnel bilden, bis alle durch sind. An der Bushaltestelle angekommen fährt regelmäßig alle 100 Sekunden ein Shuttle Bus los und befördert die Fans zum Stadion. Es wird angenommen, dass es keine Begrenzung der Anzahl an Fans gibt, die in den Bus einsteigen dürfen. Wenn das Warten auf dem Bus zu lange dauert und einen der jeweiligen Person spezifischen Maximalwert der Wartezeit überschritten wurde (exponentialverteilt im Mittel 300 Sekunden), bricht der Fan das Warten ab und macht sich zu Fuß auf dem Weg zum Stadion.
@@ -115,17 +287,7 @@
   \end{enumerate}
 \end{exercise}
 
-\sheet{Übungen}
-\begin{exercise}[2]{MuS}
-  s. PDF
-\end{exercise}
-
-\begin{exercise}[3]{MuS}
-  s. PDF
-\end{exercise}
-
 \sheet[2022]{Altklausur}
-
 
 % 2022 Erst?
 % MUS:
@@ -164,4 +326,5 @@
 % “Was muss man beachten, wenn mc donger king DIU (Digitale Innovations Einheiten) einführen will?”
 % Aufgabe 5)
 % Definition von Digital Business Strategy (DBS)
+
 \end{document}
