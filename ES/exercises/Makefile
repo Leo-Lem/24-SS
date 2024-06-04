@@ -1,5 +1,6 @@
 # default parameters
-arch = arduino:avr:mega #arduino:sam:arduino_due_x_dbg
+arch = arduino:avr:mega
+# arch = arduino:sam:arduino_due_x_dbg
 
 # Check if the target is a known target
 ifeq ($(filter $(MAKECMDGOALS),clean upload),)
@@ -10,7 +11,7 @@ BUILD_DIR := .build
 CHIPS := $(patsubst chips/%.chip.c, $(BUILD_DIR)/chips/%.chip.wasm, $(wildcard chips/*.chip.c))
 
 .PHONY: all
-all: $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
+all: clean $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
 
 .PHONY: clean
 clean:
@@ -32,8 +33,8 @@ $(BUILD_DIR)/exercise/*.h: $(BUILD_DIR)/exercise lib/*.h
 $(BUILD_DIR)/exercise:
 		mkdir -p $(BUILD_DIR)/exercise
 
-$(BUILD_DIR)/exercise/exercise.ino: $(BUILD_DIR)/exercise $(exercise).ino
-		cp $(exercise).ino $(BUILD_DIR)/exercise/exercise.ino
+$(BUILD_DIR)/exercise/exercise.ino: $(BUILD_DIR)/exercise src/$(exercise).ino
+		cp src/$(exercise).ino $(BUILD_DIR)/exercise/exercise.ino
 
 .PHONY: arduino-libs
 arduino-libs:

@@ -1,21 +1,17 @@
 {
   "name": "Arduino/Wokwi",
   "dockerFile": "Dockerfile",
-  "runArgs": ["--device=/dev/cu.usbmodem1101:/dev/cu.usbmodem1101"],
   "postCreateCommand": "arduino-cli core update-index && arduino-cli core install arduino:avr && arduino-cli core install arduino:sam",
   "customizations": {
     "vscode": {
       "settings": {
-        "extensions.verifySignature": false,
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "extensions.verifySignature": false
       },
       "extensions": [
-        "ms-vscode.vscode-serial-monitor",
         "ms-vscode.cpptools",
         "Wokwi.wokwi-vscode",
         "github.copilot",
-        "esbenp.prettier-vscode",
-        "ms-vscode.makefile-tools"
+        "esbenp.prettier-vscode"
       ]
     }
   }
