@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{xrcise}
+\usepackage[solutions]{xrcise}
 
 \subject{Projektmanagement}
 \semester{Summer 2024}
@@ -12,78 +12,267 @@
 \begin{exercise}{Klassischer Teil}
   \begin{enumerate}
     \item Was ist ein Projekt?
-    \item Erkläre und skizziere das empirische Vorgehen von Scrum?
-    \item Skizziere und vergleiche Scrum mit Wasserfallprojekten
-    \item Unterschied zwischen absoluten und relativem Schätzen erklären und warum.
+    \item Erklären und skizzieren Sie das empirische Vorgehen von Scrum.
+    \item Vergleichen Sie Scrum mit Wasserfallprojekten.
+    \item Erklären Sie den Unterschied zwischen absolutem und relativem Schätzen.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ein Projekt ist ein zeitlich begrenztes Vorhaben, das darauf abzielt, ein einmaliges Produkt, eine Dienstleistung oder ein Ergebnis zu schaffen. Projekte sind durch ihren definierten Anfang und ihr Ende, ihre Einmaligkeit und ihre klare Zielvorgabe gekennzeichnet.
+      \item Das empirische Vorgehen von Scrum basiert auf Transparenz, Inspektion und Anpassung. In regelmäßigen Abständen (Sprints) werden Arbeitsergebnisse überprüft und Anpassungen vorgenommen. Der Prozess umfasst Rollen (Product Owner, Scrum Master, Entwicklerteam), Artefakte (Product Backlog, Sprint Backlog, Increment) und Events (Sprint, Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective).
+      \item
+            \begin{tabular}{|c|c|}
+              \hline
+              \textbf{Scrum}                            & \textbf{Wasserfall}                                     \\
+              \hline
+              Iterativ und inkrementell                 & Linear und sequentiell                                  \\
+              Anpassungsfähig                           & Festgelegte Phasen                                      \\
+              Feedback in kurzen Zyklen                 & Wenig Feedback während der Umsetzung                    \\
+              Rollen: Product Owner, Scrum Master, Team & Phasen: Analyse, Design, Implementierung, Test, Wartung \\
+              \hline
+            \end{tabular}
+      \item Absolutes Schätzen gibt eine genaue Zeitangabe oder Aufwand in Stunden/Tagen. Relatives Schätzen vergleicht Aufgaben miteinander und verwendet oft Story Points. Relatives Schätzen ist oft genauer und konsistenter, da es die Unsicherheiten und Komplexitäten besser berücksichtigt.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Agiler Teil}
   \begin{enumerate}
-    \item Erkläre und nenne die 3C's einer User Story.
-    \item Projektbeschreibung gegeben:
+    \item Nennen \& erklären Sie die 3 Cs einer User Story.
+    \item Gegeben folgende Projektbeschreibung:
+          %TODO: Projektbeschreibung einfügen
+
           \begin{enumerate}
-            \item 3 User Stories mit jeweils 3 Akzeptanzkritierien erstellen
-            \item Problem bei Projekt, Developer interagieren nicht mit Stakeholdern, Zombie Scrum. 8 Schritte von Overeem\&Veriwjs nennen, um dies zu beheben und wie sollte man diese aufs Projekt bezogen anwenden?
+            \item Erstellen Sie 3 User Stories mit jeweils 3 Akzeptanzkriterien.
+            \item Angenommen, Sie haben Probleme mit der Kommunikation im Team. Wie können Sie dies beheben? Nennen Sie 8 Schritte von Overeem \& Verwijs und wie Sie diese auf das Projekt anwenden würden.
+                  % \item Problem bei Projekt, Developer interagieren nicht mit Stakeholdern, Zombie Scrum. 8 Schritte von Overeem\&Veriwjs nennen, um dies zu beheben und wie sollte man diese aufs Projekt bezogen anwenden?
           \end{enumerate}
-    \item Scrum Team erklären, eine Accountability von den 3 genauer erläutern
-    \item 5 Schritte eine Retrospektive, nach 8 genannten Punkten
-    \item Sinn Retroperspektive
-    \item Cynefin erklären mit Skizze, was können Probleme sein,
+    \item Erklären Sie das Scrum Team und mind. 3 Accountabilities näher.
+    \item Nennen Sie die 5 Schritte eines Retrospectives.
+    \item Erklären Sie den Sinn der Retrospektikve.
+    \item Erklären Sie Cynefin mit einer Skizze und erläutern Sie etwaige Probleme.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Die 3C's einer User Story sind Card, Conversation und Confirmation. Card steht für die schriftliche Form der User Story, Conversation für die Diskussionen, die das Team über die Story führt, und Confirmation für die Akzeptanzkriterien, die die Erfüllung der Story bestätigen.
+      \item
+            \begin{enumerate}
+              \item
+                    \begin{itemize}
+                      \item User Story 1: Als Nutzer möchte ich mich registrieren können, um ein persönliches Konto zu erstellen.
+                            \begin{enumerate}
+                              \item Registrierungsmasken vorhanden
+                              \item Bestätigungsemail wird versendet
+                              \item Konto ist nach Bestätigung aktiv
+                            \end{enumerate}
+                      \item User Story 2: Als Nutzer möchte ich mich einloggen können, um Zugang zu meinen Daten zu erhalten.
+                            \begin{enumerate}
+                              \item Login-Maske vorhanden
+                              \item Fehlermeldung bei falschen Daten
+                              \item Erfolgreicher Login führt zu persönlicher Startseite
+                            \end{enumerate}
+                      \item User Story 3: Als Nutzer möchte ich meine Daten bearbeiten können, um mein Profil aktuell zu halten.
+                            \begin{enumerate}
+                              \item Bearbeitungsmaske vorhanden
+                              \item Änderungen werden gespeichert
+                              \item Bestätigung nach erfolgreicher Änderung
+                            \end{enumerate}
+                    \end{itemize}
+              \item
+                    \begin{enumerate}
+                      \item Klarheit schaffen
+                      \item Stakeholder einbeziehen
+                      \item Engagement fördern
+                      \item Produkt- und Prozessfokus trennen
+                      \item Maßnahmen umsetzen
+                      \item Unterstützende Strukturen schaffen
+                      \item Transparenz erhöhen
+                      \item Regelmäßig überprüfen
+                    \end{enumerate}
+            \end{enumerate}
+      \item Ein Scrum Team besteht aus dem Product Owner, dem Scrum Master und dem Entwicklungsteam. Der Product Owner ist für die Maximierung des Wertes des Produkts verantwortlich. Er entscheidet über die Prioritäten im Product Backlog und kommuniziert die Vision und Anforderungen.
+      \item Die 5 Schritte einer Retrospektive sind:
+            \begin{enumerate}
+              \item Set the Stage: Team auf die Retrospektive vorbereiten
+              \item Gather Data: Informationen und Eindrücke sammeln
+              \item Generate Insights: Erkenntnisse gewinnen und Ursachen analysieren
+              \item Decide What to Do: Maßnahmen festlegen
+              \item Close the Retrospective: Retrospektive abschließen und positives Feedback geben
+            \end{enumerate}
+      \item Der Sinn einer Retrospektive ist es, regelmäßig das Vorgehen des Teams zu reflektieren, um kontinuierliche Verbesserungen zu erzielen und die Zusammenarbeit zu stärken.
+      \item Das Cynefin-Framework hilft, Probleme zu kategorisieren und die passende Vorgehensweise zu wählen. Es unterscheidet zwischen einfachen, komplizierten, komplexen, chaotischen und verworrenen Situationen. Probleme können auftreten, wenn man die falsche Methode für eine bestimmte Kategorie anwendet.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \sheet[2024]{Altklausur SS (B)}
 \begin{exercise}{Klassischer Teil}
   \begin{enumerate}
     \item Was ist ein Projekt?
-    \item Unterschied zwischen agilen und klassischen Methoden erklären
-    \item Alle 4 Phasen des klassischen pm erklären und jeweils 2 Ergebnisse aufschreiben
-    \item Unterschied zwischen Definition of Done und akzeptanzkriterien
+    \item Benennen Sie Unterschiede zwischen klassischen und agilen Methoden.
+    \item Erklären Sie die 4 Phasen des klassischen Projektmanagements und nenne jeweils 2 Ergebnisse.
+    \item Erklären Sie den Unterschied zwischen Definition of Done und Akzeptanzkriterien.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ein Projekt ist ein zeitlich begrenztes Vorhaben, das darauf abzielt, ein einmaliges Produkt, eine Dienstleistung oder ein Ergebnis zu schaffen. Projekte sind durch ihren definierten Anfang und ihr Ende, ihre Einmaligkeit und ihre klare Zielvorgabe gekennzeichnet.
+      \item Agile Methoden sind flexibel, iterativ und inkrementell. Sie betonen die Zusammenarbeit, Feedback-Schleifen und Anpassungsfähigkeit. Klassische Methoden, wie das Wasserfallmodell, sind linear und sequentiell, mit festgelegten Phasen und detaillierter Planung zu Beginn.
+      \item
+            \begin{enumerate}
+              \item Initiierung:
+                    \begin{enumerate}
+                      \item Projektauftrag
+                      \item Stakeholderanalyse
+                    \end{enumerate}
+              \item Planung:
+                    \begin{enumerate}
+                      \item Projektstrukturplan
+                      \item Zeitplan
+                    \end{enumerate}
+              \item Durchführung:
+                    \begin{enumerate}
+                      \item Umsetzung der Projektaufgaben
+                      \item Fortschrittsberichte
+                    \end{enumerate}
+              \item Abschluss:
+                    \begin{enumerate}
+                      \item Abnahme des Projektergebnisses
+                      \item Projektabschlussbericht
+                    \end{enumerate}
+            \end{enumerate}
+      \item Die Definition of Done beschreibt, wann eine Aufgabe oder ein Increment fertig ist und den Qualitätsstandards entspricht. Akzeptanzkriterien definieren die spezifischen Bedingungen, die eine User Story erfüllen muss, um als abgeschlossen zu gelten.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Agiler Teil}
   \begin{enumerate}
-    \item Erklären was eine Retro ist und warum sie wichtig ist und was das Ergebnis ist
-    \item Beschreiben sie ein Scrum team und dessen Accountabilities und beschrieben sie eine Accountability genauer
-    \item Beispielsitustion das Führungskräfte einfach Sachen in SB packen und wir mussten erklären was wir in den 5 Phasen der Retro machen mussten
-    \item Warum sollten wir PBI schätzen und warum ist das wichtig
-    \item Unsere Sprints machen keinen Wert wie überkommen wir Zombie-Scrum anhand eines Beispiels und wir sollten uns an den 8 Schritten orientieren.
+    \item Erklären Sie was eine Retro ist, warum sie wichtig ist und was das Ergebnis ist.
+    \item Beschreiben Sie eine Scrum Team und dessen Accountabilities. Beschreiben Sie eine Accountability genauer.
+    \item Beispielsituation: Führungskräfte packen einfach Sachen in den Sprint Backlog. Wie reagieren Sie darauf? Was würden Sie in den 5 Phasen der Retrospektive machen?
+    \item Warum sollten wir PBI schätzen?
+    \item Unsere Sprints generieren keinen Wert. Wie überkommen wir Zombie-Scrum (anhand eines Beispiels) und wie sollten wir uns an den 8 Schritten orientieren?
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Eine Retro (Retrospektive) ist ein Meeting, in dem das Team seine Arbeitsweise reflektiert und Maßnahmen zur Verbesserung festlegt. Sie ist wichtig, um kontinuierliche Verbesserungen zu erzielen und die Zusammenarbeit im Team zu stärken. Das Ergebnis sind konkrete Verbesserungsmaßnahmen, die im nächsten Sprint umgesetzt werden.
+      \item Ein Scrum-Team besteht aus dem Product Owner, dem Scrum Master und dem Entwicklungsteam. Die Accountabilities sind wie folgt:
+            \begin{itemize}
+              \item Der Product Owner ist verantwortlich für die Maximierung des Wertes des Produkts und die Arbeit des Entwicklungsteams. Er priorisiert den Product Backlog und sorgt für eine klare Vision.
+              \item Der Scrum Master ist für die Einhaltung von Scrum verantwortlich und hilft dem Team, Hindernisse zu beseitigen und die Produktivität zu steigern.
+              \item Die Mitglieder des Entwicklungsteams sind selbstorganisiert und cross-funktional. Sie setzen die vereinbarten Tasks um und liefern das Inkrement.
+            \end{itemize}
+            Eine Accountability genauer zu beschreiben: Der Product Owner ist verantwortlich für die Priorisierung des Product Backlogs und die Kommunikation mit den Stakeholdern. Er trifft Entscheidungen über den Umfang und die Reihenfolge der zu liefernden Funktionen.
+      \item In einer solchen Situation sollten Sie das Problem beim nächsten Retrospektiven-Meeting ansprechen. Die 5 Phasen der Retrospektive sind:
+            \begin{enumerate}
+              \item Set the Stage: Diskutieren Sie die Agenda und die Regeln des Meetings.
+              \item Gather Data: Sammeln Sie Informationen über vergangene Ereignisse und Erfahrungen.
+              \item Generate Insights: Analysieren Sie die gesammelten Daten und identifizieren Sie Muster und Probleme.
+              \item Decide What to Do: Entwickeln Sie konkrete Maßnahmen zur Verbesserung und planen Sie deren Umsetzung.
+              \item Close the Retrospective: Fassen Sie die besprochenen Punkte zusammen und geben Sie Feedback zur Retrospektive selbst.
+            \end{enumerate}
+      \item Product Backlog Items (PBI) sollten geschätzt werden, um den Aufwand für ihre Umsetzung zu verstehen und die Planung zu unterstützen. Dies hilft dem Team, den Umfang jedes Sprints zu bestimmen und realistische Ziele zu setzen.
+      \item Wenn die Sprints keinen Wert generieren, kann das auf Zombie-Scrum hindeuten, bei dem das Team mechanisch die Prozesse durchläuft, aber den eigentlichen Zweck und Wert von Scrum vergessen hat. Um Zombie-Scrum zu überwinden, können die 8 Schritte von Overeem \& Verwijs angewendet werden:
+            \begin{enumerate}
+              \item Klarheit schaffen
+              \item Stakeholder einbeziehen
+              \item Engagement fördern
+              \item Produkt- und Prozessfokus trennen
+              \item Maßnahmen umsetzen
+              \item Unterstützende Strukturen schaffen
+              \item Transparenz erhöhen
+              \item Regelmäßig überprüfen
+            \end{enumerate}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \sheet[2023]{Altklausur SS}
 \begin{exercise}{Theoretisches Wissen}
   \begin{enumerate}
-    \item Gibt eine sinnvolle Definition für "Projekt" an.
-    \item Zeichne die Kernprozesse als Schaubild auf. Außerdem sollen die einzelnen Kernprozesse stichpunktartig erklärt und die Abhängigkeiten klar werden.
-    \item Welche drei Fragen werden in Daily Scrum beantwortet? Warum sind diese Informationen wichtig?
-    \item Erkläre die Begriffe Epic, Task, Theme und User Story. Stelle dabei klar, wie sie jeweils zusammenhängen.
-    \item Erläutere die Unterschiede zwischen iterativen und inkrementellen Verfahren. Nenne, wo diese zur Anwendung kommen.
-    \item Erläutere das "Inspect \& Adapt" Verfahren. Nenne zwei Beispiele, wie und wo er eingesetzt wird.
+    \item Geben Sie eine "sinnvolle" Definition für ein Projekt.
+    \item Zeichnen Sie die Kernprozesse als Schaubild auf. Außerdem sollen die einzelnen Kernprozesse stichpunktartig erklärt und die Abhängigkeiten klar werden.
+    \item Welche drei Fragen werden im Daily Scrum beantwortet? Warum sind diese Informationen wichtig?
+    \item Erklären Sie die Begriffe Epic, Task, Theme und User Story. Stellen Sie dabei klar, wie sie jeweils zusammenhängen.
+    \item Erläutern Sie die Unterschiede zwischen iterativen und inkrementellen Verfahren. Nennen Sie Beispiele, wo diese zur Anwendung kommen.
+    \item Erläutern Sie das "Inspect \& Adapt" Verfahren. Nennen Sie zwei Beispiele, wie und wo dieses eingesetzt wird.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Ein Projekt ist ein zeitlich begrenztes Vorhaben, das darauf abzielt, ein bestimmtes Ziel zu erreichen. Es umfasst eine Reihe von Aktivitäten, die geplant, durchgeführt und überwacht werden, um dieses Ziel zu erreichen.
+      \item (Antwort hier)
+      \item Im Daily Scrum werden folgende drei Fragen beantwortet:
+            \begin{itemize}
+              \item Was habe ich seit dem letzten Daily Scrum erreicht?
+              \item Was plane ich bis zum nächsten Daily Scrum zu erreichen?
+              \item Gibt es Hindernisse, die meinen Fortschritt behindern?
+            \end{itemize}
+            Diese Informationen sind wichtig, um den Fortschritt im Sprint zu verfolgen, Abhängigkeiten zu erkennen und Hindernisse rechtzeitig zu beseitigen.
+      \item
+            \begin{itemize}
+              \item Epic: Eine große, abgeschlossene Funktion oder Anforderung, die in kleinere User Stories aufgeteilt werden kann.
+              \item Task: Eine spezifische Aufgabe, die innerhalb eines Sprints erledigt werden muss, um eine User Story abzuschließen.
+              \item Theme: Eine Sammlung von Epics oder User Stories, die ein gemeinsames Ziel oder eine gemeinsame Funktion haben.
+              \item User Story: Eine einzelne Anforderung oder Funktionalität, die aus der Perspektive des Nutzers beschrieben wird.
+            \end{itemize}
+            Diese Begriffe stehen in einer hierarchischen Beziehung zueinander, wobei Epics in User Stories aufgeteilt werden können, User Stories in Tasks und sowohl Epics als auch User Stories einem bestimmten Theme zugeordnet sein können.
+      \item Iterative Verfahren entwickeln Software in wiederholten Zyklen, wobei jede Iteration eine Teilmenge der endgültigen Funktionalität liefert. Inkrementelle Verfahren entwickeln die Software stufenweise, wobei jede Phase eine neue Funktionalität hinzufügt. Ein Beispiel für iterative Verfahren ist Scrum, während das Wasserfallmodell ein Beispiel für ein inkrementelles Verfahren ist.
+      \item Das "Inspect \& Adapt" Verfahren ist ein zyklischer Prozess der Überprüfung und Anpassung. Beispiele dafür sind:
+            \begin{itemize}
+              \item Sprint Retrospective in Scrum: Das Team reflektiert über den letzten Sprint und identifiziert Verbesserungsmöglichkeiten für den nächsten.
+              \item Agile Review Meetings: Stakeholder bewerten das Produkt nach Abschluss eines Entwicklungszyklus und geben Feedback für zukünftige Iterationen.
+            \end{itemize}
+    \end{enumerate}
+  \end{solution}
+
 \end{exercise}
 
 \begin{exercise}{Prozessplanung}
   Das Studierendenwerk möchte eine Verwaltungssoftware für die Mensen haben. Dieses beinhaltet eine Planungskomponente, in der die Mensachefs die Speisepläne erstellen können aber auch Zugriff auf eine zentrale Rezeptdatenbank haben. Die Ansichtskomponente liefert eine Webanwendung und eine Schnittstelle für Bildschirme, um Wochen- und Tagespläne darstellen zu können. Die Bilanzierungskomponente stelle ein Kosten-Nutzen-Verhältnis dar und wertet das Nutzerverhalten aus. Für die Bearbeitung der Aufgaben sind wir ein Projektmanager, der für die Erstellung der Planungskomponente zuständig ist.
-  Insgesamt wurden dann verschieden Anforderungen aufgelistet, die in 3 Releases aufgeteilt waren.
+
+  %TODO: Anforderungen einfügen (in  3 Releases)
 
   \begin{enumerate}
-    \item Zeichne ein PSP zu dem gegebenen Szenario, das anhand von Fachlichkeiten eingeteilt ist.
+    \item Zeichnen Sie ein PSP zu dem gegebenen Szenario, das anhand von Fachlichkeiten eingeteilt ist.
           \hint{Das PSP braucht 3 Ebenen (Ebene 0 zählt nicht mit). Pro Ebene müssen mindestens 3 Knoten eingetragen werden. Getroffene Annahmen sollen notiert werden.}
-    \item Stelle einen Meilensteinplan auf.
+    \item Stellen Sie einen Meilensteinplan auf.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Die Lösung umfasst ein PSP-Diagramm mit drei Ebenen, das die Anforderungen und Funktionen für die Verwaltungssoftware für die Mensen darstellt. Die Ebenen sollten die verschiedenen Module und Funktionen der Software abbilden, beginnend mit einer allgemeinen Ebene und sich dann in detailliertere Unterebenen aufgliedern. Für jede Ebene sollten mindestens drei Knotenpunkte mit spezifischen Funktionen oder Aufgaben aufgeführt werden. Getroffene Annahmen sollten im Diagramm notiert werden, um den Kontext und die Entscheidungsgrundlage zu verdeutlichen.
+      \item Der Meilensteinplan sollte die wichtigsten Zeitpunkte und Meilensteine für die Entwicklung der Software festlegen. Dies umfasst typischerweise den Start des Projekts, wichtige Zwischenschritte wie Design, Implementierung und Testphasen sowie den Abschluss des Projekts und die Auslieferung der Software an den Kunden. Der Plan sollte auch die Zeitrahmen für jedes Release berücksichtigen und klare Deadlines für die Fertigstellung der einzelnen Komponenten festlegen.
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Agil}
-  Gehe für diese Aufgabe davon aus, dass ihr in der zweiten Woche des ersten Scrum-Sprints seid.
+  Gehen Sie für diese Aufgabe davon aus, dass Ihr Team in der zweiten Woche des ersten Scrum-Sprints ist.
   \begin{enumerate}
-    \item Stelle ein Scrum-Planungs-Board auf.
-    \item Trage in das Scrum-Planungs-Board 3 Epics ein. Ein Titel genügt.
-    \item Zerlege eines der Epics in 3 User Storys.
-    \item Formuliere zu einer User Story 3 Akzeptanzkriterien.
+    \item Stellen Sie ein Scrum-Planungsboard auf.
+    \item Ergänzen Sie drei Epics auf dieses Board, wobei Titel genügen.
+    \item Zerlegen Sie einen dieser Epics in 3 User Stories.
+    \item Formulieren Sie zu einer User Story 3 Akzeptanzkriterien.
   \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Das Scrum-Planungsboard sollte die Backlog-Items und den aktuellen Stand des Sprints visualisieren. Es sollten Spalten für Product Backlog, Sprint Backlog, In Progress und Done vorhanden sein. Die User Stories und Aufgaben sollten als Karten oder Notizen auf dem Board dargestellt werden, wobei sie zwischen den verschiedenen Spalten verschoben werden, um ihren Fortschritt im Sprint zu verfolgen.
+      \item Für die drei Epics können Titel wie "Benutzerverwaltung implementieren", "Speisepläne erstellen und anzeigen" und "Bilanzierungskomponente entwickeln" gewählt werden.
+      \item Ein Epic wie "Speisepläne erstellen und anzeigen" könnte in User Stories wie "Als Mensachef möchte ich Speisepläne für die Woche erstellen können", "Als Nutzer möchte ich die Speisepläne für die kommende Woche einsehen können" und "Als Nutzer möchte ich die Speisepläne für den aktuellen Tag anzeigen können" zerlegt werden.
+      \item Für die User Story "Als Mensachef möchte ich Speisepläne für die Woche erstellen können" könnten Akzeptanzkriterien wie folgt lauten:
+            \begin{itemize}
+              \item Der Mensachef kann Gerichte für jeden Tag der Woche auswählen.
+              \item Der Mensachef kann die Speisepläne für die Woche speichern und später bearbeiten.
+              \item Die erstellten Speisepläne werden automatisch auf Richtigkeit und Vollständigkeit überprüft.
+            \end{itemize}
+    \end{enumerate}
+  \end{solution}
 \end{exercise}
 
 \end{document}
