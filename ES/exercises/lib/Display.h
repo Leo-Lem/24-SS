@@ -155,21 +155,8 @@ public:
     writeCommand(RAMWR);
     COLOR_FORMAT *colors = buffer.getBuffer();
 
-#ifdef DEBUG
-    Serial.print("[Display] Buffer content: ");
     for (int i = 0; i < buffer.size(); i++)
-    {
-      Serial.print((uint16_t)colors[i], HEX);
-      Serial.print(" ");
-    }
-    Serial.println();
-#endif
-
-    for (int i = 0; i < buffer.size(); i++)
-    {
-      uint16_t encoded = Color(colors[i]);
-      writeData(2, encoded >> 8, encoded & 0xFF);
-    }
+      writeData(2, (uint16_t)(Color)colors[i] >> 8, (uint16_t)(Color)colors[i] & 0xFF);
     endTransaction();
 
 #ifdef DEBUG
@@ -212,15 +199,13 @@ public:
 
   int printChar(int x, int y, char value, Color fgColor, Color bgColor)
   {
-    const int charWidth = 6, charHeight = 8;
-    const int charOffset = value - ' ';
 
-    if (x + charWidth > window.width || y + charHeight > window.height)
+    if (x + CHAR_WIDTH > window.width || y + CHAR_HEIGHT > window.height)
       return -1;
 
-    for (int i = 0; i < charWidth; i++)
-      for (int j = 0; j < charHeight; j++)
-        if ((font[charOffset][i]) & (1 << j))
+    for (int i = 0; i < CHAR_WIDTH; i++)
+      for (int j = 0; j < CHAR_HEIGHT; j++)
+        if ((font[value - ' '][i]) & (1 << (CHAR_HEIGHT - 1 - j)))
           setPixel(x + i, y + j, fgColor);
         else
           setPixel(x + i, y + j, bgColor);
@@ -242,7 +227,6 @@ public:
     Serial.println((uint16_t)bgColor, HEX);
 #endif
   }
-
   int printString(int x, int y, char *c_str, Color fgColor, Color bgColor)
   {
     if (x + strlen(c_str) * 6 > window.width || y + 8 > window.height)
@@ -255,6 +239,8 @@ public:
   }
 
 private:
+  const static int CHAR_WIDTH = 6, CHAR_HEIGHT = 8;
+
   const static int RST = 9, DC = 8;
 
 #ifdef __AVR_ATmega2560__

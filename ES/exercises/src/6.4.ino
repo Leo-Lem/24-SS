@@ -1,4 +1,3 @@
-// #define DEBUG
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
