@@ -1,7 +1,7 @@
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
-Display display(240, 320); // 2.2" TFT, 240x320 pixel (uint8 max = 255)
+Display display(240, 640); // 2.2" TFT, 240x620 pixel
 #else
 Display display(160, 128); // 1.8" TFT, 160x128 pixel
 #endif

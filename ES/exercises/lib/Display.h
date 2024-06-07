@@ -120,9 +120,9 @@ public:
     beginTransaction();
     buffer.init(area);
     writeCommand(CASET);
-    writeData(4, 0x00, area.xs(), 0x00, area.xe());
+    writeData(4, area.xs() >> 8, area.xs() & 0xFF, area.xe() >> 8, area.xe() & 0xFF);
     writeCommand(RASET);
-    writeData(4, 0x00, area.ys(), 0x00, area.ye());
+    writeData(4, area.ys() >> 8, area.ys() & 0xFF, area.ye() >> 8, area.ye() & 0xFF);
     endTransaction();
 
 #ifdef DEBUG
