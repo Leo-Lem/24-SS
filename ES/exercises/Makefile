@@ -11,7 +11,7 @@ BUILD_DIR := .build
 CHIPS := $(patsubst chips/%.chip.c, $(BUILD_DIR)/chips/%.chip.wasm, $(wildcard chips/*.chip.c))
 
 .PHONY: all
-all: clean $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
+all: $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
 
 .PHONY: clean
 clean:

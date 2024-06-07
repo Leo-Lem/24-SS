@@ -11,7 +11,8 @@
         "ms-vscode.cpptools",
         "Wokwi.wokwi-vscode",
         "github.copilot",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens"
       ]
     }
   }
