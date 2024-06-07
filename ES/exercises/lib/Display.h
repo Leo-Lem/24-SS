@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include "DisplayBuffer.h"
+#include "Font_6x8.h"
 #include "Window.h"
 
 #ifndef DISPLAY_H
@@ -110,9 +111,6 @@ public:
     Serial.print(time, DEC);
     Serial.println("ms.");
 #endif
-
-    // initialise buffer
-    configureArea(window);
   };
 
   void configureArea(Window area)
@@ -120,9 +118,9 @@ public:
     beginTransaction();
     buffer.init(area);
     writeCommand(CASET);
-    writeData(4, area.xs() >> 8, area.xs() & 0xFF, area.xe() >> 8, area.xe() & 0xFF);
+    writeData(4, area.xs() >> 8, area.xs() & 0xFF, area.xe() - 1 >> 8, area.xe() - 1 & 0xFF);
     writeCommand(RASET);
-    writeData(4, area.ys() >> 8, area.ys() & 0xFF, area.ye() >> 8, area.ye() & 0xFF);
+    writeData(4, area.ys() >> 8, area.ys() & 0xFF, area.ye() - 1 >> 8, area.ye() - 1 & 0xFF);
     endTransaction();
 
 #ifdef DEBUG
@@ -194,12 +192,67 @@ public:
 #endif
     buffer.fill(color);
   };
+
   void invert(bool on)
   {
     beginTransaction();
     writeCommand(on ? INVON : INVOFF);
     endTransaction();
   };
+  void clear()
+  {
+    configureArea(window);
+    fill(Color::black);
+    drawPixels();
+
+#ifdef DEBUG
+    Serial.println("[Display] Cleared.");
+#endif
+  };
+
+  int printChar(int x, int y, char value, Color fgColor, Color bgColor)
+  {
+    const int charWidth = 6, charHeight = 8;
+    const int charOffset = value - ' ';
+
+    if (x + charWidth > window.width || y + charHeight > window.height)
+      return -1;
+
+    for (int i = 0; i < charWidth; i++)
+      for (int j = 0; j < charHeight; j++)
+        if ((font[charOffset][i]) & (1 << j))
+          setPixel(x + i, y + j, fgColor);
+        else
+          setPixel(x + i, y + j, bgColor);
+
+    drawPixels();
+
+    return 0;
+
+#ifdef DEBUG
+    Serial.print("[Display] Character '");
+    Serial.print(value);
+    Serial.print("' printed at ");
+    Serial.print(x);
+    Serial.print(", ");
+    Serial.print(y);
+    Serial.print(" with fg #");
+    Serial.print((uint16_t)fgColor, HEX);
+    Serial.print(" and bg #");
+    Serial.println((uint16_t)bgColor, HEX);
+#endif
+  }
+
+  int printString(int x, int y, char *c_str, Color fgColor, Color bgColor)
+  {
+    if (x + strlen(c_str) * 6 > window.width || y + 8 > window.height)
+      return -1;
+    else
+      for (int i = 0; c_str[i] != '\0'; i++)
+        printChar(x + i * 6, y, c_str[i], fgColor, bgColor);
+
+    return 0;
+  }
 
 private:
   const static int RST = 9, DC = 8;
@@ -219,8 +272,10 @@ private:
 
   void commandMode() { digitalWrite(DC, LOW); }
   void dataMode() { digitalWrite(DC, HIGH); }
+
   void on() { digitalWrite(CS, LOW); }
   void off() { digitalWrite(CS, HIGH); }
+
   void beginTransaction()
   {
     SPI.beginTransaction(settings);
@@ -248,6 +303,14 @@ private:
 
     va_end(args);
   }
+
+public:
+  const static Display ili9341, st7735, limitedMemory;
 };
+
+const Display
+    Display::ili9341 = Display(240, 320),     // 2.2" TFT, 240x320 pixel
+    Display::st7735 = Display(128, 160),      // 1.8" TFT, 160x128 pixel
+    Display::limitedMemory = Display(64, 64); // 64x64 pixel
 
 #endif // DISPLAY_H

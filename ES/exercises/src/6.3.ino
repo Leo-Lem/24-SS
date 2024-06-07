@@ -1,10 +1,9 @@
-// #define DEBUG
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
-Display display(240, 640); // 2.2" TFT, 240x620 pixel
+Display display = Display::ili9341;
 #else
-Display display(160, 128); // 1.8" TFT, 160x128 pixel
+Display display = Display::st7735;
 #endif
 
 const Color fgColor = Color::yellow, bgColor = Color::black;

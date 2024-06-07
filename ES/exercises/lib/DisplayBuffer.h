@@ -20,9 +20,9 @@ public:
 
   void init(Window area)
   {
-    this->area = area;
     if (buffer != nullptr)
       delete[] buffer;
+    this->area = area;
     buffer = new BufferFormat[size()];
 
 #ifdef DEBUG
@@ -39,7 +39,6 @@ public:
   }
 
   BufferFormat *getBuffer() { return buffer; }
-
   Window getArea() { return area; }
 
   void set(int x, int y, Color color)
@@ -66,7 +65,7 @@ public:
   }
 
   int size() { return min(area.size() * sizeof(BufferFormat), MAX_MEMORY_B / sizeof(BufferFormat)); }
-  bool isTruncated() { return size() > MAX_MEMORY_B / sizeof(BufferFormat); }
+  bool isTruncated() { return area.size() > MAX_MEMORY_B / sizeof(BufferFormat); }
 
 private:
   Window area = Window(0, 0);
