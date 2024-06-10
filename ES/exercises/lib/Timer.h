@@ -11,22 +11,18 @@ static DueTimer Timer4; // match TimerFour package
 class Timer
 {
 public:
-  static const unsigned int frequency = 1000;
-
-  static const unsigned long period = (long)(1e6 / frequency);
-  static const unsigned long periodToMs = period / 1000;
-
-  static void configure(void (*tick)())
+  static void configure(void (*tick)(), unsigned int period = 1)
   {
 #if defined(__SAM3X8E__) // Arduino Due
-    if (!Timer4.configure(frequency, tick))
+    if (!Timer4.configure(1 / period, tick))
       Serial.println("Failed to start timer…");
 #else
-    Timer4.initialize(period);
+    Timer4.initialize(period * 1e3);
     Timer4.attachInterrupt(tick);
     Timer4.stop(); // attachInterrupt starts Timer > stop it
 #endif
   }
+
   static void start() { Timer4.start(); }
   static void stop() { Timer4.stop(); }
 };

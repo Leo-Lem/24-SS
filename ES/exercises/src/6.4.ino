@@ -1,4 +1,5 @@
 #include "Display.h"
+#include "Timer.h"
 
 #ifdef __AVR_ATmega2560__
 Display display = Display::limitedMemory;
@@ -52,15 +53,22 @@ void activity(int length, int delayMS = 1000 / 10)
   delay(delayMS);
 }
 
+void activityIndicator()
+{
+  noInterrupts();
+  activity(50, 1000 / 5);
+  interrupts();
+}
+
 void setup()
 {
   Serial.begin(9600); // open serial port
   display.init();     // power-on-reset of Display
 
-  Serial.println("[Exercise 6.4] Setup done. Starting activity indicator.");
+  Serial.println("[Exercise 6.4] Setup done.");
+
+  Timer::configure(activityIndicator);
+  Timer::start();
 }
 
-void loop()
-{
-  activity(50, 1000 / 5);
-}
+void loop() {}
