@@ -1,3 +1,4 @@
+#define DEBUG
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
@@ -8,8 +9,13 @@ Display display = Display::st7735;
 
 void demo()
 {
-  // clear display
+// clear display
+#ifdef __AVR_ATmega2560__
   Window area = Window(80, 80);
+#else
+  Window area = display.window;
+#endif
+
   display.configureArea(area);
   display.fill(Color::white);
   display.drawPixels();

@@ -36,7 +36,9 @@ public:
   Window window;
 
   Display(int width, int height) : window(Window(width, height)),
-                                   buffer(DisplayBuffer<COLOR_FORMAT>())
+                                   buffer(DisplayBuffer<COLOR_FORMAT>()){};
+
+  void init()
   {
     pinMode(RST, OUTPUT);
     pinMode(DC, OUTPUT);
@@ -45,10 +47,7 @@ public:
     digitalWrite(RST, HIGH);
     digitalWrite(DC, HIGH);
     digitalWrite(CS, HIGH);
-  };
 
-  void init()
-  {
     SPI.begin();
     delay(10);
 
@@ -61,6 +60,8 @@ public:
 #endif
 
     // hardware reset
+    digitalWrite(RST, HIGH);
+    delay(100);
     digitalWrite(RST, LOW);
     delay(100);
     digitalWrite(RST, HIGH);
@@ -285,7 +286,7 @@ private:
     va_start(args, count);
 
     for (size_t i = 0; i < count; ++i)
-      SPI.transfer(va_arg(args, int));
+      SPI.transfer(va_arg(args, uint8_t));
 
     va_end(args);
   }
