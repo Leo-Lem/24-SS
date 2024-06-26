@@ -2,7 +2,7 @@
 #include "Timer.h"
 
 #ifdef __AVR_ATmega2560__
-Display display = Display::limitedMemory;
+Display display = Display::ili9341;
 #else
 Display display = Display::st7735;
 #endif

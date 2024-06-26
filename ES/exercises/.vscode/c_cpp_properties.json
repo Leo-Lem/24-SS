@@ -1,22 +1,23 @@
 {
-  "env": {
-    "arduino_path": "/root/.arduino15/packages/arduino",
-    "arduino_avr_include_path": "${env:arduino_path}/hardware/avr",
-    "arduino_avr_include2_path": "${env:arduino_path}/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include",
-    "arduino_avr_compiler_path": "${env:arduino_path}/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc"
-  },
-  "configurations": [
-    {
-      "name": "Linux",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "/root/Arduino/libraries/**",
-        "${env:arduino_avr_include_path}/**",
-        "${env:arduino_avr_include2_path}/**"
-      ],
-      "compilerPath": "${env:arduino_avr_compiler_path}",
-      "defines": ["USBCON"]
-    }
-  ],
-  "version": 4
+    "env": {
+        "arduino_path": "/root/.arduino15/packages/arduino",
+        "arduino_avr_include_path": "${env:arduino_path}/hardware/avr",
+        "arduino_avr_include2_path": "${env:arduino_path}/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include",
+        "arduino_avr_compiler_path": "${env:arduino_path}/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc"
+    },
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/root/Arduino/libraries/**",
+                "${env:arduino_avr_include_path}/**",
+                "${env:arduino_avr_include2_path}/**"
+            ],
+            "defines": [
+                "USBCON"
+            ]
+        }
+    ],
+    "version": 4
 }

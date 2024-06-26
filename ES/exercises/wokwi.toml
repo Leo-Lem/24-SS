@@ -1,6 +1,6 @@
 [wokwi]
 version=1
-firmware='.build/exercise.ino.hex'
+firmware='.build/exercise.ino.elf'
 elf='.build/exercise.ino.elf'
 
 [[chip]]

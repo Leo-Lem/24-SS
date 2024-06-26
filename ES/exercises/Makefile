@@ -1,6 +1,6 @@
 # default parameters
-# arch = arduino:avr:mega
-arch = arduino:sam:arduino_due_x_dbg
+arch = arduino:avr:mega
+# arch = arduino:sam:arduino_due_x_dbg
 
 # Check if the target is a known target
 ifeq ($(filter $(MAKECMDGOALS),clean upload),)

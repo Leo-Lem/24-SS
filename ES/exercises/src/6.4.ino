@@ -56,7 +56,7 @@ void activity(int length, int delayMS = 1000 / 10)
 void activityIndicator()
 {
   noInterrupts();
-  activity(50, 1000 / 5);
+  activity(50, 10);
   interrupts();
 }
 

@@ -49,7 +49,7 @@ public:
     digitalWrite(CS, HIGH);
 
     SPI.begin();
-    delay(10);
+    delay(100);
 
 #ifdef DEBUG
     Serial.print("[SPI] Initialized with ");
@@ -61,27 +61,31 @@ public:
 
     // hardware reset
     digitalWrite(RST, HIGH);
-    delay(100);
+    delay(1000);
     digitalWrite(RST, LOW);
-    delay(100);
+    delay(1000);
     digitalWrite(RST, HIGH);
-    delay(100);
+    delay(1000);
 
     beginTransaction();
 
     // software reset, turn off sleep mode, power control settings, VCOM voltage setting
     writeCommand(SWRESET);
-    delay(120);           // mandatory delay
+    delay(1200);          // mandatory delay
     writeCommand(SLPOUT); // turn off sleep mode.
-    delay(120);
+    delay(1200);
     writeCommand(PWCRT1);
-    writeData(3, 0xA2, 0x02, 0x84);
+    writeDatum(0xA2);
+    writeDatum(0x02);
+    writeDatum(0x84);
     writeCommand(PWCRT4);
-    writeData(2, 0x8A, 0x2A);
+    writeDatum(0x8A);
+    writeDatum(0x2A);
     writeCommand(PWCRT5);
-    writeData(2, 0x8A, 0xEE);
+    writeDatum(0x8A);
+    writeDatum(0xEE);
     writeCommand(VMCTR1);
-    writeData(1, 0x0E); // VCOM = -0.775V
+    writeDatum(0x0E); // VCOM = -0.775V
 
     // Memory Data Access Control D7/D6/D5/D4/D3/D2/D1/D0
     //  MY/MX/MV/ML/RGB/MH/-/-
@@ -93,11 +97,11 @@ public:
     //  MH - '0'= LCD horizontal refresh left to right
 
     writeCommand(MADCTL);
-    writeData(1, 0xC8);
+    writeDatum(0x08);
 
     // RGB-format
     writeCommand(COLMOD);
-    writeData(1, 0x05); // 16-bit/pixel; high nibble don't care
+    writeDatum(0x05); // 16-bit/pixel; high nibble don't care
 
     configureArea(window);
 
@@ -118,10 +122,17 @@ public:
   {
     beginTransaction();
     buffer.init(area);
+    writeCommand(NOP);
     writeCommand(CASET);
-    writeData(4, area.xs() >> 8, area.xs() & 0xFF, area.xe() - 1 >> 8, area.xe() - 1 & 0xFF);
+    writeDatum(area.xs() >> 8);
+    writeDatum(area.xs() & 0xFF);
+    writeDatum(area.xe() - 1 >> 8);
+    writeDatum(area.xe() - 1 & 0xFF);
     writeCommand(RASET);
-    writeData(4, area.ys() >> 8, area.ys() & 0xFF, area.ye() - 1 >> 8, area.ye() - 1 & 0xFF);
+    writeDatum(area.ys() >> 8);
+    writeDatum(area.ys() & 0xFF);
+    writeDatum(area.ye() - 1 >> 8);
+    writeDatum(area.ye() - 1 & 0xFF);
     endTransaction();
 
 #ifdef DEBUG
@@ -157,7 +168,11 @@ public:
     COLOR_FORMAT *colors = buffer.getBuffer();
 
     for (int i = 0; i < buffer.size(); i++)
-      writeData(2, (uint16_t)(Color)colors[i] >> 8, (uint16_t)(Color)colors[i] & 0xFF);
+    {
+      writeDatum((uint16_t)colors[i] >> 8);
+      writeDatum((uint16_t)colors[i] & 0xFF);
+    }
+
     endTransaction();
 
 #ifdef DEBUG
@@ -280,15 +295,10 @@ private:
     SPI.transfer(cmd);
     dataMode();
   };
-  void writeData(size_t count, ...)
+
+  void writeDatum(uint8_t datum)
   {
-    va_list args;
-    va_start(args, count);
-
-    for (size_t i = 0; i < count; ++i)
-      SPI.transfer(va_arg(args, uint8_t));
-
-    va_end(args);
+    SPI.transfer(datum);
   }
 
 public:
