@@ -1,11 +1,14 @@
+#ifdef __SAM3X8E__
+#include "DueTimer.h"
+#else
+#include <TimerFour.h>
+#endif
+
 #ifndef TIMER_H
 #define TIMER_H
 
-#if defined(__SAM3X8E__) // Arduino Due
-#include "DueTimer.h"
+#ifdef __SAM3X8E__      // Arduino Due
 static DueTimer Timer4; // match TimerFour package
-#else
-#include <TimerFour.h>
 #endif
 
 class Timer

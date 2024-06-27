@@ -324,9 +324,9 @@ public:
     VMCTR1 = 0xC5   // VCOM Voltage setting
   };
 
-  Window window;
+  Window dimensions;
 
-  Display(int width, int height) : window(Window(width, height)),
+  Display(int width, int height) : dimensions(Window(width, height)),
                                    buffer(DisplayBuffer<COLOR_FORMAT>()) {}
 
   void init()
@@ -392,7 +392,7 @@ public:
     writeCommand(COLMOD);
     SPI.transfer(0x05); // 16-bit/pixel; high nibble don't care
 
-    configureArea(window);
+    configureDrawArea(dimensions);
 
     writeCommand(NORON);
     writeCommand(DISPON);
@@ -407,7 +407,7 @@ public:
 #endif
   };
 
-  void configureArea(Window area)
+  void configureDrawArea(Window area)
   {
     beginTransaction();
     buffer.init(area);
@@ -454,7 +454,7 @@ public:
 #endif
   };
 
-  void drawPixels()
+  void drawBuffer()
   {
     beginTransaction();
     writeCommand(RAMWR);
@@ -498,9 +498,9 @@ public:
   };
   void clear()
   {
-    configureArea(window);
+    configureDrawArea(dimensions);
     fill(Color::black);
-    drawPixels();
+    drawBuffer();
 
 #ifdef DEBUG
     Serial.println("[Display] Cleared.");
@@ -510,7 +510,7 @@ public:
   int printChar(int x, int y, char value, Color fgColor, Color bgColor)
   {
 
-    if (x + CHAR_WIDTH > window.width || y + CHAR_HEIGHT > window.height)
+    if (x + CHAR_WIDTH > dimensions.width || y + CHAR_HEIGHT > dimensions.height)
       return -1;
 
     for (int i = 0; i < CHAR_WIDTH; i++)
@@ -520,7 +520,7 @@ public:
         else
           setPixel(x + i, y + j, bgColor);
 
-    drawPixels();
+    drawBuffer();
 
     return 0;
 
@@ -539,7 +539,7 @@ public:
   }
   int printString(int x, int y, char *c_str, Color fgColor, Color bgColor)
   {
-    if (x + strlen(c_str) * 6 > window.width || y + 8 > window.height)
+    if (x + strlen(c_str) * 6 > dimensions.width || y + 8 > dimensions.height)
       return -1;
     else
       for (int i = 0; c_str[i] != '\0'; i++)
@@ -633,25 +633,25 @@ void clear()
 
 void columns()
 {
-  for (int x = display.window.xs(); x < display.window.xe(); x++)
+  for (int x = display.dimensions.xs(); x < display.dimensions.xe(); x++)
   {
-    display.configureArea(Window(x, x + 1, display.window.ys(), display.window.ye()));
-    for (int y = 0; y < display.window.height; y++)
+    display.configureDrawArea(Window(x, x + 1, display.dimensions.ys(), display.dimensions.ye()));
+    for (int y = 0; y < display.dimensions.height; y++)
       display.setPixel(x, y, fgColor);
 
-    display.drawPixels();
+    display.drawBuffer();
     delay(20);
   }
 
   Serial.println("[Exercise 6.2] Filled Display with fgColor.");
 
-  for (int x = display.window.xs(); x < display.window.xe(); x++)
+  for (int x = display.dimensions.xs(); x < display.dimensions.xe(); x++)
   {
-    display.configureArea(Window(x, x + 1, display.window.ys(), display.window.ye()));
-    for (int y = 0; y < display.window.height; y++)
+    display.configureDrawArea(Window(x, x + 1, display.dimensions.ys(), display.dimensions.ye()));
+    for (int y = 0; y < display.dimensions.height; y++)
       display.setPixel(x, y, bgColor);
 
-    display.drawPixels();
+    display.drawBuffer();
     delay(20);
   }
 
@@ -672,44 +672,44 @@ void loop1()
 
 void activity(int length, int delayMS)
 {
-  const int xc = display.window.width / 2;
-  const int yc = display.window.height / 2;
+  const int xc = display.dimensions.width / 2;
+  const int yc = display.dimensions.height / 2;
   const int radius = length / 2;
 
   // symbol |
   display.clear();
-  display.configureArea(Window(xc, xc + 1, yc - radius, yc + radius));
+  display.configureDrawArea(Window(xc, xc + 1, yc - radius, yc + radius));
   display.fill(Color::white);
-  display.drawPixels();
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol | drawn.\r");
   delay(delayMS);
 
   // symbol /
   display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
+  display.configureDrawArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
   for (int i = 0; i < length; i++)
     display.setPixel(xc - radius + i, yc + radius - i, Color::white);
-  display.drawPixels();
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol / drawn.\r");
   delay(delayMS);
 
   // symbol -
   display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc, yc + 1));
+  display.configureDrawArea(Window(xc - radius, xc + radius, yc, yc + 1));
   display.fill(Color::white);
-  display.drawPixels();
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol - drawn.\r");
   delay(delayMS);
 
   // symbol "\"
   display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
+  display.configureDrawArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
   for (int i = 0; i < length; i++)
     display.setPixel(xc - radius + i, yc - radius + i, Color::white);
-  display.drawPixels();
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol \\ drawn.\r");
   delay(delayMS);
@@ -783,7 +783,7 @@ static int student = 0;
 
 void printNameAndID()
 {
-  const int xc = display.window.width / 2, yc = display.window.height / 2;
+  const int xc = display.dimensions.width / 2, yc = display.dimensions.height / 2;
 
   display.clear();
   display.printString(xc - strlen(names[student]) * 6 / 2, yc + 2 + 8, names[student], Color::white, Color::black);

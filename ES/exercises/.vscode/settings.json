@@ -1,3 +1,13 @@
 {
-  "C_Cpp.default.compilerPath": "/root/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc"
+  "C_Cpp.default.compilerPath": "/root/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
+  "files.associations": {
+    "array": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp",
+    "compare": "cpp"
+  }
 }

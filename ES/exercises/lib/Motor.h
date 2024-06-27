@@ -1,9 +1,10 @@
-#ifndef MOTOR_H
-#define MOTOR_H
+
 
 #include <Arduino.h>
-
 #include "RGBLED.h"
+
+#ifndef MOTOR_H
+#define MOTOR_H
 
 class Motor
 {

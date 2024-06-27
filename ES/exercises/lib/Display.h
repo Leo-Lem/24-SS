@@ -33,9 +33,7 @@ public:
     VMCTR1 = 0xC5   // VCOM Voltage setting
   };
 
-  Window window;
-
-  Display(int width, int height) : window(Window(width, height)),
+  Display(int width, int height) : dimensions(Window(width, height)),
                                    buffer(DisplayBuffer<COLOR_FORMAT>()){};
 
   void init()
@@ -48,44 +46,46 @@ public:
     digitalWrite(DC, HIGH);
     digitalWrite(CS, HIGH);
 
+#ifdef __AVR_ATmega2560__
+    pinMode(SS_SLAVE, OUTPUT); // otherwise the Mega will go into slave mode.
+#endif
+
     SPI.begin();
     delay(100);
 
 #ifdef DEBUG
-    Serial.print("[SPI] Initialized with ");
-    Serial.print(SPI_DEFAULT_FREQ, DEC);
-    Serial.println("Hz.");
+    Serial.print("[SPI] Initialized.");
 
     int time = millis();
 #endif
 
     // hardware reset
     digitalWrite(RST, HIGH);
-    delay(1000);
+    delay(100);
     digitalWrite(RST, LOW);
-    delay(1000);
+    delay(100);
     digitalWrite(RST, HIGH);
-    delay(1000);
+    delay(100);
 
     beginTransaction();
 
     // software reset, turn off sleep mode, power control settings, VCOM voltage setting
     writeCommand(SWRESET);
-    delay(1200);          // mandatory delay
+    delay(120);           // mandatory delay
     writeCommand(SLPOUT); // turn off sleep mode.
-    delay(1200);
+    delay(120);
     writeCommand(PWCRT1);
-    writeDatum(0xA2);
-    writeDatum(0x02);
-    writeDatum(0x84);
+    writeData(0xA2);
+    writeData(0x02);
+    writeData(0x84);
     writeCommand(PWCRT4);
-    writeDatum(0x8A);
-    writeDatum(0x2A);
+    writeData(0x8A);
+    writeData(0x2A);
     writeCommand(PWCRT5);
-    writeDatum(0x8A);
-    writeDatum(0xEE);
+    writeData(0x8A);
+    writeData(0xEE);
     writeCommand(VMCTR1);
-    writeDatum(0x0E); // VCOM = -0.775V
+    writeData(0x0E); // VCOM = -0.775V
 
     // Memory Data Access Control D7/D6/D5/D4/D3/D2/D1/D0
     //  MY/MX/MV/ML/RGB/MH/-/-
@@ -97,13 +97,14 @@ public:
     //  MH - '0'= LCD horizontal refresh left to right
 
     writeCommand(MADCTL);
-    writeDatum(0x08);
+    writeData(0xC0);
 
     // RGB-format
     writeCommand(COLMOD);
-    writeDatum(0x05); // 16-bit/pixel; high nibble don't care
+    writeData(0x05); // 16-bit/pixel; high nibble don't care
 
-    configureArea(window);
+    configureDrawArea(dimensions);
+    configureBuffer(dimensions);
 
     writeCommand(NORON);
     writeCommand(DISPON);
@@ -118,33 +119,19 @@ public:
 #endif
   };
 
-  void configureArea(Window area)
+  Window getDimensions() { return dimensions; }
+
+  // using the buffer
+  void configureBuffer(Window area)
   {
-    beginTransaction();
     buffer.init(area);
-    writeCommand(NOP);
-    writeCommand(CASET);
-    writeDatum(area.xs() >> 8);
-    writeDatum(area.xs() & 0xFF);
-    writeDatum(area.xe() - 1 >> 8);
-    writeDatum(area.xe() - 1 & 0xFF);
-    writeCommand(RASET);
-    writeDatum(area.ys() >> 8);
-    writeDatum(area.ys() & 0xFF);
-    writeDatum(area.ye() - 1 >> 8);
-    writeDatum(area.ye() - 1 & 0xFF);
-    endTransaction();
 
 #ifdef DEBUG
-    Serial.print("[Display] Configured drawing area x(");
-    Serial.print(area.xs());
-    Serial.print(" to ");
-    Serial.print(area.xe());
-    Serial.print("), y(");
-    Serial.print(area.ys());
-    Serial.print(" to ");
-    Serial.print(area.ye());
-    Serial.println(").");
+    Serial.print("[Display] Buffer configured for ");
+    Serial.print(area.width);
+    Serial.print("x");
+    Serial.print(area.height);
+    Serial.println(" window.");
 #endif
   };
   void setPixel(int x, int y, Color color)
@@ -161,17 +148,16 @@ public:
     Serial.println(" (RGB565).");
 #endif
   };
-  void drawPixels()
+  void drawBuffer()
   {
+    configureDrawArea(buffer.getArea());
+
     beginTransaction();
     writeCommand(RAMWR);
     COLOR_FORMAT *colors = buffer.getBuffer();
 
     for (int i = 0; i < buffer.size(); i++)
-    {
-      writeDatum((uint16_t)colors[i] >> 8);
-      writeDatum((uint16_t)colors[i] & 0xFF);
-    }
+      writeColor((uint16_t)colors[i]);
 
     endTransaction();
 
@@ -185,15 +171,63 @@ public:
     Serial.println(" window.");
 #endif
   };
-
-  void fill(Color color)
+  void scaleAndDraw()
   {
+    // TODO: implement this properly
+
+    beginTransaction();
+    writeCommand(RAMWR);
+    COLOR_FORMAT *colors = buffer.getBuffer();
+
+    int xScale = dimensions.width / buffer.getArea().width,
+        yScale = dimensions.height / buffer.getArea().height;
+
+    configureDrawArea(dimensions);
+
+    for (int y = 0; y < buffer.getArea().height; y++)
+      for (int x = 0; x < buffer.getArea().width; x++)
+        for (int i = 0; i < xScale; i++)
+          for (int j = 0; j < yScale; j++)
+            writeColor((uint16_t)colors[y * buffer.getArea().width + x]);
+
+    endTransaction();
+
 #ifdef DEBUG
-    Serial.print("[Display] Filling with #");
+    Serial.print("[Display] Scaled and drew");
+    Serial.print(buffer.size());
+    Serial.print(" pixels in ");
+    Serial.print(dimensions.width);
+    Serial.print("x");
+    Serial.print(dimensions.height);
+    Serial.println(" window.");
+#endif
+  };
+
+  // fill the display directly, without using the buffer
+  void fill(Color color) { fill(color, dimensions); };
+  void clear() { fill(Color::black); };
+  void clear(Window area) { fill(Color::black, area); };
+  void fill(Color color, Window area)
+  {
+    configureDrawArea(area);
+
+    beginTransaction();
+    writeCommand(RAMWR);
+
+    for (int i = 0; i < area.size(); i++)
+      writeColor((uint16_t)color);
+
+    endTransaction();
+
+#ifdef DEBUG
+    Serial.print("[Display] Filled ");
+    Serial.print(area.width);
+    Serial.print("x");
+    Serial.print(area.height);
+    Serial.print(" window with #");
     Serial.print((uint16_t)color, HEX);
     Serial.println(" (RGB565).");
 #endif
-    buffer.fill(color);
   };
 
   void invert(bool on)
@@ -201,32 +235,32 @@ public:
     beginTransaction();
     writeCommand(on ? INVON : INVOFF);
     endTransaction();
-  };
-  void clear()
-  {
-    configureArea(window);
-    fill(Color::black);
-    drawPixels();
 
 #ifdef DEBUG
-    Serial.println("[Display] Cleared.");
+    Serial.print("[Display] Color inversion is ");
+    Serial.println(on ? "on." : "off.");
 #endif
   };
 
+  // print text
   int printChar(int x, int y, char value, Color fgColor, Color bgColor)
   {
+    Window area(x, y, x + CHAR_WIDTH, y + CHAR_HEIGHT);
 
-    if (x + CHAR_WIDTH > window.width || y + CHAR_HEIGHT > window.height)
+    if (area.width > dimensions.width || area.height > dimensions.height)
       return -1;
+
+    configureBuffer(area);
+    configureDrawArea(area);
 
     for (int i = 0; i < CHAR_WIDTH; i++)
       for (int j = 0; j < CHAR_HEIGHT; j++)
         if ((font[value - ' '][i]) & (1 << (CHAR_HEIGHT - 1 - j)))
-          setPixel(x + i, y + j, fgColor);
+          setPixel(i, j, fgColor);
         else
-          setPixel(x + i, y + j, bgColor);
+          setPixel(i, j, bgColor);
 
-    drawPixels();
+    drawBuffer();
 
     return 0;
 
@@ -243,9 +277,10 @@ public:
     Serial.println((uint16_t)bgColor, HEX);
 #endif
   }
+
   int printString(int x, int y, char *c_str, Color fgColor, Color bgColor)
   {
-    if (x + strlen(c_str) * 6 > window.width || y + 8 > window.height)
+    if (x + strlen(c_str) * 6 > dimensions.width || y + 8 > dimensions.height)
       return -1;
     else
       for (int i = 0; c_str[i] != '\0'; i++)
@@ -255,26 +290,47 @@ public:
   }
 
 private:
+  const static int RST = 9, DC = 8, CS = 10;
+
   const static int CHAR_WIDTH = 6, CHAR_HEIGHT = 8;
 
-  const static int RST = 9, DC = 8;
-
 #ifdef __AVR_ATmega2560__
-  const static int CS = 53;
+  const static int SS_SLAVE = 53;
   typedef uint8_t COLOR_FORMAT;
 #else
-  const static int CS = 10;
   typedef uint16_t COLOR_FORMAT;
 #endif
 
-  const static int SPI_DEFAULT_FREQ = 1e6;
-  SPISettings settings = SPISettings(SPI_DEFAULT_FREQ, MSBFIRST, SPI_MODE0);
+  SPISettings settings = SPISettings(40e6, MSBFIRST, SPI_MODE0);
 
+  Window dimensions;
   DisplayBuffer<COLOR_FORMAT> buffer;
+
+  void configureDrawArea(Window area)
+  {
+    beginTransaction();
+    writeCommand(NOP);
+    writeCommand(CASET);
+    writeColor(area.xs()), writeColor(area.xe() - 1);
+    writeCommand(RASET);
+    writeColor(area.ys()), writeColor(area.ye() - 1);
+    endTransaction();
+
+#ifdef DEBUG
+    Serial.print("[Display] Configured drawing area x(");
+    Serial.print(area.xs());
+    Serial.print(" to ");
+    Serial.print(area.xe());
+    Serial.print("), y(");
+    Serial.print(area.ys());
+    Serial.print(" to ");
+    Serial.print(area.ye());
+    Serial.println(").");
+#endif
+  };
 
   void commandMode() { digitalWrite(DC, LOW); }
   void dataMode() { digitalWrite(DC, HIGH); }
-
   void on() { digitalWrite(CS, LOW); }
   void off() { digitalWrite(CS, HIGH); }
 
@@ -282,32 +338,28 @@ private:
   {
     SPI.beginTransaction(settings);
     on();
-  };
+  }
   void endTransaction()
   {
     off();
     SPI.endTransaction();
-  };
+  }
 
   void writeCommand(Command cmd)
   {
     commandMode();
     SPI.transfer(cmd);
     dataMode();
-  };
-
-  void writeDatum(uint8_t datum)
-  {
-    SPI.transfer(datum);
   }
+  void writeData(uint8_t data) { SPI.transfer(data); }
+  void writeColor(uint16_t color) { SPI.transfer16(color); }
 
 public:
-  const static Display ili9341, st7735, limitedMemory;
+  const static Display ili9341, st7735;
 };
 
 const Display
-    Display::ili9341 = Display(240, 320),     // 2.2" TFT, 240x320 pixel
-    Display::st7735 = Display(128, 160),      // 1.8" TFT, 160x128 pixel
-    Display::limitedMemory = Display(64, 64); // 64x64 pixel
+    Display::ili9341 = Display(240, 320), // 2.2" TFT, 320 pixel, black part below is not display !!!
+    Display::st7735 = Display(128, 160);  // 1.8" TFT, 160x128 pixel
 
 #endif // DISPLAY_H

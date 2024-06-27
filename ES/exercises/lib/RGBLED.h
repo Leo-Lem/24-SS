@@ -1,7 +1,9 @@
-#ifndef RGBLED_H
-#define RGBLED_H
+
 
 #include <Arduino.h>
+
+#ifndef RGBLED_H
+#define RGBLED_H
 
 class RGBLED
 {

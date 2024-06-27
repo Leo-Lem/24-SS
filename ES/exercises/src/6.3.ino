@@ -10,48 +10,41 @@ const Color fgColor = Color::yellow, bgColor = Color::black;
 
 void clear()
 {
-#ifdef __AVR_ATmega2560__
-  // set up smaller area due to memory constraints
-  Window area(70, 70);
-  display.configureArea(area);
-#endif
-
-  // clear display
   display.fill(bgColor);
-  Serial.println("[Exercise 6.2] Cleared Display.");
+  Serial.println("[Exercise 6.3] Cleared Display.");
 }
 
 void columns()
 {
-  for (int x = display.window.xs(); x < display.window.xe(); x++)
+  for (int x = display.getDimensions().xs(); x < display.getDimensions().xe(); x++)
   {
-    display.configureArea(Window(x, x + 1, display.window.ys(), display.window.ye()));
-    for (int y = 0; y < display.window.height; y++)
+    display.configureBuffer(Window(x, display.getDimensions().ys(), x + 1, display.getDimensions().ye()));
+    for (int y = 0; y < display.getDimensions().height; y++)
       display.setPixel(x, y, fgColor);
 
-    display.drawPixels();
+    display.drawBuffer();
     delay(20);
   }
 
-  Serial.println("[Exercise 6.2] Filled Display with fgColor.");
+  Serial.println("[Exercise 6.3] Filled Display with fgColor.");
 
-  for (int x = display.window.xs(); x < display.window.xe(); x++)
+  for (int x = display.getDimensions().xs(); x < display.getDimensions().xe(); x++)
   {
-    display.configureArea(Window(x, x + 1, display.window.ys(), display.window.ye()));
-    for (int y = 0; y < display.window.height; y++)
+    display.configureBuffer(Window(x, display.getDimensions().ys(), x + 1, display.getDimensions().ye()));
+    for (int y = 0; y < display.getDimensions().height; y++)
       display.setPixel(x, y, bgColor);
 
-    display.drawPixels();
+    display.drawBuffer();
     delay(20);
   }
 
-  Serial.println("[Exercise 6.2] Cleared Display with bgColor.");
+  Serial.println("[Exercise 6.3] Cleared Display with bgColor.");
 }
 
 void setup()
 {
-  Serial.begin(9600); // open serial port
-  display.init();     // power-on-reset of Display
+  Serial.begin(9600);
+  display.init();
 }
 
 void loop() { columns(); }

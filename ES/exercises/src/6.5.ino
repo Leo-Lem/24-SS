@@ -1,14 +1,19 @@
+
+
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
-Display display = Display::limitedMemory;
+Display display = Display::ili9341;
 #else
 Display display = Display::st7735;
 #endif
 
 void printChar(char c)
 {
-  int result = display.printChar(10, 10, c, Color::white, Color::black);
+  int result = display.printChar(
+      display.getDimensions().width / 2,
+      display.getDimensions().height - 10,
+      c, Color::white, Color::black);
 
   Serial.print("[Exercise 6.5] Character ");
   Serial.print(c);
@@ -17,7 +22,10 @@ void printChar(char c)
 
 void printString(char *str)
 {
-  int result = display.printString(30, 20, str, Color::green, Color::black);
+  int result = display.printString(
+      display.getDimensions().width / 2 - strlen(str) * 6 / 2,
+      display.getDimensions().height / 2,
+      str, Color::green, Color::black);
 
   Serial.print("[Exercise 6.5] String ");
   Serial.print(str);
@@ -26,14 +34,14 @@ void printString(char *str)
 
 void setup()
 {
-  Serial.begin(9600); // open serial port
-  display.init();     // power-on-reset of Display
+  Serial.begin(9600);
+  display.init();
   Serial.println("[Exercise 6.5] Setup done.");
 
   display.clear();
 
   printChar('A');
-  printString("Hi!");
+  printString("Hello, world!");
 }
 
 void loop() {}

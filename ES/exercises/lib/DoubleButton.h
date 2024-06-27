@@ -1,9 +1,9 @@
-#ifndef DOUBLEBUTTON_H
-#define DOUBLEBUTTON_H
 
 #include <Arduino.h>
-
 #include "Button.h"
+
+#ifndef DOUBLEBUTTON_H
+#define DOUBLEBUTTON_H
 
 class DoubleButton
 {

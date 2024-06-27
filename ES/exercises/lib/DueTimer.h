@@ -1,8 +1,10 @@
-#ifndef DUETIMER_H
-#define DUETIMER_H
+
 
 #include <Arduino.h>
 #include <inttypes.h>
+
+#ifndef DUETIMER_H
+#define DUETIMER_H
 
 class DueTimer
 {
@@ -52,17 +54,16 @@ private:
 #endif
 
 DueTimer::HWTimer DueTimer::timers[9] =
-{
-  { TIMER_AVAILABLE, TC0->TC_CHANNEL, ID_TC0, TC0_IRQn, NULL },
-  { true, TC0->TC_CHANNEL + 1, ID_TC1, TC1_IRQn, NULL },
-  { TIMER_AVAILABLE, TC0->TC_CHANNEL + 2, ID_TC2, TC2_IRQn, NULL },
-  { TIMER_AVAILABLE, TC1->TC_CHANNEL, ID_TC3, TC3_IRQn, NULL },
-  { TIMER_AVAILABLE, TC1->TC_CHANNEL + 1, ID_TC4, TC4_IRQn, NULL },
-  { TIMER_AVAILABLE, TC1->TC_CHANNEL + 2, ID_TC5, TC5_IRQn, NULL },
-  { true, TC2->TC_CHANNEL, ID_TC6, TC6_IRQn, NULL },
-  { true, TC2->TC_CHANNEL + 1, ID_TC7, TC7_IRQn, NULL },
-  { true, TC2->TC_CHANNEL + 2, ID_TC8, TC8_IRQn, NULL }
-};
+    {
+        {TIMER_AVAILABLE, TC0->TC_CHANNEL, ID_TC0, TC0_IRQn, NULL},
+        {true, TC0->TC_CHANNEL + 1, ID_TC1, TC1_IRQn, NULL},
+        {TIMER_AVAILABLE, TC0->TC_CHANNEL + 2, ID_TC2, TC2_IRQn, NULL},
+        {TIMER_AVAILABLE, TC1->TC_CHANNEL, ID_TC3, TC3_IRQn, NULL},
+        {TIMER_AVAILABLE, TC1->TC_CHANNEL + 1, ID_TC4, TC4_IRQn, NULL},
+        {TIMER_AVAILABLE, TC1->TC_CHANNEL + 2, ID_TC5, TC5_IRQn, NULL},
+        {true, TC2->TC_CHANNEL, ID_TC6, TC6_IRQn, NULL},
+        {true, TC2->TC_CHANNEL + 1, ID_TC7, TC7_IRQn, NULL},
+        {true, TC2->TC_CHANNEL + 2, ID_TC8, TC8_IRQn, NULL}};
 
 DueTimer::DueTimer() : id(INVALID_TIMER)
 {
@@ -92,7 +93,10 @@ DueTimer::~DueTimer()
 bool DueTimer::configure(const uint32_t hz, void (*callback)(void))
 {
   // Fail if not a valid timer (all timers used)
-  if (id == INVALID_TIMER) { return false; }
+  if (id == INVALID_TIMER)
+  {
+    return false;
+  }
 
   // Store the interrupt callback function
   timers[id].callback = callback;
@@ -103,7 +107,7 @@ bool DueTimer::configure(const uint32_t hz, void (*callback)(void))
 
   // Set timer clock using the smallest available divisor (i.e. 2) for the master clock
   timers[id].tc_channel->TC_CMR =
-    TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC | TC_CMR_TCCLKS_TIMER_CLOCK1;
+      TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC | TC_CMR_TCCLKS_TIMER_CLOCK1;
 
   // Determine and set the compare value corresponding to the frequency
   uint32_t cmp_value = (DUE_F_CPU / 2 / hz) - 1;
@@ -123,7 +127,10 @@ bool DueTimer::configure(const uint32_t hz, void (*callback)(void))
 bool DueTimer::start()
 {
   // Fail if current object is not a valid (or usable) timer
-  if (id == INVALID_TIMER || timers[id].callback == NULL) { return false; }
+  if (id == INVALID_TIMER || timers[id].callback == NULL)
+  {
+    return false;
+  }
 
   // Enable the counter clock, reset the counter and start the clock
   timers[id].tc_channel->TC_CCR = TC_CCR_CLKEN | TC_CCR_SWTRG;
@@ -134,7 +141,10 @@ bool DueTimer::start()
 bool DueTimer::stop()
 {
   // Fail if current object is not a valid timer
-  if (id == INVALID_TIMER) { return false; }
+  if (id == INVALID_TIMER)
+  {
+    return false;
+  }
 
   // Disable the counter clock
   timers[id].tc_channel->TC_CCR = TC_CCR_CLKDIS;

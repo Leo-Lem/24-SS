@@ -1,74 +1,62 @@
 #include "Display.h"
-#include "Timer.h"
 
 #ifdef __AVR_ATmega2560__
-Display display = Display::limitedMemory;
+Display display = Display::ili9341;
 #else
 Display display = Display::st7735;
 #endif
 
-void activity(int length, int delayMS = 1000 / 10)
+bool isDrawing = false;
+
+void activity(int length, int delayMS = 1000)
 {
+  Window area(display.getDimensions(), length, length);
+
   const int
-      xc = display.window.width / 2,
-      yc = display.window.height / 2,
+      xc = area.xs() + area.width / 2,
+      yc = area.ys() + area.height / 2,
       radius = length / 2;
 
   // symbol |
-  display.clear();
-  display.configureArea(Window(xc, xc + 1, yc - radius, yc + radius));
-  display.fill(Color::white);
-  display.drawPixels();
-
+  display.clear(area);
+  display.fill(Color::white, Window(xc, yc - radius, xc + 1, yc + radius));
   Serial.print("[Exercise 6.4] Symbol | drawn.\r");
   delay(delayMS);
 
   // symbol /
-  display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
+  display.clear(area);
+  display.configureBuffer(area);
   for (int i = 0; i < length; i++)
-    display.setPixel(xc - radius + i, yc + radius - i, Color::white);
-  display.drawPixels();
+    display.setPixel(area.width - i, i, Color::white);
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol / drawn.\r");
   delay(delayMS);
 
   // symbol -
-  display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc, yc + 1));
-  display.fill(Color::white);
-  display.drawPixels();
+  display.clear(area);
+  display.fill(Color::white, Window(xc - radius, yc, xc + radius, yc + 1));
 
   Serial.print("[Exercise 6.4] Symbol - drawn.\r");
   delay(delayMS);
 
   // symbol "\"
-  display.clear();
-  display.configureArea(Window(xc - radius, xc + radius, yc - radius, yc + radius));
+  display.clear(area);
+  display.configureBuffer(area);
   for (int i = 0; i < length; i++)
-    display.setPixel(xc - radius + i, yc - radius + i, Color::white);
-  display.drawPixels();
+    display.setPixel(i, i, Color::white);
+  display.drawBuffer();
 
   Serial.print("[Exercise 6.4] Symbol \\ drawn.\r");
   delay(delayMS);
 }
 
-void activityIndicator()
-{
-  noInterrupts();
-  activity(50, 10);
-  interrupts();
-}
-
 void setup()
 {
-  Serial.begin(9600); // open serial port
-  display.init();     // power-on-reset of Display
+  Serial.begin(9600);
+  display.init();
 
   Serial.println("[Exercise 6.4] Setup done.");
-
-  Timer::configure(activityIndicator);
-  Timer::start();
 }
 
-void loop() {}
+void loop() { activity(50, 1000); }

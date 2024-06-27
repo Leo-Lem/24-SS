@@ -1,4 +1,5 @@
 
+
 #include <stdint.h>
 #include "Color.h"
 #include "Window.h"
@@ -55,13 +56,6 @@ public:
       Serial.println(" out of bounds.");
 #endif
     }
-  }
-
-  void fill(Color color)
-  {
-    for (int x = 0; x < area.width; x++)
-      for (int y = 0; y < area.height; y++)
-        set(x, y, color);
   }
 
   int size() { return min(area.size() * sizeof(BufferFormat), MAX_MEMORY_B / sizeof(BufferFormat)); }
