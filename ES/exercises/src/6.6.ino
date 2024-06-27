@@ -12,7 +12,7 @@ char *names[] = {"Fritz Foerster", "Leopold Lemmermann"},
 
 static int student = 0;
 
-void printNameAndID()
+void printNextStudent()
 {
   const int xc = display.getDimensions().width / 2, yc = display.getDimensions().height / 2;
 
@@ -25,11 +25,6 @@ void printNameAndID()
       xc - strlen(matriculationNumbers[student]) * 6 / 2,
       yc - 3,
       matriculationNumbers[student], Color::white, Color::black);
-}
-
-void printNextStudent()
-{
-  printNameAndID();
 
   Serial.print("[Exercise 6.6] Printed student ");
   Serial.print(student);

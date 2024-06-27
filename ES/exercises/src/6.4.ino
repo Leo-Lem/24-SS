@@ -1,3 +1,6 @@
+
+// TODO: fix buffer not clearing on configure
+
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
@@ -5,8 +8,6 @@ Display display = Display::ili9341;
 #else
 Display display = Display::st7735;
 #endif
-
-bool isDrawing = false;
 
 void activity(int length, int delayMS = 1000)
 {

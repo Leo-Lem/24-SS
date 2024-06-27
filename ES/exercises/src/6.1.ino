@@ -8,15 +8,10 @@ Display display = Display::st7735;
 
 void demo()
 {
-// clear display
-#ifdef __AVR_ATmega2560__
-  Window area(display.getDimensions(), 80, 80);
-#else
   Window area = display.getDimensions();
-#endif
 
-  display.fill(Color::white);                                         // fill display with white
-  display.fill(Color::blue, Window(display.getDimensions(), 20, 20)); // draw centered blue rectangle
+  display.fill(Color::white);                      // fill display with white
+  display.fill(Color::blue, Window(area, 20, 20)); // draw centered blue rectangle
 
   // draw centered red colored cross with two pixel width
   const int yc = area.ys() + area.height / 2;

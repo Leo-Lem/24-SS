@@ -1,5 +1,7 @@
 
 
+// TODO: fix 8 bit color's being wrong
+
 #include <stdint.h>
 
 #ifndef COLOR_H
