@@ -11,7 +11,7 @@ BUILD_DIR := .build
 CHIPS := $(patsubst chips/%.chip.c, $(BUILD_DIR)/chips/%.chip.wasm, $(wildcard chips/*.chip.c))
 
 .PHONY: all
-all: $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h compile
+all: $(CHIPS) $(BUILD_DIR)/exercise $(BUILD_DIR)/exercise/exercise.ino $(BUILD_DIR)/exercise/*.h $(BUILD_DIR)/exercise/*.txt $(BUILD_DIR)/exercise/*.img compile
 
 .PHONY: clean
 clean:
@@ -28,6 +28,13 @@ $(BUILD_DIR)/chips/%.chip.wasm: chips/%.chip.c | $(BUILD_DIR)/chips
 # Add libs
 $(BUILD_DIR)/exercise/*.h: $(BUILD_DIR)/exercise lib/*.h
 		cp lib/*.h $(BUILD_DIR)/exercise/
+
+# Add res
+$(BUILD_DIR)/exercise/*.txt: $(BUILD_DIR)/exercise res/*.txt
+		cp res/*.txt $(BUILD_DIR)/exercise/
+
+$(BUILD_DIR)/exercise/*.img: $(BUILD_DIR)/exercise res/*.img
+		cp res/*.img $(BUILD_DIR)/exercise/
 
 # Copy the exercise code to the build directory
 $(BUILD_DIR)/exercise:
