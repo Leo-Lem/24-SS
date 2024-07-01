@@ -59,10 +59,9 @@
       \item Es gibt verschiedene Möglichkeiten, um ein Schutzsystem zu implementieren, das sicherstellt, dass nur Berechtigte Zugang zu den Inhalten haben:
             \begin{itemize}
               \item Digitale Rechteverwaltung (DRM): Hierbei werden die Inhalte verschlüsselt und können nur mit einem speziellen Schlüssel, der an die Lizenz des Benutzers gebunden ist, entschlüsselt werden. Dies könnte beispielsweise über eine Online-Authentifizierung geschehen, bei der der Benutzer sich bei jedem Zugriff auf den Inhalt verifizieren muss.
-              \item Wasserzeichen: Digitale Wasserzeichen können in die Dateien eingefügt werden, um die Nachverfolgung von illegal verbreiteten Kopien zu ermöglichen. Diese Wasserzeichen könnten Informationen über den ursprünglichen Käufer enthalten.
               \item Hardwaregebundene Lizenzen: Die Lizenz für den Zugriff auf die Daten könnte an eine bestimmte Hardware gebunden werden, wie z.B. an die Seriennummer eines Computers oder eines speziellen Dongles, der an den Computer angeschlossen werden muss.
-              \item Benutzerspezifische Verschlüsselung: Jede Kopie der Daten könnte individuell verschlüsselt werden, wobei der Schlüssel nur dem berechtigten Benutzer bekannt ist. Dies könnte durch ein sicheres Benutzerauthentifizierungssystem ergänzt werden.
               \item Cloud-basierte Lösungen: Anstatt die Daten physisch auf einem Datenträger zu speichern, könnten die Inhalte in der Cloud gespeichert und nur nach erfolgreicher Authentifizierung gestreamt werden. Der Zugang könnte an ein Benutzerkonto gebunden sein.
+              \item Wasserzeichen: Digitale Wasserzeichen können in die Dateien eingefügt werden, um die Nachverfolgung von illegal verbreiteten Kopien zu ermöglichen. Diese Wasserzeichen könnten Informationen über den ursprünglichen Käufer enthalten.
             \end{itemize}
       \item Die Problemstellung unterscheidet sich in einigen wesentlichen Punkten vom Schutz vor Raubkopien in der Software-Branche:
             \begin{itemize}
@@ -80,7 +79,15 @@
   Mit dem Einsatz eines Hardwarebausteins im PC, der für seinen Besitzer nicht ausforschbar ist, und der aus Inhalteanbieter-Sicht für eine "sichere" Systemkonfiguration sorgt, soll ein digitales Rechtemanagement möglich werden. Beschreiben Sie, wie der Ablauf vom Booten des PCs bis zur Nutzung des Inhalts aussehen könnte, damit keine fremde Software an die ungesicherten Mediendaten kommt.
 
   \begin{solution}
-    Beim Booten des PCs initialisiert das BIOS/UEFI den Hardwarebaustein, der sicherstellt, dass nur vertrauenswürdige Software gestartet wird (Secure Boot). Nach der erfolgreichen Überprüfung der Signatur des Betriebssystems durch den Hardwarebaustein wird das Betriebssystem gestartet. Innerhalb des Betriebssystems sorgt eine spezielle Trusted Execution Environment (TEE) dafür, dass nur autorisierte Anwendungen auf geschützte Inhalte zugreifen können. Wenn der Benutzer auf geschützte Mediendaten zugreifen möchte, authentifiziert er sich gegenüber dem System (z.B. über Passwort, Fingerabdruck oder Smartcard). Die autorisierte Anwendung fordert dann den Hardwarebaustein auf, die Mediendaten zu entschlüsseln und in einen gesicherten Speicherbereich zu laden, auf den nur diese Anwendung zugreifen kann. Jegliche Versuche von nicht autorisierter Software, auf diesen Speicherbereich zuzugreifen, werden blockiert.
+    \begin{enumerate}
+      \item Hardwarebaustein initialisieren: Der Hardwarebaustein wird beim Booten des PCs initialisiert und überprüft die Integrität des Systems.
+      \item Signatur überprüfen (Secure Boot): Der Hardwarebaustein überprüft die Signatur des Betriebssystems, um sicherzustellen, dass nur vertrauenswürdige Software gestartet wird.
+      \item Betriebssystem starten: Nach erfolgreicher Überprüfung der Signatur wird das Betriebssystem gestartet.
+      \item Trusted Execution Environment (TEE) initialisieren: Eine spezielle TEE innerhalb des Betriebssystems sorgt dafür, dass nur autorisierte Anwendungen auf geschützte Inhalte zugreifen können.
+      \item Zugriff auf Ressource anfragen: Wenn der Benutzer auf geschützte Mediendaten zugreifen möchte, authentifiziert er sich gegenüber dem System (z.B. über Passwort, Fingerabdruck oder Smartcard).
+      \item Benutzer authentifizieren: Die autorisierte Anwendung fordert den Hardwarebaustein auf, die Mediendaten zu entschlüsseln und in einen gesicherten Speicherbereich zu laden, auf den nur diese Anwendung zugreifen kann.
+      \item Entschlüsseln durch Hardwarebaustein ODER Blockieren von nicht autorisierter Software: Jegliche Versuche von nicht autorisierter Software, auf diesen Speicherbereich zuzugreifen, werden blockiert.
+    \end{enumerate}
   \end{solution}
 \end{exercise}
 
@@ -88,7 +95,9 @@
   Aus aktuellem Anlass veröffentlichen Sie eine Zusammenstellung aller öffentlichen Reden des Bundespräsidenten und des Innenministers der letzten Wochen in Buchform. Können Sie sich dabei auf die gesetzlich erlaubte Nutzung gemäß § 48 UrhG berufen?
 
   \begin{solution}
-    § 48 UrhG erlaubt die Vervielfältigung, Verbreitung und öffentliche Wiedergabe von Reden, die in öffentlichen Versammlungen gehalten werden, sofern dies zu Informationszwecken geschieht. Da die Reden des Bundespräsidenten und des Innenministers in der Regel zu öffentlichen und politischen Zwecken gehalten werden und zur Information der Allgemeinheit dienen, können Sie sich bei der Veröffentlichung dieser Reden auf § 48 UrhG berufen.
+    §48 I 2. UrhG erlaubt die Vervielfältigung, Verbreitung und öffentliche Wiedergabe von Reden, die in öffentlichen Versammlungen gehalten werden. Das ist grds gegeben, allerdings schränkt der §48 II UrhG ein, dass die Reden nicht überwiegend vom selben Verfasser stammen dürfen. Das dürfte hier der Fall sein, da hier eindeutig ein Fokus auf den jeweiligen Verfassern (Bundespräsident \& Innenminister) liegt.
+
+    Daher ist die Veröffentlichung in diesem Fall wohl nicht durch §48 gedeckt.
   \end{solution}
 \end{exercise}
 
@@ -124,18 +133,19 @@
 
   \begin{solution}
     \begin{enumerate}
-      \item Gutgläubiger Erwerb: Im deutschen Recht bezeichnet der gutgläubige Erwerb den Erwerb von Eigentum oder anderen Rechten von einem Nichtberechtigten, wenn der Erwerber gutgläubig, d.h. ohne Kenntnis der fehlenden Berechtigung des Veräußerers, handelt und gewisse Voraussetzungen erfüllt sind.
-      \item Gutgläubiger Erwerb im Urheberrecht: Im Urheberrecht ist der gutgläubige Erwerb von Nutzungsrechten grundsätzlich nicht möglich. Nutzungsrechte können nur vom Rechteinhaber oder von jemandem, der vom Rechteinhaber ermächtigt wurde, übertragen werden.
-      \item Aussage: "Nutzungsrechte können nur vom Urheber wirksam eingeräumt werden." Diese Aussage ist falsch. Nutzungsrechte können auch von anderen Personen eingeräumt werden, sofern sie vom Urheber die entsprechenden Rechte übertragen bekommen haben. Dies kann durch vertragliche Vereinbarungen oder Lizenzierungen geschehen.
+      \item Gutgläubiger Erwerb: Im deutschen Recht bezeichnet der gutgläubige Erwerb den Erwerb von Eigentum oder anderen Rechten von einem Nichtberechtigten, wenn der Erwerber gutgläubig, d.h. ohne Kenntnis der fehlenden Berechtigung des Veräußerers, handelt und gewisse Voraussetzungen erfüllt sind. Dies ist im Bürgerlichen Gesetzbuch (BGB) in den §§ 932 ff. geregelt.
+      \item Gutgläubiger Erwerb im Urheberrecht: Im Urheberrecht ist der gutgläubige Erwerb von Nutzungsrechten grundsätzlich nicht möglich. Nutzungsrechte können nur vom Rechteinhaber oder von jemandem, der vom Rechteinhaber ermächtigt wurde, übertragen werden. Dies ergibt sich aus § 31 UrhG, der die Einräumung von Nutzungsrechten regelt und da es umstritten ist, ob das Abstraktionsprinzip (Verpflichtungs- \& Verfügungsgeschäfte unabhängig) im Urheberrecht gilt. Daher muss die Vertragskette lückenlos nachvollzogen werden.
+      \item Diese Aussage ist falsch. Nutzungsrechte können auch von anderen Personen eingeräumt werden, sofern sie vom Urheber die entsprechenden Rechte übertragen bekommen haben. Dies kann durch vertragliche Vereinbarungen oder Lizenzierungen geschehen. Hierzu regelt § 31 UrhG die Einräumung und Übertragung von Nutzungsrechten und erlaubt es Rechteinhabern, ihre Rechte weiterzugeben.
     \end{enumerate}
   \end{solution}
 \end{exercise}
+
 
 \begin{exercise}{Erwerb von Nutzungsrechten}
   Ein E-Book-Verlag hat das ausschließliche Nutzungsrecht zur digitalen Vermarktung eines Romans vom Autor erworben. Unter welchen Umständen darf der Verlag einem Dritten ein Nutzungsrecht einräumen?
 
   \begin{solution}
-    Der Verlag darf einem Dritten ein Nutzungsrecht einräumen, wenn dies im Vertrag mit dem Autor ausdrücklich erlaubt wurde. Der Autor kann dem Verlag entweder das Recht zur Unterlizenzierung einräumen oder dies ausschließen. Ohne eine ausdrückliche Erlaubnis zur Unterlizenzierung im Vertrag ist der Verlag nicht berechtigt, einem Dritten Nutzungsrechte einzuräumen.
+    Der Verlag darf einem Dritten ein Nutzungsrecht einräumen, wenn dies im Vertrag mit dem Autor ausdrücklich erlaubt wurde (§31 UrhG). Der Autor kann dem Verlag entweder das Recht zur Unterlizenzierung einräumen oder dies ausschließen. Ohne eine ausdrückliche Erlaubnis zur Unterlizenzierung im Vertrag ist der Verlag nicht berechtigt, einem Dritten Nutzungsrechte einzuräumen (§35 UrhG).
   \end{solution}
 \end{exercise}
 
@@ -163,14 +173,17 @@
   Ein Lizenznehmer möchte ein Computerprogramm zur automatisierten Prüfung auf Sicherheitslücken dekompilieren. Unter welchen Voraussetzungen wäre eine solche Dekompilierung urheberrechtlich zulässig?
 
   \begin{solution}
-    Die Dekompilierung eines Computerprogramms ist nach § 69e UrhG unter bestimmten Voraussetzungen zulässig:
+    Die Dekompilierung eines Computerprogramms ist nach §69e UrhG unter bestimmten Voraussetzungen zulässig:
     \begin{itemize}
-      \item Notwendigkeit: Die Dekompilierung muss notwendig sein, um die Interoperabilität des Programms mit anderen Programmen herzustellen.
-      \item Berechtigtes Interesse: Der Lizenznehmer muss ein berechtigtes Interesse an der Dekompilierung haben, beispielsweise die Analyse des Programms auf Sicherheitslücken.
-      \item Nutzung durch autorisierte Person: Die Dekompilierung darf nur durch eine berechtigte Person, die eine Lizenz für das Programm besitzt, durchgeführt werden.
-      \item Einhaltung der Grenzen: Die gewonnenen Informationen dürfen nicht für andere Zwecke als die Herstellung der Interoperabilität verwendet werden und dürfen nicht an Dritte weitergegeben werden.
-      \item Keine kommerzielle Nutzung: Die Dekompilierung darf nicht zur Erstellung eines kommerziellen Konkurrenzprodukts genutzt werden.
+      \item Berechtigte Person (I 1.): Die Dekompilierung darf nur von einer berechtigten Person durchgeführt werden, d.h. vom rechtmäßigen Lizenznehmer des Programms.
+      \item Notwendige Informationen nicht verfügbar (I 2.): Die Dekompilierung ist nur zulässig, wenn die für die Herstellung der Interoperabilität notwendigen Informationen nicht auf andere Weise zugänglich sind.
+      \item Beschränkung auf bestimmte Teile (I 3.): Die Dekompilierung darf sich nur auf die Teile des Programms beschränken, die für die Herstellung der Interoperabilität erforderlich sind.
+      \item Keine anderen Zwecke (II 1.): Die gewonnenen Informationen dürfen nur für die Herstellung der Interoperabilität und nicht für andere Zwecke verwendet werden.
+      \item Keine Weitergabe an Dritte (II 2.): Die gewonnenen Informationen dürfen nicht an Dritte weitergegeben werden, es sei denn, dies ist zur Herstellung der Interoperabilität erforderlich.
+      \item Entwicklung unabhängiger Programme (II 3.): Die gewonnenen Informationen dürfen nur zur Entwicklung unabhängiger Programme verwendet werden und nicht zur Schaffung eines abgeleiteten Werks.
     \end{itemize}
+
+    Diese Voraussetzungen scheinen nicht gegeben zu sein, da die Dekompilierung zur automatisierten Prüfung auf Sicherheitslücken nicht unbedingt der Herstellung der Interoperabilität dient.
   \end{solution}
 \end{exercise}
 
@@ -208,11 +221,11 @@
 
   \begin{solution}
     \begin{enumerate}
-      \item Beim Streamen von Serien auf einem Tablet findet eine vorübergehende Vervielfältigung im Arbeitsspeicher des Geräts statt. Diese Vervielfältigung ist gemäß § 44a UrhG zulässig, wenn sie flüchtig oder begleitend und ein integraler und wesentlicher Teil eines technischen Verfahrens ist und keinen eigenständigen wirtschaftlichen Zweck verfolgt.
-      \item Ja, das Anfertigen und Veröffentlichen von Screenshots stellt eine Vervielfältigung und öffentliche Zugänglichmachung geschützter Werke dar, die ohne Erlaubnis des Rechteinhabers eine Urheberrechtsverletzung darstellt.
-      \item Das Verlinken auf öffentlich verfügbare Screenshots und Videos anderer Nutzer ist zulässig, solange keine geschützten Inhalte direkt eingebettet und sichtbar gemacht werden. Das Verlinken selbst stellt keine Vervielfältigung dar, kann aber unter Umständen als Mitstörerhaftung gewertet werden, wenn die verlinkten Inhalte urheberrechtswidrig sind.
-      \item Das Einbetten von Videoclips zur Veranschaulichung von Kostümdesigns könnte eine Urheberrechtsverletzung darstellen, wenn die Clips ohne Erlaubnis des Rechteinhabers verwendet werden. Das Zitatrecht nach § 51 UrhG könnte in bestimmten Fällen greifen, wenn die Nutzung durch den Zitatzweck gerechtfertigt und in einem angemessenen Umfang erfolgt.
-      \item Webflux kann technische Maßnahmen einsetzen, um den Benutzer zu identifizieren, der Videoclips unrechtmäßig veröffentlicht hat. Dies kann durch das Einfügen von digitalen Wasserzeichen oder durch Protokollierung der Benutzeraktivitäten und IP-Adressen erfolgen. Bei Verdacht auf Rechtsverletzung kann Webflux diese Informationen zur Identifikation und Verfolgung des verantwortlichen Benutzers nutzen.
+      \item Wenn Serienfan300 Serien auf Webfluxilux streamt, findet technisch gesehen eine temporäre Vervielfältigung auf seinem Tablet statt, da Daten in den Zwischenspeicher (Cache) geladen werden. Nach § 44a UrhG sind solche vorübergehenden Vervielfältigungen jedoch zulässig, wenn sie flüchtig oder begleitend sind und einen integralen und wesentlichen Teil eines technischen Verfahrens darstellen. Somit ist das Streaming selbst zulässig und stellt keine Urheberrechtsverletzung dar.
+      \item Ja, Serienfan300 begeht eine Urheberrechtsverletzung, wenn er selbst angefertigte Screenshots von geschützten Serien auf seinem öffentlichen Blog postet. Diese Screenshots stellen Vervielfältigungen nach § 16 UrhG dar und das öffentliche Zugänglichmachen nach § 19a UrhG. Ohne Erlaubnis des Rechteinhabers sind solche Handlungen nicht zulässig.
+      \item Wenn Serienfan300 auf öffentlich verfügbare Screenshots und Videos anderer Nutzer verlinkt, ohne diese direkt auf seinem Blog sichtbar zu machen, ist dies rechtlich unproblematisch, solange die verlinkten Inhalte rechtmäßig veröffentlicht wurden. Nach § 44a UrhG und den Grundsätzen des Hyperlinkings kann das Verlinken auf rechtmäßige Inhalte erlaubt sein.
+      \item Serienfan300 darf Videoclips nicht einbetten, um das Kostümdesign zu besprechen, da dies eine Vervielfältigung und ein öffentliches Zugänglichmachen nach §§ 16, 19a UrhG darstellt und ohne Erlaubnis des Rechteinhabers unzulässig ist. Es gibt allerdings Ausnahmen, wie das Zitatrecht nach § 51 UrhG, die aber hier wahrscheinlich nicht greifen, da das Einbetten ganzer Clips über die zulässige Zitierung hinausgeht.
+      \item Webflux kann technische Maßnahmen einsetzen, um zu ermitteln, welcher Benutzer Videoclips unrechtmäßig veröffentlicht hat. Eine Möglichkeit ist das Watermarking, bei dem unsichtbare Wasserzeichen in die Videodaten eingebettet werden. Diese Wasserzeichen können Informationen über den ursprünglichen Benutzer enthalten, der das Video gestreamt hat, sodass Webflux den Ursprung der illegalen Veröffentlichung nachverfolgen kann.
     \end{enumerate}
   \end{solution}
 \end{exercise}
@@ -221,21 +234,20 @@
   Herr Mac Mole kauft sich einen neuen Bestseller-Roman der Schriftstellerin Conni Funkel. Da er selbst mit Brille sehr schlecht sieht, lässt er sich das Buch ohne Erlaubnis der Autorin von Montgomery Arron, einem Freund, als Hörbuch aufnehmen.
   \begin{enumerate}
     \item Hat einer der beiden dabei gegen das Urheberrecht verstoßen? Begründen Sie.
-    \item Einige ebenfalls schlechtsichtige Freunde Mac Moles sind von der Idee begeistert und bitten ihn, das entstandene Hörbuch an sie weiter zu geben. Ist Mac Mole dazu berechtigt? Begründen Sie.
-    \item Die Buchautorin erfährt von dem Hörbuch und fordert von Mac Mole eine Vergütung für die vervielfältigten Werke. Hat sie nach den §§45a bis 45d UrhG einen Anspruch auf Vergütung gegenüber Mac Mole? Begründen Sie.
+    \item Einige ebenfalls schlechtsichtige Freunde Mac Moles sind von der Idee begeistert und bitten ihn, das entstandene Hörbuch an sie weiterzugeben. Ist Mac Mole dazu berechtigt? Begründen Sie.
+    \item Die Buchautorin erfährt von dem Hörbuch und fordert von Mac Mole eine Vergütung für die vervielfältigten Werke. Hat sie nach den §§ 45a bis 45d UrhG einen Anspruch auf Vergütung gegenüber Mac Mole? Begründen Sie.
     \item Darf Mac Mole das Hörbuch öffentlich anbieten und dafür Geld verlangen? Begründen Sie.
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item Ja, beide haben gegen das Urheberrecht verstoßen. Montgomery Arron hat durch das Anfertigen des Hörbuchs ohne Erlaubnis der Autorin eine unzulässige Vervielfältigung vorgenommen. Mac Mole hat die Erstellung des Hörbuchs in Auftrag gegeben und damit ebenfalls eine Urheberrechtsverletzung begangen.
-      \item Nein, Mac Mole ist nicht berechtigt, das Hörbuch weiterzugeben. Die Weitergabe würde eine weitere Vervielfältigung darstellen, die ohne die Zustimmung der Rechteinhaberin unzulässig ist.
-      \item Nach §§ 45a bis 45d UrhG gibt es Ausnahmeregelungen für die barrierefreie Nutzung von Werken. Diese Bestimmungen erlauben es blinden und sehbehinderten Menschen, Werke in barrierefreie Formate umzuwandeln, wenn keine kommerziellen Formate verfügbar sind. Allerdings ist der Nutzer zur Zahlung einer angemessenen Vergütung verpflichtet. Daher hat die Autorin Anspruch auf Vergütung.
-      \item Nein, Mac Mole darf das Hörbuch nicht öffentlich anbieten und dafür Geld verlangen. Das öffentliche Anbieten und die kommerzielle Verwertung des Hörbuchs ohne Zustimmung der Autorin stellt eine Urheberrechtsverletzung dar.
+      \item Nein, keiner der beiden hat gegen das Urheberrecht verstoßen. Nach § 45a UrhG dürfen Werke für Personen mit Behinderungen in einer für sie zugänglichen Form vervielfältigt und verbreitet werden, wenn dies unmittelbar mit der Behinderung zusammenhängt, nicht kommerziellen Zwecken dient und in dem erforderlichen Umfang geschieht. Da Mac Mole das Buch aufgrund seiner Sehbehinderung als Hörbuch benötigt und dies nicht kommerziellen Zwecken dient, ist dies erlaubt. Dies ist insbesondere im §45b geregelt.
+      \item Nein, Mac Mole ist nicht berechtigt, das entstandene Hörbuch an seine ebenfalls sehbehinderten Freunde weiterzugeben. Die Ausnahmeregelung des § 45a UrhG gilt nur für die Herstellung und Nutzung durch die betroffene Person selbst. Eine Weitergabe an Dritte ist nicht gestattet.
+      \item Nein, die Buchautorin hat keinen Anspruch auf Vergütung. Nach § 45a II UrhG ist der Urheber nicht zur Zahlung einer Vergütung berechtigt, wenn die Vervielfältigung im Rahmen der gesetzlichen Schrankenregelung aus §45b-d UrhG für behinderte Personen erfolgt.
+      \item Nein, Mac Mole darf das Hörbuch nicht öffentlich anbieten und dafür Geld verlangen. Nach § 45a UrhG ist die Nutzung nur für nicht kommerzielle Zwecke gestattet. Das öffentliche Anbieten und der Verkauf des Hörbuchs würde einen kommerziellen Zweck darstellen und wäre daher nicht erlaubt.
     \end{enumerate}
   \end{solution}
 \end{exercise}
-
 
 
 \sheet[2023]{Altklausur}
