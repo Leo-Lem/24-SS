@@ -1,0 +1,699 @@
+\documentclass{article}
+
+\usepackage[solutions]{xrcise}
+
+\subject{Eingebettete Systeme}
+\semester{Summer 2024}
+\author{Leopold Lemmermann}
+
+\begin{document}\createtitle
+
+\sheet{Mafiasi questions}
+\begin{exercise}{Embedded Systems Design}
+  \begin{enumerate}
+    \item Worauf sollte man beim Entwurf von eingebetteten Systemen achten und was sind die Besonderheiten im Vergleich zur normalen Softwareentwicklung?
+    \item Wie unterscheiden sich eingebettete Systeme von normalen Computern?
+    \item Was versteht man unter Zuverlässigkeit von Embedded Systems und wie kann man diese messen?
+    \item Was beschreibt der Fault in Time (FIT) Wert und wie wird dieser bestimmt?
+    \item Was versteht man genau unter Scratch Pad Memory?
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Besonderheiten: Echtzeitfähigkeit, Ressourcenknappheit, Energieeffizienz, Sicherheit
+      \item Unterschiede: Eingebettete Systeme sind spezialisierte Computersysteme, die in anderen Systemen eingebettet sind und spezielle Aufgaben erfüllen.
+      \item Zuverlässigkeit: Zuverlässigkeit beschreibt die Fähigkeit eines Systems, eine bestimmte Funktion unter spezifizierten Bedingungen
+      \item FIT: Der FIT-Wert gibt die Anzahl der Ausfälle pro Milliarde Betriebsstunden an und wird durch Zuverlässigkeitstests bestimmt.
+      \item Scratch Pad Memory: Ein Scratchpad-Speicher ist ein kleiner, schneller und energieeffizienter Speicher, der zur Speicherung häufig verwendeter Daten verwendet wird.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Betriebssysteme}
+  \begin{enumerate}
+    \item Worin Unterscheiden sich Betriebssysteme von Eingebetteten Systemen und "normalen" Betriebssystemen?
+    \item Wie behandelt ein normales Betriebssystem Interrupts?
+    \item Was machen Betriebsysteme noch?
+    \item Wie unterscheiden sich hier die normalen Betriebssysteme von den eingebetteten Systemen und wo liegen die Vorteile der einzelnen Systeme?
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Unterschiede: Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und bieten Funktionen wie Echtzeitfähigkeit, geringen Speicherbedarf und Energieeffizienz.
+      \item Interrupts: Interrupts werden von einem normalen Betriebssystem behandelt, indem sie den aktuellen Prozess unterbrechen und den Interrupt-Handler ausführen.
+      \item Betriebssysteme verwalten Ressourcen wie Prozessoren, Speicher und Geräte, bieten Schnittstellen für Anwendungen und sorgen für die Sicherheit und Zuverlässigkeit des Systems.
+      \item Unterschiede: Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und bieten Funktionen wie Echtzeitfähigkeit, geringen Speicherbedarf und Energieeffizienz.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{MoCs}
+  \begin{enumerate}
+    \item Was sind die Beschriftungen der Tabelle über MoCs?
+    \item Erklären Sie ein MoC Ihrer Wahl genauer.
+    \item Beschreiben Sie kurz, was Shared Memory und Message Passing sind.
+    \item Was sind die Vor- und Nachteile von Shared Memory bzw. Message Passing?
+    \item Wie bestimmt man die Größe der Buffer beim asynchronen Message Passing?
+    \item Was ist Priority Inversion und wie kann man das vermeiden?
+    \item Was kann noch für ein Problem auftreten und wie vermeidet man das?
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Beschriftungen: Name, Beschreibung, Eigenschaften, Anwendungen, Vor- und Nachteile
+      \item MoC: StateCharts
+      \item Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können. Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
+      \item Vor- und Nachteile: Shared Memory ermöglicht schnellen Datenaustausch, kann aber zu
+      \item Größe der Buffer: Die Größe der Buffer beim asynchronen Message Passing wird durch die Anzahl der Nachrichten und die Größe der Nachrichten bestimmt.
+      \item Priority Inversion: Priority Inversion tritt auf, wenn ein niedrig priorisierter Prozess eine Ressource blockiert, die von einem höher priorisierten Prozess benötigt wird. Priority Inversion kann durch die Verwendung von Prioritätsvererbung oder Prioritätsdecke vermieden werden.
+      \item Deadlock: Deadlocks können auftreten, wenn Prozesse auf gegenseitige Exklusivität warten. Deadlocks können durch die Verwendung von Ressourcenverwaltungsalgorithmen wie Banker's Algorithm oder durch die Vermeidung von zyklischen Wartebedingungen vermieden werden.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Scheduling}
+  \begin{enumerate}
+    \item Was sind die 4 Eigenschaften von Scheduling-Verfahren? Beschreiben Sie diese kurz.
+    \item Stellen Sie einen Algorithmus vor und ordnen Sie ihn in die Kategorien ein.
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Eigenschaften: Determinismus, Fairness, Echtzeitfähigkeit, Effizienz
+      \item Rate Monotonic Scheduling: Rate Monotonic Scheduling ist ein deterministisches, präemptives Scheduling-Verfahren, bei dem die Priorität eines Prozesses durch seine Rate bestimmt wird.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{High-Level Optimierung}
+  \begin{enumerate}
+    \item Nennen Sie einige High-Level Optimierungen und erklären Sie diese kurz.
+    \item Weswegen würde man Loop Unrolling anwenden?
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item High-Level Optimierungen: Loop Unrolling, Loop Tiling, Data Prefetching
+      \item Loop Unrolling: Loop Unrolling wird angewendet, um den Overhead von Schleifen zu reduzieren und die Parallelität von Instruktionen zu erhöhen.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\sheet{Introduction (Marwedel)}
+\begin{exercise}{Definitions}
+  Please list possible definitions of the term "embedded system"!
+
+  \begin{solution}
+    An embedded system is a computer system that is part of a larger system or machine. It is dedicated to the control of the system or machine and is not a general-purpose computer.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Cyber-Physical Systems (CPS)}
+  How would you define the term "cyber-physical system (CPS)"? Do you see any difference between the terms "embedded systems" and "cyber-physical systems"?
+
+  \begin{solution}
+    A cyber-physical system (CPS) is a system that is controlled or monitored by computer-based algorithms. The difference between embedded systems and CPS is that CPS are more tightly integrated with the physical world.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Internet of Things (IoT)}
+  What is the "Internet of Things" (IoT)?
+
+  \begin{solution}
+    The Internet of Things (IoT) is a network of physical devices that are connected to the internet and can communicate with each other.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Industry 4.0}
+  What is the goal of "Industry 4.0"?
+
+  \begin{solution}
+    The goal of Industry 4.0 is to create smart factories that are more efficient and flexible than traditional factories.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Application Areas}
+  In which application areas do you see opportunities for CPS and IoT systems? Where do you expect major changes caused by information technology?
+
+  \begin{solution}
+    Opportunities for CPS and IoT systems can be found in areas such as healthcare, transportation, and manufacturing. Major changes caused by information technology can be expected in areas such as automation, data analysis, and communication.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Importance of Embedded Systems}
+  Use the sources available to you to demonstrate the importance of embedded systems!
+
+  \begin{solution}
+    Embedded systems are important because they are used in a wide range of applications, from consumer electronics to industrial control systems.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Challenges}
+  Which challenges must be overcome in order to fully take advantage of the opportunities?
+
+  \begin{solution}
+    Challenges that must be overcome in order to fully take advantage of the opportunities include security, reliability, and energy efficiency.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Timing Constraints}
+  What is a hard timing constraint? What is a soft timing constraint?
+
+  \begin{solution}
+    A hard timing constraint is a timing requirement that must be met in order for the system to function correctly. A soft timing constraint is a timing requirement that is desirable but not essential.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Zeno Effect}
+  What is the "Zeno effect"?
+
+  \begin{solution}
+    The Zeno effect is a phenomenon in which a system approaches a state but never reaches it.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Adaptive Sampling}
+  What is adaptive sampling?
+
+  \begin{solution}
+    Adaptive sampling is a technique in which the sampling rate of a system is adjusted based on the input signal.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Design Objectives}
+  Which objectives must be considered during the design of embedded and cyber-physical systems?
+
+  \begin{solution}
+    Objectives that must be considered during the design of embedded and cyber-physical systems include performance, power consumption, and reliability.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Energy-Aware Computing}
+  Why are we interested in energy-aware computing?
+
+  \begin{solution}
+    We are interested in energy-aware computing because energy consumption is a major concern in embedded and cyber-physical systems.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{PC-Based Applications}
+  What are the main differences between PC-based applications and embedded/CPS applications?
+
+  \begin{solution}
+    The main differences between PC-based applications and embedded/CPS applications are that embedded/CPS applications are more tightly integrated with the physical world and have stricter timing requirements.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Reactive Systems}
+  What is a reactive system?
+
+  \begin{solution}
+    A reactive system is a system that responds to events in real time.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Design Flows}
+  How could we model design flows?
+
+  \begin{solution}
+    Design flows could be modeled using flowcharts or state diagrams.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{V-Model}
+  What is the "V-model"?
+
+  \begin{solution}
+    The V-model is a software development model that emphasizes the importance of testing and verification.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Synthesis}
+  How could we define the term "synthesis"?
+
+  \begin{solution}
+    Synthesis is the process of generating a hardware or software implementation from
+  \end{solution}
+\end{exercise}
+
+\sheet{Specifications \& Modelling (Marwedel)}
+
+\begin{exercise}{Model}
+  What is a (design) model?
+
+  \begin{solution}
+    A (design) model is a simplified representation of a system that captures its essential features.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Requirements}
+  Prepare a list of up to six requirements for specification/modeling languages for embedded systems!
+
+  \begin{solution}
+    Requirements for specification/modeling languages for embedded systems include expressiveness, determinacy, efficiency, scalability, and ease of use.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Deadlocks}
+  Why could our specification lead to deadlocks?
+
+  \begin{solution}
+    Our specification could lead to deadlocks if it does not properly account for all possible states and transitions in the system.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Model of Computation}
+  What is a "model of computation (MoC)"?
+
+  \begin{solution}
+    A model of computation (MoC) is a mathematical model that describes how a system processes information.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Job vs. Task}
+  What is a "job" and how is it different from "tasks"?
+
+  \begin{solution}
+    A job is a unit of work that is executed by a computer system. It is different from tasks in that it is typically longer-running and more complex.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Communication Techniques}
+  Which are the two key techniques for communication in computers?
+
+  \begin{solution}
+    The two key techniques for communication in computers are message passing and shared memory.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Description Techniques}
+  Which description techniques can be used for capturing initial ideas about the system to be designed?
+
+  \begin{solution}
+    Description techniques that can be used for capturing initial ideas about the system to be designed include flowcharts, state diagrams, and pseudocode.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{StateCharts Determinacy}
+  Are StateCharts determinate models if we follow the StateMate semantics? Please explain your answer!
+
+  \begin{solution}
+    StateCharts are determinate models if we follow the StateMate semantics because they have a well-defined semantics that ensures that the behavior of the system is unambiguous.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{SDL Determinacy}
+  Is SDL a determinate language? Please explain your answer!
+
+  \begin{solution}
+    SDL is a determinate language because it has a well-defined semantics that ensures that the behavior of the system is unambiguous.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Dining Philosophers}
+  What does a compact model of the dining philosopher's problem look like?
+
+  \begin{solution}
+    A compact model of the dining philosopher's problem would consist of a set of philosophers and a set of forks, with each philosopher trying to pick up two forks to eat.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Asynchronous Communication}
+  Which of the following languages use asynchronous message passing: StateCharts, SDL, VHDL, CSP, Petri nets, or MPI?
+
+  \begin{solution}
+    StateCharts, SDL, CSP, and MPI use asynchronous message passing.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Broadcast Mechanism}
+  Which of the following languages use a broadcast mechanism for updating variables: StateCharts, SDL, or Petri nets?
+
+  \begin{solution}
+    StateCharts and SDL use a broadcast mechanism for updating variables.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{UML Diagrams}
+  Which of the following diagram types are supported by UML: sequence charts, record charts, Y-charts, use cases, activity diagrams, or circuit diagrams?
+
+  \begin{solution}
+    UML supports sequence charts, use cases, and activity diagrams.
+  \end{solution}
+\end{exercise}
+
+\sheet{Hardware (Marwedel)}
+
+\begin{exercise}{Signal}
+  Define the term "signal"!
+
+  \begin{solution}
+    A signal is a physical quantity that varies over time or space.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Sample-and-Hold Circuit}
+  Which circuit do we need for the transition from continuous time to discrete time?
+
+  \begin{solution}
+    We need a sample-and-hold circuit for the transition from continuous time to discrete time.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Sampling Theorem}
+  What does the sampling theorem tell us?
+
+  \begin{solution}
+    The sampling theorem tells us that in order to accurately reconstruct a continuous signal from its samples, the sampling rate must be at least twice the highest frequency component of the signal.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Discretization of Time}
+  Assume that we have an input signal $x$ consisting of the sum of sine waves of 1.75kHz and 2kHz. We are sampling $x$ at a rate of 3kHz. Will we be able to reconstruct the original signal after discretization of time? Please explain your result!
+
+  \begin{solution}
+    No, we will not be able to reconstruct the original signal after discretization of time because the sampling rate is not high enough to capture the higher frequency components of the signal.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Flash-Based ADC}
+  Discretization of values is based on ADCs. Develop the schematic of a flash-based ADC for positive and negative input voltages! The output should be encoded as 3-bit two's complement numbers, allowing to distinguish between eight different voltage intervals.
+
+  \begin{solution}
+    A flash-based ADC for positive and negative input voltages would consist of a set of comparators that compare the input voltage to a set of reference voltages and encode the output as 3-bit two's complement numbers.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Quantization Noise}
+  Suppose a sine wave is used as an input signal to the converter designed in Problem 3.6. Depict the quantization noise signal for this case!
+
+  \begin{solution}
+    The quantization noise signal for a sine wave input signal would be a random signal that is added to the output of the ADC due to the quantization process.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{DSP Processors}
+  Create a list of features of DSP processors!
+
+  \begin{solution}
+    Features of DSP processors include high performance, low power consumption, and specialized hardware for signal processing tasks.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{FPGAs}
+  Which components do FPGAs comprise? Which of these are used to implement Boolean functions? How are FPGAs configured? Are FPGAs energy-efficient? Which kind of applications are FPGAs good for?
+
+  \begin{solution}
+    FPGAs comprise logic blocks, memory blocks, and interconnects. Logic blocks are used to implement Boolean functions, and FPGAs are configured using a configuration bitstream. FPGAs are energy-efficient and are good for applications that require high performance and flexibility.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{VLIW Processors}
+  What is the key idea of VLIW processors?
+
+  \begin{solution}
+    The key idea of VLIW processors is to execute multiple instructions in parallel by using multiple functional units.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Single-ISA Heterogeneous Multi-Core Architecture}
+  What is a "single-ISA heterogeneous multi-core architecture"? Which advantages do you see for such an architecture?
+
+  \begin{solution}
+    A single-ISA heterogeneous multi-core architecture is a system that consists of multiple cores that are based on the same instruction set architecture but have different performance characteristics. Advantages of such an architecture include increased performance and flexibility.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{GPU and MPSoC}
+  Explain the terms "GPU" and "MPSoC"!
+
+  \begin{solution}
+    A GPU is a graphics processing unit that is optimized for parallel processing tasks. An MPSoC is a multi-processor system-on-chip that integrates multiple processing cores on a single chip.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Boolean Functions}
+  Some FPGAs support an implementation of all Boolean functions of six variables. How many such functions exist? We ignore that some functions differ only by a renaming of variables.
+
+  \begin{solution}
+    There are $2^{2^6} = 2^{64}$ Boolean functions of six variables.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Memory Hierarchy}
+  In the context of memories, we are sometimes saying "small is beautiful." What could be the reason for this?
+
+  \begin{solution}
+    Small memories are more energy-efficient because they consume less power and have lower access times.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Memory Hierarchy}
+  Some levels of the memory hierarchy may be hidden from the application programmer. Why should such a programmer nevertheless care about the architecture of such levels?
+
+  \begin{solution}
+    Application programmers should care about the architecture of hidden levels of the memory hierarchy because it can affect the performance and energy efficiency of their applications.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Scratchpad Memory}
+  What is a "scratchpad memory" (SPM)? How can we ensure that some memory object is stored in the SPM?
+
+  \begin{solution}
+    A scratchpad memory (SPM) is a small, fast, and energy-efficient memory that is used to store frequently accessed data. We can ensure that some memory object is stored in the SPM by using compiler directives or annotations.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Energy Efficiency}
+  How do different hardware technologies differ with respect to their energy efficiency?
+
+  \begin{solution}
+    Different hardware technologies differ with respect to their energy efficiency in terms of power consumption, performance, and cost.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Optimization}
+  Why is it so important to optimize embedded systems? Compare different technologies for processing information in an embedded system with respect to their efficiency!
+
+  \begin{solution}
+    It is important to optimize embedded systems because they are often used in resource-constrained environments where performance and energy efficiency are critical. Different technologies for processing information in an embedded system differ in terms of their efficiency, with some technologies being more energy-efficient than others.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Battery Life}
+  Suppose that your mobile phone uses a lithium battery rated at 720mAh. The nominal voltage of the battery is 3.7V. Assuming a constant power consumption of 1W, how long would it take to empty the battery? All secondary effects such as decreasing voltages should be ignored in this calculation.
+
+  \begin{solution}
+    The power consumption of 1W corresponds to a current of $1W / 3.7V = 0.27A$. The battery capacity of 720mAh corresponds to a charge of $720mAh = 0.72Ah$. The time it would take to empty the battery is $0.72Ah / 0.27A = 2.67h$.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Security}
+  Which challenges do you see for the security of embedded systems?
+
+  \begin{solution}
+    Challenges for the security of embedded systems include vulnerabilities in hardware and software, the risk of cyberattacks, and the need to protect sensitive data.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Side-Channel Attacks}
+  What is a "side-channel attack"? Please provide examples of side-channel attacks!
+
+  \begin{solution}
+    A side-channel attack is a type of attack that exploits information leaked by a system through its physical characteristics, such as power consumption or electromagnetic emissions. Examples of side-channel attacks include power analysis attacks, timing attacks, and electromagnetic attacks.
+  \end{solution}
+\end{exercise}
+
+\sheet{Software (Marwedel)}
+
+\begin{exercise}{Embedded Operating System}
+  Which requirements must be met for an embedded operating system?
+
+  \begin{solution}
+    Requirements for an embedded operating system include real-time capabilities, small memory footprint, and support for low-power operation.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Customization}
+  Which techniques can be used to customize an embedded operating system in the necessary way?
+
+  \begin{solution}
+    Techniques that can be used to customize an embedded operating system include kernel configuration, device drivers, and application-specific libraries.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Real-Time Operating System}
+  Which requirements must be met for a real-time operating system? How do they differ from the requirements of a standard OS? Which features of a standard OS like Windows or Linux could be missing in an RTOS?
+
+  \begin{solution}
+    Requirements for a real-time operating system include deterministic response times, low latency, and support for real-time scheduling. Real-time operating systems differ from standard operating systems in that they are optimized for real-time performance and may lack features such as virtual memory and preemptive multitasking.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Leap Seconds}
+  How many seconds have been added at New Year's Eve to compensate for the differences between UTC and TAI since 1958? You may search in the Internet for an answer to this question.
+
+  \begin{solution}
+    Since 1958, 37 seconds have been added at New Year's Eve to compensate for the differences between UTC and TAI.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Memory Protection Units}
+  Find processors for which memory protection units are available! How are memory protection units different from the more frequently used memory management units (MMUs)? You may search in the Internet for an answer to this question.
+
+  \begin{solution}
+    Processors for which memory protection units are available include ARM Cortex-M processors. Memory protection units are different from memory management units in that they provide protection against unauthorized access to memory regions.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Protection}
+  Describe classes of embedded systems for which protection should definitely be provided! Describe classes of systems, for which we would possibly not need protection!
+
+  \begin{solution}
+    Protection should definitely be provided for safety-critical systems, medical devices, and industrial control systems. Protection may not be needed for consumer electronics, toys, and other non-critical systems.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Priority Inversion}
+  Provide an example demonstrating priority inversion for a system comprising three jobs!
+
+  \begin{solution}
+    An example demonstrating priority inversion for a system comprising three jobs would be a low-priority job holding a resource that is needed by a high-priority job, causing the high-priority job to be blocked.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Deadlock Prevention}
+  Which resource access protocols prevent deadlocks caused by exclusive access to resources?
+
+  \begin{solution}
+    Resource access protocols that prevent deadlocks caused by exclusive access to resources include priority inheritance and priority ceiling protocols.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{System Stack}
+  How is the use of the system stack optimized in ERIKA?
+
+  \begin{solution}
+    The use of the system stack is optimized in ERIKA by using a fixed-size stack for each task and allocating stack space statically at compile time.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Linux as OS}
+  Which problems have to be solved if Linux is used as an operating system for an embedded system?
+
+  \begin{solution}
+    Problems that have to be solved if Linux is used as an operating system for an embedded system include high memory usage, long boot times, and lack of real-time capabilities.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Priority Inversion Impact}
+  Which impact does the priority inversion problem have on the design of network middleware?
+
+  \begin{solution}
+    The priority inversion problem can have an impact on the design of network middleware by causing delays in message processing and response times.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Flash Memory}
+  How could flash memory have an influence on the design of real-time databases?
+
+  \begin{solution}
+    Flash memory could have an influence on the design of real-time databases by providing fast and reliable storage for real-time data.
+  \end{solution}
+\end{exercise}
+
+\sheet{Further chapters (Marwedel)}
+
+\begin{exercise}{Evaluation \& Validation}
+  Which conditions must be met by computations of WCET?
+
+  \begin{solution}
+    Conditions that must be met by computations of WCET include the worst-case execution path, the worst-case input data, and the worst-case execution environment.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Thermal Power}
+  Consider a copper plate of area $A=10cm^2$ and length $5mm$. How much thermal power is transferred if the difference between the temperatures at the two ends of the plate is $10^\circ C$?
+
+  \begin{solution}
+    The thermal power transferred through a copper plate can be calculated using the formula $P = k \cdot A \cdot \Delta T / L$, where $k$ is the thermal conductivity of copper, $A$ is the area of the plate, $\Delta T$ is the temperature difference, and $L$ is the length of the plate.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Exponential Distribution}
+  Consider a hard disk drive for which we assume that half of the drives have failed after 5000 hours of operation. Let us assume that failures follow an exponential distribution. Compute the corresponding value of $\lambda$!
+
+  \begin{solution}
+    The value of $\lambda$ for a hard disk drive that has a failure rate of 50\% after 5000 hours of operation can be computed using the formula $\lambda = -\ln(0.5) / 5000$.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Job Scheduling}
+  Suppose that we have a set of four jobs. Release times $r_i$, deadlines $D_i$, and execution times $C_i$ are as follows:
+  \begin{itemize}
+    \item $J1$: $r_1=10$, $D_1=18$, $C_1=4$
+    \item $J2$: $r_2=0$, $D_2=28$, $C_2=12$
+    \item $J3$: $r_3=6$, $D_3=17$, $C_3=3$
+    \item $J4$: $r_4=3$, $D_4=13$, $C_4=6$
+  \end{itemize}
+  Generate a graphical representation of schedules for this job set, using earliest deadline first (EDF) and least laxity (LL) scheduling algorithms! For LL scheduling, indicate laxities for all jobs at all context switch times. Will any job miss its deadline?
+
+  \begin{solution}
+    The graphical representation of schedules for the job set using EDF and LL scheduling algorithms is as follows:
+    \begin{itemize}
+      \item EDF: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
+      \item LL: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
+    \end{itemize}
+    No job will miss its deadline.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Rate Monotonic Scheduling}
+  Suppose that we have a system comprising two tasks. Task 1 has a period of 5 and an execution time of 2. The second task has a period of 7 and an execution time of 4. Let the deadlines be equal to the periods. Assume that we are using rate monotonic scheduling (RMS). Could any of the two tasks miss its deadline, due to a too high processor utilization? Compute this utilization, and compare it to a bound which would guarantee schedulability! Generate a graphical representation of the resulting schedule! Suppose that tasks will always run to their completion, even if they missed their deadline.
+
+  \begin{solution}
+    The utilization bound for rate monotonic scheduling is $U = n(2^{1/n} - 1)$, where $n$ is the number of tasks. For two tasks, the utilization bound is $U = 0.8284$. The utilization of the task set is $U = 0.6$, which is less than the utilization bound, so no task will miss its deadline.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Earliest Deadline First Scheduling}
+  Consider the same task set as in the previous assignment. Use earliest deadline first (EDF) for scheduling. Can any of the tasks miss its deadline? If not, why not? Generate a graphical representation of the resulting schedule!
+
+  \begin{solution}
+    No task will miss its deadline with earliest deadline first (EDF) scheduling because EDF is optimal for scheduling real-time tasks.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Loop Unrolling}
+  Loop unrolling is one of the potentially useful optimizations. Please name two potential benefits and two potential problems!
+
+  \begin{solution}
+    Two potential benefits of loop unrolling are reduced loop overhead and increased instruction-level parallelism. Two potential problems are increased code size and reduced cache performance.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Loop Tiling}
+  We assume that you want to use loop tiling. How can you adjust the tiling to the memory architecture at hand?
+
+  \begin{solution}
+    Loop tiling can be adjusted to the memory architecture at hand by choosing tile sizes that fit the cache size and memory access patterns of the target architecture.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Fixed-Point Arithmetic}
+  For which architectures would you expect the largest benefits from a replacement of floating-point arithmetic by fixed-point arithmetic?
+
+  \begin{solution}
+    The largest benefits from a replacement of floating-point arithmetic by fixed-point arithmetic would be expected on architectures with limited hardware support for floating-point operations.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Scratch Pad Memories}
+  Provide an overview over techniques for taking advantage of scratch pad memories!
+
+  \begin{solution}
+    Techniques for taking advantage of scratch pad memories include data partitioning, loop tiling, and data prefetching.
+  \end{solution}
+\end{exercise}
+
+\end{document}
