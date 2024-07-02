@@ -1,6 +1,6 @@
 #include <SD.h>
 
-#define CS_PIN 12
+#define SD_CS 12
 
 #include "Display.h"
 #include "Timer.h"
@@ -73,13 +73,7 @@ void listDirectory(String dirName)
 }
 void doesFileExist(String fileName)
 {
-  File file = SD.open(fileName);
-  if (!file)
-    Serial.println("File does not exist.");
-  else
-    Serial.println("File exists.");
-
-  file.close();
+  Serial.println(SD.exists(fileName) ? "File exists." : "File does not exist.");
 }
 void outputFileToSerial(String fileName)
 {
@@ -120,10 +114,10 @@ void outputFileToLCD(String fileName)
         x = 0, y++;
         continue;
       }
-      else if (x > lineWidth)
+      else if (x > lineWidth / 6)
         x = 0, y++;
       else
-        x += 6;
+        x++;
 
       display.printChar(x * 6, y * 8, c, Color::white, Color::black);
     }
@@ -142,7 +136,7 @@ void outputFileToLCD(String fileName)
       if (x == display.getDimensions().width)
       {
         x = 0;
-        y++;
+        y += 2;
       }
     }
   }
@@ -156,8 +150,8 @@ bool isInverted = false;
 int activityState = 0;
 
 int student = 0;
-const char *names[2] = {"Fritz Foerster", "Leopold Lemmermann"},
-           *matriculationNumbers[2] = {"0000000", "7724741"};
+char *names[2] = {"Fritz Foerster", "Leopold Lemmermann"},
+     *matriculationNumbers[2] = {"0000000", "7724741"};
 
 void crossDemo()
 {
@@ -269,6 +263,7 @@ void setup()
 {
   Serial.begin(9600);
   display.init();
+  SD.begin(SD_CS);
 
   Serial.println("[Exercise 7.1] Setup done. Type 'help' for a list of commands.");
 }
