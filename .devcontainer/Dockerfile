@@ -2,11 +2,10 @@ FROM mcr.microsoft.com/devcontainers/base:debian AS assemble
 
 # Install required packages
 RUN apt-get update -y &&\
-    apt-get install -y --no-install-recommends ca-certificates perl wget perl-modules libfontconfig1 fontconfig sudo &&\
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends ca-certificates perl wget perl-modules libfontconfig1 fontconfig sudo
+RUN rm -rf /var/lib/apt/lists/*
 
-RUN adduser vscode sudo
-USER vscode
+USER $USER
 CMD bin/bash
 
 # Install texlive
@@ -27,8 +26,6 @@ ENV PATH="${PATH}:/usr/local/texlive/${YEAR}/bin/${ARCH}"
 # Install latex and latexmk
 RUN tlmgr install latex latex-bin latexmk
 
-# Split $TEX_PACKAGES string into separate strings using comma as delimiter, trim the resulting strings after split, and install them
+# Install specified tex packages
 ARG TEX_PACKAGES
-RUN for package in $(echo $TEX_PACKAGES | tr ',' ' '); do \
-        tlmgr install $package; \
-    done
+RUN tlmgr install ${TEX_PACKAGES}

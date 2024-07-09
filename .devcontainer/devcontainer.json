@@ -4,11 +4,11 @@
 		"dockerfile": "Dockerfile",
 		"args": {
 			"SCHEME": "minimal",
-			"TEX_PACKAGES": "algorithm2e, environ, subfig, caption, amsmath, geometry, hyperref, xcolor, graphicx, docmute, import, etoolbox, pgf, ifoddpage, tools, relsize, float, epstopdf-pkg"
+			"TEX_PACKAGES": "algorithm2e environ subfig caption amsmath geometry hyperref xcolor docmute import etoolbox pgf ifoddpage tools relsize float epstopdf-pkg"
 		}
 	},
 	"mounts": [
-		"source=/Users/leolem/.tex,target=/home/vscode/texmf/tex/latex,type=bind,consistency=cached"
+		"source=${localEnv:HOME}/.tex,target=/home/vscode/texmf/tex/latex,type=bind,consistency=cached"
 	],
 	"customizations": {
 		"vscode": {
