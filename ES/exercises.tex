@@ -99,516 +99,432 @@
   \end{solution}
 \end{exercise}
 
-\sheet{Introduction (Marwedel)}
-\begin{exercise}{Definitions}
-  Please list possible definitions of the term "embedded system"!
+\sheet{Einführung (Marwedel)}
+\begin{exercise}{Definitionen}
+  Definieren Sie die Begriffe "embedded system", "cyber-physical system (CPS)", "Internet of Things (IoT)", und "Industry 4.0".
 
   \begin{solution}
-    An embedded system is a computer system that is part of a larger system or machine. It is dedicated to the control of the system or machine and is not a general-purpose computer.
+    Ein eingebettetes System ist ein Computersystem, das in einem größeren System eingebettet ist und spezielle Aufgaben erfüllt.
+
+    Ein Cyber-Physical System (CPS) ist ein System, das die physische Welt mit der virtuellen Welt verbindet.
+
+    Das Internet der Dinge (IoT) ist ein Netzwerk von miteinander verbundenen Geräten, die Daten austauschen und miteinander kommunizieren.
+
+    Industrie 4.0 ist ein Konzept, das die Integration von Informationstechnologie und industrieller Produktion beschreibt.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Cyber-Physical Systems (CPS)}
-  How would you define the term "cyber-physical system (CPS)"? Do you see any difference between the terms "embedded systems" and "cyber-physical systems"?
+\begin{exercise}{Relevanz}
+  Warum benötigt man eingebettete Systeme?
 
   \begin{solution}
-    A cyber-physical system (CPS) is a system that is controlled or monitored by computer-based algorithms. The difference between embedded systems and CPS is that CPS are more tightly integrated with the physical world.
+    Eingebettete Systeme werden benötigt, um spezielle Aufgaben in anderen Systemen zu erfüllen, wie z.B. in der Automobilindustrie, der Medizintechnik, und der Industrie.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Internet of Things (IoT)}
-  What is the "Internet of Things" (IoT)?
+\begin{exercise}{Herausforderungen}
+  Welche Herausforderungen müssen überwunden werden, um die Chancen von eingebetteten Systemen voll auszuschöpfen?
 
   \begin{solution}
-    The Internet of Things (IoT) is a network of physical devices that are connected to the internet and can communicate with each other.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Industry 4.0}
-  What is the goal of "Industry 4.0"?
-
-  \begin{solution}
-    The goal of Industry 4.0 is to create smart factories that are more efficient and flexible than traditional factories.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Application Areas}
-  In which application areas do you see opportunities for CPS and IoT systems? Where do you expect major changes caused by information technology?
-
-  \begin{solution}
-    Opportunities for CPS and IoT systems can be found in areas such as healthcare, transportation, and manufacturing. Major changes caused by information technology can be expected in areas such as automation, data analysis, and communication.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Importance of Embedded Systems}
-  Use the sources available to you to demonstrate the importance of embedded systems!
-
-  \begin{solution}
-    Embedded systems are important because they are used in a wide range of applications, from consumer electronics to industrial control systems.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Challenges}
-  Which challenges must be overcome in order to fully take advantage of the opportunities?
-
-  \begin{solution}
-    Challenges that must be overcome in order to fully take advantage of the opportunities include security, reliability, and energy efficiency.
+    Herausforderungen, die überwunden werden müssen, um die Chancen von eingebetteten Systemen voll auszuschöpfen, sind z.B. Echtzeitfähigkeit, Energieeffizienz, und Sicherheit.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Timing Constraints}
-  What is a hard timing constraint? What is a soft timing constraint?
+  Was sind harte und weiche Timing-Constraints?
 
   \begin{solution}
-    A hard timing constraint is a timing requirement that must be met in order for the system to function correctly. A soft timing constraint is a timing requirement that is desirable but not essential.
+    Harte Timing-Constraints sind Timing-Anforderungen, die unbedingt eingehalten werden müssen, während weiche Timing-Constraints weniger streng sind und toleriert werden können.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Zeno Effect}
-  What is the "Zeno effect"?
+\begin{exercise}{Adaptives Sampling}
+  Was ist adaptives Sampling?
 
   \begin{solution}
-    The Zeno effect is a phenomenon in which a system approaches a state but never reaches it.
+    Adaptives Sampling ist eine Technik, bei der die Abtastrate eines Sensors an die Änderungen der Umgebung angepasst wird.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Adaptive Sampling}
-  What is adaptive sampling?
+\begin{exercise}{Unterschiede zwischen PC-basierten und eingebetteten Anwendungen}
+  Was sind die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen?
 
   \begin{solution}
-    Adaptive sampling is a technique in which the sampling rate of a system is adjusted based on the input signal.
+    Die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen sind die Echtzeitfähigkeit, die Ressourcenknappheit, und die Energieeffizienz.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Design Objectives}
-  Which objectives must be considered during the design of embedded and cyber-physical systems?
+\begin{exercise}{Reaktive Systeme}
+  Was ist ein reaktives System?
 
   \begin{solution}
-    Objectives that must be considered during the design of embedded and cyber-physical systems include performance, power consumption, and reliability.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Energy-Aware Computing}
-  Why are we interested in energy-aware computing?
-
-  \begin{solution}
-    We are interested in energy-aware computing because energy consumption is a major concern in embedded and cyber-physical systems.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{PC-Based Applications}
-  What are the main differences between PC-based applications and embedded/CPS applications?
-
-  \begin{solution}
-    The main differences between PC-based applications and embedded/CPS applications are that embedded/CPS applications are more tightly integrated with the physical world and have stricter timing requirements.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Reactive Systems}
-  What is a reactive system?
-
-  \begin{solution}
-    A reactive system is a system that responds to events in real time.
+    Ein reaktives System ist ein System, das auf externe Ereignisse reagiert und in Echtzeit agiert.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Design Flows}
-  How could we model design flows?
+  Wie könnten Design Flows modelliert werden?
 
   \begin{solution}
-    Design flows could be modeled using flowcharts or state diagrams.
+    Design Flows können modelliert werden als eine Abfolge von Schritten, die zur Entwicklung eines eingebetteten Systems führen.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{V-Model}
-  What is the "V-model"?
+\begin{exercise}{V-Modell}
+  Was ist das V-Modell?
 
   \begin{solution}
-    The V-model is a software development model that emphasizes the importance of testing and verification.
+    Das V-Modell stellt den einen Entwicklungsprozess und hebt die Verbindung zwischen den Entwicklungsphasen und den Testphasen hervor.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Synthesis}
-  How could we define the term "synthesis"?
+\begin{exercise}{Synthese}
+  Was ist Synthese?
 
   \begin{solution}
-    Synthesis is the process of generating a hardware or software implementation from
+    Synthese ist der Prozess, bei dem ein System aus einer Spezifikation erstellt wird.
   \end{solution}
 \end{exercise}
 
-\sheet{Specifications \& Modelling (Marwedel)}
+\sheet{Spezifikationen \& Modellierung (Marwedel)}
 
-\begin{exercise}{Model}
-  What is a (design) model?
+\begin{exercise}{Modell}
+  Was ist ein (Design-)Modell?
 
   \begin{solution}
-    A (design) model is a simplified representation of a system that captures its essential features.
+    Ein (Design-)Modell ist eine vereinfachte Darstellung eines Systems, die verwendet wird, um das Verhalten und die Struktur des Systems zu beschreiben.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Requirements}
-  Prepare a list of up to six requirements for specification/modeling languages for embedded systems!
+\begin{exercise}{Anforderungen}
+  Nennen Sie 6 Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme!
 
   \begin{solution}
-    Requirements for specification/modeling languages for embedded systems include expressiveness, determinacy, efficiency, scalability, and ease of use.
+    Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme sind z.B. Echtzeitfähigkeit, Energieeffizienz, Sicherheit, Skalierbarkeit, Wiederverwendbarkeit, und Verständlichkeit.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Deadlocks}
-  Why could our specification lead to deadlocks?
+  Könnte unsere Spezifikation zu Deadlocks führen? Wenn ja, warum?
 
   \begin{solution}
-    Our specification could lead to deadlocks if it does not properly account for all possible states and transitions in the system.
+    Ja, unsere Spezifikation könnte zu Deadlocks führen, wenn z.B. Prozesse auf gegenseitige Exklusivität warten.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Model of Computation}
-  What is a "model of computation (MoC)"?
+\begin{exercise}{Models of Computation}
+  Was ist ein "Model of Computation" (MoC)?
 
   \begin{solution}
-    A model of computation (MoC) is a mathematical model that describes how a system processes information.
+    Ein "Model of Computation" (MoC) ist eine formale Beschreibung der Berechnung, die verwendet wird, um das Verhalten von Systemen zu modellieren.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Job vs. Task}
-  What is a "job" and how is it different from "tasks"?
+  Wie kann man einen Job von einem Task unterscheiden?
 
   \begin{solution}
-    A job is a unit of work that is executed by a computer system. It is different from tasks in that it is typically longer-running and more complex.
+    Ein Job ist eine Einheit von Arbeit, die von einem Prozessor ausgeführt wird, während ein Task eine abstrakte Einheit von Arbeit ist, die von einem Prozessor ausgeführt werden kann.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Communication Techniques}
-  Which are the two key techniques for communication in computers?
+\begin{exercise}{Kommunikation}
+  Besschreiben Sie zwei Schlüsseltechniken für die Kommunikation in Computern!
 
   \begin{solution}
-    The two key techniques for communication in computers are message passing and shared memory.
+    Zwei Schlüsseltechniken für die Kommunikation in Computern sind Shared Memory und Message Passing.
+
+    Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können.
+
+    Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Description Techniques}
-  Which description techniques can be used for capturing initial ideas about the system to be designed?
+\begin{exercise}{Beschreibung}
+  Beschreiben Sie Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können!
 
   \begin{solution}
-    Description techniques that can be used for capturing initial ideas about the system to be designed include flowcharts, state diagrams, and pseudocode.
+    Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können, sind z.B. Brainstorming, Mind Mapping, und Prototyping.
+
+    Brainstorming: Brainstorming ist eine kreative Technik, bei der Ideen gesammelt und diskutiert werden, um neue Lösungen zu finden.
+
+    Mind Mapping: Mind Mapping ist eine visuelle Technik, bei der Ideen und Konzepte in einem Diagramm dargestellt werden, um Zusammenhänge zu verdeutlichen.
+
+    Prototyping: Prototyping ist eine Technik, bei der ein Modell oder eine Simulation des Systems erstellt wird, um das Design zu überprüfen und zu verbessern.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{StateCharts Determinacy}
-  Are StateCharts determinate models if we follow the StateMate semantics? Please explain your answer!
+\begin{exercise}{Determinanz}
+  Sind StateCharts deterministische Modelle, wenn wir der Semantik von StateMate folgen? Und wie schaut es mit SDL aus?
 
   \begin{solution}
-    StateCharts are determinate models if we follow the StateMate semantics because they have a well-defined semantics that ensures that the behavior of the system is unambiguous.
+    Ja, StateCharts sind deterministische Modelle, wenn wir der Semantik von StateMate folgen, weil sie eine wohldefinierte Semantik haben, die sicherstellt, dass das Verhalten des Systems eindeutig ist.
+
+    SDL ist ebenfalls ein deterministisches Modell, weil es eine wohldefinierte Semantik hat, die sicherstellt, dass das Verhalten des Systems eindeutig ist.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{SDL Determinacy}
-  Is SDL a determinate language? Please explain your answer!
+\begin{exercise}{Philosophenproblem}
+  Wie sieht ein kompaktes Modell des Philosophenproblems aus?
 
   \begin{solution}
-    SDL is a determinate language because it has a well-defined semantics that ensures that the behavior of the system is unambiguous.
+    Ein kompaktes Modell des Philosophenproblems würde die Philosophen als Prozesse und die Gabeln als Ressourcen modellieren, die von den Prozessen gemeinsam genutzt werden.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Dining Philosophers}
-  What does a compact model of the dining philosopher's problem look like?
+\begin{exercise}{Asynchrone Kommunikation}
+  Nennen Sie einige Beispiele für asynchrone Kommunikation, sowie für Broadcast Kommunikation!
 
   \begin{solution}
-    A compact model of the dining philosopher's problem would consist of a set of philosophers and a set of forks, with each philosopher trying to pick up two forks to eat.
+    Asynchrone Kommunikation: StateCharts, SDL, CSP, MPI
+
+    Broadcast: StateCharts und SDL verwenden einen Broadcast-Mechanismus für die Aktualisierung von Variablen.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Asynchronous Communication}
-  Which of the following languages use asynchronous message passing: StateCharts, SDL, VHDL, CSP, Petri nets, or MPI?
+\begin{exercise}{UML Diagramme}
+  Welche Diagrammtypen werden von UML unterstützt? Sequence Charts, Record Charts, Y-Charts, Use Cases, Activity Diagrams, Circuit Diagrams?
 
   \begin{solution}
-    StateCharts, SDL, CSP, and MPI use asynchronous message passing.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Broadcast Mechanism}
-  Which of the following languages use a broadcast mechanism for updating variables: StateCharts, SDL, or Petri nets?
-
-  \begin{solution}
-    StateCharts and SDL use a broadcast mechanism for updating variables.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{UML Diagrams}
-  Which of the following diagram types are supported by UML: sequence charts, record charts, Y-charts, use cases, activity diagrams, or circuit diagrams?
-
-  \begin{solution}
-    UML supports sequence charts, use cases, and activity diagrams.
+    UML unterstützt Sequence Charts, Use Cases, und Activity Diagrams, aber keine Record Charts, Y-Charts, oder Circuit Diagrams.
   \end{solution}
 \end{exercise}
 
 \sheet{Hardware (Marwedel)}
 
 \begin{exercise}{Signal}
-  Define the term "signal"!
+  Was ist ein Signal?
 
   \begin{solution}
-    A signal is a physical quantity that varies over time or space.
+    Ein Signal ist eine physikalische Größe, die Informationen überträgt und verarbeitet.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Sample-and-Hold Circuit}
-  Which circuit do we need for the transition from continuous time to discrete time?
+\begin{exercise}{Analog vs. Digital}
+  Welchen Schaltkreis benötigen wir für den Übergang von kontinuierlicher Zeit zu diskreter Zeit?
 
   \begin{solution}
-    We need a sample-and-hold circuit for the transition from continuous time to discrete time.
+    Wir benötigen einen Sample-and-Hold-Schaltkreis für den Übergang von kontinuierlicher Zeit zu diskreter Zeit.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Sampling Theorem}
-  What does the sampling theorem tell us?
+\begin{exercise}{Abtasttheorem (Sampling Theorem)}
+  Was besagt das Abtasttheorem?
 
   \begin{solution}
-    The sampling theorem tells us that in order to accurately reconstruct a continuous signal from its samples, the sampling rate must be at least twice the highest frequency component of the signal.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Discretization of Time}
-  Assume that we have an input signal $x$ consisting of the sum of sine waves of 1.75kHz and 2kHz. We are sampling $x$ at a rate of 3kHz. Will we be able to reconstruct the original signal after discretization of time? Please explain your result!
-
-  \begin{solution}
-    No, we will not be able to reconstruct the original signal after discretization of time because the sampling rate is not high enough to capture the higher frequency components of the signal.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Flash-Based ADC}
-  Discretization of values is based on ADCs. Develop the schematic of a flash-based ADC for positive and negative input voltages! The output should be encoded as 3-bit two's complement numbers, allowing to distinguish between eight different voltage intervals.
-
-  \begin{solution}
-    A flash-based ADC for positive and negative input voltages would consist of a set of comparators that compare the input voltage to a set of reference voltages and encode the output as 3-bit two's complement numbers.
+    Das Abtasttheorem besagt, dass ein Signal korrekt rekonstruiert werden kann, wenn es mit einer Rate abgetastet wird, die mindestens doppelt so hoch ist wie die höchste Frequenzkomponente des Signals.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Quantization Noise}
-  Suppose a sine wave is used as an input signal to the converter designed in Problem 3.6. Depict the quantization noise signal for this case!
+  Was versteht man unter Quantization Noise?
 
   \begin{solution}
-    The quantization noise signal for a sine wave input signal would be a random signal that is added to the output of the ADC due to the quantization process.
+    Quantization Noise ist das Rauschen, das durch die Diskretisierung eines analogen Signals in ein digitales Signal entsteht.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{DSP Processors}
-  Create a list of features of DSP processors!
+  Was sind die Merkmale von DSP-Prozessoren?
 
   \begin{solution}
-    Features of DSP processors include high performance, low power consumption, and specialized hardware for signal processing tasks.
+    DSP-Prozessoren sind spezialisierte Prozessoren, die für die Verarbeitung von Signalen optimiert sind und über Funktionen wie Multiplikation, Addition, und Division verfügen.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{FPGAs}
-  Which components do FPGAs comprise? Which of these are used to implement Boolean functions? How are FPGAs configured? Are FPGAs energy-efficient? Which kind of applications are FPGAs good for?
+  Aus welchen Komponenten bestehen FPGAs? Welche davon werden verwendet, um Boolesche Funktionen zu implementieren? Wie werden FPGAs konfiguriert? Sind FPGAs energieeffizient? Für welche Anwendungen sind FPGAs gut geeignet?
 
   \begin{solution}
-    FPGAs comprise logic blocks, memory blocks, and interconnects. Logic blocks are used to implement Boolean functions, and FPGAs are configured using a configuration bitstream. FPGAs are energy-efficient and are good for applications that require high performance and flexibility.
+    FPGAs bestehen aus Logikblöcken, Speicherblöcken und Verbindungen.
+
+    Logikblöcke werden verwendet, um Boolesche Funktionen zu implementieren.
+
+    FPGAs werden mit einem Konfigurations-Bitstrom konfiguriert.
+
+    FPGAs sind energieeffizient und eignen sich gut für Anwendungen, die hohe Leistung und Flexibilität erfordern.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{VLIW Processors}
-  What is the key idea of VLIW processors?
+  Was ist ein VLIW-Prozessor?
 
   \begin{solution}
-    The key idea of VLIW processors is to execute multiple instructions in parallel by using multiple functional units.
+    Ein VLIW-Prozessor ist ein Prozessor, der mehrere Instruktionen gleichzeitig ausführt, indem er mehrere Funktionsblöcke parallel betreibt.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Single-ISA Heterogeneous Multi-Core Architecture}
-  What is a "single-ISA heterogeneous multi-core architecture"? Which advantages do you see for such an architecture?
+  Was versteht man unter einer "Single-ISA heterogeneous multi-core architecture"? Welche Vorteile sehen Sie für eine solche Architektur?
 
   \begin{solution}
-    A single-ISA heterogeneous multi-core architecture is a system that consists of multiple cores that are based on the same instruction set architecture but have different performance characteristics. Advantages of such an architecture include increased performance and flexibility.
+    Eine "Single-ISA heterogeneous multi-core architecture" ist eine Architektur, bei der mehrere Prozessoren mit unterschiedlichen Eigenschaften auf einem Chip integriert sind.
+
+    Vorteile einer solchen Architektur sind z.B. die Möglichkeit, verschiedene Anwendungen auf einem Chip auszuführen, die Verbesserung der Leistung und Energieeffizienz, und die Flexibilität bei der Anpassung an unterschiedliche Anforderungen.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{GPU and MPSoC}
-  Explain the terms "GPU" and "MPSoC"!
+\begin{exercise}{GPU \& MPSoC}
+  Was ist der Unterschied zwischen einer GPU und einem MPSoC?
 
   \begin{solution}
-    A GPU is a graphics processing unit that is optimized for parallel processing tasks. An MPSoC is a multi-processor system-on-chip that integrates multiple processing cores on a single chip.
+    Eine GPU ist ein Prozessor, der für die Verarbeitung von Grafiken optimiert ist, während ein MPSoC ein Multiprozessorsystem auf einem Chip ist, das für die Verarbeitung von Signalen und Daten optimiert ist.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Boolean Functions}
-  Some FPGAs support an implementation of all Boolean functions of six variables. How many such functions exist? We ignore that some functions differ only by a renaming of variables.
+\begin{exercise}{Boole'sche Funktionen}
+  Einige FPGAs unterstützen die Implementierung aller Booleschen Funktionen von sechs Variablen. Wie viele solcher Funktionen gibt es? Wir ignorieren, dass sich einige Funktionen nur durch eine Umbenennung von Variablen unterscheiden.
 
   \begin{solution}
-    There are $2^{2^6} = 2^{64}$ Boolean functions of six variables.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Memory Hierarchy}
-  In the context of memories, we are sometimes saying "small is beautiful." What could be the reason for this?
-
-  \begin{solution}
-    Small memories are more energy-efficient because they consume less power and have lower access times.
+    Es gibt $2^{2^6} = 2^{64}$ Boolesche Funktionen von sechs Variablen.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Memory Hierarchy}
-  Some levels of the memory hierarchy may be hidden from the application programmer. Why should such a programmer nevertheless care about the architecture of such levels?
+  Im Kontext von Speichern sagen wir manchmal "klein ist schön". Was könnte der Grund dafür sein?
 
   \begin{solution}
-    Application programmers should care about the architecture of hidden levels of the memory hierarchy because it can affect the performance and energy efficiency of their applications.
+    Der Grund dafür ist, dass kleinere Speicher schneller und energieeffizienter sind als größere Speicher.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Memory Hierarchy}
+  Einige Ebenen der Speicherhierarchie können dem Anwendungsprogrammierer verborgen sein. Warum sollte sich ein solcher Programmierer dennoch für die Architektur solcher Ebenen interessieren?
+
+  \begin{solution}
+    Ein Programmierer sollte sich für die Architektur solcher Ebenen interessieren, um die Leistung und Energieeffizienz seines Programms zu optimieren.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Scratchpad Memory}
-  What is a "scratchpad memory" (SPM)? How can we ensure that some memory object is stored in the SPM?
+  Was ist Scratchpad Memory? Wie können wir sicherstellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird?
 
   \begin{solution}
-    A scratchpad memory (SPM) is a small, fast, and energy-efficient memory that is used to store frequently accessed data. We can ensure that some memory object is stored in the SPM by using compiler directives or annotations.
+    Scratchpad Memory ist ein kleiner, schneller und energieeffizienter Speicher, der zur Speicherung häufig verwendeter Daten verwendet wird.
+
+    Um sicherzustellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird, können wir den
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Energy Efficiency}
-  How do different hardware technologies differ with respect to their energy efficiency?
+\begin{exercise}{Techniken zur Nutzung von Scratchpad Memory}
+  Geben Sie einen Überblick über Techniken, um Scratch Pad Memory zu nutzen!
 
   \begin{solution}
-    Different hardware technologies differ with respect to their energy efficiency in terms of power consumption, performance, and cost.
+    \begin{itemize}
+      \item Statische Analyse: Statische Analyse wird verwendet, um die Größe und den Zugriff auf den Scratchpad-Speicher zu bestimmen.
+      \item Compiler-Optimierungen: Compiler-Optimierungen werden verwendet, um den Zugriff auf den Scratchpad-Speicher zu optimieren und die Speichernutzung zu maximieren.
+      \item Profiling: Profiling wird verwendet, um das Verhalten des Systems zu analysieren und den Scratchpad-Speicher effizient zu nutzen.
+    \end{itemize}
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Optimization}
-  Why is it so important to optimize embedded systems? Compare different technologies for processing information in an embedded system with respect to their efficiency!
+\begin{exercise}{Energieffizienz}
+  Wie unterscheiden sich verschiedene Hardware-Technologien hinsichtlich ihrer Energieeffizienz?
 
   \begin{solution}
-    It is important to optimize embedded systems because they are often used in resource-constrained environments where performance and energy efficiency are critical. Different technologies for processing information in an embedded system differ in terms of their efficiency, with some technologies being more energy-efficient than others.
+    Eingebette Systeme sind zumeist energieeffizienter als herkömmliche Computer, da sie speziell für die Anforderungen von eingebetteten Systemen optimiert sind.
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{Optimierunng}
+  Vergleichen Sie die Energieeffizienz von verschiedenen Technologien zur Verarbeitung von Informationen in eingebetteten Systemen!
+
+  \begin{solution}
+    FPGAs sind energieeffizienter als GPUs und MPSoCs, da sie speziell für die Verarbeitung von Signalen und Daten optimiert sind.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Battery Life}
-  Suppose that your mobile phone uses a lithium battery rated at 720mAh. The nominal voltage of the battery is 3.7V. Assuming a constant power consumption of 1W, how long would it take to empty the battery? All secondary effects such as decreasing voltages should be ignored in this calculation.
+  Angenommen, Ihr Mobiltelefon nutzt eine Lithiumbatterie mit einer Kapazität von 720mAh. Die Nennspannung der Batterie beträgt 3,7V. Unter der Annahme eines konstanten Stromverbrauchs von 1W, wie lange würde es dauern, die Batterie zu entleeren? Alle sekundären Effekte wie abnehmende Spannungen sollten bei dieser Berechnung ignoriert werden.
 
   \begin{solution}
-    The power consumption of 1W corresponds to a current of $1W / 3.7V = 0.27A$. The battery capacity of 720mAh corresponds to a charge of $720mAh = 0.72Ah$. The time it would take to empty the battery is $0.72Ah / 0.27A = 2.67h$.
+    Die Leistungsaufnahme von 1W entspricht einem Strom von $1W / 3.7V = 0.27A$. Die Batteriekapazität von 720mAh entspricht einer Ladung von $720mAh = 0.72Ah$. Die Zeit, die es dauern würde, die Batterie zu entleeren, beträgt $0.72Ah / 0.27A = 2.67h$.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Security}
-  Which challenges do you see for the security of embedded systems?
+\begin{exercise}{Sicherheit}
+  Welche Herausforderungen bestehen für die Sicherheit von eingebetteten Systemen?
 
   \begin{solution}
-    Challenges for the security of embedded systems include vulnerabilities in hardware and software, the risk of cyberattacks, and the need to protect sensitive data.
+    Herausforderungen für die Sicherheit von eingebetteten Systemen sind z.B. die Anfälligkeit für Angriffe, die Komplexität der Systeme, und die Notwendigkeit, die Integrität und Vertraulichkeit der Daten zu schützen.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Side-Channel Attacks}
-  What is a "side-channel attack"? Please provide examples of side-channel attacks!
+  Was ist ein "Side-Channel-Angriff"? Bitte geben Sie Beispiele für Side-Channel-Angriffe!
 
   \begin{solution}
-    A side-channel attack is a type of attack that exploits information leaked by a system through its physical characteristics, such as power consumption or electromagnetic emissions. Examples of side-channel attacks include power analysis attacks, timing attacks, and electromagnetic attacks.
+    Ein "Side-Channel-Angriff" ist ein Angriff, bei dem ein Angreifer Informationen über ein System aus den physikalischen Eigenschaften des Systems gewinnt.
+
+    Beispiele für Side-Channel-Angriffe sind z.B. Timing-Angriffe, Stromverbrauchsanalysen, und elektromagnetische Strahlung.
   \end{solution}
 \end{exercise}
 
 \sheet{Software (Marwedel)}
 
-\begin{exercise}{Embedded Operating System}
-  Which requirements must be met for an embedded operating system?
+\begin{exercise}{Embedded OS}
+  Welche Anforderungen müssen für ein eingebettetes Betriebssystem erfüllt sein?
 
   \begin{solution}
-    Requirements for an embedded operating system include real-time capabilities, small memory footprint, and support for low-power operation.
+    Anforderungen für ein eingebettetes Betriebssystem sind z.B. Echtzeitfähigkeit, geringer Speicherbedarf, und Energieeffizienz.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Customization}
-  Which techniques can be used to customize an embedded operating system in the necessary way?
+\begin{exercise}{Anpassungsfähigkeit}
+  Welche Techniken können verwendet werden, um ein eingebettetes Betriebssystem auf die erforderliche Weise anzupassen?
 
   \begin{solution}
-    Techniques that can be used to customize an embedded operating system include kernel configuration, device drivers, and application-specific libraries.
+    Häufig verwendet werden Techniken wie Konfigurationsoptionen, Modulare Architektur, und Anpassung der Betriebssystemkomponenten.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Real-Time Operating System}
-  Which requirements must be met for a real-time operating system? How do they differ from the requirements of a standard OS? Which features of a standard OS like Windows or Linux could be missing in an RTOS?
+  Welche Anforderungen müssen für ein Echtzeit-Betriebssystem erfüllt sein? Wie unterscheiden sie sich von den Anforderungen eines Standard-Betriebssystems? Welche Funktionen eines Standard-Betriebssystems wie Windows oder Linux könnten in einem RTOS fehlen?
 
   \begin{solution}
-    Requirements for a real-time operating system include deterministic response times, low latency, and support for real-time scheduling. Real-time operating systems differ from standard operating systems in that they are optimized for real-time performance and may lack features such as virtual memory and preemptive multitasking.
-  \end{solution}
-\end{exercise}
+    Anforderungen für ein Echtzeit-Betriebssystem sind z.B. deterministische Ausführungszeiten, Echtzeitfähigkeit, und geringer Speicherbedarf.
 
-\begin{exercise}{Leap Seconds}
-  How many seconds have been added at New Year's Eve to compensate for the differences between UTC and TAI since 1958? You may search in the Internet for an answer to this question.
-
-  \begin{solution}
-    Since 1958, 37 seconds have been added at New Year's Eve to compensate for the differences between UTC and TAI.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Memory Protection Units}
-  Find processors for which memory protection units are available! How are memory protection units different from the more frequently used memory management units (MMUs)? You may search in the Internet for an answer to this question.
-
-  \begin{solution}
-    Processors for which memory protection units are available include ARM Cortex-M processors. Memory protection units are different from memory management units in that they provide protection against unauthorized access to memory regions.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Protection}
-  Describe classes of embedded systems for which protection should definitely be provided! Describe classes of systems, for which we would possibly not need protection!
-
-  \begin{solution}
-    Protection should definitely be provided for safety-critical systems, medical devices, and industrial control systems. Protection may not be needed for consumer electronics, toys, and other non-critical systems.
+    Echtzeit-Betriebssysteme unterscheiden sich von Standard-Betriebssystemen durch ihre Echtzeitfähigkeit und ihre geringen Speicheranforderungen. Funktionen eines Standard-Betriebssystems wie Windows oder Linux, die in einem RTOS fehlen könnten, sind z.B. Multitasking, Dateisysteme, und Netzwerkunterstützung.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Priority Inversion}
-  Provide an example demonstrating priority inversion for a system comprising three jobs!
+  Geben Sie ein Beispiel, das die Prioritätsinversion für ein System mit drei Jobs zeigt! Wie kann sich die Prioritätsinversion auf das System auswirken?
 
   \begin{solution}
-    An example demonstrating priority inversion for a system comprising three jobs would be a low-priority job holding a resource that is needed by a high-priority job, causing the high-priority job to be blocked.
+    Ein Beispiel für die Prioritätsinversion in einem System mit drei Jobs wäre, wenn ein niedrig priorisierter Job eine Ressource blockiert, die von einem höher priorisierten Job benötigt wird.
+
+    Die Prioritätsinversion kann dazu führen, dass der höher priorisierte Job blockiert wird und nicht rechtzeitig ausgeführt werden kann, was zu einer Verletzung der Echtzeitanforderungen führen kann.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Deadlock Prevention}
-  Which resource access protocols prevent deadlocks caused by exclusive access to resources?
+  Welche Ressourcenzugriffsprotokolle verhindern Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden?
 
   \begin{solution}
-    Resource access protocols that prevent deadlocks caused by exclusive access to resources include priority inheritance and priority ceiling protocols.
+    PCP: Das Protokoll zur Prävention von zyklischen Wartebedingungen (PCP) verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die sie benötigen.
+
+    Banker's Algorithm: Der Banker's Algorithmus verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem er sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die verfügbar sind.
+
+    Wait-Die: Das Wait-Die-Protokoll verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es Prozesse in Wartezustände versetzt, wenn sie auf Ressourcen warten, die von anderen Prozessen verwendet werden.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{System Stack}
-  How is the use of the system stack optimized in ERIKA?
+\begin{exercise}{Linux als OS}
+  Welche Probleme müssen gelöst werden, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird?
 
   \begin{solution}
-    The use of the system stack is optimized in ERIKA by using a fixed-size stack for each task and allocating stack space statically at compile time.
+    Probleme, die gelöst werden müssen, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird, sind z.B. die Anpassung an die spezifischen Anforderungen des Systems, die Reduzierung des Speicherbedarfs, und die Optimierung der Energieeffizienz.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Linux as OS}
-  Which problems have to be solved if Linux is used as an operating system for an embedded system?
-
-  \begin{solution}
-    Problems that have to be solved if Linux is used as an operating system for an embedded system include high memory usage, long boot times, and lack of real-time capabilities.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Priority Inversion Impact}
-  Which impact does the priority inversion problem have on the design of network middleware?
-
-  \begin{solution}
-    The priority inversion problem can have an impact on the design of network middleware by causing delays in message processing and response times.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Flash Memory}
-  How could flash memory have an influence on the design of real-time databases?
-
-  \begin{solution}
-    Flash memory could have an influence on the design of real-time databases by providing fast and reliable storage for real-time data.
-  \end{solution}
-\end{exercise}
-
-\sheet{Further chapters (Marwedel)}
+\sheet{Weitere Kapitel (Marwedel)}
 
 \begin{exercise}{Evaluation \& Validation}
-  Which conditions must be met by computations of WCET?
+  Welche Bedingungen müssen bei der Berechnung der WCET erfüllt sein?
 
   \begin{solution}
-    Conditions that must be met by computations of WCET include the worst-case execution path, the worst-case input data, and the worst-case execution environment.
+    Bedingungen, die bei der Berechnung der WCET erfüllt sein müssen, sind z.B. deterministische Ausführungszeiten, keine Interrupts, und keine Caches.
   \end{solution}
 \end{exercise}
 
@@ -665,34 +581,28 @@
 \end{exercise}
 
 \begin{exercise}{Loop Unrolling}
-  Loop unrolling is one of the potentially useful optimizations. Please name two potential benefits and two potential problems!
+  Loop Unrolling ist eine der potenziell nützlichen Optimierungen. Nennen Sie bitte zwei potenzielle Vorteile und zwei potenzielle Probleme!
 
   \begin{solution}
-    Two potential benefits of loop unrolling are reduced loop overhead and increased instruction-level parallelism. Two potential problems are increased code size and reduced cache performance.
+    Potenzielle Vorteile von Loop Unrolling sind die Reduzierung des Overheads von Schleifen und die Erhöhung der Parallelität von Instruktionen.
+
+    Potenzielle Probleme von Loop Unrolling sind die Erhöhung des Speicherbedarfs und die Erhöhung der Codegröße.
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{Loop Tiling}
-  We assume that you want to use loop tiling. How can you adjust the tiling to the memory architecture at hand?
+  Angenommen, Sie möchten Loop Tiling verwenden. Wie können Sie das Tiling an die vorliegende Speicherarchitektur anpassen?
 
   \begin{solution}
-    Loop tiling can be adjusted to the memory architecture at hand by choosing tile sizes that fit the cache size and memory access patterns of the target architecture.
+    Loop Tiling kann an die vorliegende Speicherarchitektur angepasst werden, indem die Größe der Tiles so gewählt wird, dass sie in den Cache passen und die Zugriffe auf den Speicher optimiert werden.
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Fixed-Point Arithmetic}
-  For which architectures would you expect the largest benefits from a replacement of floating-point arithmetic by fixed-point arithmetic?
+\begin{exercise}{Festkomma Arithmetik}
+  Für welche Architekturen würden Sie die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik erwarten?
 
   \begin{solution}
-    The largest benefits from a replacement of floating-point arithmetic by fixed-point arithmetic would be expected on architectures with limited hardware support for floating-point operations.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Scratch Pad Memories}
-  Provide an overview over techniques for taking advantage of scratch pad memories!
-
-  \begin{solution}
-    Techniques for taking advantage of scratch pad memories include data partitioning, loop tiling, and data prefetching.
+    Die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik würden Sie für Architekturen erwarten, die auf eingebetteten Systemen und Signalverarbeitungsaufgaben basieren, aufgrund der geringeren Komplexität und des geringeren Speicherbedarfs von Festkomma-Arithmetik.
   \end{solution}
 \end{exercise}
 
