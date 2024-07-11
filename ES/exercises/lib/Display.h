@@ -173,8 +173,6 @@ public:
   };
   void scaleAndDraw()
   {
-    // TODO: implement this properly
-
     beginTransaction();
     writeCommand(RAMWR);
     COLOR_FORMAT *colors = buffer.getBuffer();

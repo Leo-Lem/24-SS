@@ -1,6 +1,4 @@
 
-// TODO: fix buffer not clearing on configure
-
 #include "Display.h"
 
 #ifdef __AVR_ATmega2560__
