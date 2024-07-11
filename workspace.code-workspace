@@ -1,20 +1,20 @@
 {
   "folders": [
-    {
-      "path": "ES"
-    },
-    {
-      "path": "IGMO"
-    },
-    {
-      "path": "PM"
-    },
-    {
-      "path": "UrhR"
-    },
+    { "path": "ES" },
+    { "path": "IGMO" },
+    { "path": "PM" },
+    { "path": "UrhR" },
     {
       "path": ".",
       "name": "workspace"
+    },
+    {
+      "path": "../.devcontainer",
+      "name": "devcontainer"
+    },
+    {
+      "path": "/home/vscode/texmf/tex/latex",
+      "name": "templates"
     }
   ]
 }
