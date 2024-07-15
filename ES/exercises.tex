@@ -8,65 +8,69 @@
 
 \begin{document}\createtitle
 
-\sheet{Mafiasi questions}
-\begin{exercise}{Embedded Systems Design}
+\sheet{Mündliche Prüfung}
+\begin{exercise}{Einführungsfragen}
   \begin{enumerate}
-    \item Worauf sollte man beim Entwurf von eingebetteten Systemen achten und was sind die Besonderheiten im Vergleich zur normalen Softwareentwicklung?
-    \item Wie unterscheiden sich eingebettete Systeme von normalen Computern?
-    \item Was versteht man unter Zuverlässigkeit von Embedded Systems und wie kann man diese messen?
-    \item Was beschreibt der Fault in Time (FIT) Wert und wie wird dieser bestimmt?
-    \item Was versteht man genau unter Scratch Pad Memory?
+    \item Wie würden Sie an den Entwurf eines eingebetteten Systems herangehen?
+    \item Was sind die wichtigsten Unterschiede zwischen eingebetteten Systemen und Allzweckcomputern?
+    \item Was unterscheidet eingebettete Betriebssysteme von Allzweckbetriebssystemen?
+    \item Welche Models of Computation (MoCs) sind für eingebettete Systeme relevant und wie kommunizieren sie?
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item Besonderheiten: Echtzeitfähigkeit, Ressourcenknappheit, Energieeffizienz, Sicherheit
-      \item Unterschiede: Eingebettete Systeme sind spezialisierte Computersysteme, die in anderen Systemen eingebettet sind und spezielle Aufgaben erfüllen.
-      \item Zuverlässigkeit: Zuverlässigkeit beschreibt die Fähigkeit eines Systems, eine bestimmte Funktion unter spezifizierten Bedingungen
-      \item FIT: Der FIT-Wert gibt die Anzahl der Ausfälle pro Milliarde Betriebsstunden an und wird durch Zuverlässigkeitstests bestimmt.
-      \item Scratch Pad Memory: Ein Scratchpad-Speicher ist ein kleiner, schneller und energieeffizienter Speicher, der zur Speicherung häufig verwendeter Daten verwendet wird.
+      \item Beim Entwurf von eingebetteten System startet man (wie bei jedem Entwurf) mit einer Anforderungsanalyse und darauf basierend eine Spezifikation. Anschließend folgt die Modellierung. Bei ES insbesondere, muss nun auch Hard- und Software spezifiziert werden (da diese häufig genau auf das System angepasst werden muss). Dies erfolgt alles iterativ, zusammengefasst: Requirements, System Architecture, System Design, Software Architecture, Software Design. Natürlich sollten optimalerweise in jedem Schritt auch Tests durchgeführt werden, aber zumindest vor Release.
+      \item Die wichtigsten Unterschiede zwischen eingebetteten Systemen und Allzweckcomputern sind die Echtzeitfähigkeit, die Ressourcenknappheit, und die Energieeffizienz.
+      \item Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und unterscheiden sich in Ihrer Echtzeitfähigkeit, darin, dass jeder Prozess Interrupts auslösen kann, und, dass zumeist direkt mit der Hardware kommuniziert wird (und nicht über das OS). Außerdem wird angenommen, dass Software getestet ist und somit weniger Sicherheitsanforderungen durch das OS gestellt werden.
+      \item Models of Computation (MoCs) für eingebettete Systeme sind z.B. Communicating FSMs, Data flow, Petrinetze, Diskrete Eventmodelle (DE models) und das klassische von Neumann Modell. Sie kommunizieren über Shared Memory und Message Passing.
     \end{enumerate}
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{Betriebssysteme}
+\begin{exercise}{Reliability}
   \begin{enumerate}
-    \item Worin Unterscheiden sich Betriebssysteme von Eingebetteten Systemen und "normalen" Betriebssystemen?
-    \item Wie behandelt ein normales Betriebssystem Interrupts?
-    \item Was machen Betriebsysteme noch?
-    \item Wie unterscheiden sich hier die normalen Betriebssysteme von den eingebetteten Systemen und wo liegen die Vorteile der einzelnen Systeme?
+    \item Was versteht man unter Zuverlässigkeit von Embedded Systems und wie kann man diese messen?
+    \item Was beschreibt der Fault in Time (FIT) Wert und wie wird dieser bestimmt?
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item Unterschiede: Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und bieten Funktionen wie Echtzeitfähigkeit, geringen Speicherbedarf und Energieeffizienz.
-      \item Interrupts: Interrupts werden von einem normalen Betriebssystem behandelt, indem sie den aktuellen Prozess unterbrechen und den Interrupt-Handler ausführen.
+      \item Zuverlässigkeit beschreibt die Fähigkeit eines Systems, eine bestimmte Funktion unter spezifizierten Bedingungen für eine definierte Zeitdauer zu erfüllen. Sie kann durch Zuverlässigkeitstests gemessen werden und durch den FIT (Fault in Time) formalisiert werden. Dieser gibt die Anzahl der Ausfälle pro Milliarde Betriebsstunden an.
+      \item Der FIT-Wert gibt die Anzahl der Ausfälle pro Milliarde Betriebsstunden an und ist ein Maß für die Zuverlässigkeit eines Systems. Er wird durch Zuverlässigkeitstests bestimmt.
+    \end{enumerate}
+  \end{solution}
+\end{exercise}
+
+\begin{exercise}{OS}
+  \begin{enumerate}
+    \item Wie behandelt ein normales Betriebssystem Interrupts?
+    \item Was macht Interrupts und ihre Behandlung in einem ES aus?
+    \item Was machen Betriebsysteme noch?
+  \end{enumerate}
+
+  \begin{solution}
+    \begin{enumerate}
+      \item Interrupts werden von einem normalen Betriebssystem behandelt, indem sie den aktuellen Prozess unterbrechen und den Interrupt-Handler ausführen.
+      \item Interrupts können nicht nur vom Betriebssystem, sondern auch von anderen Komponenten des Systems ausgelöst werden. Die Behandlung von Interrupts in einem ES ist kritisch, da sie die Echtzeitfähigkeit des Systems beeinflussen können.
       \item Betriebssysteme verwalten Ressourcen wie Prozessoren, Speicher und Geräte, bieten Schnittstellen für Anwendungen und sorgen für die Sicherheit und Zuverlässigkeit des Systems.
-      \item Unterschiede: Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und bieten Funktionen wie Echtzeitfähigkeit, geringen Speicherbedarf und Energieeffizienz.
     \end{enumerate}
   \end{solution}
 \end{exercise}
 
 \begin{exercise}{MoCs}
   \begin{enumerate}
-    \item Was sind die Beschriftungen der Tabelle über MoCs?
     \item Erklären Sie ein MoC Ihrer Wahl genauer.
     \item Beschreiben Sie kurz, was Shared Memory und Message Passing sind.
     \item Was sind die Vor- und Nachteile von Shared Memory bzw. Message Passing?
-    \item Wie bestimmt man die Größe der Buffer beim asynchronen Message Passing?
-    \item Was ist Priority Inversion und wie kann man das vermeiden?
-    \item Was kann noch für ein Problem auftreten und wie vermeidet man das?
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item Beschriftungen: Name, Beschreibung, Eigenschaften, Anwendungen, Vor- und Nachteile
-      \item MoC: StateCharts
-      \item Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können. Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
-      \item Vor- und Nachteile: Shared Memory ermöglicht schnellen Datenaustausch, kann aber zu
-      \item Größe der Buffer: Die Größe der Buffer beim asynchronen Message Passing wird durch die Anzahl der Nachrichten und die Größe der Nachrichten bestimmt.
-      \item Priority Inversion: Priority Inversion tritt auf, wenn ein niedrig priorisierter Prozess eine Ressource blockiert, die von einem höher priorisierten Prozess benötigt wird. Priority Inversion kann durch die Verwendung von Prioritätsvererbung oder Prioritätsdecke vermieden werden.
-      \item Deadlock: Deadlocks können auftreten, wenn Prozesse auf gegenseitige Exklusivität warten. Deadlocks können durch die Verwendung von Ressourcenverwaltungsalgorithmen wie Banker's Algorithm oder durch die Vermeidung von zyklischen Wartebedingungen vermieden werden.
+      \item Hierfür eignen sich zB. die Communicating FSMs. Das lässt sich für Shared Memory Kommunikation mit StateCharts umsetzen.
+      \item Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können.
+            Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
+      \item Shared Memory ist schneller, aber schwieriger zu implementieren und weniger sicher.
+            Message Passing ist sicherer und intuitiver, aber langsamer und erfordert mehr Ressourcen.
     \end{enumerate}
   \end{solution}
 \end{exercise}
@@ -75,26 +79,42 @@
   \begin{enumerate}
     \item Was sind die 4 Eigenschaften von Scheduling-Verfahren? Beschreiben Sie diese kurz.
     \item Stellen Sie einen Algorithmus vor und ordnen Sie ihn in die Kategorien ein.
+    \item Was ist Priority Inversion und wie kann man das vermeiden?
+    \item Was kann noch für ein Problem auftreten und wie vermeidet man das?
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item Eigenschaften: Determinismus, Fairness, Echtzeitfähigkeit, Effizienz
-      \item Rate Monotonic Scheduling: Rate Monotonic Scheduling ist ein deterministisches, präemptives Scheduling-Verfahren, bei dem die Priorität eines Prozesses durch seine Rate bestimmt wird.
+      \item Periodizität, Dependenz, Präemption, Dynamik.
+            Periodizität beschreibt die Regelmäßigkeit, mit der ein Prozess ausgeführt wird.
+            Dependenz beschreibt die Abhängigkeit eines Prozesses von anderen Prozessen.
+            Präemption beschreibt die Möglichkeit, einen Prozess zu unterbrechen und später fortzusetzen.
+            Dynamik beschreibt die Fähigkeit eines Scheduling-Verfahrens, sich an Änderungen in der Umgebung anzupassen.
+      \item Rate Monotonic Scheduling ist ein deterministisches, präemptives Scheduling-Verfahren, bei dem die Priorität eines Prozesses durch seine Rate bestimmt wird. Die Rate eines Prozesses ist der Kehrwert seiner Periode.
+      \item Priority Inversion tritt auf, wenn ein niedrig priorisierter Prozess eine Ressource blockiert, die von einem höher priorisierten Prozess benötigt wird. Priority Inversion kann durch die Verwendung von Prioritätsvererbung oder Prioritätsdecke vermieden werden.
+            Priority Inheritance ist eine Technik, bei der die Priorität eines Prozesses erhöht wird, wenn er auf eine Ressource wartet, die von einem anderen Prozess verwendet wird.
+            Priority Ceiling ist eine Technik, bei der die Priorität eines Prozesses auf das Maximum der Prioritäten der Prozesse gesetzt wird, die auf die gleiche Ressource warten.
+      \item Deadlocks können auftreten, wenn Prozesse auf gegenseitige Exklusivität warten. Deadlocks können durch die Verwendung von Ressourcenverwaltungsalgorithmen wie Banker's Algorithm oder durch die Vermeidung von zyklischen Wartebedingungen vermieden werden.
     \end{enumerate}
   \end{solution}
 \end{exercise}
 
-\begin{exercise}{High-Level Optimierung}
+\begin{exercise}{Optimierung}
   \begin{enumerate}
-    \item Nennen Sie einige High-Level Optimierungen und erklären Sie diese kurz.
+    \item Nennen Sie einige High-Level Software-Optimierungen und erklären Sie diese kurz.
     \item Weswegen würde man Loop Unrolling anwenden?
+    \item Nennen Sie einige Energieeffizienzoptimierungen.
   \end{enumerate}
 
   \begin{solution}
     \begin{enumerate}
-      \item High-Level Optimierungen: Loop Unrolling, Loop Tiling, Data Prefetching
-      \item Loop Unrolling: Loop Unrolling wird angewendet, um den Overhead von Schleifen zu reduzieren und die Parallelität von Instruktionen zu erhöhen.
+      \item Loop Unrolling, Loop Tiling, Loop Fusion/Loop Fission.
+            Loop Unrolling wird angewendet, um den Overhead von Schleifen zu reduzieren und die Parallelität von Instruktionen zu erhöhen. Hierbei wird der Schleifenkörper mehrfach kopiert und die Schleifenvariable entsprechend angepasst.
+            Loop Tiling wird angewendet, um den Cache-Effekt zu verbessern und die Parallelität von Instruktionen zu erhöhen. Hierbei wird der Schleifenkörper in kleinere Teile aufgeteilt, die sequentiell ausgeführt werden.
+            Loop Fusion/Loop Fission wird angewendet, um den Overhead von Schleifen zu reduzieren und die Parallelität von Instruktionen zu erhöhen. Hierbei werden mehrere Schleifen zu einer Schleife zusammengefasst oder eine Schleife in mehrere Schleifen aufgeteilt.
+            Die meisten dieser Optimierungen werden allerdings durch den Compiler bereits vorgenommen und in vielen Fällen führt eine manuelle Implementierung sogar zu schlechterer Performance.
+      \item Loop Unrolling wird angewendet, um den Overhead von Schleifen zu reduzieren und die Parallelität von Instruktionen zu erhöhen.
+      \item Hardwareauswahl, Codeoptimierung, Dynamic Power Management (low power oder sleep mode).
     \end{enumerate}
   \end{solution}
 \end{exercise}
