@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[solutions]{xrcise}
+\usepackage[]{xrcise}
 
 \subject{Informationsgestützte Modellierung von Organisationen}
 \semester{Summer 2024}
@@ -319,10 +319,10 @@
 
     \item Erläutern Sie die Inhalte einer Digital Business Strategy: Scope, Scale, Speed und Source of business value capture and business value creation!
           \begin{solution}
-            - **Scope:** Umfasst die Breite und Tiefe der digitalen Transformation in verschiedenen Geschäftsbereichen.
-            - **Scale:** Bezieht sich auf den Umfang der digitalen Aktivitäten und die Größe der Auswirkungen auf das Unternehmen.
-            - **Speed:** Beschreibt die Geschwindigkeit, mit der digitale Initiativen umgesetzt werden, um Marktchancen zu nutzen.
-            - **Source of business value capture and business value creation:** Zeigt, wie durch digitale Technologien und Innovationen Werte geschaffen und erfasst werden, z.B. durch neue Geschäftsmodelle, verbesserte Kundenerlebnisse oder effizientere Prozesse.
+            - Scope: Umfasst die Breite und Tiefe der digitalen Transformation in verschiedenen Geschäftsbereichen.
+            - Scale: Bezieht sich auf den Umfang der digitalen Aktivitäten und die Größe der Auswirkungen auf das Unternehmen.
+            - Speed: Beschreibt die Geschwindigkeit, mit der digitale Initiativen umgesetzt werden, um Marktchancen zu nutzen.
+            - Source of business value capture and business value creation: Zeigt, wie durch digitale Technologien und Innovationen Werte geschaffen und erfasst werden, z.B. durch neue Geschäftsmodelle, verbesserte Kundenerlebnisse oder effizientere Prozesse.
           \end{solution}
 
     \item Beschreiben Sie Methoden, um den Grad der Digitalisierung eines Unternehmens festzustellen!
@@ -390,9 +390,97 @@
   Bearbeiten Sie hierzu folgende Teilaufgaben.
   \begin{enumerate}
     \item\label{itm:prim} Nennen Sie drei Beispiele für primär interessierende Leistungsgrößen, die eine Simulation des Modells untersuchen könnte.
+          \begin{solution}
+            \begin{enumerate}
+              \item Die durchschnittliche Zeit, die eine Transaktion benötigt, um bestätigt zu werden.
+              \item Die Anzahl der Splits im Netzwerk pro Zeiteinheit.
+              \item Die durchschnittliche Anzahl von Transaktionen, die ein Server in seinen "wartenden Transaktionen" hält.
+            \end{enumerate}
+          \end{solution}
     \item\label{itm:empf} Würden Sie für die Durchführung einer solchen Simulationsstudie eine ereignis- oder prozessorientierte Modellierung empfehlen? Geben Sie zwei Gründe für Ihre Empfehlung an.
+          \begin{solution}
+            \begin{enumerate}
+              \item Die beschriebenen Prozesse (Transaktionen erzeugen, Blöcke minen, Blöcke versenden) sind klar durch diskrete Ereignisse geprägt.
+              \item Ereignisorientierte Modelle sind besonders geeignet, um Systeme zu simulieren, bei denen sich der Zustand nur bei bestimmten, klar definierten Ereignissen ändert, was hier der Fall ist.
+            \end{enumerate}
+          \end{solution}
     \item\label{itm:ent} Unabhängig von Ihrer Empfehlung in \ref{itm:empf} soll im Rahmen der Simulationsstudie eine ereignisorientierte Modellierung erstellt werden. Benennen Sie zunächst die zu modellierenden Entitäten und Ereignistypen sowie eventuell für Synchronisationszwecke nützliche Warteschlangen.
+          \begin{solution}
+            \begin{enumerate}
+              \item Entitäten:
+                    \begin{enumerate}
+                      \item Nutzer
+                      \item Server
+                      \item Transaktion
+                      \item Block
+                    \end{enumerate}
+              \item Ereignistypen:
+                    \begin{enumerate}
+                      \item Erzeugung einer Transaktion (ET)
+                      \item Ankunft einer Transaktion bei einem Server (AT)
+                      \item Erzeugung eines Blocks (EB)
+                      \item Ankunft eines Blocks bei einem Server (AB)
+                    \end{enumerate}
+              \item Warteschlangen:
+                    \begin{enumerate}
+                      \item Wartende Transaktionen eines Servers (WT)
+                    \end{enumerate}
+            \end{enumerate}
+          \end{solution}
     \item\label{itm:mod} Geben Sie eine semi-formale Modellierung der in \ref{itm:ent} identifizierten Ereignistypen an. Verwenden Sie hierfür Flussdiagramme analog zur Vorlesung und Übung.
+          \begin{solution}
+            \begin{minipage}{.4\textwidth}
+              \begin{tikzpicture}[node distance=2cm,auto, scale=.8, transform shape]
+                \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+                \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+                \tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+                \tikzstyle{line} = [draw]
+
+                \node[startstop] (start) {Start};
+                \node[process, below of=start] (et) {Erzeugung einer Transaktion (ET)};
+                \node[process, below of=et] (at) {Ankunft einer Transaktion bei einem Server (AT)};
+                \node[process, below of=at] (eb) {Erzeugung eines Blocks (EB)};
+                \node[decision, below of=eb] (split) {Split?};
+                \node[process, below of=split, node distance=3cm] (ab) {Ankunft eines Blocks bei einem Server (AB)};
+                \node[startstop, below of=ab, node distance=2cm] (end) {Ende};
+
+                \path[line] (start) -- (et);
+                \path[line] (et) -- (at);
+                \path[line] (at) -- (eb);
+                \path[line] (eb) -- (split);
+                \path[line] (split) -- node {Ja} (ab);
+                \path[line] (split.east) -- ++(3,0) node [near start] {Nein} |- (end);
+                \path[line] (ab) -- (end);
+              \end{tikzpicture}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{.6\textwidth}
+              \begin{description}
+                \item[Erzeugung einer Transaktion (ET)] Bezug: Nutzer
+                      \begin{enumerate}
+                        \item Nutzer erzeugt eine neue Transaktion.
+                        \item Transaktion wird an alle Server gesendet.
+                      \end{enumerate}
+                \item[Ankunft einer Transaktion bei einem Server (AT)] Bezug: Server
+                      \begin{enumerate}
+                        \item Transaktion erreicht einen Server.
+                        \item Transaktion wird in die Warteschlange WT eingefügt.
+                      \end{enumerate}
+                \item[Erzeugung eines Blocks (EB)] Bezug: Server
+                      \begin{enumerate}
+                        \item Server fasst wartende Transaktionen zu einem Block zusammen.
+                        \item Server sendet den neuen Block an alle anderen Server.
+                      \end{enumerate}
+                \item[Ankunft eines Blocks bei einem Server (AB)] Bezug: Server
+                      \begin{enumerate}
+                        \item Block erreicht einen Server.
+                        \item Server prüft, ob ein Split vorliegt.
+                        \item Falls kein Split vorliegt, Transaktionen aus dem Block werden aus der Warteschlange WT entfernt.
+                        \item Server beginnt, einen Nachfolger für diesen Block zu minen.
+                      \end{enumerate}
+              \end{description}
+            \end{minipage}
+          \end{solution}
   \end{enumerate}
   \hint{
     \begin{itemize}
@@ -405,15 +493,6 @@
       \item Vergleichen Sie nach Abschluss der Aufgabe Ihre Antworten zu \ref{itm:ent} und \ref{itm:mod}. Insbesondere: Falls Sie während der Bearbeitung von \ref{itm:mod} Korrekturbedarf bezüglich in der \ref{itm:ent} benannten Entitäten, Ereignistypen oder Warteschlangen festgestellt haben, dann ändern Sie auch Ihre Antwort von \ref{itm:ent} entsprechend!
     \end{itemize}
   }
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Primär interessierende Leistungsgrößen: Durchschnittliche Zeit bis zur Erzeugung eines Blocks, Anzahl der Splits, Anzahl der erzeugten Blocks.
-    %   \item Empfehlung: Ereignisorientierte Modellierung. Gründe: Diskrete Ereignisse, keine explizite Repräsentation von Ressourcen.
-    %   \item Entitäten und Ereignistypen: Entitäten: Nutzer, Server, Transaktion, Block. Ereignistypen: Ankunft einer Transaktion, Erzeugung eines Blocks, Erhalt eines Blocks.
-    %   \item Modellierung: Flussdiagramme für Ereignistypen
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Prozessmodellierung}
@@ -434,9 +513,28 @@
   Bearbeiten Sie hierzu folgende Teilaufgaben.
   \begin{enumerate}
     \item\label{itm:prim2} Nennen Sie drei Beispiele für primär interessierende Leistungsgrößen, die eine Simulation des Modells untersuchen könnte.
+          \begin{solution}
+            \begin{enumerate}
+              \item Die durchschnittliche Wartezeit eines Anrufers, bis er eine Verbindung zur Moderatorin erhält.
+              \item Die durchschnittliche Anzahl der Anrufe pro Quizfrage.
+              \item Die durchschnittliche Dauer eines Quizdurchlaufs.
+            \end{enumerate}
+          \end{solution}
     \item\label{itm:empf2} Würden Sie für die Durchführung einer solchen Simulationsstudie eine ereignis- oder prozessorientierte Modellierung empfehlen? Geben Sie zwei Gründe für Ihre Empfehlung an.
+          \begin{solution}
+            Das lässt sich anhand der Natur des Systems (ereignisgesteuert/prozessfolgend) und dem Ziel der Modellierung (Reaktion auf Ereignisse verstehen/Prozessablauf optimieren) entscheiden. Hier würde ich eine ereignisorientierte Modellierung empfehlen, da das System durch diskrete Ereignisse (Anrufe, Quizfragen) gesteuert wird und die Reaktion auf diese Ereignisse im Vordergrund steht.
+          \end{solution}
     \item\label{itm:ent2} Unabhängig von Ihrer Empfehlung in \ref{itm:empf2} soll im Rahmen der Simulationsstudie eine prozessorientierte Modellierung erstellt werden. Benennen Sie die zu modellierenden Prozesse und (sofern benötigt) Ressourcen.
-    \item\label{itm:mod2} Erstellen Sie für jeden in \ref{itm:ent2} benannten Prozesstyp eine semi-formale Modellierung in Form eines BPMN-Kollaborationsdiagramms zur Simulation des beschriebenen Modells mit IYOPRO.
+          \begin{solution}
+            \begin{enumerate}
+              \item Prozesse: Anrufversuche, Verbindungsaufbau, Quizdurchlauf, Preisvergabe.
+              \item Ressourcen: Telefonleitung.
+            \end{enumerate}
+          \end{solution}
+    \item\label{itm:mod2} Erstellen Sie für jeden in \ref{itm:ent2} benannten Prozesstyp eine semi-formale Modellierung in Form eines BPMN-Kollaborationsdiagramms zur Simulation des beschriebenen Modells.
+          \begin{solution}
+            \input{res/bpmn-mock.fig}
+          \end{solution}
   \end{enumerate}
 
   \hint{
@@ -449,107 +547,128 @@
       \item Vergleichen Sie nach Abschluss der Aufgabe Ihre Antworten zu \ref{itm:ent2} und \ref{itm:mod2}. Insbesondere: Falls Sie während der Bearbeitung von \ref{itm:mod2} Korrekturbedarf bezüglich in der \ref{itm:ent2} benannten Entitäten, Ereignistypen oder Warteschlangen festgestellt haben, dann ändern Sie auch Ihre Antwort von \ref{itm:ent2} entsprechend!
     \end{itemize}
   }
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Primär interessierende Leistungsgrößen: Durchschnittliche Dauer des Quiz, Anzahl der Anrufe, Anzahl der Gewinner.
-    %   \item Empfehlung: Prozessorientierte Modellierung. Gründe: Kontinuierliche Zeit, explizite Repräsentation von Ressourcen.
-    %   \item Prozesse und Ressourcen: Prozesse: Nachrichtenblock, Quiz, Anruf. Ressourcen: Telefonleitung, Moderatorin.
-    %   \item Modellierung: BPMN-Kollaborationsdiagramme für Prozesse
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \sheet[2023]{Altklausur}
 \begin{exercise}{Modellierung}
-  Gegeben sei folgenden Modellbeschreibung:
-  \par Stadion, wo Fußballspiele eines Vereins stattfinden und das logistische Herausforderungen für die Stadt mit sich bringt:
-  \par Die Fans nehmen die S-Bahn vom Hbf der Stadt, welche sie zum Bahnhof in der Nähe des Stadions fährt. Alle 5 Minuten verlässt eine S-Bahn den Hbf mit 300-500 (gleichverteilung) Fans. Die Fahrtzeit ist normalverteilt x Minuten lang mit x Minuten Standardabweichung.
-  \par Beim Bahnhof angekommen steigen die Fans aus, wobei der Ausstieg so beschrieben wird, dass konstant alle Zehntel Sekunden ein Fan aussteigt.
-  \par Nun müssen die Fans noch einen Shuttle Bus nehmen, um zum Stadion zu gelangen. Um zum Shuttle Bus zu gelangen, müssen die Fans zu einem Tunnel laufen und diesen überqueren (begrenzte Anzahl darf durch), daher kann sich eine Warteschlange vor dem Tunnel bilden, bis alle durch sind. An der Bushaltestelle angekommen fährt regelmäßig alle 100 Sekunden ein Shuttle Bus los und befördert die Fans zum Stadion. Es wird angenommen, dass es keine Begrenzung der Anzahl an Fans gibt, die in den Bus einsteigen dürfen.
-  \par Wenn das Warten auf dem Bus zu lange dauert und einen der jeweiligen Person spezifischen Maximalwert der Wartezeit überschritten wurde (exponentialverteilt im Mittel 300 Sekunden), bricht der Fan das Warten ab und macht sich zu Fuß auf dem Weg zum Stadion.
+  Gegeben sei folgenden Modellbeschreibung: Wir betrachten ein Stadion, welches Fußballspiele austrägt. Dies bringt logistische Herausforderungen mit sich:
+  \par Die Fans nehmen die S-Bahn vom Hauptbahnhof zum Bahnhof in der Nähe des Stadions. Alle 5 Minuten verlässt eine S-Bahn den Hauptbahnhof mit 300-500 Fans (gleichverteilt). Die Fahrtzeit ist normalverteilt mit 15 Minuten Mittelwert und 2 Minuten Standardabweichung.
+  \par Angekommen am Bahnhof steigen konstant 10 Fans pro Sekunde aus.
+  \par Es wird ein Shuttle-Bus zum Stadion angeboten. Um diesen zu erreichen müssen die Fans einen Tunnel durchqueren. Es kann sich eine Warteschlange bilden, da der Tunnel nur eine begrenzte Anzahl von Fans durchlassen kann. Die Wartezeit ist exponentialverteilt mit einem Mittelwert von 5 Minuten.
+  \par Der Bus fährt alle 100 Sekunden ab und kann beliebig viele Fans aufnehmen.
+  \par Wenn das Warten länger als die individuelle Toleranz dauert (Mittelwert 300 Sekunden, exponentialverteilt), brechen die Fans das Warten ab und gehen zu Fuß zum Stadion.
 
   Bearbeiten Sie hierzu folgende Teilaufgaben.
   \begin{enumerate}
     \item Nennen Sie drei Leistungsgrößen die bei einer Simulation dieses Modells analysiert werden könnten.
+          \begin{solution}
+            \begin{enumerate}
+              \item Die durchschnittliche Wartezeit der Fans im Tunnel.
+              \item Die Anzahl der Fans, die den Shuttle-Bus nutzen.
+              \item Die Anzahl der Fans, die zu Fuß zum Stadion gehen.
+            \end{enumerate}
+          \end{solution}
     \item\label{itm:empf3} Würden Sie eine ereignisorientierte oder eine prozessorientierte Modellierung vorschlagen?
-    \item\label{itm:ent3} Nennen Sie Entitäten und teilen Sie diese in Prozesse \& Ressourcen ein.
+          \begin{solution}
+            \begin{enumerate}
+              \item Ereignisorientierte Modellierung: Die Prozesse im Modell sind durch diskrete Ereignisse (Abfahrt der S-Bahn, Ankunft der Fans am Bahnhof, Warten im Tunnel, Abfahrt des Busses) gekennzeichnet.
+              \item Ereignisorientierte Modelle sind besonders geeignet, um Systeme zu simulieren, bei denen sich der Zustand nur bei bestimmten, klar definierten Ereignissen ändert, was hier der Fall ist.
+            \end{enumerate}
+          \end{solution}
+    \item\label{itm:ent3} Nennen Sie die Entitäten und teilen Sie diese in Prozesse \& Ressourcen ein.
+          \begin{solution}
+            \begin{enumerate}
+              \item Entitäten:
+                    \begin{enumerate}
+                      \item Fans
+                      \item S-Bahn
+                      \item Bahnhof
+                      \item Shuttle-Bus
+                      \item Tunnel
+                    \end{enumerate}
+              \item Prozesse:
+                    \begin{enumerate}
+                      \item Abfahrt der S-Bahn
+                      \item Ankunft der Fans am Bahnhof
+                      \item Warten im Tunnel
+                      \item Abfahrt des Busses
+                    \end{enumerate}
+              \item Ressourcen:
+                    \begin{enumerate}
+                      \item Tunnel
+                    \end{enumerate}
+            \end{enumerate}
+          \end{solution}
     \item Unabhängig vom Ergebnis aus \ref{itm:empf3} soll eine prozessorientierte Modellierung mittels BPMN erfolgen. Prozessarten aus \ref{itm:ent3} modellieren.
+          \begin{solution}
+            % TODO: add BPMN diagram
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Leistungsgrößen: Durchschnittliche Wartezeit, Anzahl der Fans, Anzahl der Busse.
-    %   \item Empfehlung: Ereignisorientierte Modellierung. Gründe: Diskrete Ereignisse, keine explizite Repräsentation von Ressourcen.
-    %   \item Entitäten: Fans, S-Bahn, Bahnhof, Shuttle Bus, Tunnel. Prozesse: Fahrt mit der S-Bahn, Ausstieg am Bahnhof, Warten am Tunnel, Fahrt mit dem Shuttle Bus. Ressourcen: S-Bahn, Shuttle Bus, Tunnel.
-    %   \item Modellierung: BPMN-Prozesse für Prozesse
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Mathematischer Themenblock}
   \begin{enumerate}
-    \item Aufgabe mit zentralem Grenzwertsatz
-    \item Ablaufsteuerung der ereignisorientierten Simulation beschreiben und dabei die Bedeutung der Ereignisliste erklären
-    \item Unterschied zwischen ereignisbasierter Simulation und zeitintervallbasierter Simulation erklären
+    \item Beschreiben Sie kurz den Zentralen Grenzwertsatz und nennen Sie eine Anwendung.
+          \begin{solution}
+            Der Zentrale Grenzwertsatz besagt, dass die Summe von unabhängigen, identisch verteilten Zufallsvariablen einer beliebigen Verteilung für eine große Anzahl von Summanden annähernd normalverteilt ist. Eine Anwendung ist die Schätzung von Mittelwerten in Stichproben.
+          \end{solution}
+    \item Wie läuft eine ereignisbasierte Simulation ab? Was ist in diesen Kontext eine Ereignisliste?
+          \begin{solution}
+            Bei einer ereignisbasierten Simulation werden diskrete Ereignisse in einem System modelliert und simuliert. Die Simulation beginnt mit der Initialisierung des Systems und der Erzeugung des ersten Ereignisses. Die Ereignisse werden in einer Ereignisliste gespeichert und nach ihrer Zeitstempel-Reihenfolge abgearbeitet.
+          \end{solution}
+    \item Unterscheiden Sie ereignis- \& zeitintervallbasierte Simulation!
+          \begin{solution}
+            Ereignisbasierte Simulation: Simulation basierend auf diskreten Ereignissen, die den Zustand des Systems verändern. Zeitintervallbasierte Simulation: Simulation basierend auf kontinuierlichen Zeitintervallen, die den Zustand des Systems beschreiben.
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Zentraler Grenzwertsatz: Aussage über die Verteilung der Summe von unabhängigen, identisch verteilten Zufallsvariablen.
-    %   \item Ablaufsteuerung: Ereignisliste: Liste von Ereignissen, sortiert nach Zeitpunkt ihres Eintretens.
-    %   \item Ereignisbasierte Simulation: Simulation, die auf diskreten Ereignissen basiert. Zeitintervallbasierte Simulation: Simulation, die auf kontinuierlicher Zeit basiert.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Qualitative \& Quantitative Prozessanalysetechniken}
   \begin{enumerate}
     \item Nennen Sie jeweils zwei qualitative und zwei quantitative Prozessanalysetechniken und beschreiben Sie diese kurz.
+          \begin{solution}
+            Qualitative Prozessanalysetechniken sind zum Beispiel Interviews und Workshops. Quantitative Prozessanalysetechniken sind zum Beispiel Prozesssimulation und Prozessmining.
+            In Interviews werden Mitarbeiter befragt, um Informationen über Prozesse zu sammeln. In Workshops werden Mitarbeiter in Gruppen zusammengebracht, um Prozesse zu analysieren und zu verbessern.
+            Prozesssimulation ist die Nachbildung von Prozessen in einem Modell, um deren Verhalten zu analysieren. Prozessmining ist die Analyse von Prozessdaten zur Identifikation, Überwachung und Verbesserung von Geschäftsprozessen.
+          \end{solution}
     \item Wie kann man die Critical Task Execution optimieren?
+          \begin{solution}
+            Die Critical Task Execution kann durch die Identifikation und Priorisierung kritischer Aufgaben, die Automatisierung von Routineaufgaben und die Verbesserung der Kommunikation und Zusammenarbeit zwischen Mitarbeitern optimiert werden.
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Qualitative Prozessanalysetechniken: Interviews, Beobachtungen. Quantitative Prozessanalysetechniken: Simulation, Prozessmining.
-    %   \item Critical Task Execution optimieren: Durchführung von Critical Task Analysis, Identifikation von Engpässen, Optimierung der Engpässe.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{BPMN}
   \begin{enumerate}
     \item Nennen Sie zwei Nachteile von BPMN und beschreiben Sie diese kurz.
+          \begin{solution}
+            Nachteile von BPMN sind zum Beispiel die Komplexität und die Abstraktion. Komplexität: BPMN-Diagramme können sehr komplex werden und sind schwer zu verstehen. Abstraktion: BPMN-Diagramme sind abstrakt und können von Mitarbeitern falsch interpretiert werden.
+          \end{solution}
     \item Was ist Process Mining und wie kann man den Nachteilen von BPMN mithilfe von Process Mining entgegenwirken?
+          \begin{solution}
+            Process Mining ist die Analyse von Prozessdaten zur Identifikation, Überwachung und Verbesserung von Geschäftsprozessen. Process Mining kann dazu beitragen, die Nachteile von BPMN zu überwinden, indem es die tatsächliche Ausführung von Prozessen analysiert und Verbesserungspotenziale aufdeckt.
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Nachteile von BPMN: Komplexität, Abstraktion. Komplexität: BPMN-Diagramme können sehr komplex werden und dadurch unübersichtlich. Abstraktion: BPMN-Diagramme sind abstrakt und können dadurch von Nicht-Experten schwer verstanden werden.
-    %   \item Process Mining: Analyse von Prozessdaten zur Identifikation, Überwachung und Verbesserung von Geschäftsprozessen. Process Mining kann die Nachteile von BPMN durch die Analyse von Prozessdaten und die Identifikation von Schwachstellen in Prozessen beheben.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{ERP-Systeme}
   \begin{enumerate}
     \item Würden Sie McDongerKing eine ERP-Standardsoftware oder Individualsoftware empfehlen? Begründen Sie Ihre Antwort.
+          \begin{solution}
+            Da McDongerKing mehrere Filialen betreibt und ein Online-Bestell-System unterhält, allerdings wahrscheinlich nicht die Ressourcen für die Entwicklung einer Individualsoftware hat, würde ich McDongerKing eine ERP-Standardsoftware empfehlen.
+          \end{solution}
     \item Wäre eine ERP-Cloud Lösung sinnvoll?
+          \begin{solution}
+            Eine ERP-Cloud Lösung könnte für McDongerKing sinnvoll sein, da sie flexibel und skalierbar ist und keine hohen Investitionskosten erfordert.
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item ERP-Standardsoftware oder Individualsoftware: ERP-Standardsoftware: McDongerKing ist ein mittelständisches Unternehmen und hat keine speziellen Anforderungen an die Software. Individualsoftware: McDongerKing hat spezielle Anforderungen an die Software, die nicht durch Standardsoftware abgedeckt werden können.
-    %   \item ERP-Cloud Lösung: Ja, eine ERP-Cloud Lösung wäre sinnvoll, da McDongerKing dadurch Kosten sparen und flexibel auf Änderungen reagieren kann.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{IT-Governance}
   Nennen Sie zwei Aufgaben der IT-Governance und beschreiben Sie diese kurz.
 
   \begin{solution}
-    Aufgaben der IT-Governance: IT-Strategie: Entwicklung und Umsetzung einer IT-Strategie, IT-Compliance: Sicherstellung der Einhaltung von gesetzlichen und regulatorischen Anforderungen.
+    IT-Strategie: Entwicklung und Umsetzung einer IT-Strategie, IT-Compliance: Sicherstellung der Einhaltung von gesetzlichen und regulatorischen Anforderungen.
   \end{solution}
 \end{exercise}
 
@@ -557,7 +676,7 @@
   Erklären Sie den Unterschied zwischen IT-Strategie und Digital Business Strategie anhand von drei charakteristischen Eigenschaften der beiden und nennen Sie Beispiele.
 
   \begin{solution}
-    IT-Strategie: Fokus auf IT-Infrastruktur, IT-Systeme, IT-Prozesse. Digital Business Strategie: Fokus auf digitale Geschäftsmodelle, digitale Produkte, digitale Services.
+    Wichtige Unterschiede zwischen IT-Strategie und Digital Business Strategie sind: Fokus, Umfang und Ziele. IT-Strategie: Fokus auf IT-Infrastruktur und -Systeme, Umfang begrenzt auf IT-Systeme, Ziele sind Effizienz und Effektivität. Digital Business Strategie: Fokus auf digitale Technologien und Geschäftsmodelle, Umfang umfasst das gesamte Unternehmen, Ziele sind Wettbewerbsvorteile und Innovation.
   \end{solution}
 \end{exercise}
 
@@ -565,7 +684,7 @@
   Nennen Sie zwei Prinzipien der Entwicklung soziotechnischer Systeme und beschreiben Sie diese kurz.
 
   \begin{solution}
-    Prinzipien der Entwicklung soziotechnischer Systeme: Partizipation: Einbeziehung der Mitarbeiter in den Entwicklungsprozess, Transparenz: Offenlegung von Entscheidungen und Prozessen.
+    Partizipation: Einbeziehung der Mitarbeiter in den Entwicklungsprozess, Transparenz: Offenlegung von Entscheidungen und Prozessen.
   \end{solution}
 \end{exercise}
 
@@ -573,31 +692,30 @@
 \sheet[2022]{Altklausur}
 
 \begin{exercise}{Ereignisorientierte Modellierung}
-  \begin{enumerate}
-    \item Nennen Sie vier typische Zwecke, warum man lieber an Modellen Untersuchungen durchführt, statt am Realsystem und je ein Beispiel nennen.
-    \item Ereignisorientierte Modellierung: wie in Probeklausur.
-  \end{enumerate}
-
+  Nennen Sie vier typische Zwecke, warum man lieber an Modellen Untersuchungen durchführt, statt am Realsystem und je ein Beispiel nennen.
   \begin{solution}
-    % \begin{enumerate}
-    %   \item Zwecke von Modellen: Verständnis, Analyse, Prognose, Simulation. Beispiele: Verständnis: Modell eines Flughafens, Analyse: Modell eines Produktionsprozesses, Prognose: Modell des Klimawandels, Simulation: Modell eines Verkehrssystems.
-    %   \item Ereignisorientierte Modellierung: wie in Probeklausur.
-    % \end{enumerate}
+    \begin{enumerate}
+      \item Kostenersparnis: Simulation eines Flughafens, um die Anzahl der benötigten Sicherheitskontrollen zu bestimmen.
+      \item Risikominimierung: Simulation eines Produktionsprozesses, um Engpässe zu identifizieren.
+      \item Effizienzsteigerung: Simulation eines Logistiksystems, um die optimale Routenplanung zu bestimmen.
+      \item Komplexität: Simulation eines Finanzsystems, um die Auswirkungen von Änderungen zu analysieren.
+    \end{enumerate}
   \end{solution}
+
+  Ereignisorientierte Modellierung analog zur Probeklausur.
 \end{exercise}
 
 \begin{exercise}{Systemmodellierung}
   \begin{enumerate}
     \item Nennen Sie einen Vorteil und einen Nachteil für Systemmodellierung auf der Werkzeugebene und beschreiben Sie diese.
-    \item Beschreiben Sie das Zwischenereignis einer empfangenen Nachricht.
+          \begin{solution}
+            Vorteil einer Systemmodellierung auf der Werkzeugebene ist Strukturierung: Systemmodellierung hilft, komplexe Systeme zu strukturieren und zu visualisieren. Nachteil einer Systemmodellierung auf der Werkzeugebene ist Vereinfachung: Systemmodelle sind abstrakt und können die Realität vereinfachen.
+          \end{solution}
+    \item Beschreiben Sie das "Zwischenereignis mit empfangener Nachricht".
+          \begin{solution}
+            Ein Zwischenereignis mit empfangener Nachricht ist ein Ereignis, das auftritt, wenn eine Nachricht empfangen wird.
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Vorteil: Strukturierung, Nachteil: Vereinfachung. Strukturierung: Systemmodellierung hilft, komplexe Systeme zu strukturieren und zu visualisieren. Vereinfachung: Systemmodelle sind abstrakt und können dadurch die Realität vereinfachen.
-    %   \item Zwischenereignis einer empfangenen Nachricht: Ereignis, das auftritt, wenn eine Nachricht empfangen wird.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{Anlauf von Simulationen}
@@ -611,15 +729,14 @@
 \begin{exercise}{Teile von Organisationen}
   \begin{enumerate}
     \item Nennen Sie die fünf Teile einer Organisation und beschreiben Sie diese kurz.
+          \begin{solution}
+            % TODO: add
+          \end{solution}
     \item Ordnen Sie McDongerKing in ein Organisationsdesign ein und begründen Sie dies mit Mechanismen, Koordination und Intention.
+          \begin{solution}
+            % TODO: add
+          \end{solution}
   \end{enumerate}
-
-  \begin{solution}
-    % \begin{enumerate}
-    %   \item Teile einer Organisation: Aufbauorganisation, Ablauforganisation, Personalorganisation, Informationsorganisation, Entscheidungsorganisation. Aufbauorganisation: Struktur der Organisation, Ablauforganisation: Prozesse und Abläufe, Personalorganisation: Personalmanagement, Informationsorganisation: Informationsfluss, Entscheidungsorganisation: Entscheidungsprozesse.
-    %   \item Organisationsdesign: Funktionale Organisation. Begründung: Mechanismen: Hierarchie, Koordination: Standardisierung, Intention: Effizienz.
-    % \end{enumerate}
-  \end{solution}
 \end{exercise}
 
 \begin{exercise}{McDongerKing}
