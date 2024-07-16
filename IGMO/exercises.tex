@@ -33,7 +33,8 @@
 
     \item Worin unterscheiden sich Simulationsmodelle und analytische Modelle? Geben Sie zwei Merkmale an.
           \begin{solution}
-            Simulationsmodelle verwenden numerische und stochastische Methoden zur Modellierung, während analytische Modelle auf mathematischen und logischen Ansätzen basieren. Simulationsmodelle sind flexibel und anpassbar an verschiedene Szenarien, während analytische Modelle spezifische mathematische Annahmen verwenden und weniger flexibel sind.
+            Methoden (numerisch+stochastisch v. mathematisch+logisch): Simulationsmodelle verwenden numerische und stochastische Methoden zur Modellierung, während analytische Modelle auf mathematischen und logischen Ansätzen basieren.
+            Flexibilität (anpassbar v. spezifische Annahmen): Simulationsmodelle sind flexibel und anpassbar an verschiedene Szenarien, während analytische Modelle spezifische mathematische Annahmen verwenden und weniger flexibel sind.
           \end{solution}
 
     \item Worin unterscheiden sich Simulationen mit wissenschaftlichem Anspruch und Computerspiele des Genres "Simulation"? Nennen Sie zwei Merkmale.
@@ -79,7 +80,7 @@
 
             \item …im prozessorientierten Ansatz?
                   \begin{solution}
-                    Im prozessorientierten Ansatz werden wiederholte Ankünfte durch Schleifen oder Rekursion in der Prozessbeschreibung modelliert.
+                    Im prozessorientierten Ansatz werden wiederholte Ankünfte durch Timer-/Nachrichten-Startereignisse modelliert.
                   \end{solution}
           \end{enumerate}
 
@@ -90,7 +91,7 @@
 
     \item Nennen Sie drei typischerweise in der Simulation verwandte Typen von BPMN-Zwischenereignissen und beschreiben Sie ihre Semantik.
           \begin{solution}
-            Typische BPMN-Zwischenereignisse sind Timer-Ereignisse (warten für eine bestimmte Zeit), Signal-Ereignisse (Empfang eines Signals), Fehler-Ereignisse (Behandlung von Fehlern).
+            Typische BPMN-Zwischenereignisse sind Timer-Ereignisse, Signal-Ereignisse, Nachrichten-Ereignisse.
           \end{solution}
 
     \item Warum sind für die BPMN-Prozesssimulation implizit erzeugte Warteschlangen notwendig?
@@ -100,7 +101,7 @@
 
     \item Wie kann man in BPMN-Prozessdiagrammen die begrenzte Wartebereitschaft eines Kunden abbilden?
           \begin{solution}
-            Die begrenzte Wartebereitschaft eines Kunden kann durch Timer-Ereignisse modelliert werden, die die maximale Wartezeit eines Kunden begrenzen.
+            Das kann durch ein Timer-Boundary-Event modelliert werden. Hierbei wird das Timer-Event an die Aktivität angehängt und von dort ein weiterer Pfad gestartet.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -109,7 +110,7 @@
   \begin{enumerate}
     \item Welche Arten von Simulationssoftware kann man unterscheiden?
           \begin{solution}
-            Man kann Simulationssoftware in allgemeine Programmiersprachen, Simulationssoftware auf Werkzeugebene und Simulationssoftware auf Anwendungsebene unterteilen.
+            Man kann Simulationssoftware in allgemeine Programmiersprachen, Simulationssoftware auf Werkzeugebene (generelle Simulationssoftware) und spezialisierte Simulationssoftware unterteilen.
           \end{solution}
 
     \item Nennen Sie jeweils zwei Vor- und Nachteile von Simulationssoftware auf Werkzeugebene.
@@ -134,17 +135,17 @@
 
     \item Inwiefern unterstützt IYOPRO die Modellierung und Simulation von Ressourcen?
           \begin{solution}
-            IYOPRO unterstützt die Modellierung und Simulation von Ressourcen durch die Darstellung ihrer verschiedenen Zustände wie Frei, Belegt, Wartend oder Defekt.
+            IYOPRO unterstützt die Modellierung und Simulation von Ressourcen durch die Definition von Ressourcen mit Rollen, welche von Aktivitäten verwendet werden können.
           \end{solution}
 
     \item Gehen Sie insbesondere auf die möglichen Zustände einer Ressource ein.
           \begin{solution}
-            Mögliche Zustände einer Ressource in IYOPRO können sein: Frei (verfügbar für Nutzung), Belegt (aktuell in Nutzung), Wartend (auf Freigabe wartend) oder Defekt (nicht funktionsfähig).
+            Mögliche Zustände einer Ressource in IYOPRO können sein: Idle (verfügbar für Nutzung), In use (aktuell in Nutzung), Waiting (Von Prozess gefordert aber noch nicht verwendet, da andere Ressourcen nicht verfügbar) oder setup/post-processing.
           \end{solution}
 
     \item Worin unterscheiden sich Blackbox- und Whitebox-Komponenten in Software-Frameworks? Nennen Sie jeweils ein Beispiel in DESMO-J!
           \begin{solution}
-            Blackbox-Komponenten in DESMO-J sind zum Beispiel Warteschlangen, bei denen der interne Zustand nicht direkt zugänglich ist. Whitebox-Komponenten sind zum Beispiel Ressourcen, bei denen der aktuelle Zustand (z.B. Auslastung) direkt zugänglich ist.
+            Blackbox-Komponenten in DESMO-J sind zum Beispiel die Simulationsinfrastruktur. Diese ist nicht direkt zugänglich. Whitebox-Kompoenten sind die abstrakten Klassen (Hot Spots) für das Modell. Diese müssen um Modelldetails erweitert werden.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -152,26 +153,31 @@
 \begin{exercise}{Simulationsstatistik \& Optimierung}
   \begin{enumerate}
     \item Warum sollte man Simulationsläufe mehrfach wiederholen?
+
           \begin{solution}
             Simulationsläufe werden mehrfach wiederholt, um Zufallseinflüsse zu reduzieren und die Aussagekraft der Ergebnisse zu verbessern. Dadurch können robustere Schlussfolgerungen gezogen werden.
           \end{solution}
 
     \item Wie kann man Pseudozufallszahlen erzeugen, die im Intervall [0,1) näherungsweise stetig gleichverteilt sind?
+
           \begin{solution}
             Pseudozufallszahlen, die näherungsweise stetig gleichverteilt sind, können mit Generatoren wie dem linearen Kongruenzgenerator oder dem Mersenne-Twister erzeugt werden. Diese Generatoren erzeugen Zahlen, die statistischen Tests für Gleichverteilung standhalten.
           \end{solution}
 
     \item Was versteht man unter einem Konfidenzintervall?
+
           \begin{solution}
-            Ein Konfidenzintervall ist ein Intervall, innerhalb dessen ein Schätzwert einer Messgröße mit einer bestimmten Wahrscheinlichkeit (z.B. 95%) liegt. Es dient dazu, die Genauigkeit und Zuverlässigkeit von Schätzungen zu quantifizieren.
+            Ein Konfidenzintervall ist ein Intervall, innerhalb dessen ein Schätzwert einer Messgröße mit einer bestimmten Wahrscheinlichkeit (z.B. 95\%) liegt. Es dient dazu, die Genauigkeit und Zuverlässigkeit von Schätzungen zu quantifizieren.
           \end{solution}
 
     \item Welche Bestandteile gehören zu einem Optimierungsproblem?
+
           \begin{solution}
             Ein Optimierungsproblem umfasst typischerweise eine Zielfunktion, die maximiert oder minimiert werden soll, Entscheidungsvariablen, die optimiert werden können, und Nebenbedingungen, die die zulässigen Lösungen einschränken.
           \end{solution}
 
     \item Erläutern Sie die grundsätzliche Vorgehensweise eines genetischen Algorithmus!
+
           \begin{solution}
             Der genetische Algorithmus beginnt mit einer zufälligen Population von Lösungskandidaten. Diese werden iterativ durch Selektion, Rekombination (Crossover), Mutation, Evaluation und Ersetzung verbessert, wobei jeweils die besten Lösungen ausgewählt werden, um die nächste Generation zu bilden.
           \end{solution}
@@ -181,21 +187,25 @@
 \begin{exercise}{Simulationspraxis}
   \begin{enumerate}
     \item "Wir müssen unsere Logistik verbessern!" - Welche Ziele versteht man hierunter üblicherweise in Unternehmen?
+
           \begin{solution}
             Typische Ziele sind die Senkung der Betriebskosten, die Steigerung der Effizienz in der Logistikabwicklung und die Reduzierung der Lieferzeiten.
           \end{solution}
 
     \item Was spricht für die Beauftragung externer Simulationsdienstleister, um eine betriebliche Simulationsstudie durchzuführen? Was spricht dagegen? Nennen Sie jeweils zwei Faktoren!
+
           \begin{solution}
             Pro: Externe Simulationsdienstleister bieten oft spezialisiertes Wissen und eine unvoreingenommene Perspektive. Contra: Die Kosten können hoch sein, und externe Dienstleister verfügen möglicherweise nicht über das detaillierte betriebliche Wissen, das für eine präzise Modellierung erforderlich ist.
           \end{solution}
 
     \item Welche Rollen kann man bei der Durchführung einer Simulationsstudie unterscheiden?
+
           \begin{solution}
             Zu den Rollen gehören der Auftraggeber, der Projektleiter, der Simulationsdienstleister und die Anwender, die die Ergebnisse interpretieren und darauf reagieren.
           \end{solution}
 
     \item Nennen Sie drei typische Fehlerquellen in einer Simulationsstudie!
+
           \begin{solution}
             Häufige Fehlerquellen sind falsche Annahmen über das Systemverhalten, Modellierungsfehler, die die Realitätsnähe beeinträchtigen, und Implementierungsfehler, die falsche oder fehlerhafte Modelle ausführen lassen.
           \end{solution}
