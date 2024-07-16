@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[solutions]{xrcise}
+\usepackage[]{xrcise}
 
 \subject{Eingebettete Systeme}
 \semester{Summer 2024}
@@ -11,7 +11,7 @@
 \sheet{Mündliche Prüfung}
 \begin{exercise}{Einführungsfragen}
   \begin{enumerate}
-    \item Wie würden Sie an den Entwurf eines eingebetteten Systems herangehen?
+    \item Wie würden Sie (generell) an den Entwurf eines eingebetteten Systems herangehen?
     \item Was sind die wichtigsten Unterschiede zwischen eingebetteten Systemen und Allzweckcomputern?
     \item Was unterscheidet eingebettete Betriebssysteme von Allzweckbetriebssystemen?
     \item Welche Models of Computation (MoCs) sind für eingebettete Systeme relevant und wie kommunizieren sie?
@@ -119,511 +119,381 @@
   \end{solution}
 \end{exercise}
 
-\sheet{Einführung (Marwedel)}
-\begin{exercise}{Definitionen}
-  Definieren Sie die Begriffe "embedded system", "cyber-physical system (CPS)", "Internet of Things (IoT)", und "Industry 4.0".
+\sheet{Marwedel}
+\begin{exercise}{Einführung}
+  \begin{enumerate}
+    \item Definieren Sie die Begriffe "embedded system", "cyber-physical system (CPS)", "Internet of Things (IoT)", und "Industry 4.0".
 
-  \begin{solution}
-    Ein eingebettetes System ist ein Computersystem, das in einem größeren System eingebettet ist und spezielle Aufgaben erfüllt.
+          \begin{solution}
+            Ein eingebettetes System ist ein Computersystem, das in einem größeren System eingebettet ist und spezielle Aufgaben erfüllt.
 
-    Ein Cyber-Physical System (CPS) ist ein System, das die physische Welt mit der virtuellen Welt verbindet.
+            Ein Cyber-Physical System (CPS) ist ein System, das die physische Welt mit der virtuellen Welt verbindet.
 
-    Das Internet der Dinge (IoT) ist ein Netzwerk von miteinander verbundenen Geräten, die Daten austauschen und miteinander kommunizieren.
+            Das Internet der Dinge (IoT) ist ein Netzwerk von miteinander verbundenen Geräten, die Daten austauschen und miteinander kommunizieren.
 
-    Industrie 4.0 ist ein Konzept, das die Integration von Informationstechnologie und industrieller Produktion beschreibt.
-  \end{solution}
+            Industrie 4.0 ist ein Konzept, das die Integration von Informationstechnologie und industrieller Produktion beschreibt.
+          \end{solution}
+
+    \item Warum benötigt man eingebettete Systeme?
+
+          \begin{solution}
+            Eingebettete Systeme werden benötigt, um spezielle Aufgaben in anderen Systemen zu erfüllen, wie z.B. in der Automobilindustrie, der Medizintechnik, und der Industrie.
+          \end{solution}
+
+    \item Welche Herausforderungen müssen überwunden werden, um die Chancen von eingebetteten Systemen voll auszuschöpfen?
+
+          \begin{solution}
+            Herausforderungen, die überwunden werden müssen, um die Chancen von eingebetteten Systemen voll auszuschöpfen, sind z.B. Echtzeitfähigkeit, Energieeffizienz, Ressourcenknappheit (Speicher, Prozessor), Kosten/Größe, Sicherheit (Safety \& Security), und Zuverlässigkeit.
+          \end{solution}
+
+    \item Was sind harte und weiche Timing-Constraints?
+
+          \begin{solution}
+            Harte Timing-Constraints sind Timing-Anforderungen, die unbedingt eingehalten werden müssen, während weiche Timing-Constraints weniger streng sind und toleriert werden können.
+          \end{solution}
+
+    \item Was ist adaptives Sampling?
+
+          \begin{solution}
+            Adaptives Sampling ist eine Technik, bei der die Abtastrate eines Sensors an die Änderungen der Umgebung angepasst wird.
+          \end{solution}
+
+    \item Was sind die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen?
+
+          \begin{solution}
+            Die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen sind die Echtzeitfähigkeit, die Ressourcenknappheit, und die Energieeffizienz.
+          \end{solution}
+
+    \item Was ist ein reaktives System?
+
+          \begin{solution}
+            Ein reaktives System ist ein System, das auf externe Ereignisse reagiert und in Echtzeit agiert.
+          \end{solution}
+
+    \item Wie könnten Design Flows modelliert werden?
+
+          \begin{solution}
+            Design Flows können modelliert werden als eine Abfolge von Schritten, die zur Entwicklung eines eingebetteten Systems führen.
+          \end{solution}
+
+    \item Was ist das V-Modell?
+
+          \begin{solution}
+            Das V-Modell stellt den einen Entwicklungsprozess und hebt die Verbindung zwischen den Entwicklungsphasen und den Testphasen hervor.
+          \end{solution}
+  \end{enumerate}
 \end{exercise}
 
-\begin{exercise}{Relevanz}
-  Warum benötigt man eingebettete Systeme?
+\begin{exercise}{Spezifikationen \& Modellierung}
+  \begin{enumerate}
+    \item Was ist ein (Design-)Modell?
 
-  \begin{solution}
-    Eingebettete Systeme werden benötigt, um spezielle Aufgaben in anderen Systemen zu erfüllen, wie z.B. in der Automobilindustrie, der Medizintechnik, und der Industrie.
-  \end{solution}
+          \begin{solution}
+            Ein (Design-)Modell ist eine vereinfachte Darstellung eines Systems, die verwendet wird, um das Verhalten und die Struktur des Systems zu beschreiben.
+          \end{solution}
+
+    \item Nennen Sie 6 Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme!
+
+          \begin{solution}
+            Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme sind z.B. Echtzeitfähigkeit, Energieeffizienz, Sicherheit, und Verständlichkeit. evtl. Skalierbarkeit, Wiederverwendbarkeit, aber weniger bei ES.
+          \end{solution}
+
+    \item Was ist ein "Model of Computation" (MoC)?
+
+          \begin{solution}
+            Ein "Model of Computation" (MoC) ist eine formale Beschreibung der Berechnung, die verwendet wird, um das Verhalten von Systemen zu modellieren.
+          \end{solution}
+
+    \item Wie kann man einen Job von einem Task unterscheiden?
+
+          \begin{solution}
+            Ein Job ist eine Einheit von Arbeit, die von einem Prozessor ausgeführt wird, während ein Task eine abstrakte Einheit von Arbeit ist, die von einem Prozessor ausgeführt werden kann.
+          \end{solution}
+
+    \item Besschreiben Sie zwei Schlüsseltechniken für die Kommunikation in Computern!
+
+          \begin{solution}
+            Zwei Schlüsseltechniken für die Kommunikation in Computern sind Shared Memory und Message Passing.
+
+            Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können.
+
+            Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
+          \end{solution}
+
+    \item Beschreiben Sie Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können!
+
+          \begin{solution}
+            Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können, sind z.B. Brainstorming, Mind Mapping, und Prototyping.
+
+            Brainstorming: Brainstorming ist eine kreative Technik, bei der Ideen gesammelt und diskutiert werden, um neue Lösungen zu finden.
+
+            Mind Mapping: Mind Mapping ist eine visuelle Technik, bei der Ideen und Konzepte in einem Diagramm dargestellt werden, um Zusammenhänge zu verdeutlichen.
+
+            Prototyping: Prototyping ist eine Technik, bei der ein Modell oder eine Simulation des Systems erstellt wird, um das Design zu überprüfen und zu verbessern.
+          \end{solution}
+
+    \item Erläutern Sie StateCharts näher! Was ist StateMate in diesem Kontext?
+
+          \begin{solution}
+            StateCharts sind eine Erweiterung von endlichen Automaten (auch State Machines). Sie erlauben die Modellierung von Zuständen, Übergängen und Aktionen. Die maßgeblichen Erweiterungen sind hierbei Hierarchie und Parallelität.
+
+            StateMate ist ein Werkzeug zur Modellierung von StateCharts.
+          \end{solution}
+
+    \item Nennen Sie einige Beispiele für asynchrone Kommunikation!
+
+          \begin{solution}
+            E-Mail, Instant Messaging. Im Kontext SDL, Kahn networks, P/T nets.
+          \end{solution}
+  \end{enumerate}
 \end{exercise}
 
-\begin{exercise}{Herausforderungen}
-  Welche Herausforderungen müssen überwunden werden, um die Chancen von eingebetteten Systemen voll auszuschöpfen?
+\begin{exercise}{Hardware}
+  \begin{enumerate}
+    \item Was ist ein Signal?
 
-  \begin{solution}
-    Herausforderungen, die überwunden werden müssen, um die Chancen von eingebetteten Systemen voll auszuschöpfen, sind z.B. Echtzeitfähigkeit, Energieeffizienz, und Sicherheit.
-  \end{solution}
+          \begin{solution}
+            Ein Signal ist eine physikalische Größe, die Informationen überträgt und verarbeitet.
+          \end{solution}
+
+    \item Welchen Schaltkreis benötigen wir für den Übergang von kontinuierlicher Zeit zu diskreter Zeit?
+
+          \begin{solution}
+            Wir benötigen einen Sample-and-Hold-Schaltkreis für den Übergang von kontinuierlicher Zeit zu diskreter Zeit.
+          \end{solution}
+
+    \item Was besagt das Abtasttheorem?
+
+          \begin{solution}
+            Das Abtasttheorem besagt, dass ein Signal korrekt rekonstruiert werden kann, wenn es mit einer Rate abgetastet wird, die mindestens doppelt so hoch ist wie die höchste Frequenzkomponente des Signals.
+          \end{solution}
+
+    \item Was versteht man unter Quantization Noise?
+
+          \begin{solution}
+            Quantization Noise ist das Rauschen, das durch die Diskretisierung eines analogen Signals in ein digitales Signal entsteht.
+          \end{solution}
+
+    \item Was sind die Merkmale von DSP-Prozessoren?
+
+          \begin{solution}
+            DSP-Prozessoren sind spezialisierte Prozessoren, die für die Verarbeitung von Signalen optimiert sind und über Funktionen wie Multiplikation, Addition, und Division verfügen.
+          \end{solution}
+
+    \item Aus welchen Komponenten bestehen FPGAs? Welche davon werden verwendet, um Boolesche Funktionen zu implementieren? Wie werden FPGAs konfiguriert? Sind FPGAs energieeffizient? Für welche Anwendungen sind FPGAs gut geeignet?
+
+          \begin{solution}
+            FPGAs bestehen aus Logikblöcken, Speicherblöcken und Verbindungen.
+
+            Logikblöcke werden verwendet, um Boolesche Funktionen zu implementieren.
+
+            FPGAs werden mit einem Konfigurations-Bitstrom konfiguriert.
+
+            FPGAs sind energieeffizient und eignen sich gut für Anwendungen, die hohe Leistung und Flexibilität erfordern.
+          \end{solution}
+
+    \item Was ist ein VLIW-Prozessor?
+
+          \begin{solution}
+            Ein VLIW-Prozessor ist ein Prozessor, der mehrere Instruktionen gleichzeitig ausführt, indem er mehrere Funktionsblöcke parallel betreibt.
+          \end{solution}
+
+    \item Was versteht man unter einer "Single-ISA heterogeneous multi-core architecture"? Welche Vorteile sehen Sie für eine solche Architektur?
+
+          \begin{solution}
+            Eine "Single-ISA heterogeneous multi-core architecture" ist eine Architektur, bei der mehrere Prozessoren mit unterschiedlichen Eigenschaften auf einem Chip integriert sind.
+
+            Vorteile einer solchen Architektur sind z.B. die Möglichkeit, verschiedene Anwendungen auf einem Chip auszuführen, die Verbesserung der Leistung und Energieeffizienz, und die Flexibilität bei der Anpassung an unterschiedliche Anforderungen.
+          \end{solution}
+
+    \item Was ist der Unterschied zwischen einer GPU und einem MPSoC?
+
+          \begin{solution}
+            Eine GPU ist ein Prozessor, der für die Verarbeitung von Grafiken optimiert ist, während ein MPSoC ein Multiprozessorsystem auf einem Chip ist, das für die Verarbeitung von Signalen und Daten optimiert ist.
+          \end{solution}
+
+    \item Einige FPGAs unterstützen die Implementierung aller Booleschen Funktionen von sechs Variablen. Wie viele solcher Funktionen gibt es? Wir ignorieren, dass sich einige Funktionen nur durch eine Umbenennung von Variablen unterscheiden.
+
+          \begin{solution}
+            Es gibt $2^{2^6} = 2^{64}$ Boolesche Funktionen von sechs Variablen.
+          \end{solution}
+
+    \item Im Kontext von Speichern sagen wir manchmal "klein ist schön". Was könnte der Grund dafür sein?
+
+          \begin{solution}
+            Der Grund dafür ist, dass kleinere Speicher schneller und energieeffizienter sind als größere Speicher.
+          \end{solution}
+
+    \item  Einige Ebenen der Speicherhierarchie können dem Anwendungsprogrammierer verborgen sein. Warum sollte sich ein solcher Programmierer dennoch für die Architektur solcher Ebenen interessieren?
+
+          \begin{solution}
+            Ein Programmierer sollte sich für die Architektur solcher Ebenen interessieren, um die Leistung und Energieeffizienz seines Programms zu optimieren.
+          \end{solution}
+
+    \item Was ist Scratchpad Memory? Wie können wir sicherstellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird?
+
+          \begin{solution}
+            Scratchpad Memory ist ein kleiner, schneller und energieeffizienter Speicher, der zur Speicherung häufig verwendeter Daten verwendet wird.
+
+            Um sicherzustellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird, können wir den
+          \end{solution}
+
+    \item Geben Sie einen Überblick über Techniken, um Scratch Pad Memory zu nutzen!
+
+          \begin{solution}
+            \begin{itemize}
+              \item Statische Analyse: Statische Analyse wird verwendet, um die Größe und den Zugriff auf den Scratchpad-Speicher zu bestimmen.
+              \item Compiler-Optimierungen: Compiler-Optimierungen werden verwendet, um den Zugriff auf den Scratchpad-Speicher zu optimieren und die Speichernutzung zu maximieren.
+              \item Profiling: Profiling wird verwendet, um das Verhalten des Systems zu analysieren und den Scratchpad-Speicher effizient zu nutzen.
+            \end{itemize}
+          \end{solution}
+
+    \item Wie unterscheiden sich verschiedene Hardware-Technologien hinsichtlich ihrer Energieeffizienz?
+
+          \begin{solution}
+            Eingebette Systeme sind zumeist energieeffizienter als herkömmliche Computer, da sie speziell für die Anforderungen von eingebetteten Systemen optimiert sind.
+          \end{solution}
+
+    \item Vergleichen Sie die Energieeffizienz von verschiedenen Technologien zur Verarbeitung von Informationen in eingebetteten Systemen!
+
+          \begin{solution}
+            FPGAs sind energieeffizienter als GPUs und MPSoCs, da sie speziell für die Verarbeitung von Signalen und Daten optimiert sind.
+          \end{solution}
+
+    \item Welche Herausforderungen bestehen für die Sicherheit von eingebetteten Systemen?
+
+          \begin{solution}
+            Herausforderungen für die Sicherheit von eingebetteten Systemen sind z.B. die Anfälligkeit für Angriffe, die Komplexität der Systeme, und die Notwendigkeit, die Integrität und Vertraulichkeit der Daten zu schützen.
+          \end{solution}
+
+    \item Was ist ein "Side-Channel-Angriff"? Bitte geben Sie Beispiele für Side-Channel-Angriffe!
+
+          \begin{solution}
+            Ein "Side-Channel-Angriff" ist ein Angriff, bei dem ein Angreifer Informationen über ein System aus den physikalischen Eigenschaften des Systems gewinnt.
+
+            Beispiele für Side-Channel-Angriffe sind z.B. Timing-Angriffe, Stromverbrauchsanalysen, und elektromagnetische Strahlung.
+          \end{solution}
+  \end{enumerate}
 \end{exercise}
 
-\begin{exercise}{Timing Constraints}
-  Was sind harte und weiche Timing-Constraints?
+\begin{exercise}{Software}
+  \begin{enumerate}
+    \item Welche Anforderungen müssen für ein eingebettetes Betriebssystem erfüllt sein?
 
-  \begin{solution}
-    Harte Timing-Constraints sind Timing-Anforderungen, die unbedingt eingehalten werden müssen, während weiche Timing-Constraints weniger streng sind und toleriert werden können.
-  \end{solution}
+          \begin{solution}
+            Anforderungen für ein eingebettetes Betriebssystem sind z.B. Echtzeitfähigkeit, geringer Speicherbedarf, und Energieeffizienz.
+          \end{solution}
+
+    \item Welche Techniken können verwendet werden, um ein eingebettetes Betriebssystem auf die erforderliche Weise anzupassen?
+
+          \begin{solution}
+            Häufig verwendet werden Techniken wie Konfigurationsoptionen, Modulare Architektur, und Anpassung der Betriebssystemkomponenten.
+          \end{solution}
+
+    \item Welche Anforderungen müssen für ein Echtzeit-Betriebssystem erfüllt sein? Wie unterscheiden sie sich von den Anforderungen eines Standard-Betriebssystems? Welche Funktionen eines Standard-Betriebssystems wie Windows oder Linux könnten in einem RTOS fehlen?
+
+          \begin{solution}
+            Anforderungen für ein Echtzeit-Betriebssystem sind z.B. deterministische Ausführungszeiten, Echtzeitfähigkeit, und geringer Speicherbedarf.
+
+            Echtzeit-Betriebssysteme unterscheiden sich von Standard-Betriebssystemen durch ihre Echtzeitfähigkeit und ihre geringen Speicheranforderungen. Funktionen eines Standard-Betriebssystems wie Windows oder Linux, die in einem RTOS fehlen könnten, sind z.B. Multitasking, Dateisysteme, und Netzwerkunterstützung.
+          \end{solution}
+
+    \item Geben Sie ein Beispiel, das die Prioritätsinversion für ein System mit drei Jobs zeigt! Wie kann sich die Prioritätsinversion auf das System auswirken?
+
+          \begin{solution}
+            Ein Beispiel für die Prioritätsinversion in einem System mit drei Jobs wäre, wenn ein niedrig priorisierter Job eine Ressource blockiert, die von einem höher priorisierten Job benötigt wird.
+
+            Die Prioritätsinversion kann dazu führen, dass der höher priorisierte Job blockiert wird und nicht rechtzeitig ausgeführt werden kann, was zu einer Verletzung der Echtzeitanforderungen führen kann.
+          \end{solution}
+
+    \item Welche Ressourcenzugriffsprotokolle verhindern Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden?
+
+          \begin{solution}
+            PCP: Das Protokoll zur Prävention von zyklischen Wartebedingungen (PCP) verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die sie benötigen.
+
+            Banker's Algorithm: Der Banker's Algorithmus verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem er sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die verfügbar sind.
+
+            Wait-Die: Das Wait-Die-Protokoll verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es Prozesse in Wartezustände versetzt, wenn sie auf Ressourcen warten, die von anderen Prozessen verwendet werden.
+          \end{solution}
+
+    \item Welche Probleme müssen gelöst werden, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird?
+
+          \begin{solution}
+            Probleme, die gelöst werden müssen, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird, sind z.B. die Anpassung an die spezifischen Anforderungen des Systems, die Reduzierung des Speicherbedarfs, und die Optimierung der Energieeffizienz.
+          \end{solution}
+  \end{enumerate}
 \end{exercise}
 
-\begin{exercise}{Adaptives Sampling}
-  Was ist adaptives Sampling?
+\begin{exercise}{Weitere Kapitel}
+  \begin{enumerate}
+    \item Welche Bedingungen müssen bei der Berechnung der WCET erfüllt sein?
 
-  \begin{solution}
-    Adaptives Sampling ist eine Technik, bei der die Abtastrate eines Sensors an die Änderungen der Umgebung angepasst wird.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            Bedingungen, die bei der Berechnung der WCET erfüllt sein müssen, sind z.B. deterministische Ausführungszeiten, keine Interrupts, und keine Caches.
+          \end{solution}
 
-\begin{exercise}{Unterschiede zwischen PC-basierten und eingebetteten Anwendungen}
-  Was sind die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen?
+    \item Consider a copper plate of area $A=10cm^2$ and length $5mm$. How much thermal power is transferred if the difference between the temperatures at the two ends of the plate is $10^\circ C$?
 
-  \begin{solution}
-    Die Hauptunterschiede zwischen PC-basierten Anwendungen und eingebetteten/CPS-Anwendungen sind die Echtzeitfähigkeit, die Ressourcenknappheit, und die Energieeffizienz.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            The thermal power transferred through a copper plate can be calculated using the formula $P = k \cdot A \cdot \Delta T / L$, where $k$ is the thermal conductivity of copper, $A$ is the area of the plate, $\Delta T$ is the temperature difference, and $L$ is the length of the plate.
+          \end{solution}
 
-\begin{exercise}{Reaktive Systeme}
-  Was ist ein reaktives System?
+    \item Consider a hard disk drive for which we assume that half of the drives have failed after 5000 hours of operation. Let us assume that failures follow an exponential distribution. Compute the corresponding value of $\lambda$!
 
-  \begin{solution}
-    Ein reaktives System ist ein System, das auf externe Ereignisse reagiert und in Echtzeit agiert.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            The value of $\lambda$ for a hard disk drive that has a failure rate of 50\% after 5000 hours of operation can be computed using the formula $\lambda = -\ln(0.5) / 5000$.
+          \end{solution}
 
-\begin{exercise}{Design Flows}
-  Wie könnten Design Flows modelliert werden?
+    \item Suppose that we have a set of four jobs. Release times $r_i$, deadlines $D_i$, and execution times $C_i$ are as follows:
+          \begin{itemize}
+            \item $J1$: $r_1=10$, $D_1=18$, $C_1=4$
+            \item $J2$: $r_2=0$, $D_2=28$, $C_2=12$
+            \item $J3$: $r_3=6$, $D_3=17$, $C_3=3$
+            \item $J4$: $r_4=3$, $D_4=13$, $C_4=6$
+          \end{itemize}
+          Generate a graphical representation of schedules for this job set, using earliest deadline first (EDF) and least laxity (LL) scheduling algorithms! For LL scheduling, indicate laxities for all jobs at all context switch times. Will any job miss its deadline?
 
-  \begin{solution}
-    Design Flows können modelliert werden als eine Abfolge von Schritten, die zur Entwicklung eines eingebetteten Systems führen.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            The graphical representation of schedules for the job set using EDF and LL scheduling algorithms is as follows:
+            \begin{itemize}
+              \item EDF: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
+              \item LL: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
+            \end{itemize}
+            No job will miss its deadline.
+          \end{solution}
 
-\begin{exercise}{V-Modell}
-  Was ist das V-Modell?
+    \item Suppose that we have a system comprising two tasks. Task 1 has a period of 5 and an execution time of 2. The second task has a period of 7 and an execution time of 4. Let the deadlines be equal to the periods. Assume that we are using rate monotonic scheduling (RMS). Could any of the two tasks miss its deadline, due to a too high processor utilization? Compute this utilization, and compare it to a bound which would guarantee schedulability! Generate a graphical representation of the resulting schedule! Suppose that tasks will always run to their completion, even if they missed their deadline.
 
-  \begin{solution}
-    Das V-Modell stellt den einen Entwicklungsprozess und hebt die Verbindung zwischen den Entwicklungsphasen und den Testphasen hervor.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            The utilization bound for rate monotonic scheduling is $U = n(2^{1/n} - 1)$, where $n$ is the number of tasks. For two tasks, the utilization bound is $U = 0.8284$. The utilization of the task set is $U = 0.6$, which is less than the utilization bound, so no task will miss its deadline.
+          \end{solution}
 
-\begin{exercise}{Synthese}
-  Was ist Synthese?
+    \item Consider the same task set as in the previous assignment. Use earliest deadline first (EDF) for scheduling. Can any of the tasks miss its deadline? If not, why not? Generate a graphical representation of the resulting schedule!
 
-  \begin{solution}
-    Synthese ist der Prozess, bei dem ein System aus einer Spezifikation erstellt wird.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            No task will miss its deadline with earliest deadline first (EDF) scheduling because EDF is optimal for scheduling real-time tasks.
+          \end{solution}
 
-\sheet{Spezifikationen \& Modellierung (Marwedel)}
+    \item Loop Unrolling ist eine der potenziell nützlichen Optimierungen. Nennen Sie bitte zwei potenzielle Vorteile und zwei potenzielle Probleme!
 
-\begin{exercise}{Modell}
-  Was ist ein (Design-)Modell?
+          \begin{solution}
+            Potenzielle Vorteile von Loop Unrolling sind die Reduzierung des Overheads von Schleifen und die Erhöhung der Parallelität von Instruktionen.
 
-  \begin{solution}
-    Ein (Design-)Modell ist eine vereinfachte Darstellung eines Systems, die verwendet wird, um das Verhalten und die Struktur des Systems zu beschreiben.
-  \end{solution}
-\end{exercise}
+            Potenzielle Probleme von Loop Unrolling sind die Erhöhung des Speicherbedarfs und die Erhöhung der Codegröße.
+          \end{solution}
 
-\begin{exercise}{Anforderungen}
-  Nennen Sie 6 Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme!
+    \item Angenommen, Sie möchten Loop Tiling verwenden. Wie können Sie das Tiling an die vorliegende Speicherarchitektur anpassen?
 
-  \begin{solution}
-    Anforderungen an Spezifikations-/Modellierungssprachen für eingebettete Systeme sind z.B. Echtzeitfähigkeit, Energieeffizienz, Sicherheit, Skalierbarkeit, Wiederverwendbarkeit, und Verständlichkeit.
-  \end{solution}
-\end{exercise}
+          \begin{solution}
+            Loop Tiling kann an die vorliegende Speicherarchitektur angepasst werden, indem die Größe der Tiles so gewählt wird, dass sie in den Cache passen und die Zugriffe auf den Speicher optimiert werden.
+          \end{solution}
 
-\begin{exercise}{Deadlocks}
-  Könnte unsere Spezifikation zu Deadlocks führen? Wenn ja, warum?
+    \item Für welche Architekturen würden Sie die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik erwarten?
 
-  \begin{solution}
-    Ja, unsere Spezifikation könnte zu Deadlocks führen, wenn z.B. Prozesse auf gegenseitige Exklusivität warten.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Models of Computation}
-  Was ist ein "Model of Computation" (MoC)?
-
-  \begin{solution}
-    Ein "Model of Computation" (MoC) ist eine formale Beschreibung der Berechnung, die verwendet wird, um das Verhalten von Systemen zu modellieren.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Job vs. Task}
-  Wie kann man einen Job von einem Task unterscheiden?
-
-  \begin{solution}
-    Ein Job ist eine Einheit von Arbeit, die von einem Prozessor ausgeführt wird, während ein Task eine abstrakte Einheit von Arbeit ist, die von einem Prozessor ausgeführt werden kann.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Kommunikation}
-  Besschreiben Sie zwei Schlüsseltechniken für die Kommunikation in Computern!
-
-  \begin{solution}
-    Zwei Schlüsseltechniken für die Kommunikation in Computern sind Shared Memory und Message Passing.
-
-    Shared Memory: Shared Memory ist eine Kommunikationstechnik, bei der mehrere Prozesse auf gemeinsame Speicherbereiche zugreifen können.
-
-    Message Passing: Message Passing ist eine Kommunikationstechnik, bei der Prozesse Nachrichten austauschen, um Daten zu übertragen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Beschreibung}
-  Beschreiben Sie Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können!
-
-  \begin{solution}
-    Techniken, die für die Erfassung von Anfangsideen über das zu entwerfende System verwendet werden können, sind z.B. Brainstorming, Mind Mapping, und Prototyping.
-
-    Brainstorming: Brainstorming ist eine kreative Technik, bei der Ideen gesammelt und diskutiert werden, um neue Lösungen zu finden.
-
-    Mind Mapping: Mind Mapping ist eine visuelle Technik, bei der Ideen und Konzepte in einem Diagramm dargestellt werden, um Zusammenhänge zu verdeutlichen.
-
-    Prototyping: Prototyping ist eine Technik, bei der ein Modell oder eine Simulation des Systems erstellt wird, um das Design zu überprüfen und zu verbessern.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Determinanz}
-  Sind StateCharts deterministische Modelle, wenn wir der Semantik von StateMate folgen? Und wie schaut es mit SDL aus?
-
-  \begin{solution}
-    Ja, StateCharts sind deterministische Modelle, wenn wir der Semantik von StateMate folgen, weil sie eine wohldefinierte Semantik haben, die sicherstellt, dass das Verhalten des Systems eindeutig ist.
-
-    SDL ist ebenfalls ein deterministisches Modell, weil es eine wohldefinierte Semantik hat, die sicherstellt, dass das Verhalten des Systems eindeutig ist.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Philosophenproblem}
-  Wie sieht ein kompaktes Modell des Philosophenproblems aus?
-
-  \begin{solution}
-    Ein kompaktes Modell des Philosophenproblems würde die Philosophen als Prozesse und die Gabeln als Ressourcen modellieren, die von den Prozessen gemeinsam genutzt werden.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Asynchrone Kommunikation}
-  Nennen Sie einige Beispiele für asynchrone Kommunikation, sowie für Broadcast Kommunikation!
-
-  \begin{solution}
-    Asynchrone Kommunikation: StateCharts, SDL, CSP, MPI
-
-    Broadcast: StateCharts und SDL verwenden einen Broadcast-Mechanismus für die Aktualisierung von Variablen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{UML Diagramme}
-  Welche Diagrammtypen werden von UML unterstützt? Sequence Charts, Record Charts, Y-Charts, Use Cases, Activity Diagrams, Circuit Diagrams?
-
-  \begin{solution}
-    UML unterstützt Sequence Charts, Use Cases, und Activity Diagrams, aber keine Record Charts, Y-Charts, oder Circuit Diagrams.
-  \end{solution}
-\end{exercise}
-
-\sheet{Hardware (Marwedel)}
-
-\begin{exercise}{Signal}
-  Was ist ein Signal?
-
-  \begin{solution}
-    Ein Signal ist eine physikalische Größe, die Informationen überträgt und verarbeitet.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Analog vs. Digital}
-  Welchen Schaltkreis benötigen wir für den Übergang von kontinuierlicher Zeit zu diskreter Zeit?
-
-  \begin{solution}
-    Wir benötigen einen Sample-and-Hold-Schaltkreis für den Übergang von kontinuierlicher Zeit zu diskreter Zeit.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Abtasttheorem (Sampling Theorem)}
-  Was besagt das Abtasttheorem?
-
-  \begin{solution}
-    Das Abtasttheorem besagt, dass ein Signal korrekt rekonstruiert werden kann, wenn es mit einer Rate abgetastet wird, die mindestens doppelt so hoch ist wie die höchste Frequenzkomponente des Signals.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Quantization Noise}
-  Was versteht man unter Quantization Noise?
-
-  \begin{solution}
-    Quantization Noise ist das Rauschen, das durch die Diskretisierung eines analogen Signals in ein digitales Signal entsteht.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{DSP Processors}
-  Was sind die Merkmale von DSP-Prozessoren?
-
-  \begin{solution}
-    DSP-Prozessoren sind spezialisierte Prozessoren, die für die Verarbeitung von Signalen optimiert sind und über Funktionen wie Multiplikation, Addition, und Division verfügen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{FPGAs}
-  Aus welchen Komponenten bestehen FPGAs? Welche davon werden verwendet, um Boolesche Funktionen zu implementieren? Wie werden FPGAs konfiguriert? Sind FPGAs energieeffizient? Für welche Anwendungen sind FPGAs gut geeignet?
-
-  \begin{solution}
-    FPGAs bestehen aus Logikblöcken, Speicherblöcken und Verbindungen.
-
-    Logikblöcke werden verwendet, um Boolesche Funktionen zu implementieren.
-
-    FPGAs werden mit einem Konfigurations-Bitstrom konfiguriert.
-
-    FPGAs sind energieeffizient und eignen sich gut für Anwendungen, die hohe Leistung und Flexibilität erfordern.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{VLIW Processors}
-  Was ist ein VLIW-Prozessor?
-
-  \begin{solution}
-    Ein VLIW-Prozessor ist ein Prozessor, der mehrere Instruktionen gleichzeitig ausführt, indem er mehrere Funktionsblöcke parallel betreibt.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Single-ISA Heterogeneous Multi-Core Architecture}
-  Was versteht man unter einer "Single-ISA heterogeneous multi-core architecture"? Welche Vorteile sehen Sie für eine solche Architektur?
-
-  \begin{solution}
-    Eine "Single-ISA heterogeneous multi-core architecture" ist eine Architektur, bei der mehrere Prozessoren mit unterschiedlichen Eigenschaften auf einem Chip integriert sind.
-
-    Vorteile einer solchen Architektur sind z.B. die Möglichkeit, verschiedene Anwendungen auf einem Chip auszuführen, die Verbesserung der Leistung und Energieeffizienz, und die Flexibilität bei der Anpassung an unterschiedliche Anforderungen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{GPU \& MPSoC}
-  Was ist der Unterschied zwischen einer GPU und einem MPSoC?
-
-  \begin{solution}
-    Eine GPU ist ein Prozessor, der für die Verarbeitung von Grafiken optimiert ist, während ein MPSoC ein Multiprozessorsystem auf einem Chip ist, das für die Verarbeitung von Signalen und Daten optimiert ist.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Boole'sche Funktionen}
-  Einige FPGAs unterstützen die Implementierung aller Booleschen Funktionen von sechs Variablen. Wie viele solcher Funktionen gibt es? Wir ignorieren, dass sich einige Funktionen nur durch eine Umbenennung von Variablen unterscheiden.
-
-  \begin{solution}
-    Es gibt $2^{2^6} = 2^{64}$ Boolesche Funktionen von sechs Variablen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Memory Hierarchy}
-  Im Kontext von Speichern sagen wir manchmal "klein ist schön". Was könnte der Grund dafür sein?
-
-  \begin{solution}
-    Der Grund dafür ist, dass kleinere Speicher schneller und energieeffizienter sind als größere Speicher.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Memory Hierarchy}
-  Einige Ebenen der Speicherhierarchie können dem Anwendungsprogrammierer verborgen sein. Warum sollte sich ein solcher Programmierer dennoch für die Architektur solcher Ebenen interessieren?
-
-  \begin{solution}
-    Ein Programmierer sollte sich für die Architektur solcher Ebenen interessieren, um die Leistung und Energieeffizienz seines Programms zu optimieren.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Scratchpad Memory}
-  Was ist Scratchpad Memory? Wie können wir sicherstellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird?
-
-  \begin{solution}
-    Scratchpad Memory ist ein kleiner, schneller und energieeffizienter Speicher, der zur Speicherung häufig verwendeter Daten verwendet wird.
-
-    Um sicherzustellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird, können wir den
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Techniken zur Nutzung von Scratchpad Memory}
-  Geben Sie einen Überblick über Techniken, um Scratch Pad Memory zu nutzen!
-
-  \begin{solution}
-    \begin{itemize}
-      \item Statische Analyse: Statische Analyse wird verwendet, um die Größe und den Zugriff auf den Scratchpad-Speicher zu bestimmen.
-      \item Compiler-Optimierungen: Compiler-Optimierungen werden verwendet, um den Zugriff auf den Scratchpad-Speicher zu optimieren und die Speichernutzung zu maximieren.
-      \item Profiling: Profiling wird verwendet, um das Verhalten des Systems zu analysieren und den Scratchpad-Speicher effizient zu nutzen.
-    \end{itemize}
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Energieffizienz}
-  Wie unterscheiden sich verschiedene Hardware-Technologien hinsichtlich ihrer Energieeffizienz?
-
-  \begin{solution}
-    Eingebette Systeme sind zumeist energieeffizienter als herkömmliche Computer, da sie speziell für die Anforderungen von eingebetteten Systemen optimiert sind.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Optimierunng}
-  Vergleichen Sie die Energieeffizienz von verschiedenen Technologien zur Verarbeitung von Informationen in eingebetteten Systemen!
-
-  \begin{solution}
-    FPGAs sind energieeffizienter als GPUs und MPSoCs, da sie speziell für die Verarbeitung von Signalen und Daten optimiert sind.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Battery Life}
-  Angenommen, Ihr Mobiltelefon nutzt eine Lithiumbatterie mit einer Kapazität von 720mAh. Die Nennspannung der Batterie beträgt 3,7V. Unter der Annahme eines konstanten Stromverbrauchs von 1W, wie lange würde es dauern, die Batterie zu entleeren? Alle sekundären Effekte wie abnehmende Spannungen sollten bei dieser Berechnung ignoriert werden.
-
-  \begin{solution}
-    Die Leistungsaufnahme von 1W entspricht einem Strom von $1W / 3.7V = 0.27A$. Die Batteriekapazität von 720mAh entspricht einer Ladung von $720mAh = 0.72Ah$. Die Zeit, die es dauern würde, die Batterie zu entleeren, beträgt $0.72Ah / 0.27A = 2.67h$.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Sicherheit}
-  Welche Herausforderungen bestehen für die Sicherheit von eingebetteten Systemen?
-
-  \begin{solution}
-    Herausforderungen für die Sicherheit von eingebetteten Systemen sind z.B. die Anfälligkeit für Angriffe, die Komplexität der Systeme, und die Notwendigkeit, die Integrität und Vertraulichkeit der Daten zu schützen.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Side-Channel Attacks}
-  Was ist ein "Side-Channel-Angriff"? Bitte geben Sie Beispiele für Side-Channel-Angriffe!
-
-  \begin{solution}
-    Ein "Side-Channel-Angriff" ist ein Angriff, bei dem ein Angreifer Informationen über ein System aus den physikalischen Eigenschaften des Systems gewinnt.
-
-    Beispiele für Side-Channel-Angriffe sind z.B. Timing-Angriffe, Stromverbrauchsanalysen, und elektromagnetische Strahlung.
-  \end{solution}
-\end{exercise}
-
-\sheet{Software (Marwedel)}
-
-\begin{exercise}{Embedded OS}
-  Welche Anforderungen müssen für ein eingebettetes Betriebssystem erfüllt sein?
-
-  \begin{solution}
-    Anforderungen für ein eingebettetes Betriebssystem sind z.B. Echtzeitfähigkeit, geringer Speicherbedarf, und Energieeffizienz.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Anpassungsfähigkeit}
-  Welche Techniken können verwendet werden, um ein eingebettetes Betriebssystem auf die erforderliche Weise anzupassen?
-
-  \begin{solution}
-    Häufig verwendet werden Techniken wie Konfigurationsoptionen, Modulare Architektur, und Anpassung der Betriebssystemkomponenten.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Real-Time Operating System}
-  Welche Anforderungen müssen für ein Echtzeit-Betriebssystem erfüllt sein? Wie unterscheiden sie sich von den Anforderungen eines Standard-Betriebssystems? Welche Funktionen eines Standard-Betriebssystems wie Windows oder Linux könnten in einem RTOS fehlen?
-
-  \begin{solution}
-    Anforderungen für ein Echtzeit-Betriebssystem sind z.B. deterministische Ausführungszeiten, Echtzeitfähigkeit, und geringer Speicherbedarf.
-
-    Echtzeit-Betriebssysteme unterscheiden sich von Standard-Betriebssystemen durch ihre Echtzeitfähigkeit und ihre geringen Speicheranforderungen. Funktionen eines Standard-Betriebssystems wie Windows oder Linux, die in einem RTOS fehlen könnten, sind z.B. Multitasking, Dateisysteme, und Netzwerkunterstützung.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Priority Inversion}
-  Geben Sie ein Beispiel, das die Prioritätsinversion für ein System mit drei Jobs zeigt! Wie kann sich die Prioritätsinversion auf das System auswirken?
-
-  \begin{solution}
-    Ein Beispiel für die Prioritätsinversion in einem System mit drei Jobs wäre, wenn ein niedrig priorisierter Job eine Ressource blockiert, die von einem höher priorisierten Job benötigt wird.
-
-    Die Prioritätsinversion kann dazu führen, dass der höher priorisierte Job blockiert wird und nicht rechtzeitig ausgeführt werden kann, was zu einer Verletzung der Echtzeitanforderungen führen kann.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Deadlock Prevention}
-  Welche Ressourcenzugriffsprotokolle verhindern Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden?
-
-  \begin{solution}
-    PCP: Das Protokoll zur Prävention von zyklischen Wartebedingungen (PCP) verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die sie benötigen.
-
-    Banker's Algorithm: Der Banker's Algorithmus verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem er sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die verfügbar sind.
-
-    Wait-Die: Das Wait-Die-Protokoll verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es Prozesse in Wartezustände versetzt, wenn sie auf Ressourcen warten, die von anderen Prozessen verwendet werden.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Linux als OS}
-  Welche Probleme müssen gelöst werden, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird?
-
-  \begin{solution}
-    Probleme, die gelöst werden müssen, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird, sind z.B. die Anpassung an die spezifischen Anforderungen des Systems, die Reduzierung des Speicherbedarfs, und die Optimierung der Energieeffizienz.
-  \end{solution}
-\end{exercise}
-
-\sheet{Weitere Kapitel (Marwedel)}
-
-\begin{exercise}{Evaluation \& Validation}
-  Welche Bedingungen müssen bei der Berechnung der WCET erfüllt sein?
-
-  \begin{solution}
-    Bedingungen, die bei der Berechnung der WCET erfüllt sein müssen, sind z.B. deterministische Ausführungszeiten, keine Interrupts, und keine Caches.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Thermal Power}
-  Consider a copper plate of area $A=10cm^2$ and length $5mm$. How much thermal power is transferred if the difference between the temperatures at the two ends of the plate is $10^\circ C$?
-
-  \begin{solution}
-    The thermal power transferred through a copper plate can be calculated using the formula $P = k \cdot A \cdot \Delta T / L$, where $k$ is the thermal conductivity of copper, $A$ is the area of the plate, $\Delta T$ is the temperature difference, and $L$ is the length of the plate.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Exponential Distribution}
-  Consider a hard disk drive for which we assume that half of the drives have failed after 5000 hours of operation. Let us assume that failures follow an exponential distribution. Compute the corresponding value of $\lambda$!
-
-  \begin{solution}
-    The value of $\lambda$ for a hard disk drive that has a failure rate of 50\% after 5000 hours of operation can be computed using the formula $\lambda = -\ln(0.5) / 5000$.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Job Scheduling}
-  Suppose that we have a set of four jobs. Release times $r_i$, deadlines $D_i$, and execution times $C_i$ are as follows:
-  \begin{itemize}
-    \item $J1$: $r_1=10$, $D_1=18$, $C_1=4$
-    \item $J2$: $r_2=0$, $D_2=28$, $C_2=12$
-    \item $J3$: $r_3=6$, $D_3=17$, $C_3=3$
-    \item $J4$: $r_4=3$, $D_4=13$, $C_4=6$
-  \end{itemize}
-  Generate a graphical representation of schedules for this job set, using earliest deadline first (EDF) and least laxity (LL) scheduling algorithms! For LL scheduling, indicate laxities for all jobs at all context switch times. Will any job miss its deadline?
-
-  \begin{solution}
-    The graphical representation of schedules for the job set using EDF and LL scheduling algorithms is as follows:
-    \begin{itemize}
-      \item EDF: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
-      \item LL: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
-    \end{itemize}
-    No job will miss its deadline.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Rate Monotonic Scheduling}
-  Suppose that we have a system comprising two tasks. Task 1 has a period of 5 and an execution time of 2. The second task has a period of 7 and an execution time of 4. Let the deadlines be equal to the periods. Assume that we are using rate monotonic scheduling (RMS). Could any of the two tasks miss its deadline, due to a too high processor utilization? Compute this utilization, and compare it to a bound which would guarantee schedulability! Generate a graphical representation of the resulting schedule! Suppose that tasks will always run to their completion, even if they missed their deadline.
-
-  \begin{solution}
-    The utilization bound for rate monotonic scheduling is $U = n(2^{1/n} - 1)$, where $n$ is the number of tasks. For two tasks, the utilization bound is $U = 0.8284$. The utilization of the task set is $U = 0.6$, which is less than the utilization bound, so no task will miss its deadline.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Earliest Deadline First Scheduling}
-  Consider the same task set as in the previous assignment. Use earliest deadline first (EDF) for scheduling. Can any of the tasks miss its deadline? If not, why not? Generate a graphical representation of the resulting schedule!
-
-  \begin{solution}
-    No task will miss its deadline with earliest deadline first (EDF) scheduling because EDF is optimal for scheduling real-time tasks.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Loop Unrolling}
-  Loop Unrolling ist eine der potenziell nützlichen Optimierungen. Nennen Sie bitte zwei potenzielle Vorteile und zwei potenzielle Probleme!
-
-  \begin{solution}
-    Potenzielle Vorteile von Loop Unrolling sind die Reduzierung des Overheads von Schleifen und die Erhöhung der Parallelität von Instruktionen.
-
-    Potenzielle Probleme von Loop Unrolling sind die Erhöhung des Speicherbedarfs und die Erhöhung der Codegröße.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Loop Tiling}
-  Angenommen, Sie möchten Loop Tiling verwenden. Wie können Sie das Tiling an die vorliegende Speicherarchitektur anpassen?
-
-  \begin{solution}
-    Loop Tiling kann an die vorliegende Speicherarchitektur angepasst werden, indem die Größe der Tiles so gewählt wird, dass sie in den Cache passen und die Zugriffe auf den Speicher optimiert werden.
-  \end{solution}
-\end{exercise}
-
-\begin{exercise}{Festkomma Arithmetik}
-  Für welche Architekturen würden Sie die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik erwarten?
-
-  \begin{solution}
-    Die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik würden Sie für Architekturen erwarten, die auf eingebetteten Systemen und Signalverarbeitungsaufgaben basieren, aufgrund der geringeren Komplexität und des geringeren Speicherbedarfs von Festkomma-Arithmetik.
-  \end{solution}
+          \begin{solution}
+            Die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik würden Sie für Architekturen erwarten, die auf eingebetteten Systemen und Signalverarbeitungsaufgaben basieren, aufgrund der geringeren Komplexität und des geringeren Speicherbedarfs von Festkomma-Arithmetik.
+          \end{solution}
+  \end{enumerate}
 \end{exercise}
 
 \end{document}
