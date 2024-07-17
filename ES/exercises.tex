@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[solutions]{xrcise}
+\usepackage[]{xrcise}
 
 \subject{Eingebettete Systeme}
 \semester{Summer 2024}
@@ -308,10 +308,10 @@
             Quantization Noise ist das Rauschen, das durch die Diskretisierung eines analogen Signals in ein digitales Signal entsteht.
           \end{solution}
 
-    \item Was sind die Merkmale von DSP-Prozessoren?
+    \item Was sind die Merkmale von DSP?
 
           \begin{solution}
-            DSP-Prozessoren sind spezialisierte Prozessoren, die für die Verarbeitung von Signalen optimiert sind und über Funktionen wie Multiplikation, Addition, und Division verfügen.
+            DSP (Digital Signal Processors) sind speziell für die Verarbeitung von Signalen und Daten optimiert und zeichnen sich durch hohe Leistung, Energieeffizienz, und Flexibilität aus.
           \end{solution}
 
     \item Aus welchen Komponenten bestehen FPGAs? Welche davon werden verwendet, um Boolesche Funktionen zu implementieren? Wie werden FPGAs konfiguriert? Sind FPGAs energieeffizient? Für welche Anwendungen sind FPGAs gut geeignet?
@@ -329,7 +329,7 @@
     \item Was ist ein VLIW-Prozessor?
 
           \begin{solution}
-            Ein VLIW-Prozessor ist ein Prozessor, der mehrere Instruktionen gleichzeitig ausführt, indem er mehrere Funktionsblöcke parallel betreibt.
+            Ein VLIW-Prozessor (Very Long Instruction Word) ist ein Prozessor, der mehrere Instruktionen in einem Taktzyklus ausführt.
           \end{solution}
 
     \item Was versteht man unter einer "Single-ISA heterogeneous multi-core architecture"? Welche Vorteile sehen Sie für eine solche Architektur?
@@ -344,12 +344,6 @@
 
           \begin{solution}
             Eine GPU ist ein Prozessor, der für die Verarbeitung von Grafiken optimiert ist, während ein MPSoC ein Multiprozessorsystem auf einem Chip ist, das für die Verarbeitung von Signalen und Daten optimiert ist.
-          \end{solution}
-
-    \item Einige FPGAs unterstützen die Implementierung aller Booleschen Funktionen von sechs Variablen. Wie viele solcher Funktionen gibt es? Wir ignorieren, dass sich einige Funktionen nur durch eine Umbenennung von Variablen unterscheiden.
-
-          \begin{solution}
-            Es gibt $2^{2^6} = 2^{64}$ Boolesche Funktionen von sechs Variablen.
           \end{solution}
 
     \item Im Kontext von Speichern sagen wir manchmal "klein ist schön". Was könnte der Grund dafür sein?
@@ -372,23 +366,7 @@
             Um sicherzustellen, dass ein bestimmtes Speicherobjekt im Scratchpad Memory gespeichert wird, können wir den
           \end{solution}
 
-    \item Geben Sie einen Überblick über Techniken, um Scratch Pad Memory zu nutzen!
-
-          \begin{solution}
-            \begin{itemize}
-              \item Statische Analyse: Statische Analyse wird verwendet, um die Größe und den Zugriff auf den Scratchpad-Speicher zu bestimmen.
-              \item Compiler-Optimierungen: Compiler-Optimierungen werden verwendet, um den Zugriff auf den Scratchpad-Speicher zu optimieren und die Speichernutzung zu maximieren.
-              \item Profiling: Profiling wird verwendet, um das Verhalten des Systems zu analysieren und den Scratchpad-Speicher effizient zu nutzen.
-            \end{itemize}
-          \end{solution}
-
     \item Wie unterscheiden sich verschiedene Hardware-Technologien hinsichtlich ihrer Energieeffizienz?
-
-          \begin{solution}
-            Eingebette Systeme sind zumeist energieeffizienter als herkömmliche Computer, da sie speziell für die Anforderungen von eingebetteten Systemen optimiert sind.
-          \end{solution}
-
-    \item Vergleichen Sie die Energieeffizienz von verschiedenen Technologien zur Verarbeitung von Informationen in eingebetteten Systemen!
 
           \begin{solution}
             FPGAs sind energieeffizienter als GPUs und MPSoCs, da sie speziell für die Verarbeitung von Signalen und Daten optimiert sind.
@@ -397,15 +375,7 @@
     \item Welche Herausforderungen bestehen für die Sicherheit von eingebetteten Systemen?
 
           \begin{solution}
-            Herausforderungen für die Sicherheit von eingebetteten Systemen sind z.B. die Anfälligkeit für Angriffe, die Komplexität der Systeme, und die Notwendigkeit, die Integrität und Vertraulichkeit der Daten zu schützen.
-          \end{solution}
-
-    \item Was ist ein "Side-Channel-Angriff"? Bitte geben Sie Beispiele für Side-Channel-Angriffe!
-
-          \begin{solution}
-            Ein "Side-Channel-Angriff" ist ein Angriff, bei dem ein Angreifer Informationen über ein System aus den physikalischen Eigenschaften des Systems gewinnt.
-
-            Beispiele für Side-Channel-Angriffe sind z.B. Timing-Angriffe, Stromverbrauchsanalysen, und elektromagnetische Strahlung.
+            Betriebssysteme sind zB. weniger auf Sicherheit ausgelegt (Interrupts, direkter Hardwarezugriff). Auch die Kommunikation zwischen den Komponenten kann ein Sicherheitsrisiko darstellen.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -427,7 +397,7 @@
     \item Welche Anforderungen müssen für ein Echtzeit-Betriebssystem erfüllt sein? Wie unterscheiden sie sich von den Anforderungen eines Standard-Betriebssystems? Welche Funktionen eines Standard-Betriebssystems wie Windows oder Linux könnten in einem RTOS fehlen?
 
           \begin{solution}
-            Anforderungen für ein Echtzeit-Betriebssystem sind z.B. deterministische Ausführungszeiten, Echtzeitfähigkeit, und geringer Speicherbedarf.
+            Anforderungen für ein Echtzeit-Betriebssystem sind konkret Vorhersagbarkeit bzw. Determinismus, Timing-Management, und Geschwindigkeit bzw. geringe Latenzzeiten.
 
             Echtzeit-Betriebssysteme unterscheiden sich von Standard-Betriebssystemen durch ihre Echtzeitfähigkeit und ihre geringen Speicheranforderungen. Funktionen eines Standard-Betriebssystems wie Windows oder Linux, die in einem RTOS fehlen könnten, sind z.B. Multitasking, Dateisysteme, und Netzwerkunterstützung.
           \end{solution}
@@ -435,25 +405,17 @@
     \item Geben Sie ein Beispiel, das die Prioritätsinversion für ein System mit drei Jobs zeigt! Wie kann sich die Prioritätsinversion auf das System auswirken?
 
           \begin{solution}
-            Ein Beispiel für die Prioritätsinversion in einem System mit drei Jobs wäre, wenn ein niedrig priorisierter Job eine Ressource blockiert, die von einem höher priorisierten Job benötigt wird.
-
-            Die Prioritätsinversion kann dazu führen, dass der höher priorisierte Job blockiert wird und nicht rechtzeitig ausgeführt werden kann, was zu einer Verletzung der Echtzeitanforderungen führen kann.
+            Drei Tasks (H, M, L) mit absteigender Priorität sollen ausgeführt werden. H und L benötigen exklusiven Zugriff auf Ressource R. L erhält zunächst Zugriff auf R, wird jedoch von M unterbrochen. Dadurch kann L die Ressource nicht freigeben und H muss warten. Dies führt zu einer Prioritätsinversion, bei der der höher priorisierte Task H blockiert wird und  uU. nicht rechtzeitig ausgeführt werden kann.
           \end{solution}
 
     \item Welche Ressourcenzugriffsprotokolle verhindern Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden?
 
           \begin{solution}
-            PCP: Das Protokoll zur Prävention von zyklischen Wartebedingungen (PCP) verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die sie benötigen.
+            PCP: Das Priority Ceiling Protocol verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es die Priorität eines Prozesses erhöht, wenn er auf eine Ressource wartet, die von einem anderen Prozess verwendet wird.
 
             Banker's Algorithm: Der Banker's Algorithmus verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem er sicherstellt, dass Prozesse nur auf Ressourcen zugreifen, die verfügbar sind.
 
             Wait-Die: Das Wait-Die-Protokoll verhindert Deadlocks, die durch exklusiven Zugriff auf Ressourcen verursacht werden, indem es Prozesse in Wartezustände versetzt, wenn sie auf Ressourcen warten, die von anderen Prozessen verwendet werden.
-          \end{solution}
-
-    \item Welche Probleme müssen gelöst werden, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird?
-
-          \begin{solution}
-            Probleme, die gelöst werden müssen, wenn Linux als Betriebssystem für ein eingebettetes System verwendet wird, sind z.B. die Anpassung an die spezifischen Anforderungen des Systems, die Reduzierung des Speicherbedarfs, und die Optimierung der Energieeffizienz.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -463,49 +425,7 @@
     \item Welche Bedingungen müssen bei der Berechnung der WCET erfüllt sein?
 
           \begin{solution}
-            Bedingungen, die bei der Berechnung der WCET erfüllt sein müssen, sind z.B. deterministische Ausführungszeiten, keine Interrupts, und keine Caches.
-          \end{solution}
-
-    \item Consider a copper plate of area $A=10cm^2$ and length $5mm$. How much thermal power is transferred if the difference between the temperatures at the two ends of the plate is $10^\circ C$?
-
-          \begin{solution}
-            The thermal power transferred through a copper plate can be calculated using the formula $P = k \cdot A \cdot \Delta T / L$, where $k$ is the thermal conductivity of copper, $A$ is the area of the plate, $\Delta T$ is the temperature difference, and $L$ is the length of the plate.
-          \end{solution}
-
-    \item Consider a hard disk drive for which we assume that half of the drives have failed after 5000 hours of operation. Let us assume that failures follow an exponential distribution. Compute the corresponding value of $\lambda$!
-
-          \begin{solution}
-            The value of $\lambda$ for a hard disk drive that has a failure rate of 50\% after 5000 hours of operation can be computed using the formula $\lambda = -\ln(0.5) / 5000$.
-          \end{solution}
-
-    \item Suppose that we have a set of four jobs. Release times $r_i$, deadlines $D_i$, and execution times $C_i$ are as follows:
-          \begin{itemize}
-            \item $J1$: $r_1=10$, $D_1=18$, $C_1=4$
-            \item $J2$: $r_2=0$, $D_2=28$, $C_2=12$
-            \item $J3$: $r_3=6$, $D_3=17$, $C_3=3$
-            \item $J4$: $r_4=3$, $D_4=13$, $C_4=6$
-          \end{itemize}
-          Generate a graphical representation of schedules for this job set, using earliest deadline first (EDF) and least laxity (LL) scheduling algorithms! For LL scheduling, indicate laxities for all jobs at all context switch times. Will any job miss its deadline?
-
-          \begin{solution}
-            The graphical representation of schedules for the job set using EDF and LL scheduling algorithms is as follows:
-            \begin{itemize}
-              \item EDF: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
-              \item LL: $J2 \rightarrow J4 \rightarrow J3 \rightarrow J1$
-            \end{itemize}
-            No job will miss its deadline.
-          \end{solution}
-
-    \item Suppose that we have a system comprising two tasks. Task 1 has a period of 5 and an execution time of 2. The second task has a period of 7 and an execution time of 4. Let the deadlines be equal to the periods. Assume that we are using rate monotonic scheduling (RMS). Could any of the two tasks miss its deadline, due to a too high processor utilization? Compute this utilization, and compare it to a bound which would guarantee schedulability! Generate a graphical representation of the resulting schedule! Suppose that tasks will always run to their completion, even if they missed their deadline.
-
-          \begin{solution}
-            The utilization bound for rate monotonic scheduling is $U = n(2^{1/n} - 1)$, where $n$ is the number of tasks. For two tasks, the utilization bound is $U = 0.8284$. The utilization of the task set is $U = 0.6$, which is less than the utilization bound, so no task will miss its deadline.
-          \end{solution}
-
-    \item Consider the same task set as in the previous assignment. Use earliest deadline first (EDF) for scheduling. Can any of the tasks miss its deadline? If not, why not? Generate a graphical representation of the resulting schedule!
-
-          \begin{solution}
-            No task will miss its deadline with earliest deadline first (EDF) scheduling because EDF is optimal for scheduling real-time tasks.
+            Bedingungen, die bei der Berechnung der WCET (Worst Case Execution Time) erfüllt sein müssen, sind z.B. deterministische Ausführungszeiten, keine Interrupts, und keine Caches.
           \end{solution}
 
     \item Loop Unrolling ist eine der potenziell nützlichen Optimierungen. Nennen Sie bitte zwei potenzielle Vorteile und zwei potenzielle Probleme!
@@ -519,13 +439,13 @@
     \item Angenommen, Sie möchten Loop Tiling verwenden. Wie können Sie das Tiling an die vorliegende Speicherarchitektur anpassen?
 
           \begin{solution}
-            Loop Tiling kann an die vorliegende Speicherarchitektur angepasst werden, indem die Größe der Tiles so gewählt wird, dass sie in den Cache passen und die Zugriffe auf den Speicher optimiert werden.
+            Die Größe der Tiles könnte an die Größe des Caches angepasst werden, um die Cache-Effizienz zu maximieren.
           \end{solution}
 
     \item Für welche Architekturen würden Sie die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik erwarten?
 
           \begin{solution}
-            Die größten Vorteile von einem Austausch von Gleitkomma-Arithmetik durch Festkomma-Arithmetik würden Sie für Architekturen erwarten, die auf eingebetteten Systemen und Signalverarbeitungsaufgaben basieren, aufgrund der geringeren Komplexität und des geringeren Speicherbedarfs von Festkomma-Arithmetik.
+            Die größten Vorteile würden in Architekturen mit begrenztem Speicherplatz und begrenzter Rechenleistung erwartet, z.B. in eingebetteten Systemen und mobilen Geräten.
           \end{solution}
   \end{enumerate}
 \end{exercise}
