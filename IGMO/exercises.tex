@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[]{xrcise}
+\usepackage[solutions]{xrcise}
 
 \subject{Informationsgestützte Modellierung von Organisationen}
 \semester{Summer 2024}
@@ -702,28 +702,30 @@
 \sheet[2022]{Altklausur}
 
 \begin{exercise}{Ereignisorientierte Modellierung}
-  Nennen Sie vier typische Zwecke, warum man lieber an Modellen Untersuchungen durchführt, statt am Realsystem und je ein Beispiel nennen.
-  \begin{solution}
-    \begin{enumerate}
-      \item Kostenersparnis: Simulation eines Flughafens, um die Anzahl der benötigten Sicherheitskontrollen zu bestimmen.
-      \item Risikominimierung: Simulation eines Produktionsprozesses, um Engpässe zu identifizieren.
-      \item Effizienzsteigerung: Simulation eines Logistiksystems, um die optimale Routenplanung zu bestimmen.
-      \item Komplexität: Simulation eines Finanzsystems, um die Auswirkungen von Änderungen zu analysieren.
-    \end{enumerate}
-  \end{solution}
+  \begin{enumerate}
+    \item Nennen Sie vier typische Zwecke, warum man lieber an Modellen Untersuchungen durchführt, statt am Realsystem und je ein Beispiel nennen.
+          \begin{solution}
+            \begin{enumerate}
+              \item Kosten: Modellierung eines Hafensystems ist deutlich günstiger als der Bau eines echten Hafens.
+              \item Gefahren: Simulation eines Flugzeugabsturzes ist sicherer als ein echter Absturz.
+              \item Komplexität: Modellierung eines Wirtschaftssystems ist einfacher als die Realität zu messen.
+              \item Geschwindigkeit: Simulation eines Verkehrssystems ist schneller als dieses auszuwerten.
+            \end{enumerate}
+          \end{solution}
 
-  Ereignisorientierte Modellierung analog zur Probeklausur.
+    \item Ereignisorientierte Modellierung analog zur Probeklausur.
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise}{Systemmodellierung}
   \begin{enumerate}
     \item Nennen Sie einen Vorteil und einen Nachteil für Systemmodellierung auf der Werkzeugebene und beschreiben Sie diese.
           \begin{solution}
-            Vorteil einer Systemmodellierung auf der Werkzeugebene ist Strukturierung: Systemmodellierung hilft, komplexe Systeme zu strukturieren und zu visualisieren. Nachteil einer Systemmodellierung auf der Werkzeugebene ist Vereinfachung: Systemmodelle sind abstrakt und können die Realität vereinfachen.
+            Vorteil: schnelle Modellierung, Nachteil: geringere Flexibilität (als Programmiersprachen).
           \end{solution}
     \item Beschreiben Sie das "Zwischenereignis mit empfangener Nachricht".
           \begin{solution}
-            Ein Zwischenereignis mit empfangener Nachricht ist ein Ereignis, das auftritt, wenn eine Nachricht empfangen wird.
+            Ein Zwischenereignis mit empfangener Nachricht ist ein Ereignis, das auftritt, wenn eine Nachricht empfangen wird. Das Ereignis setzt ein Zwischen- oder Endereignis mit gesendeter Nachricht in einem anderen Prozess fort. Das Ereignis mit empfangener Nachricht kann als Start- oder Zwischenereignis eingesetzt werden, nicht jedoch als Endereignis.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -732,7 +734,7 @@
   Wann ist eine Simulation fertig "angelaufen"?
 
   \begin{solution}
-    Eine Simulation ist fertig "angelaufen", wenn die Initialisierung abgeschlossen ist und die Simulation gestartet wurde.
+    Eine Simulation ist fertig "angelaufen", wenn die Initialisierung abgeschlossen ist. Hierbei werden etwaige Listen, Warteschlangen, Ressourcen, etc. initialisiert und ggfs. befüllt. Außerdem wird die Simulationszeit auf 0 gesetzt.
   \end{solution}
 \end{exercise}
 
@@ -740,11 +742,19 @@
   \begin{enumerate}
     \item Nennen Sie die fünf Teile einer Organisation und beschreiben Sie diese kurz.
           \begin{solution}
-            % TODO: add
+            \begin{enumerate}
+              \item Strategische Spitze (strategic apex): Führungsebene, die die langfristige Ausrichtung der Organisation bestimmt.
+              \item Technostruktur (technostructure): Ebene, die die Arbeitsprozesse und -methoden festlegt.
+              \item Unterstützungsstab (support staff): Ebene, die die Organisation in administrativen und technischen Belangen unterstützt.
+              \item Mittlere Linie (middle line): Ebene, die die Kommunikation zwischen der strategischen Spitze und dem operativen Kern sicherstellt.
+              \item Operativer Kern (operating core): Ebene, die die eigentlichen Arbeitsprozesse durchführt.
+            \end{enumerate}
           \end{solution}
-    \item Ordnen Sie McDongerKing in ein Organisationsdesign ein und begründen Sie dies mit Mechanismen, Koordination und Intention.
+    \item Ordnen Sie McDongerKing in ein Organisationsdesign ein und begründen Sie dies mit Struktur, Koordination und Intention.
           \begin{solution}
-            % TODO: add
+            McDongerKing ist eine Fastfood-Kette mit mehreren Filialen in Deutschland. Sie bieten neuerdings eine Bestellung per App und einen Lieferdienst an (alles in-house).
+
+            Strukturell ist McDongerKing eine Bürokratie, da sie eine klare Hierarchie und Arbeitsaufteilung hat. Koordinativ ist McDongerKing eine Expertenorganisation, da sie auf Fachwissen und Spezialisierung setzt. Intentionell ist McDongerKing eine Entrepreneur-Organisation, da sie innovativ und wachstumsorientiert ist.
           \end{solution}
   \end{enumerate}
 \end{exercise}
