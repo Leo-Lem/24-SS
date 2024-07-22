@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[]{xrcise}
+\usepackage[solutions]{xrcise}
 
 \subject{Eingebettete Systeme}
 \semester{Summer 2024}
@@ -9,6 +9,46 @@
 \begin{document}\createtitle
 
 \sheet{Mündliche Prüfung}
+\begin{exercise}{Path}
+  \begin{enumerate}
+    \item Was sind die wichtigsten Eigenschaften eingebetteter Systeme?
+          \begin{solution}
+            Echtzeitfähigkeit, Energieeffizienz, Ressourcenknappheit, Zuverlässigkeit. -> Auf Entwicklungsprozess eingehen und OS genauer eingehen.
+          \end{solution}
+
+    \item Sie sind kurz auf die Entwicklung eingegangen. Können Sie das genauer erläutern?
+          \begin{solution}
+            nach Vorlesung: Requirements/Modellierung (MoC erwähnen und Kommunikation), Hardware/Software, iteratives Application Mapping/Evaluation+Validation/Optimierung.
+            Tests in allen Schritten (TDD) -> V-Modell: Requirements (Acceptance), System Design (Hardware, Software/OS) (System tests), Software Architecture (Integration), Software Design (Unit), Coden.
+          \end{solution}
+
+    \item Sie haben die Models of Computation erwähnt. Welche gibt es und wie kommunizieren sie?
+          \begin{solution}
+            Communicating FSMs, Data flow, Petrinetze, Diskrete Eventmodelle (DE models) und das klassische von Neumann Modell. Sie kommunizieren über Shared Memory und Message Passing.
+          \end{solution}
+
+    \item Erklären Sie gerne ein Modell genauer.
+          \begin{solution}
+            Communicating FSMs mit StateCharts. Hierarchie und Parallelität. Kommunikation mittels Shared Memory zwischen Zuständen.
+          \end{solution}
+
+    \item Sie hatten vorhin auch kurz eingebettete Betriebssysteme erwähnt. Worin unterscheiden sich diese von Allzweckbetriebssystemen?
+          \begin{solution}
+            Eingebettete Betriebssysteme sind speziell für die Anforderungen von eingebetteten Systemen optimiert und unterscheiden sich in Ihrer Echtzeitfähigkeit, darin, dass jeder Prozess Interrupts auslösen kann, und, dass zumeist direkt mit der Hardware kommuniziert wird (und nicht über das OS). Außerdem wird angenommen, dass Software getestet ist und somit weniger Sicherheitsanforderungen durch das OS gestellt werden. -> Ansonsten kümmern sich Betriebssysteme um eine Benutzeroberfläche, aber insb. Ressourcenverwaltung inkl. Scheduling.
+          \end{solution}
+
+    \item Welche Eigenschaften haben Schedules bzw. Scheduling-Verfahren? Erklären Sie diese gerne an einem Beispiel.
+          \begin{solution}
+            Periodizität, Dependenz, Präemption, Dynamik. Rate Monotonic Scheduling ist ein periodisches, nicht-dependentes, nicht-präemptives, und statisches Scheduling-Verfahren, bei dem die Priorität eines Prozesses durch seine Rate bestimmt wird. Die Rate eines Prozesses ist der Kehrwert seiner Periode.
+          \end{solution}
+
+    \item Im Designfluss haben Sie Optimierung erwähnt. Wonach wird denn typischerweise optimiert und wie?
+          \begin{solution}
+            Typischerweise wird nach Performance, Energieeffizienz, und Speicherbedarf optimiert. Dies erfolgt durch Hardwareauswahl, Codeoptimierung, und Dynamic Power Management. Auf Softwareebene Loop Unrolling, Loop Tiling, Loop Fusion/Loop Fission.
+          \end{solution}
+  \end{enumerate}
+\end{exercise}
+
 \begin{exercise}{Einführungsfragen}
   \begin{enumerate}
     \item Wie würden Sie (generell) an den Entwurf eines eingebetteten Systems herangehen?
@@ -113,15 +153,14 @@
     \item Was ist Priority Inversion und wie kann man das vermeiden?
 
           \begin{solution}
-            Priority Inversion tritt auf, wenn ein niedrig priorisierter Prozess eine Ressource blockiert, die von einem höher priorisierten Prozess benötigt wird. Priority Inversion kann durch die Verwendung von Prioritätsvererbung oder Prioritätsdecke vermieden werden.
-            Priority Inheritance ist eine Technik, bei der die Priorität eines Prozesses erhöht wird, wenn er auf eine Ressource wartet, die von einem anderen Prozess verwendet wird.
+            Priority Inversion tritt auf, wenn ein niedrig priorisierter Prozess eine Ressource blockiert, die von einem höher priorisierten Prozess benötigt wird. Priority Inversion kann durch die Verwendung von einer Priority Ceiling vermieden werden.
             Priority Ceiling ist eine Technik, bei der die Priorität eines Prozesses auf das Maximum der Prioritäten der Prozesse gesetzt wird, die auf die gleiche Ressource warten.
           \end{solution}
 
     \item Was kann noch für ein Problem auftreten und wie vermeidet man das?
 
           \begin{solution}
-            Deadlocks können auftreten, wenn Prozesse auf gegenseitige Exklusivität warten. Deadlocks können durch die Verwendung von Ressourcenverwaltungsalgorithmen wie Banker's Algorithm oder durch die Vermeidung von zyklischen Wartebedingungen vermieden werden.
+            Deadlocks können auftreten, wenn Prozesse auf gegenseitige Exklusivität warten. Deadlocks können durch die Vermeidung von zyklischen Wartebedingungen vermieden werden.
           \end{solution}
   \end{enumerate}
 \end{exercise}
@@ -149,6 +188,18 @@
 
           \begin{solution}
             Hardwareauswahl, Codeoptimierung, Dynamic Power Management (low power oder sleep mode).
+          \end{solution}
+
+    \item Was gibt es für Ansätze um hardware-seitig für ES zu optimieren?
+
+          \begin{solution}
+            FPGAs, ASICs, VLIW-Prozessoren, Single-ISA heterogeneous multi-core architectures, GPUs, MPSoCs.
+            FPGAs (Field Programmable Gate Arrays) beschreiben die Umsetzung von im Vorhinein bekannter Applikationslogik auf Hardwareebene mittels Logik-/Speicherblöcken und Verbindungen.
+            ASICs (Application Specific Integrated Circuits) sind speziell für eine Anwendung entwickelte Chips.
+            VLIW-Prozessoren (Very Long Instruction Word) führen mehrere Instruktionen in einem Taktzyklus aus.
+            Single-ISA heterogeneous multi-core architectures sind Architekturen, bei denen mehrere Prozessoren mit unterschiedlichen Eigenschaften auf einem Chip integriert sind.
+            GPUs (Graphics Processing Units) sind Prozessoren, die für die parallele Verarbeitung optimiert sind und insb. für Grafikanwendungen verwendet werden.
+            MPSoCs (Multiprocessor Systems-on-Chip) sind Multiprozessorsysteme auf einem Chip, die für die Verarbeitung von Signalen und Daten optimiert sind.
           \end{solution}
   \end{enumerate}
 \end{exercise}
